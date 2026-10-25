@@ -1,0 +1,21 @@
+{
+  "schema_version": "investigators.profile_diff/1",
+  "from_manifest": "pe_demo_v1",
+  "to_manifest": "pe_pilot_v2",
+  "status": "proposed_unapproved",
+  "decisions": ["D07", "D10"],
+  "differences": [
+    {"path": "behavior.classes.structured_record/JT.mechanism", "kind": "timing_mechanism", "rationale": "Reference demo_structured_delay_length -> concurrent; identical schedule because the body is chosen before timing (spec §6.5)."},
+    {"path": "behavior.classes.structured_record/PM.mechanism", "kind": "timing_mechanism", "rationale": "As for JT."},
+    {"path": "behavior.classes.social_greeting/JT.mechanism", "kind": "timing_mechanism", "rationale": "Reference demo_structured_delay_length -> concurrent; same schedule, no generation step."},
+    {"path": "behavior.classes.social_greeting/PM.mechanism", "kind": "timing_mechanism", "rationale": "As for JT."},
+    {"path": "behavior.classes.social_reply/JT.mechanism", "kind": "timing_mechanism", "rationale": "Additive (wait starts after the model answers) -> concurrent (generation overlaps the wait) (spec §6.3, §6.5)."},
+    {"path": "behavior.classes.social_reply/PM.mechanism", "kind": "timing_mechanism", "rationale": "As for JT."},
+    {"path": "behavior.classes.assistant/assistant.mechanism", "kind": "timing_mechanism", "rationale": "Demo display floor -> concurrent; floor delay(2,4) becomes the concurrent delay component."},
+    {"path": "behavior.classes.assistant/assistant.delay", "kind": "timing_mechanism", "rationale": "Floor distribution moves into the delay component (was fixed 0 under the floor mechanism)."},
+    {"path": "behavior.classes.assistant/assistant.floor", "kind": "timing_mechanism", "rationale": "No floor under concurrent."},
+    {"path": "behavior.teammates.fallback_bank", "kind": "content", "rationale": "Neutral fallback bank without busy/distracted cues or unsolicited solicitations (spec §7.3, D07)."},
+    {"path": "behavior.teammates.social_prompt", "kind": "content", "rationale": "Historical 'a little distracted' social prompt not used (spec §7.3)."},
+    {"path": "behavior.teammates.social_generation", "kind": "policy", "rationale": "Deterministic neutral social replies proposed until D07 selects a generation mode."}
+  ]
+}

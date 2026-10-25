@@ -1,0 +1,19 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "exposure_copy",
+  "artifact_id": "exposure.pe_control_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D03"],
+  "sources": [{"ref": "demo_constants.peer_evaluation.EVAL_CONFIG.control"}, {"ref": "REF-PE-01"}],
+  "notes": ["Control arm: generic questionnaire wording, no strip, no system message. INV-0910 audits every other surface for contamination."],
+  "body": {
+    "arm": "control",
+    "format": "demo_html_reference",
+    "intro": "<div class=\"callout\"><b>After the session.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.</div>",
+    "callout": "<b>Reminder.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.",
+    "strip": "",
+    "system_message": "",
+    "peer_intro": "Please rate each of your teammates."
+  }
+}

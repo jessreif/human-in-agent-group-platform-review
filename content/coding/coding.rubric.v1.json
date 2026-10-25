@@ -1,0 +1,173 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "coding_rubric",
+  "artifact_id": "coding.rubric",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D04", "D05"],
+  "sources": [
+    {"ref": "spec §9.4 offline semantic coding and validation"},
+    {"ref": "spec §11 coding_run / coding_result provenance"},
+    {"ref": "INV-1201"},
+    {"ref": "INV-1202"},
+    {"ref": "codebook cb-1.0"}
+  ],
+  "notes": [
+    "Investigators offline semantic coding rubric v1. Versioned and pinned into coding_run rows; never referenced by a session manifest. The deterministic coder implements these rules under code_version (INV-1202); the model-assisted path remains dormant pending D05. Structured evidence (record ids, authenticated attachments) is always authoritative over text-coded semantics."
+  ],
+  "body": {
+    "code_schema": "investigators.coding/1",
+    "subject_statuses": ["coded", "not_coded", "failed", "abstained"],
+    "assertion_values": ["asserted", "uncertain", "hedged", "negated"],
+    "event_types": ["arrival", "still_at", "departure", "transit"],
+    "stance_values": ["endorse", "question", "contradict", "uncertain", "no_stance"],
+    "novelty_values": [
+      "first_introduction",
+      "self_repetition",
+      "other_source_repetition",
+      "attachment",
+      "unresolved"
+    ],
+    "span_kinds": ["crate", "location", "time", "evidence"],
+    "categories": [
+      {
+        "category_id": "explicit_statement",
+        "definition": "A first-order claim that assigns an event (arrival/still_at/departure/transit) or a current location to a crate, or states crate-relevant evidence. Carries exact text spans for crate/location/time/evidence references, assertion polarity, stance and source attribution. An authenticated record attachment codes the same shape from structured fields and bypasses all semantic matching.",
+        "examples": [
+          {
+            "text": "Crate 8 arrived at Marina.",
+            "codes": ["explicit_statement"],
+            "note": "asserted/arrival; crate span 0-7, location span 19-25"
+          },
+          {
+            "text": "My crate 3 is still at Anchor — I checked the card again.",
+            "codes": ["explicit_statement"],
+            "note": "still_at is not departure; re-checking the same record is repetition, not novelty"
+          },
+          {
+            "text": "It arrived at Marina. [record_id=r-8-marina-arrival]",
+            "codes": ["explicit_statement"],
+            "note": "attachment path: crate/location/event taken from the record, not the text"
+          }
+        ]
+      },
+      {
+        "category_id": "question",
+        "definition": "An interrogative about crate state or evidence. Questions are support predicates, not location assertions: they may carry an attached stance and an evidence-location hypothesis, but never produce a location assertion by themselves.",
+        "examples": [
+          {
+            "text": "Did crate 3 arrive at Marina?",
+            "codes": ["question"],
+            "note": "no assertion; evidence hypothesis Marina for crate 3"
+          },
+          {
+            "text": "Crate 3 arrived at Marina — is that right?",
+            "codes": ["explicit_statement", "question"],
+            "note": "assertion uncertain + follow-up question; stance question on the assertion"
+          }
+        ]
+      },
+      {
+        "category_id": "inference",
+        "definition": "A claim derived rather than stated: explicit causal/conditional markers (because, so, therefore, if...then, that's why) promote the modified sentence to inference in addition to its literal codes.",
+        "examples": [
+          {
+            "text": "Crate 8 is at Marina because the storm moved it.",
+            "codes": ["explicit_statement", "inference"],
+            "note": "asserted + inference marker"
+          },
+          {
+            "text": "If crate 3 left Anchor, then it is heading to Marina.",
+            "codes": ["explicit_statement", "inference"],
+            "note": "conditional: literal codes plus inference; chronology still governed by record events"
+          }
+        ]
+      },
+      {
+        "category_id": "negation",
+        "definition": "An assertion whose polarity is reversed: explicit negation of an event, or 'never <event>'. Negated assertions are recorded as negated and are never support for a positive claim.",
+        "examples": [
+          {
+            "text": "Crate 3 did not arrive at Marina.",
+            "codes": ["explicit_statement", "negation"],
+            "note": "assertion negated"
+          },
+          {
+            "text": "Crate 8 never left Anchor.",
+            "codes": ["explicit_statement", "negation"],
+            "note": "'never left' => negated departure, not asserted still_at"
+          }
+        ]
+      },
+      {
+        "category_id": "ambiguity",
+        "definition": "Text that cannot be resolved to the code schema without guessing: no crate referent, no state referent, unresolved pronouns, conflicting location mentions with no chronology, or transplanted/out-of-vocabulary text. The whole subject is abstained.",
+        "examples": [
+          {
+            "text": "What about the one near the dock?",
+            "codes": ["ambiguity"],
+            "note": "no crate referent and no carried referent => abstained"
+          },
+          {
+            "text": "Crate 5 was at Marina and also at Anchor.",
+            "codes": ["ambiguity"],
+            "note": "mutually exclusive locations without chronology => abstained"
+          },
+          {
+            "text": "Ja genau, die Kiste 4 ist da.",
+            "codes": ["ambiguity"],
+            "note": "out-of-vocabulary => abstained, never a partial guess"
+          }
+        ]
+      },
+      {
+        "category_id": "solicitation",
+        "definition": "A proactive request for evidence or information about crates. Solicitation is a sharing-eligibility predicate for the recipient, not an assertion.",
+        "examples": [
+          {
+            "text": "Anything useful for my crate 3?",
+            "codes": ["solicitation", "question"],
+            "note": "crates [3]; changes proactive-sharing eligibility for the sender"
+          },
+          {
+            "text": "Send me whatever records you have.",
+            "codes": ["solicitation"],
+            "note": "general solicitation, crates []"
+          }
+        ]
+      },
+      {
+        "category_id": "repetition",
+        "definition": "The relation of an assertion to already-visible evidence, derived after message-level coding. Record-aware: same record_id is the same lineage even across channels and even when phrased differently. self_repetition/other_source_repetition use the actor of the earliest matching lineage.",
+        "examples": [
+          {
+            "text": "Crate 8 is at Marina (JT shared r-8-marina-arrival; participant restates it).",
+            "codes": ["repetition"],
+            "note": "same record, different actor => other_source_repetition"
+          },
+          {
+            "text": "Crate 5 arrived at Anchor. ... Crate 5 arrived at Anchor.",
+            "codes": ["repetition"],
+            "note": "same actor repeating a paraphrase => self_repetition"
+          }
+        ]
+      },
+      {
+        "category_id": "stance",
+        "definition": "The speaker's posture toward prior evidence or toward their own claim: endorse, question, contradict, uncertain, no_stance. Quoted disagreement keeps attribution — the speaker challenges the attributed source rather than owning the claim. Bare 'yes/ok/confirmed' is acknowledgment, not an endorsement of a specific record unless it references one.",
+        "examples": [
+          {
+            "text": "JT says Marina, but that record is old.",
+            "codes": ["stance"],
+            "note": "contradict + attribution JT + temporal_challenge (stale-record challenge)"
+          },
+          {
+            "text": "Right — the Marina card is the fresh one.",
+            "codes": ["stance"],
+            "note": "endorse toward the freshest matching lineage"
+          }
+        ]
+      }
+    ]
+  }
+}

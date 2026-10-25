@@ -1,0 +1,1020 @@
+{
+ "about": "Hand-authored reference behaviors and known defects of the two HTML demos (INV-0003). Every entry cites anchors: {demo, line, contains} means the given line of the demo contains the snippet; {demo, absent} means the snippet occurs nowhere in that demo. tests/contracts/test_reference_fixtures.py verifies every anchor against the pinned demo files. Literal constants live in demo_constants.json (extracted, not hand-copied).",
+ "demos": {
+  "tp": {
+   "file": "docs/baseline/reference/investigators_time_pressure_demo.html",
+   "sha256": "7ced90c5e0c6f45882e9c1c54650fd0c23b137d744b3c9a138ea49d53d6b9825",
+   "note": "Pinned S2 behavioral reference, archived 2026-10-06; the live playable-mock template is now demos/template/investigators_demo.html."
+  },
+  "pe": {
+   "file": "docs/baseline/reference/investigators_peer_eval_demo.html",
+   "sha256": "90b9587aedaa1b032c6316d9bb92937736598a007927a3f093139a9b8c27b48e"
+  }
+ },
+ "behaviors": [
+  {
+   "id": "REF-TASK-01",
+   "kind": "behavior",
+   "area": "clock",
+   "summary": "Active task budget: TP reference 360 s counted by a 1 s browser interval that decrements only while not paused. The revised PE reference (2026-10-01) uses 480 s (8 minutes) and has no pause guard. The production task stays at 360 s (UX feedback item 13 — the demo's 8-minute value is deliberately not adopted).",
+   "value": {
+    "active_budget_s": 360,
+    "tick": "setInterval 1000 ms",
+    "pause_stops_active_clock": true
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1719,
+     "contains": "timeLeft = 360;"
+    },
+    {
+     "demo": "tp",
+     "line": 1801,
+     "contains": "if (paused) return;"
+    },
+    {
+     "demo": "pe",
+     "line": 779,
+     "contains": "timeLeft = 480"
+    },
+    {
+     "demo": "pe",
+     "absent": "paused"
+    }
+   ]
+  },
+  {
+   "id": "REF-TASK-02",
+   "kind": "behavior",
+   "area": "warning",
+   "summary": "System chat message \"One minute left.\" at 60 s remaining (active second 300); timer switches to its low-time style for the final 60 s. Only in-task time warning. Server equivalent: warning.one_minute_left v1 on the active_task clock.",
+   "value": {
+    "message": "One minute left.",
+    "active_second": 300,
+    "low_style_from_remaining_s": 60
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1818,
+     "contains": "if (timeLeft === 60) addSystem('One minute left.');"
+    },
+    {
+     "demo": "tp",
+     "line": 1805,
+     "contains": "classList.toggle('low', timeLeft <= 60)"
+    },
+    {
+     "demo": "pe",
+     "line": 1471,
+     "contains": "if (timeLeft === 60) addSystem('One minute left.');"
+    },
+    {
+     "demo": "pe",
+     "line": 1471,
+     "contains": "classList.toggle('low', timeLeft <= 60)"
+    }
+   ]
+  },
+  {
+   "id": "REF-TASK-03",
+   "kind": "behavior",
+   "area": "completion",
+   "summary": "Task ends only at timeout; there is no early final submission. Answers are recorded on every picker change.",
+   "value": {
+    "end": "timeout at active 360",
+    "early_submit": false
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1819,
+     "contains": "if (timeLeft <= 0) endTask('timeout');"
+    },
+    {
+     "demo": "tp",
+     "line": 55,
+     "contains": "you cannot finish early."
+    },
+    {
+     "demo": "tp",
+     "line": 1071,
+     "contains": "record('answer_set', {"
+    }
+   ]
+  },
+  {
+   "id": "REF-WORLD-01",
+   "kind": "behavior",
+   "area": "world",
+   "summary": "Eight crates, six hideouts; four assigned crates shown in ascending order; roles shuffled as own, own, team, team. The revised PE reference (2026-10-01) keeps the same generator semantics but is a const/let rewrite, so the two demos are no longer byte-identical.",
+   "value": {
+    "crates": 8,
+    "hideouts": 6,
+    "assigned": 4,
+    "roles": [
+     "own",
+     "own",
+     "team",
+     "team"
+    ],
+    "assigned_order": "ascending"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 446,
+     "contains": "var assigned = shuffled(nums).slice(0, N_ASSIGNED).sort(function (a, b) {"
+    },
+    {
+     "demo": "tp",
+     "line": 449,
+     "contains": "var roles = shuffled(['own', 'own', 'team', 'team']);"
+    },
+    {
+     "demo": "pe",
+     "line": 699,
+     "contains": "const assigned = shuffled(nums).slice(0, N_ASSIGNED)"
+    }
+   ]
+  },
+  {
+   "id": "REF-WORLD-02",
+   "kind": "behavior",
+   "area": "world",
+   "summary": "Each crate walks three distinct hideouts (legA -> legB -> truth). Own-file crates make their final move yesterday 11:00-14:00; team-dependent and unassigned crates make it today 11:30-14:00.",
+   "value": {
+    "legA": [
+     "-3d 09:00 arrive",
+     "-3d 17:00 still",
+     "-2d 10:00 still",
+     "-2d 19:00 depart"
+    ],
+    "legB": [
+     "-1d 06:30 transit",
+     "-1d 08:15 arrive"
+    ],
+    "own_tail": [
+     "-1d 11:00 depart",
+     "-1d 12:30 transit",
+     "-1d 14:00 arrive(truth)",
+     "-1d 18:00 still",
+     "0d 09:30 still",
+     "0d 13:00 still",
+     "0d 16:30 still"
+    ],
+    "team_tail": [
+     "-1d 13:00 still",
+     "-1d 19:00 still",
+     "0d 08:45 still",
+     "0d 11:30 depart",
+     "0d 12:15 transit",
+     "0d 14:00 arrive(truth)",
+     "0d 16:00 still",
+     "0d 17:30 still"
+    ]
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 384,
+     "contains": "var walk = shuffled(HIDEOUTS).slice(0, 3); // legA -> legB -> truth"
+    },
+    {
+     "demo": "tp",
+     "line": 400,
+     "contains": "add(-3, 9, 0, fill(pick(T_ARRIVE), num, contents, walk[0]), 0);"
+    },
+    {
+     "demo": "tp",
+     "line": 411,
+     "contains": "add(-1, 11, 0, fill(pick(T_DEPART), num, contents, walk[1]), 2);"
+    },
+    {
+     "demo": "tp",
+     "line": 423,
+     "contains": "add(0, 11, 30, fill(pick(T_DEPART), num, contents, walk[1]), 2);"
+    },
+    {
+     "demo": "tp",
+     "line": 471,
+     "contains": "role === 'own' ? 'own' : 'team'"
+    }
+   ]
+  },
+  {
+   "id": "REF-WORLD-03",
+   "kind": "behavior",
+   "area": "world",
+   "summary": "Participant information cutoffs: one own crate ends yesterday 20:00 and the other today 15:00; one team crate ends yesterday 20:00 and the other today 09:30. Assigned-crate entries after the cutoff go to JT or PM by an independent fair coin per entry.",
+   "value": {
+    "own_cutoffs": [
+     "-1d 20:00",
+     "0d 15:00"
+    ],
+    "team_cutoffs": [
+     "-1d 20:00",
+     "0d 09:30"
+    ],
+    "post_cutoff_allocation": "per-entry Bernoulli(0.5) JT/PM"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 453,
+     "contains": "var ownCuts = shuffled([mins(-1, 20, 0), mins(0, 15, 0)]);"
+    },
+    {
+     "demo": "tp",
+     "line": 454,
+     "contains": "var teamCuts = shuffled([mins(-1, 20, 0), mins(0, 9, 30)]);"
+    },
+    {
+     "demo": "tp",
+     "line": 490,
+     "contains": "if (e.ts <= cut) dist.participant.push(e.id);else (Math.random() < 0.5 ? dist.JT : dist.PM).push(e.id);"
+    }
+   ]
+  },
+  {
+   "id": "REF-WORLD-04",
+   "kind": "behavior",
+   "area": "world",
+   "summary": "For each unassigned crate the participant holds the last two entries at or after today 12:00 (useful to teammates, useless to the participant); every other entry goes to JT or PM by a fair coin.",
+   "value": {
+    "participant_gets": "last 2 entries with ts >= 0d 12:00",
+    "rest": "per-entry Bernoulli(0.5) JT/PM"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 496,
+     "contains": "return e.ts >= mins(0, 12, 0);"
+    },
+    {
+     "demo": "tp",
+     "line": 498,
+     "contains": "var give = late.slice(-2);"
+    }
+   ]
+  },
+  {
+   "id": "REF-FILE-01",
+   "kind": "behavior",
+   "area": "records",
+   "summary": "Initial case-file order is a uniform shuffle; entries can be reordered by drag; shared entries go to both teammates; the assistant reads only entries currently in the participant's file; team entries enter the file only via Add to case file; entries cannot be dragged to the assistant.",
+   "value": {
+    "initial_order": "Fisher-Yates shuffle",
+    "ai_context": "participant file entries only",
+    "team_records_enter_file": "Add to case file",
+    "drag_to_ai": false
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 903,
+     "contains": "var sh = DIST.participant.slice();"
+    },
+    {
+     "demo": "tp",
+     "line": 1027,
+     "contains": "function addToFile(from, id) {"
+    },
+    {
+     "demo": "tp",
+     "line": 999,
+     "contains": "function wireAIDrop() {}"
+    },
+    {
+     "demo": "tp",
+     "line": 1461,
+     "contains": "var pool = entries.slice();"
+    }
+   ]
+  },
+  {
+   "id": "REF-SHARE-01",
+   "kind": "behavior",
+   "area": "measures",
+   "summary": "A share counts as proactive when it concerns a crate that is not the participant's, has not been requested by a teammate, and was not made from a request's Share intel prompt.",
+   "value": {
+    "proactive": "!mine && !requested && !prompted"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 889,
+     "contains": "var proactive = !e.all && !isMine(e.crate) && !requestedCrates.has(e.crate) && !ctx;"
+    }
+   ]
+  },
+  {
+   "id": "REF-REQ-01",
+   "kind": "behavior",
+   "area": "teammates",
+   "summary": "Scripted teammate requests: two for distinct unassigned crates (first and third) and one for an assigned crate (second); seats are a shuffle of JT, PM, JT so JT asks twice and PM once in every session. Timing: TP reference 40/150/240 active seconds; the revised PE reference (2026-10-01) uses 60/180/300.",
+   "value": {
+    "times_s": [
+     40,
+     150,
+     240
+    ],
+    "targets": [
+     "unassigned[0]",
+     "assigned",
+     "unassigned[1]"
+    ],
+    "seat_multiset": [
+     "JT",
+     "JT",
+     "PM"
+    ],
+    "text": "Requesting intel on Crate {n}."
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 542,
+     "contains": "var seats = shuffled(['JT', 'PM', 'JT']);"
+    },
+    {
+     "demo": "tp",
+     "line": 544,
+     "contains": "at: 40,"
+    },
+    {
+     "demo": "tp",
+     "line": 546,
+     "contains": "crateNum: notMine[0]"
+    },
+    {
+     "demo": "tp",
+     "line": 548,
+     "contains": "at: 150,"
+    },
+    {
+     "demo": "tp",
+     "line": 550,
+     "contains": "crateNum: mineShuf[0]"
+    },
+    {
+     "demo": "tp",
+     "line": 552,
+     "contains": "at: 240,"
+    },
+    {
+     "demo": "tp",
+     "line": 554,
+     "contains": "crateNum: notMine[1]"
+    },
+    {
+     "demo": "pe",
+     "line": 764,
+     "contains": "const seats = shuffled(['JT', 'PM', 'JT']);"
+    }
+   ]
+  },
+  {
+   "id": "REF-REQ-02",
+   "kind": "behavior",
+   "area": "teammates",
+   "summary": "A participant request returns exactly one record: the latest entry for that crate across JT's and PM's holdings, sent by whichever seat holds it; nothing is sent if neither holds an entry.",
+   "value": {
+    "response": "single latest record across seats",
+    "sender": "holder of that record"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1373,
+     "contains": "var order = jt && pm ? parseStamp(jt.stamp) >= parseStamp(pm.stamp) ? [jt, pm] : [pm, jt]"
+    },
+    {
+     "demo": "tp",
+     "line": 1374,
+     "contains": "if (!order.length) return;"
+    }
+   ]
+  },
+  {
+   "id": "REF-TIME-01",
+   "kind": "timing",
+   "area": "timing",
+   "summary": "Delay distribution delay(lo,hi): lognormal around the midpoint (lo+hi)/2 with sigma 0.45 (Box-Muller), clamped to [lo, 2.2*hi] seconds.",
+   "value": {
+    "median_s": "(lo+hi)/2",
+    "sigma": 0.45,
+    "clamp_s": [
+     "lo",
+     "2.2*hi"
+    ]
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 595,
+     "contains": "var mid = (lo + hi) / 2;"
+    },
+    {
+     "demo": "tp",
+     "line": 599,
+     "contains": "var ms = mid * Math.exp(0.45 * z) * 1000;"
+    },
+    {
+     "demo": "tp",
+     "line": 600,
+     "contains": "return Math.min(hi * 2.2 * 1000, Math.max(lo * 1000, ms));"
+    }
+   ]
+  },
+  {
+   "id": "REF-TIME-02",
+   "kind": "timing",
+   "area": "timing",
+   "summary": "Structured record reply (teammate share in answer to a request): wall-clock setTimeout of delay(5,12) + min(9000 ms, 28 ms per visible character). Not paused by the TP check-in.",
+   "value": {
+    "class": "structured_record",
+    "clock": "wall",
+    "delay": "delay(5,12)",
+    "typing_ms": "min(9000, 28*chars)"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1161,
+     "contains": ": 5;"
+    },
+    {
+     "demo": "tp",
+     "line": 1162,
+     "contains": ": 12;"
+    },
+    {
+     "demo": "tp",
+     "line": 1166,
+     "contains": "var wait = delay(lo, hi) + Math.min(9000, chars * 28);"
+    }
+   ]
+  },
+  {
+   "id": "REF-TIME-03",
+   "kind": "timing",
+   "area": "timing",
+   "summary": "Greeting: prompt appears 2 s after start (tracked timeout); JT replies after delay(1.5,3)+typing, PM after delay(3.5,5) then delay(1,2)+typing (wall clock).",
+   "value": {
+    "class": "social_greeting",
+    "prompt_after_ms": 2000,
+    "JT": "delay(1.5,3)+typing",
+    "PM": "delay(3.5,5) then delay(1,2)+typing"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1787,
+     "contains": "agentSays('JT', rand(GREETINGS), null, 1.5, 3);"
+    },
+    {
+     "demo": "tp",
+     "line": 1789,
+     "contains": "agentSays('PM', rand(GREETINGS), null, 1, 2);"
+    },
+    {
+     "demo": "tp",
+     "line": 1790,
+     "contains": "}, delay(3.5, 5));"
+    },
+    {
+     "demo": "tp",
+     "line": 1797,
+     "contains": "}, 2000));"
+    }
+   ]
+  },
+  {
+   "id": "REF-TIME-04",
+   "kind": "timing",
+   "area": "timing",
+   "summary": "Free-text teammate reply (the only generative teammate turn): model call with 25 s abort, THEN an additional wall-clock delay(4,10) + min(8000 ms, 35 ms per character) after the response arrives, so model latency is additive.",
+   "value": {
+    "class": "social_reply",
+    "clock": "wall",
+    "timeout_ms": 25000,
+    "post_response_delay": "delay(4,10)+min(8000, 35*len)",
+    "latency_additive": true
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1262,
+     "contains": "}, 25000);"
+    },
+    {
+     "demo": "tp",
+     "line": 1335,
+     "contains": "var wait = delay(4, 10) + Math.min(8000, text.length * 35);"
+    }
+   ]
+  },
+  {
+   "id": "REF-TIME-05",
+   "kind": "timing",
+   "area": "timing",
+   "summary": "Assistant reply: 20 s timeout; a display floor of delay(2,4) measured from the moment of asking (not additive to model latency); offline analyzer path waits delay(3,7).",
+   "value": {
+    "class": "assistant",
+    "timeout_ms": 20000,
+    "floor": "delay(2,4) from ask",
+    "offline_delay": "delay(3,7)"
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1452,
+     "contains": "var AI_TIMEOUT_MS = 20000;"
+    },
+    {
+     "demo": "tp",
+     "line": 1573,
+     "contains": "var floor = delay(2, 4);"
+    },
+    {
+     "demo": "tp",
+     "line": 1575,
+     "contains": "var remaining = Math.max(0, floor - (Date.now() - askedAt));"
+    },
+    {
+     "demo": "tp",
+     "line": 1561,
+     "contains": "}, delay(3, 7));"
+    }
+   ]
+  },
+  {
+   "id": "REF-TP-01",
+   "kind": "behavior",
+   "area": "manipulation",
+   "summary": "Time-pressure check-in at active second 60: active clock pauses; participant rates own pressure 1-7; 3.5 s simulated collection (wall clock); teammate values revealed (high 6/7, low 2/3; higher value to JT or PM by fair coin); explicit Resume; values stay visible above the chat.",
+   "value": {
+    "at_active_s": 60,
+    "collect_ms": 3500,
+    "values": {
+     "high": [
+      6,
+      7
+     ],
+     "low": [
+      2,
+      3
+     ]
+    },
+    "higher_seat": "Bernoulli(0.5)",
+    "resume": "explicit",
+    "persistent_strip": true
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1817,
+     "contains": "if (!checkinDone && elapsed >= CHECKIN_AT) openCheckin();"
+    },
+    {
+     "demo": "tp",
+     "line": 1829,
+     "contains": "How much time pressure do you feel while working on this task right now?"
+    },
+    {
+     "demo": "tp",
+     "line": 1832,
+     "contains": "Your rating will be visible to your teammates."
+    },
+    {
+     "demo": "tp",
+     "line": 1850,
+     "contains": "var flip = Math.random() < 0.5;"
+    },
+    {
+     "demo": "tp",
+     "line": 1854,
+     "contains": "setTimeout(revealCheckin, CHECKIN_COLLECT_MS);"
+    },
+    {
+     "demo": "tp",
+     "line": 1860,
+     "contains": "These ratings will stay visible above the team chat."
+    }
+   ]
+  },
+  {
+   "id": "REF-TP-02",
+   "kind": "behavior",
+   "area": "manipulation",
+   "summary": "Requests and prompts are possible before the check-in (the 40 s request precedes it); counts before/after the check-in are logged.",
+   "value": {
+    "pre_manipulation_seeking_possible": true
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1825,
+     "contains": "record('checkin_open', { elapsed: elapsed, requests_before: counters.req"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-01",
+   "kind": "behavior",
+   "area": "manipulation",
+   "summary": "Peer-evaluation exposure surfaces (eval arm): intro callout, instructions reminder, persistent task-header strip, system message at task start, peer-rating intro. Control arm: generic questionnaire wording, no strip, no system message.",
+   "value": {
+    "surfaces": [
+     "intro",
+     "callout",
+     "strip",
+     "systemMsg",
+     "peerIntro"
+    ]
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "line": 797,
+     "contains": "const EVAL_CONFIG = {"
+    },
+    {
+     "demo": "pe",
+     "line": 298,
+     "contains": "<div id=\"evalIntroCallout\"></div>"
+    },
+    {
+     "demo": "pe",
+     "line": 1457,
+     "contains": "if (EV.systemMsg) addSystem(EV.systemMsg);"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-02",
+   "kind": "behavior",
+   "area": "teammates",
+   "summary": "Seat voices: the revised PE reference (2026-10-01) removed the scripted thanks/noNews/afterShare pools — thread replies are generative when TEAMMATE_LIVE is set, otherwise a canned teammateFallback pool drawn with rand() (repeats allowed).",
+   "value": {
+    "pools": [
+     "thanks",
+     "noNews",
+     "afterShare"
+    ],
+    "repeat_policy": "no repeat until pool exhausted"
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "line": 1115,
+     "contains": "const TEAMMATE_LIVE = false;"
+    },
+    {
+     "demo": "pe",
+     "line": 1140,
+     "contains": "function teammateFallback"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-03",
+   "kind": "behavior",
+   "area": "teammates",
+   "summary": "The probabilistic share-acknowledgment layer (ACK_P seat asymmetry, prompted/unprompted ack probabilities, delay(4,12) acks) was removed in the revised PE reference (2026-10-01): shares receive no teammate reply in the demo.",
+   "value": {
+    "unprompted_ack_seat": {
+     "PM": 0.65,
+     "JT": 0.35
+    },
+    "ack_probability": {
+     "JT": {
+      "prompted": 0.55,
+      "unprompted": 0.25
+     },
+     "PM": {
+      "prompted": 0.9,
+      "unprompted": 0.6
+     }
+    },
+    "delay": "delay(4,12)"
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "absent": "ACK_P"
+    },
+    {
+     "demo": "pe",
+     "absent": "unprompted"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-04",
+   "kind": "behavior",
+   "area": "teammates",
+   "summary": "The +28-active-second crosstalk follow-up layer was removed in the revised PE reference (2026-10-01).",
+   "value": {
+    "offset_active_s": 28,
+    "speaker": "other seat",
+    "kind": [
+     "after_share",
+     "unanswered"
+    ]
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "absent": "followups"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-05",
+   "kind": "behavior",
+   "area": "instruments",
+   "summary": "Peer ratings of JT and PM (1-7 helpfulness) are collected after confidence in BOTH arms; the demo requires both ratings before Continue.",
+   "value": {
+    "arms": [
+     "eval",
+     "control"
+    ],
+    "scale": [
+     1,
+     7
+    ],
+    "required": true
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "line": 1422,
+     "contains": "How helpful was <b>"
+    },
+    {
+     "demo": "pe",
+     "line": 1433,
+     "contains": "$('peerContinue').disabled = !(peerRatings.JT && peerRatings.PM);"
+    }
+   ]
+  },
+  {
+   "id": "REF-PE-06",
+   "kind": "behavior",
+   "area": "manipulation",
+   "summary": "The peer-evaluation demo has no time-pressure check-in.",
+   "value": {
+    "checkin": false
+   },
+   "anchors": [
+    {
+     "demo": "pe",
+     "absent": "CHECKIN_AT"
+    },
+    {
+     "demo": "pe",
+     "absent": "openCheckin"
+    }
+   ]
+  },
+  {
+   "id": "REF-POST-01",
+   "kind": "behavior",
+   "area": "instruments",
+   "summary": "Confidence 0-100 per answered crate only; the slider starts at 50 but a crate counts as rated only after the participant moves it; unanswered crates show 'No location selected.'",
+   "value": {
+    "scale": [
+     0,
+     100
+    ],
+    "visual_start": 50,
+    "counts_only_after_input": true
+   },
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1903,
+     "contains": "confidence[n] === undefined ? 50 : confidence[n]"
+    },
+    {
+     "demo": "tp",
+     "line": 1936,
+     "contains": "return answers[crate] && confidence[crate] === undefined;"
+    }
+   ]
+  },
+  {
+   "id": "DEF-01",
+   "kind": "defect",
+   "area": "teammates",
+   "summary": "Code comment says one unowned crate is never requested; with four unassigned crates and two distinct unassigned requests, TWO remain unrequested. Use generated allocations to define opportunities (spec §2.1).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 533,
+     "contains": "One unowned crate is never"
+    }
+   ]
+  },
+  {
+   "id": "DEF-02",
+   "kind": "defect",
+   "area": "state",
+   "summary": "Browser Math.random generates the world, record order, seat choices and delays; the full world including truth lives in participant JavaScript (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 517,
+     "contains": "var WORLD = buildWorld();"
+    },
+    {
+     "demo": "tp",
+     "line": 351,
+     "contains": "Math.random()"
+    }
+   ]
+  },
+  {
+   "id": "DEF-03",
+   "kind": "defect",
+   "area": "conditions",
+   "summary": "Unknown or missing condition silently defaults to high pressure (TP) or evaluation (PE); spec §4 requires rejecting unknown combinations. The condition chooser and Restart are exposed in the demo banner.",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 614,
+     "contains": "var CONDITION = window.INV_CONDITION === 'low' ? 'low' : 'high';"
+    },
+    {
+     "demo": "tp",
+     "line": 17,
+     "contains": "<select id=\"demoCondition\">"
+    },
+    {
+     "demo": "tp",
+     "line": 18,
+     "contains": "id=\"demoRestart\""
+    },
+    {
+     "demo": "pe",
+     "line": 796,
+     "contains": "window.INV_CONDITION === 'control'"
+    }
+   ]
+  },
+  {
+   "id": "DEF-04",
+   "kind": "defect",
+   "area": "timing",
+   "summary": "Teammate messages, free-text replies, acknowledgments and the check-in reveal use setTimeout callbacks that are not in the tracked timeouts list: they are not cleared by endTask and keep running during the check-in pause, so they can land after closure or during the pause (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1167,
+     "contains": "setTimeout(function () {"
+    },
+    {
+     "demo": "tp",
+     "line": 1336,
+     "contains": "setTimeout(function () {"
+    },
+    {
+     "demo": "tp",
+     "line": 1873,
+     "contains": "timeouts.forEach(clearTimeout);"
+    },
+    {
+     "demo": "pe",
+     "line": 873,
+     "contains": "setTimeout(() => {"
+    }
+   ]
+  },
+  {
+   "id": "DEF-05",
+   "kind": "defect",
+   "area": "assistant",
+   "summary": "AI reply logging records fallback:false before the validation decision that may return the analyzer fallback (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1517,
+     "contains": "fallback: false"
+    },
+    {
+     "demo": "tp",
+     "line": 1519,
+     "contains": "if (!raw.trim() || leaked.length) return {"
+    }
+   ]
+  },
+  {
+   "id": "DEF-06",
+   "kind": "defect",
+   "area": "assistant",
+   "summary": "Browser calls an external relay (qualtrics-relay.example.com/chatgpt) and pre-warms it; model output is validated only by hideout-name matching (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 1451,
+     "contains": "var AI_ENDPOINT = 'https://qualtrics-relay.example.com/chatgpt';"
+    },
+    {
+     "demo": "tp",
+     "line": 1457,
+     "contains": "fetch(AI_ENDPOINT.replace('/chatgpt', '/')).catch(function () {});"
+    },
+    {
+     "demo": "tp",
+     "line": 1288,
+     "contains": "var leaked = hideoutsIn(raw);"
+    }
+   ]
+  },
+  {
+   "id": "DEF-07",
+   "kind": "defect",
+   "area": "completion",
+   "summary": "Completion relies on INV_FINISH writing embedded data and a 1.2 s flush delay before auto-advancing (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 292,
+     "contains": "}, 1200);"
+    }
+   ]
+  },
+  {
+   "id": "DEF-08",
+   "kind": "defect",
+   "area": "instruments",
+   "summary": "Post-task demo items style the chosen button but never save the response (spec §2.3).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 215,
+     "contains": "e.target.classList.add('on');"
+    }
+   ]
+  },
+  {
+   "id": "DEF-09",
+   "kind": "defect",
+   "area": "teammates",
+   "summary": "Historical: crosstalk treated a share_prompted event (the participant merely opened the Share intel prompt) as answered, so an afterShare line could follow a request that received no share. The 2026-10-01 PE rewrite removed the crosstalk layer entirely, so the defect mechanism no longer exists in the demo.",
+   "anchors": [
+    {
+     "demo": "pe",
+     "absent": "x.type === 'share_prompted'"
+    }
+   ]
+  },
+  {
+   "id": "DEF-10",
+   "kind": "defect",
+   "area": "identity",
+   "summary": "If the participant's initials equal a seat label, that teammate is silently renamed AR in display only.",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 609,
+     "contains": "return initials() === seat ? 'AR' : seat;"
+    }
+   ]
+  },
+  {
+   "id": "DEF-11",
+   "kind": "defect",
+   "area": "instruments",
+   "summary": "Peer ratings are forced (Continue disabled until both are given), conflicting with the approved protocol's permission to skip questions (spec §13 'Optional answers'; D06).",
+   "anchors": [
+    {
+     "demo": "pe",
+     "line": 1433,
+     "contains": "$('peerContinue').disabled = !(peerRatings.JT && peerRatings.PM);"
+    }
+   ]
+  },
+  {
+   "id": "DEF-12",
+   "kind": "defect",
+   "area": "materials",
+   "summary": "Both demos advertise a $0.25-per-correct-crate bonus (max $1.00) that the approved protocol does not select (D04); the PE debrief says no one rated the participant, which must be reconciled with the eval-arm expectation (D03).",
+   "anchors": [
+    {
+     "demo": "tp",
+     "line": 35,
+     "contains": "($0.25 per correct crate)"
+    },
+    {
+     "demo": "pe",
+     "line": 807,
+     "contains": "No ratings of you were ever collected"
+    }
+   ]
+  }
+ ]
+}

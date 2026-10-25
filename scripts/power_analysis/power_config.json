@@ -1,0 +1,31 @@
+{
+  "_doc": "Inputs for analyze.py. See INVESTIGATORS_TEAM_EXPERIMENT_POWER_ANALYSIS_PLAYBOOK.md §3 and §7. Add each new fielding round to `eras` before running; analyze.py refuses rounds that are not listed here.",
+  "seed": 20261012,
+  "alpha_level": 0.05,
+  "_eras_doc": "Era = rounds whose AI build shares task budget, remark binding, request schedule and post-task instrument (PLAYBOOK §3.2). A: tp_ai_v3, 360 s, no remarks. B: tp_ai_v4/v6/v7, 300 s, remarks.tp_pressure@v1, pre-seat-plan schedule, post_task@v4. C: tp_ai_v11/v13, seat_plan schedule (5 inbound requests 45/100/155/210/245 s), post_task@v5 (tp_post_11). v10 and v11 differ only in practice-page gating (training v5 vs v6) and the bound open_ended stage.",
+  "eras": {
+    "study.live.v4": "A_v4_360s_no_remarks",
+    "study.live.v5": "B_v5-v8_preseatplan",
+    "study.live.v6": "B_v5-v8_preseatplan",
+    "study.live.v7": "B_v5-v8_preseatplan",
+    "study.live.v8": "B_v5-v8_preseatplan",
+    "study.live.v9": "C_v9plus_seatplan",
+    "study.live.v10": "C_v9plus_seatplan",
+    "study.live.v11": "C_v9plus_seatplan"
+  },
+  "prereg_era": "C_v9plus_seatplan",
+  "n_grid": [60, 100, 150, 200, 300, 400],
+  "precision_n": [30, 60],
+  "sesoi": {
+    "dv1_irr": [0.5, 0.67, 0.8],
+    "dv2_irr": [1.25, 1.5, 2.0]
+  },
+  "h3_hypothetical": {
+    "_doc": "Cell accuracies [arm, dependence] for a task with no floor problem. high-dep 0.35 (low arm) -> 0.20 (high arm) = interaction -0.15.",
+    "low_lowdep": 0.65,
+    "high_lowdep": 0.65,
+    "low_highdep": 0.35,
+    "high_highdep": 0.20
+  },
+  "reps": {"precision": 800, "power": 400, "h3": 300}
+}

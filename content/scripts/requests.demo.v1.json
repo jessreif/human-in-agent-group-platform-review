@@ -1,0 +1,14 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "request_script",
+  "artifact_id": "requests.demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D01", "D07"],
+  "sources": [{"ref": "REF-REQ-01"}, {"ref": "tp demo lines 560-562 (PHRASE_ASK)"}],
+  "notes": ["Identical in both demos. Timing and targets live in the manifest; this is wording only."],
+  "body": {
+    "templates": ["Requesting intel on Crate {n}."],
+    "selection": "single_template"
+  }
+}

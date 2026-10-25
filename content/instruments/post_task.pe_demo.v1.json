@@ -1,0 +1,26 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "instrument",
+  "artifact_id": "post_task.pe_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D06"],
+  "sources": [{"ref": "demo_constants.peer_evaluation.ITEMS"}, {"ref": "DEF-08"}],
+  "notes": ["Same 1-7 agreement scale as the TP demo. Skips allowed per S5 (D06)."],
+  "body": {
+    "applies_to": "session",
+    "order": "fixed",
+    "response": {"type": "likert", "min": 1, "max": 7, "min_label": "Strongly disagree", "max_label": "Strongly agree", "counts_only_after_input": true},
+    "items": [
+      {"item_id": "pe_post_01", "text": "I had the information I needed to make good decisions.", "skippable": true},
+      {"item_id": "pe_post_02", "text": "There was important information that I did not have.", "skippable": true},
+      {"item_id": "pe_post_03", "text": "My teammates knew things that I did not.", "skippable": true},
+      {"item_id": "pe_post_04", "text": "The AI assistant was useful for this task.", "skippable": true},
+      {"item_id": "pe_post_05", "text": "My teammates were forming an impression of how helpful I was.", "skippable": true},
+      {"item_id": "pe_post_06", "text": "My contributions during the session were going to be evaluated.", "skippable": true},
+      {"item_id": "pe_post_07", "text": "Asking my teammates for information would have made me look unprepared.", "skippable": true},
+      {"item_id": "pe_post_08", "text": "I was concerned about how my teammates would rate me.", "skippable": true},
+      {"item_id": "pe_post_09", "text": "I wanted to appear helpful to my teammates.", "skippable": true}
+    ]
+  }
+}

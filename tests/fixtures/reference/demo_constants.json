@@ -1,0 +1,417 @@
+{
+  "generated_by": "scripts/extract_demo_reference.py",
+  "note": "Extracted verbatim from the demo JavaScript; the demos are behavioral references, not proof of the fielded Qualtrics versions (spec §1.1).",
+  "sources": {
+    "time_pressure": {
+      "file": "docs/baseline/reference/investigators_time_pressure_demo.html",
+      "sha256": "7ced90c5e0c6f45882e9c1c54650fd0c23b137d744b3c9a138ea49d53d6b9825"
+    },
+    "peer_evaluation": {
+      "file": "docs/baseline/reference/investigators_peer_eval_demo.html",
+      "sha256": "90b9587aedaa1b032c6316d9bb92937736598a007927a3f093139a9b8c27b48e"
+    }
+  },
+  "shared": {
+    "HIDEOUTS": {
+      "value": [
+        "The Sawmill",
+        "The Marina",
+        "Blackwell Storage",
+        "Old Cannery",
+        "Fairground Sheds",
+        "Ridgeline Bunker"
+      ],
+      "line": {
+        "time_pressure": 342,
+        "peer_evaluation": 588
+      }
+    },
+    "CRATE_CONTENTS": {
+      "value": [
+        "laptops",
+        "smart watches",
+        "gaming consoles",
+        "TVs",
+        "headphones",
+        "cameras",
+        "tablets",
+        "power tools"
+      ],
+      "line": {
+        "time_pressure": 343,
+        "peer_evaluation": 591
+      }
+    },
+    "N_CRATES": {
+      "value": 8,
+      "line": {
+        "time_pressure": 344,
+        "peer_evaluation": 596
+      }
+    },
+    "N_ASSIGNED": {
+      "value": 4,
+      "line": {
+        "time_pressure": 345,
+        "peer_evaluation": 597
+      }
+    },
+    "T_ARRIVE": {
+      "value": [
+        "Field team: Crate {n} arriving at {h}.",
+        "Surveillance photo: Crate {n} at the loading dock of {h}.",
+        "Field team: {c} unloaded at {h}.",
+        "Warehouse camera confirms Crate {n} offloaded at {h}."
+      ],
+      "line": {
+        "time_pressure": 374,
+        "peer_evaluation": 620
+      }
+    },
+    "T_STILL": {
+      "value": [
+        "Informant: {c} still on site at {h}.",
+        "Field team: Crate {n} ({c}) at {h}, confirmed by walk-by.",
+        "Warehouse camera: {c} still at {h}.",
+        "Anonymous tip: {c} have not moved from {h}.",
+        "Field team: activity at {h}, Crate {n} still on site."
+      ],
+      "line": {
+        "time_pressure": 375,
+        "peer_evaluation": 626
+      }
+    },
+    "GREETINGS": {
+      "value": [
+        "Hi!",
+        "Hello!",
+        "Hey!"
+      ],
+      "line": {
+        "time_pressure": 563,
+        "peer_evaluation": 774
+      }
+    },
+    "AI_TIMEOUT_MS": {
+      "value": 20000,
+      "line": {
+        "time_pressure": 1452,
+        "peer_evaluation": 1250
+      }
+    },
+    "AI_SYSTEM": {
+      "value": "You are an assistant embedded in an investigation workspace. You help one investigator\nreview the intelligence in their own case file. You can see only the entries given to you below.\n\nWhat to do:\n- Summarise what the entries say about the crate, in time order, and state the most recent\n  location the entries name, together with its timestamp.\n\nRules:\n- Answer only from the entries provided. Never invent a sighting, a time, or a location.\n- Never mention a hideout that does not appear in the entries provided.\n- Report what the file says. Do not comment on what the file does not say. Never say that\n  information is missing, unavailable, unconfirmed, outdated or stale, and never state where\n  a crate currently is or is not beyond naming the most recent entry.\n- Do not suggest asking anyone, and do not speculate about what other investigators know.\n- Do not mention being an AI. Do not use exclamation points, emojis, em dashes, colons or semicolons.\n- Two to four sentences. Plain text only.",
+      "line": {
+        "time_pressure": 1459,
+        "peer_evaluation": 1255
+      }
+    },
+    "DEMO_ENTRIES": {
+      "value": [
+        {
+          "uid": -1,
+          "id": "K3-04",
+          "stamp": "2 days ago, 2:45 PM",
+          "body": "Field team: Crate 3 arriving at Ridgeline Bunker.",
+          "crate": 3,
+          "all": false,
+          "from": null
+        },
+        {
+          "uid": -2,
+          "id": "K4-04",
+          "stamp": "Yesterday, 5:45 PM",
+          "body": "Camera near Sawmill entrance captured Crate 4 still on site.",
+          "crate": 4,
+          "all": false,
+          "from": null
+        }
+      ],
+      "line": {
+        "time_pressure": 737,
+        "peer_evaluation": 879
+      }
+    }
+  },
+  "time_pressure": {
+    "T_DEPART": {
+      "value": [
+        "Traffic camera: a van leaves {h} headed east, Crate {n} believed aboard.",
+        "Field team: a pickup departs {h} with the {c} crate aboard.",
+        "Drone footage: Crate {n} ({c}) is loaded onto a vehicle at {h}."
+      ],
+      "line": 376
+    },
+    "T_TRANSIT": {
+      "value": [
+        "Traffic camera: vehicle carrying the {c} leaves {h} heading toward the {to} area.",
+        "GPS ping: vehicle linked to Crate {n} between {h} and {to}."
+      ],
+      "line": 377
+    },
+    "CHECKIN_AT": {
+      "value": 60,
+      "line": 615
+    },
+    "CHECKIN_COLLECT_MS": {
+      "value": 3500,
+      "line": 616
+    },
+    "PRESSURE_CONFIG": {
+      "value": {
+        "high": [
+          6,
+          7
+        ],
+        "low": [
+          2,
+          3
+        ]
+      },
+      "line": 617
+    },
+    "ITEMS": {
+      "value": [
+        "I had the information I needed to make good decisions.",
+        "There was important information that I did not have.",
+        "My teammates knew things that I did not.",
+        "The AI assistant was useful for this task.",
+        "Asking my teammates for information would have taken up time they did not have.",
+        "I expected my teammates to reply quickly if I asked them something.",
+        "My teammates were willing to help me.",
+        "My teammates seemed competent at the task.",
+        "After the check-in, I felt more rushed myself."
+      ],
+      "line": 208
+    },
+    "inv_finish": {
+      "embedded_data_fields": [
+        "inv_condition",
+        "inv_initials",
+        "inv_team_requests",
+        "inv_first_request_sec",
+        "inv_shares",
+        "inv_proactive_shares",
+        "inv_replies",
+        "inv_prompts_used",
+        "inv_checkin_at",
+        "inv_own_pressure",
+        "inv_pressure_JT",
+        "inv_pressure_PM",
+        "inv_requests_pre_checkin",
+        "inv_prompts_pre_checkin",
+        "inv_shares_pre_checkin",
+        "inv_requests_post_checkin",
+        "inv_prompts_post_checkin",
+        "inv_correct_total",
+        "inv_assignment",
+        "inv_roles",
+        "inv_correct_teamdep",
+        "inv_correct_ownfile",
+        "inv_answers",
+        "inv_confidence",
+        "inv_first_action_sec",
+        "inv_window_blurs",
+        "inv_seconds_away",
+        "inv_idle_gaps",
+        "inv_max_idle_gap",
+        "inv_clicks_case",
+        "inv_clicks_team",
+        "inv_clicks_ai",
+        "inv_case_scroll_pct",
+        "inv_share_menu_opens",
+        "inv_reply_opens",
+        "inv_entries_added",
+        "inv_events",
+        "inv_teammate_replies",
+        "inv_teammate_reply_fallbacks"
+      ],
+      "embedded_data_line": 1975,
+      "payload_keys": [
+        "condition",
+        "initials",
+        "assignment",
+        "truth",
+        "roles",
+        "answers",
+        "confidence",
+        "ownPressure",
+        "pressureAssign",
+        "counters",
+        "log"
+      ],
+      "payload_line": 1962,
+      "scoresheet_field": "inv_scoresheet"
+    },
+    "logged_event_types": [
+      "added_from_team",
+      "ai_error",
+      "ai_input_focus",
+      "ai_prompt",
+      "ai_reply",
+      "ai_typing_started",
+      "answer_set",
+      "ask_menu_select",
+      "checkin_assigned",
+      "checkin_open",
+      "checkin_own_rating",
+      "checkin_resume",
+      "confidence_complete",
+      "confidence_set",
+      "first_action",
+      "free_reply",
+      "greeting",
+      "idle_gap",
+      "reorder",
+      "reply_open",
+      "share_prompted",
+      "share_to_team",
+      "share_via_drag",
+      "task_end",
+      "task_start",
+      "team_request",
+      "team_share_received",
+      "teammate_message",
+      "teammate_reply",
+      "teammate_reply_error",
+      "teammate_request",
+      "visibility",
+      "window_blur",
+      "window_focus",
+      "world"
+    ]
+  },
+  "peer_evaluation": {
+    "T_DEPART": {
+      "value": [
+        "Traffic camera: a van leaves {h} headed east.",
+        "Field team: a pickup departs {h} with two crates aboard.",
+        "Drone footage: a crate is loaded onto a vehicle at {h}."
+      ],
+      "line": 633
+    },
+    "T_TRANSIT": {
+      "value": [
+        "Traffic camera: vehicle from {h} heading toward the {to} area.",
+        "GPS ping: known thief vehicle between {h} and {to}."
+      ],
+      "line": 638
+    },
+    "EVAL_CONFIG": {
+      "value": {
+        "eval": {
+          "key": "eval",
+          "intro": "<div class=\"callout eval\"><b>Rating your teammates.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were during the task. Your teammates’ ratings of you will be recorded along with your responses.</div>",
+          "callout": "<b>Reminder.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were.",
+          "calloutClass": "callout eval",
+          "strip": "Teammates will rate your helpfulness",
+          "systemMsg": "Your teammates will rate how helpful you were once the session ends.",
+          "peerScreen": true,
+          "peerIntro": "As mentioned at the start, please rate each of your teammates. Your teammates have been asked to rate you in the same way.",
+          "debrief": "You were assigned to the peer-evaluation condition, so you were told your teammates would rate your helpfulness. No ratings of you were ever collected, and no one evaluated your performance."
+        },
+        "control": {
+          "key": "control",
+          "intro": "<div class=\"callout\"><b>After the session.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.</div>",
+          "callout": "<b>Reminder.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.",
+          "calloutClass": "callout",
+          "strip": "",
+          "systemMsg": "",
+          "peerScreen": true,
+          "peerIntro": "Please rate each of your teammates.",
+          "debrief": "You were assigned to the control condition, so you were not told in advance that anyone would be rated."
+        }
+      },
+      "line": 797
+    },
+    "DEMO_POST_ITEMS": {
+      "value": [
+        "I had the information I needed to make good decisions.",
+        "There was important information that I did not have.",
+        "My teammates knew things that I did not.",
+        "The AI assistant was useful for this task.",
+        "My teammates were forming an impression of how helpful I was.",
+        "My contributions during the session were going to be evaluated.",
+        "Asking my teammates for information would have made me look unprepared."
+      ],
+      "line": 508
+    },
+    "inv_finish": {
+      "embedded_data_fields": [
+        "inv_condition",
+        "inv_initials",
+        "inv_team_requests",
+        "inv_first_request_sec",
+        "inv_shares",
+        "inv_proactive_shares",
+        "inv_replies",
+        "inv_prompts_used",
+        "inv_peer_rating_JT",
+        "inv_peer_rating_PM",
+        "inv_correct_total",
+        "inv_assignment",
+        "inv_roles",
+        "inv_correct_teamdep",
+        "inv_correct_ownfile",
+        "inv_answers",
+        "inv_confidence",
+        "inv_first_action_sec",
+        "inv_window_blurs",
+        "inv_seconds_away",
+        "inv_idle_gaps",
+        "inv_max_idle_gap",
+        "inv_clicks_case",
+        "inv_clicks_team",
+        "inv_clicks_ai",
+        "inv_case_scroll_pct",
+        "inv_share_menu_opens",
+        "inv_reply_opens",
+        "inv_entries_added",
+        "inv_events",
+        "inv_teammate_replies",
+        "inv_teammate_reply_fallbacks"
+      ],
+      "embedded_data_line": 1518,
+      "payload_keys": [
+        "condition"
+      ],
+      "payload_line": 1512,
+      "scoresheet_field": null
+    },
+    "logged_event_types": [
+      "added_from_team",
+      "ai_error",
+      "ai_input_focus",
+      "ai_prompt",
+      "ai_reply",
+      "ai_typing_started",
+      "answer_set",
+      "ask_menu_select",
+      "confidence_complete",
+      "confidence_set",
+      "first_action",
+      "free_reply",
+      "greeting",
+      "idle_gap",
+      "peer_rating",
+      "peer_ratings_complete",
+      "reorder",
+      "reply_open",
+      "share_prompted",
+      "share_to_team",
+      "share_via_drag",
+      "task_end",
+      "task_start",
+      "team_request",
+      "team_share_received",
+      "teammate_message",
+      "teammate_reply",
+      "teammate_reply_error",
+      "teammate_request",
+      "visibility",
+      "window_blur",
+      "window_focus",
+      "world"
+    ]
+  }
+}

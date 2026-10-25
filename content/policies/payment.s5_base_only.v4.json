@@ -1,0 +1,36 @@
+{
+ "schema_version": "investigators.artifact/1",
+ "kind": "payment_policy",
+ "artifact_id": "payment.s5_base_only",
+ "version": 4,
+ "status": "approved",
+ "decisions": [],
+ "sources": [
+  {
+   "ref": "Owner direction 2026-10-09: $3.00 online base (consent.reference@v6)"
+  },
+  {
+   "ref": "S5 approved protocol: $4 online base, no bonus selected"
+  },
+  {
+   "ref": "spec \u00a713 Bonus"
+  }
+ ],
+ "notes": [
+  "v4 (2026-10-09, owner direction): base_cents 400 -> 300 to match consent.reference@v6 ($3.00 for ~12 minutes). Rules otherwise identical to v3 (activatable, technical_stop base_paid, no bonus).",
+  "Proposed for v2 profiles. Stays non-activatable until D04 confirms base pay and technical-stop/withdrawal handling. No ratings-contingent pay.",
+  "D04 revised (2026-10-07, BA-97 audit remediation) to the consent-v4 rule: completed and technical_stop sessions keep base pay (technical_stop is system-initiated, not early leave); abandoned and withdrawn sessions forfeit the base (consent: leaving early is unpaid); declined is never owed. withdrawal handling now lives in manifest outcomes.withdrawal_payment=forfeits_base.",
+  "Approved for live pilot fielding (2026-10-07): body identical to v2 (base_cents 400, activatable, technical_stop base_paid)."
+ ],
+ "body": {
+  "currency": "USD",
+  "base_cents": 300,
+  "bonus": {
+   "type": "none",
+   "cents_per_correct": 0,
+   "max_cents": 0
+  },
+  "activatable": true,
+  "technical_stop": "base_paid"
+ }
+}

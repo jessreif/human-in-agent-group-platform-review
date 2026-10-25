@@ -1,0 +1,1301 @@
+<!doctype html>
+<!--
+  Investigators — playable mock with configurable study features.
+  Single-file, offline, no network access: all teammate/assistant behavior is canned
+  simulation mirroring the deployed participant flow as of build 9226e2a4 (2026-10-09).
+
+  Provenance note: this file used to hold the S2 behavioral reference that contracts
+  and artifacts cite by line number. That frozen reference now lives at
+  docs/baseline/reference/investigators_time_pressure_demo.html (SHA-256 7ced90c5…9825).
+  THIS file is a shareable demo only — do not cite its lines as reference truth.
+
+  Flow: consent -> case background + initials -> workspace tour -> practice (share +
+  assistant previews) -> comprehension -> [aiqa: optional AI rules Q&A] ->
+  connecting -> 300 s task (file/chat/assistant + check-in at
+  60 s, scripted requests at 45/130/210 s, pressure remarks at 75/83 s, warning at
+  240 s) -> time-up -> confidence -> questionnaire -> suspicion (own page) ->
+  debrief -> data-use -> completion code.
+-->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigators — playable demo</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+/* ----- shared panels / buttons -------------------------------------------------- */
+
+.panel {
+  max-width: 720px;
+  margin: 8vh auto 0;
+  padding: 32px 34px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.panel h1 {
+  font-size: 26px;
+  margin: 0 0 12px;
+}
+.panel p,
+.panel li {
+  font-size: 17px;
+  line-height: 1.55;
+  color: #444;
+}
+.status {
+  min-height: 1.5em;
+  color: #9a2c2c;
+}
+.primary,
+.btn-row button,
+.composer button,
+.team-actions button,
+.greeting-row button,
+.file-actions button,
+.notice-bar button {
+  font: inherit;
+  font-weight: 600;
+  background: #2f6b5e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+button.secondary {
+  background: #fff;
+  color: #444;
+  border: 1px solid #999;
+}
+button:disabled {
+  background: #aaa;
+  color: #eee;
+  cursor: default;
+}
+button.secondary:disabled {
+  background: #eee;
+  color: #999;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid #2f6b5e;
+  outline-offset: 2px;
+}
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.initials-block {
+  margin: 14px 0;
+}
+.initials-block label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+.initials-block input {
+  font: inherit;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 10px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  width: 7em;
+}
+.workspace-diagram {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "case chat"
+    "case ai"
+    "answers answers";
+  gap: 6px;
+  margin: 12px 0 6px;
+}
+.workspace-diagram > div {
+  border: 1px dashed #9a9a9a;
+  border-radius: 6px;
+  background: #f5f7f6;
+  color: #555;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px 10px;
+  text-align: center;
+}
+.workspace-diagram .wd-case {
+  grid-area: case;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.workspace-diagram .wd-chat {
+  grid-area: chat;
+}
+.workspace-diagram .wd-ai {
+  grid-area: ai;
+}
+.workspace-diagram .wd-answers {
+  grid-area: answers;
+}
+/* ai=false variants (AI_ASSISTANT_ENABLED=0): no assistant tile — team chat
+   fills the right column. */
+.workspace-diagram.no-assistant {
+  grid-template-areas:
+    "case chat"
+    "case chat"
+    "answers answers";
+}
+.error-note {
+  color: #9a2c2c;
+  font-weight: 600;
+}
+.overlay-note {
+  color: #666;
+  font-size: 14px;
+}
+.joining-list {
+  list-style: none;
+  padding: 0;
+}
+.joining-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.joining-list li:last-child {
+  border-bottom: none;
+}
+.joining-list .status {
+  margin-left: auto;
+  font-size: 13px;
+  color: #999;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  display: inline-block;
+}
+.dot.online {
+  background: #2f6b5e;
+}
+.choice-row {
+  display: block;
+  font-size: 17px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ----- task workbench ------------------------------------------------------------ */
+
+.task-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.task-header {
+  padding: 10px 14px;
+  background: #222;
+  color: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  flex: none;
+}
+.task-header .goal {
+  color: #ccc;
+}
+.mine-strip {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 9px;
+  border-radius: 3px;
+}
+.status-strip {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+.timer.low-time {
+  background: #8a1f1f;
+  color: #fff;
+}
+.conn {
+  font-size: 13px;
+  color: #ffd9a8;
+}
+.paused-note,
+.locked-note {
+  font-size: 13px;
+  color: #ffd9a8;
+}
+.notice-bar {
+  background: #fff4d6;
+  border-bottom: 1px solid #e0c97f;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.notice-bar button {
+  font-size: 13px;
+  padding: 4px 10px;
+}
+
+.task-grid {
+  flex: 1;
+  display: grid;
+  --sx: 0.45;
+  --sy: 0.55;
+  /* BA-76: the two tracks share the content box *minus* the 10px gap — sizing both
+     to 100% overruns the grid by the gap width and puts the split 5px off the
+     handles below. */
+  grid-template-columns: minmax(0, calc(var(--sx) * (100% - 10px))) minmax(0, calc((1 - var(--sx)) * (100% - 10px)));
+  grid-template-rows: minmax(0, calc(var(--sy) * (100% - 10px))) minmax(0, calc((1 - var(--sy)) * (100% - 10px)));
+  gap: 10px;
+  padding: 10px;
+  min-height: 0;
+  position: relative;
+}
+/* Pane splitters: drag or arrow-key the boundaries between the case-file column and
+   the right column (vertical bar), and between team chat / assistant (horizontal). */
+.grid-resizer {
+  position: absolute;
+  z-index: 3;
+  background: transparent;
+  touch-action: none;
+  border-radius: 4px;
+}
+.grid-resizer:hover,
+.grid-resizer:focus-visible {
+  background: rgba(39, 74, 113, 0.18);
+  outline: none;
+}
+/* Handles cover the 10px inter-track gaps exactly: padding + split share of
+   (border-box width − padding − gap). Same (100% - 30px) span the pointer math
+   in Workbench.startDrag uses. */
+.grid-resizer-x {
+  top: 10px;
+  bottom: 10px;
+  width: 10px;
+  left: calc(10px + var(--sx) * (100% - 30px));
+  cursor: col-resize;
+}
+.grid-resizer-y {
+  left: calc(10px + var(--sx) * (100% - 30px) + 10px);
+  right: 10px;
+  height: 10px;
+  top: calc(10px + var(--sy) * (100% - 30px));
+  cursor: row-resize;
+}
+/* Piloted layout (UX feedback): case file spans the left column; team chat sits
+ * upper-right, AI assistant lower-right. Each pane is colour-coded so the three
+ * surfaces are distinguishable at a glance. */
+.pane[data-pane="case-file"] {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+.pane[data-pane="team-chat"] {
+  grid-column: 2;
+  grid-row: 1;
+  border-color: #c8d6ec;
+}
+.pane[data-pane="assistant"] {
+  grid-column: 2;
+  grid-row: 2;
+  border-color: #d9cfec;
+}
+.pane[data-pane="team-chat"] .pane-head {
+  background: #e6eef9;
+  color: #274a71;
+  border-bottom-color: #c8d6ec;
+}
+.pane[data-pane="assistant"] .pane-head {
+  background: #f0ebf8;
+  color: #543f79;
+  border-bottom-color: #d9cfec;
+}
+/* ai=false variants: no assistant pane — team chat spans both right rows. */
+.task-grid.no-assistant .pane[data-pane="team-chat"] {
+  grid-row: 1 / 3;
+}
+.pane {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  flex: none;
+}
+.pane-head h2 {
+  font-size: 15px;
+  margin: 0;
+}
+.pane-head .count {
+  font-size: 12px;
+  color: #666;
+}
+.pane-hint {
+  font-size: 12.5px;
+  color: #777;
+  margin: 6px 12px;
+  flex: none;
+}
+
+/* ----- case file ------------------------------------------------------------------ */
+
+.files-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.file {
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: #fff;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.file[draggable="true"] {
+  cursor: grab;
+}
+.file.dragging {
+  opacity: 0.5;
+}
+.drag-grip {
+  flex: none;
+  color: #999;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 2px 2px 0;
+  cursor: grab;
+  user-select: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.drag-grip:focus-visible {
+  outline: 2px solid #5b8dd9;
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+.drag-grip:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.drag-grip.grabbed {
+  color: #1a1a1a;
+  background: #e3eeff;
+  border-radius: 3px;
+  outline: 1px dashed #5b8dd9;
+  cursor: grabbing;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.file-main {
+  flex: 1;
+  min-width: 0;
+}
+.file-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.file-stamp {
+  font-size: 12px;
+  color: #666;
+}
+.file-crate {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+}
+.qa-label {
+  display: block;
+  font-weight: 600;
+  margin: 14px 0 4px;
+}
+.qa-input {
+  width: 100%;
+  font: inherit;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  resize: vertical;
+}
+.qa-exchange {
+  margin: 10px 0;
+}
+.qa-question {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.qa-answer {
+  background: #f3f6fa;
+  border: 1px solid #dde5ee;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 0;
+}
+.qa-answer.pending {
+  color: #777;
+  font-style: italic;
+}
+.qa-actions {
+  margin: 8px 0;
+}
+.qa-button {
+  min-width: 120px;
+  min-height: 42px;
+}
+.comprehension-list {
+  list-style: none;
+  padding: 0;
+}
+.comprehension-list fieldset {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 0 0 10px;
+  padding: 8px 12px;
+}
+.comprehension-list label {
+  margin-right: 18px;
+}
+.comprehension-list .missed fieldset {
+  border-color: #9a2c2c;
+  background: #fdf0f0;
+}
+.file-source {
+  font-size: 11px;
+  color: #666;
+}
+/* UX round 3, item 8: teammate-added intel vs the participant's own file. */
+.file.from-team {
+  border-color: #8fb3d9;
+  border-left: 4px solid #3f74b0;
+  background: #f2f7fd;
+}
+.file.from-team .file-source {
+  font-weight: 700;
+  color: #2b5a8f;
+  background: #dde9f7;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+.file-body {
+  font-size: 14px;
+  line-height: 1.45;
+  margin-top: 2px;
+}
+.file-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: none;
+}
+.file-actions .icon-btn {
+  padding: 2px 8px;
+  font-size: 13px;
+}
+.file-actions button {
+  font-size: 12.5px;
+  padding: 4px 10px;
+}
+.shared-tag {
+  font-size: 11.5px;
+  color: #1a6b2f;
+  border: 1px solid #9ccfa8;
+  border-radius: 4px;
+  padding: 3px 8px;
+  background: #effaf1;
+  white-space: nowrap;
+}
+
+/* ----- chat / assistant --------------------------------------------------------------- */
+
+.msgs {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.msg {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  max-width: 92%;
+}
+.msg.mine {
+  background: #f3f6f5;
+  align-self: flex-end;
+}
+.msg .who {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 2px;
+}
+.msg-body {
+  white-space: pre-wrap;
+}
+.filepill {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+  background: #fafafa;
+}
+/* UX round 4, item 9: shared intel is its own card in the message list, not
+   embedded in the message bubble — teammate and participant shares alike. */
+.intel-card {
+  max-width: 92%;
+}
+.intel-card.mine {
+  align-self: flex-end;
+}
+.filepill .fs {
+  display: block;
+  font-size: 11px;
+  color: #777;
+}
+.pill-btn {
+  margin-top: 4px;
+  font-size: 12px;
+  padding: 3px 9px;
+}
+.pressure-strip {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #f6f8f7;
+  border-bottom: 1px solid #e2e8e5;
+  flex: none;
+}
+.greeting-row {
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  flex: none;
+}
+.team-actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px 0;
+  flex: none;
+}
+.team-actions select {
+  flex: 1;
+  font-size: 14px;
+  padding: 5px;
+}
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  flex: none;
+}
+.composer input {
+  flex: 1;
+  font-size: 14px;
+  padding: 7px 9px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* UX round 3, item 9: the assistant is generating a response. */
+.msg.thinking {
+  color: #666;
+  font-style: italic;
+}
+.thinking-dots span {
+  display: inline-block;
+  animation: thinking-blink 1.2s infinite both;
+}
+.thinking-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.thinking-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes thinking-blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thinking-dots span {
+    animation: none;
+  }
+}
+
+/* ----- submit bar / crate pickers ----------------------------------------------------- */
+
+.submit-bar {
+  flex: none;
+  /* UX round 3, item 10: visibly a separate answer area, not part of the panes. */
+  background: #eef4f2;
+  border-top: 3px solid #2f6b5e;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.08);
+  padding: 8px 14px 10px;
+  /* AB-20: head + pickers share one row so the bar costs the grid ~60 px, not ~130. */
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.submit-head {
+  flex: none;
+  max-width: 300px;
+}
+.submit-bar .submit-title {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f4a40;
+}
+.submit-bar .prompt {
+  margin: 0;
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.35;
+}
+.submit-row {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.crate-item {
+  font-weight: 400;
+  color: #4a6a5f;
+}
+.crate-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.crate-picker label {
+  font-size: 13px;
+  font-weight: 700;
+}
+.crate-picker select {
+  font-size: 14px;
+  padding: 6px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+}
+.save-status {
+  font-size: 12px;
+  min-height: 1.2em;
+  color: #666;
+}
+.save-saving {
+  color: #8a6d1a;
+}
+.save-saved {
+  color: #2f6b5e;
+}
+.save-rejected,
+.save-dirty[data-status] {
+  color: #9a2c2c;
+}
+.crate-picker[data-status="rejected"] select {
+  border-color: #9a2c2c;
+}
+/* v14 (2026-10-16): answer progress pills + final-check notice in the top
+   ribbon beside the timer (dark-theme: empty pills are translucent). */
+.task-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+}
+.task-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.progress-count {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #cfe8e0;
+  white-space: nowrap;
+}
+.crate-pills {
+  display: inline-flex;
+  gap: 4px;
+}
+.crate-pill {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+}
+.crate-pill.entered {
+  background: #4a9d8b;
+  border-color: #4a9d8b;
+  color: #fff;
+}
+.final-check-note {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1f4a40;
+  border: 1px solid #9ccfa8;
+  border-radius: 4px;
+  padding: 3px 8px;
+  background: #effaf1;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.checkin-deadline {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #7a4a12;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 4px;
+}
+
+/* ----- overlay / dialog ---------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+}
+.overlay-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 26px 30px;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+.overlay-box h2 {
+  margin: 0 0 4px;
+  font-size: 21px;
+}
+.overlay-sub {
+  color: #666;
+  font-size: 13.5px;
+  margin: 0 0 14px;
+}
+.likert-row {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0 2px;
+}
+.likert-row button {
+  flex: 1;
+  padding: 10px 4px;
+  font-size: 15px;
+  border: 1px solid #bbb;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.likert-row button.on,
+.likert-row button:hover:not(:disabled) {
+  background: #dee9e4;
+  border-color: #2f6b5e;
+  font-weight: 700;
+}
+/* Fixed-choice items (UX round 4, item 14) — full-width option buttons in the
+   same selected/hover idiom as the likert row. */
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 2px;
+}
+.choice-list .choice {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #bbb;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.choice-list .choice.on,
+.choice-list .choice:hover:not(:disabled) {
+  background: #dee9e4;
+  border-color: #2f6b5e;
+  font-weight: 700;
+}
+.scale-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.reveal-row {
+  display: flex;
+  gap: 14px;
+  margin: 12px 0;
+}
+.reveal-chip {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 16px;
+}
+/* ----- small screens ------------------------------------------------------------------- */
+
+/* AB-20: the one-row footer only fits comfortably on wide viewports — stack it
+   again once four pickers plus the head stop fitting side by side. */
+@media (max-width: 1100px) {
+  .submit-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .submit-head {
+    max-width: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .task-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    overflow-y: auto;
+  }
+  .grid-resizer {
+    display: none;
+  }
+  .pane[data-pane="case-file"],
+  .pane[data-pane="team-chat"],
+  .pane[data-pane="assistant"] {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 32vh;
+  }
+  .task-screen {
+    height: auto;
+    overflow: visible;
+  }
+  /* Match the fielded build: on scrolling narrow viewports the header stays
+     pinned (below the fixed mock bar) so the timer can't be scrolled away. */
+  .task-header {
+    position: sticky;
+    top: 52px;
+    z-index: 30;
+  }
+  .submit-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .confidence-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- WP09: bound materials, exposure surfaces, practice, withdrawal -------------------- */
+
+.callout {
+  background: #f6f8f7;
+  border: 1px solid #d7e0dc;
+  border-left: 4px solid #2f6b5e;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.exposure-strip {
+  padding: 6px 14px;
+  background: #f6f8f7;
+  border-bottom: 1px solid #d7e0dc;
+  font-size: 14px;
+  color: #333;
+}
+/* ----- practice (mirrors the task workbench) ------------------------------------------------ */
+
+.practice-note {
+  font-size: 13px;
+  color: #666;
+}
+.practice-note .done-tag {
+  margin-left: 0;
+}
+.done-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2f6b5e;
+  margin-left: 8px;
+}
+
+/* ----- consent -------------------------------------------------------------------------------- */
+
+.panel.consent-panel {
+  max-width: 780px;
+}
+.consent-panel h1 {
+  font-size: 25px;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.consent-sub {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 18px;
+}
+.consent-copy {
+  max-height: 52vh;
+  overflow-y: auto;
+  padding-right: 12px;
+  margin: 0 0 16px;
+}
+.consent-copy p {
+  font-size: 16px;
+}
+.consent-question {
+  font-size: 17px;
+  font-weight: 700;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+}
+
+/* ----- confidence ratings (per-answered-crate grid, mirrors the answer bar) ------------------- */
+
+.confidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+.confidence-card {
+  border: 1px solid #d6dfec;
+  border-radius: 6px;
+  padding: 13px;
+  background: #f8fbff;
+}
+.confidence-card .card-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.confidence-card .card-answer {
+  font-size: 13px;
+  color: #444;
+  margin: 0 0 6px;
+}
+.confidence-card .no-ans { color: #999; }
+.confidence-card input[type="range"] {
+  width: 100%;
+  margin: 8px 0 4px;
+}
+.slider-readout {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  margin: 4px 0;
+  color: #2f6b5e;
+  min-height: 1.2em;
+}
+.slider-hint {
+  color: #666;
+  font-size: 13px;
+  margin: 2px 0 0;
+}
+.done-line {
+  color: #666;
+  font-size: 14px;
+}
+.item {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.item.skipped,
+.confidence-card.skipped {
+  opacity: 0.65;
+}
+.skip-row {
+  margin-top: 6px;
+  font-size: 13px;
+}
+.skip-mark {
+  color: #666;
+  font-style: italic;
+}
+
+/* ----- admin subtree (route-gated; never on participant paths) ----- */
+.admin-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  color: #1c1c1c;
+}
+.admin-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.task-heading,
+.task-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  min-width: 0;
+}
+.task-controls {
+  justify-self: end;
+  justify-content: flex-end;
+}
+.admin-head h1 {
+  font-size: 20px;
+}
+.admin-head span {
+  color: #666;
+  font-size: 13px;
+}
+.admin-nav {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+.admin-nav button {
+  padding: 6px 14px;
+  border: 1px solid #bbb;
+  background: #f4f4f4;
+  cursor: pointer;
+}
+.admin-nav button.active {
+  background: #24344d;
+  color: #fff;
+}
+.admin-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: #fff;
+}
+.admin-field {
+  display: block;
+  margin: 8px 0;
+}
+.admin-field span {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 2px;
+}
+.admin-field input,
+.admin-field select,
+.admin-row input {
+  padding: 5px 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+.admin-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+}
+.admin-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+.admin-table th,
+.admin-table td {
+  border: 1px solid #e2e2e2;
+  padding: 4px 8px;
+  text-align: left;
+}
+.admin-table tbody tr {
+  cursor: pointer;
+}
+.admin-table tbody tr.sel,
+.admin-table tbody tr:hover {
+  background: #eef3fb;
+}
+.wt-cat {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0 5px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.walkthrough-table tbody tr {
+  cursor: default;
+}
+.walkthrough-table td {
+  vertical-align: top;
+}
+.wt-detail {
+  color: #444;
+  font-size: 12px;
+  word-break: break-word;
+  max-width: 480px;
+}
+.admin-json {
+  max-height: 320px;
+  overflow: auto;
+  background: #f7f7f7;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.admin-error {
+  color: #a40000;
+  font-size: 13px;
+}
+.admin-note {
+  color: #666;
+  font-size: 13px;
+}
+.admin-action {
+  display: inline-flex;
+  flex-direction: column;
+}
+.admin-action button {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+.mono {
+  font-family: ui-monospace, monospace;
+}
+em.ok {
+  color: #0a7a2f;
+  font-style: normal;
+}
+em.warn {
+  color: #a45a00;
+  font-style: normal;
+}
+
+
+body { margin: 0; padding-top: 52px; }
+.mock-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; gap: 10px;
+  align-items: center; padding: 8px 12px; background: #1f2d3a; color: #fff; font: 13px system-ui, sans-serif; }
+.mock-bar button, .mock-bar select { font: inherit; padding: 4px 10px; }
+.mock-bar .mock-title { flex: 1; }
+.screen { display: none; }
+.screen.active { display: block; }
+.screen.wide .task-screen { height: calc(100vh - 52px); }
+/* Solo-review lock: covers the pane while solo_review is in effect (v10). */
+.pane { position: relative; }
+.pane-lock { position: absolute; inset: 34px 0 0 0; background: rgba(255,255,255,.92);
+  display: flex; align-items: flex-start; justify-content: center; padding: 18px;
+  color: #555; font-style: italic; text-align: center; z-index: 5; }
+[hidden] { display: none !important; }
+.notice-bar { background: #fff8e1; border: 1px solid #e6d28a; border-radius: 6px;
+  padding: 8px 12px; margin: 0 0 8px; color: #5c4a00; font-size: 14px; }
+body.nl .structured-only { display: none !important; }
+.nl-only { display: none !important; }
+/* :not([hidden]) — the nl-only show rule outranks the [hidden] gate, so without it
+   a hidden-toggled nl-only element (e.g. the practice-ask error) can never hide. */
+body.nl .nl-only:not([hidden]) { display: block !important; }
+body:not(.nl) .nl-only { display: none !important; }
+body.study-tp [data-study="pe"], body.study-pe [data-study="tp"] { display: none !important; }
+.mock-pick.on { outline: 3px solid #2f6b5e; }
+
+/* ----- playable-demo additions (not in the clickthrough mock) ------------------ */
+.pick.picked { background: #2f6b5e; color: #fff; }
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: flex;
+  align-items: center; justify-content: center; z-index: 50; }
+#overlay-slot:empty { display: none; }
+.mine-strip { font-weight: 600; }
+.skip-btn { margin-left: 8px; font-size: 12px; padding: 2px 8px; border: 1px dashed #999;
+  border-radius: 4px; background: transparent; color: #555; cursor: pointer; }
+.skip-btn:hover { border-color: #2f6b5e; color: #2f6b5e; }
+.drag-grip { cursor: grab; color: #999; padding-right: 8px; }
+.initials-block input { font-size: 20px; letter-spacing: 2px; width: 5em;
+  text-transform: uppercase; padding: 6px 10px; }
+
+</style>
+</head><body>
+<div id="root"></div>
+<script src="investigators_ovsome_thin_noassist_nopress_aiqa_nobonus_demo.js"></script>
+</body></html>

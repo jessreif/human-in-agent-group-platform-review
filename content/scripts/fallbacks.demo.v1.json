@@ -1,0 +1,22 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "fallback_bank",
+  "artifact_id": "fallbacks.demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D07"],
+  "sources": [{"ref": "tp demo lines 1246-1257 (teammateFallback)"}, {"ref": "pe demo lines 1314-1325"}],
+  "notes": [
+    "Historical wording preserved for reference profiles only. Contains busy/stuck language ('bit swamped', 'stuck on') that can interfere with a pressure manipulation (spec §7.3); not for pilot profiles."
+  ],
+  "body": {
+    "classifier": "demo_keyword_v1",
+    "rules": [
+      {"when": "gives_location", "lines": ["oh nice, that helps, noting it", "good to know, adding that to my notes"]},
+      {"when": "offers_help", "lines": ["same here. i am stuck on one of mine if anything recent turns up in yours", "appreciate it, anything recent you come across just pass it along"]},
+      {"when": "social", "lines": ["doing fine, bit swamped", "ok, deep in my own crates", "fine, you?"]},
+      {"when": "asks_intel", "lines": ["send me a request for it and i will pass along what i have", "shoot me a request and i will send whatever is in mine"]},
+      {"when": "default", "lines": ["noted", "got it", "makes sense"]}
+    ]
+  }
+}

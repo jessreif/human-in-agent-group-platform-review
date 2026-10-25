@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigators — teammate time pressure — demonstration</title>
+<style>
+ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f4f4f4;color:#222}
+ .demo-banner{background:#1E4F6B;color:#EAF4FA;padding:7px 16px;font-size:13px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+ .demo-banner b{color:#fff} .demo-banner select{font:inherit;font-size:13px;padding:2px 8px;border-radius:3px;border:1px solid #13384D;background:#D9EBF5;color:#13384D}
+ #Questions{padding:0} #NextButton{display:none}
+ .demo-post{display:none;max-width:820px;margin:30px auto;background:#fff;border-radius:8px;padding:32px 34px;box-shadow:0 2px 10px rgba(0,0,0,.06);font-size:17px;line-height:1.55}
+ .demo-post h1{font-size:24px;margin:0 0 14px} .demo-post .q{margin:14px 0} .demo-post .likert{display:flex;gap:5px} .demo-post .likert button{flex:1;padding:8px 4px;border:1px solid #bbb;background:#fff;border-radius:4px;cursor:pointer} .demo-post .likert button.on{background:#dee9e4;border-color:#2f6b5e;font-weight:700}
+ .demo-post .ends{display:flex;justify-content:space-between;font-size:11.5px;color:#888;margin-top:3px}
+ .demo-post .btn{display:block;width:100%;padding:11px;margin-top:18px;font:inherit;font-weight:600;background:#2f6b5e;color:#fff;border:none;border-radius:6px;cursor:pointer}
+ pre.demo-payload{background:#f6f6f6;border:1px solid #ddd;border-radius:6px;padding:10px;font-size:11px;max-height:260px;overflow:auto;white-space:pre-wrap}
+</style></head>
+<body>
+<div class="demo-banner"><b>Demonstration version</b><span>Same task, agents and assistant as the Qualtrics build. Nothing is recorded.</span>
+ <label>Condition: <select id="demoCondition"><option value="high">Teammates under high time pressure (6, 7)</option><option value="low">Teammates under low time pressure (2, 3)</option></select></label>
+ <button id="demoRestart" style="font:inherit;font-size:13px;padding:2px 10px;border-radius:3px;border:1px solid #13384D;background:#D9EBF5;color:#13384D;cursor:pointer">Restart</button></div>
+<div id="Questions"><div class="QuestionOuter"><div class="QuestionText"><div id="invRoot">
+
+
+
+
+
+
+<div class="screen active" id="s2">
+  <div class="panel">
+    <h1>Team-based investigation game</h1>
+    <p>For this study, you will be one of three investigators working together on a shared case.</p>
+    <h2>Case Background</h2>
+    <p>Eight crates of high-value merchandise have been stolen. The thieves are moving the crates between six known hideouts. As a team, your goal is to identify the locations of all eight crates.</p>
+    <p>You and your teammates will each receive time-stamped intelligence that will help you solve the mystery. You can choose to share intelligence from your case file in the team chat if you want. You can also ask your teammates to share intelligence with you.</p>
+    <p>Each teammate has been <b>privately assigned four of the eight crates</b> to work on. Assignments can overlap. Your crates will be assigned after a brief training; you will not be told which crates your teammates have been assigned. Your file may contain information about crates outside your assignment, and that information may be valuable to a teammate.</p>
+    <p><b>Your task will be to locate each of your four assigned crates.</b> Next, you will review your workspace.</p>
+    <div class="callout"><b>Bonus payment.</b> In addition to your base payment, you will receive a bonus of up to <b>$1.00</b> based on the number of your assigned crates you locate correctly ($0.25 per correct crate).</div>
+    <p>You will be identified to your team by your initials.</p>
+    <label for="initials" style="display:block;font-size:14px;font-weight:600;color:#444;margin-bottom:6px;">Your initials</label>
+    <input type="text" id="initials" maxlength="3" placeholder="ABC" autofocus required>
+    <div class="initials-error" id="initialsError">Please enter your initials to continue.</div>
+    <button class="btn" data-act="continueFromIntro()">Continue to your workspace</button>
+  </div>
+</div>
+
+<div class="screen" id="s3">
+  <div class="panel">
+    <h1>Instructions and Background</h1>
+    <h2>Your workspace</h2>
+    <div class="preview">
+      <div class="p-case">Case file</div>
+      <div class="p-chat">Team chat</div>
+      <div class="p-ai">AI assistant</div>
+      <div class="p-submit">Submit a location for each of your crates</div>
+    </div>
+    <ul>
+      <li>You will have <b>6 minutes</b> to locate as many of the crates as you can. The task ends automatically when the clock runs out; you cannot finish early.</li>
+      <li>You can drag entries in your case file to reorder them.</li>
+      <li>Everyone has a private four-crate assignment. Use the team chat to ask teammates for intel and to share information that may help them.</li>
+      <li>You can share intel entry from your case file in the team chat. Anything you share in the chat will be visible to both of your teammates.</li>
+      <li>The AI assistant can read your case file, including entries teammates have sent you, but only once you have added them to your file.</li>
+    </ul>
+    <div class="callout" id="checkinCallout"><b>One brief team check-in.</b> About one minute into the task, you and your teammates will each be asked a single question about how much time pressure you are feeling. Everyone&#8217;s answer is shared with the whole team. The task clock pauses while the check-in is open.</div>
+    <button class="btn" data-act="goto(4)">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="s4">
+  <div class="panel">
+    <h1>Sharing intel with your team</h1>
+    <p>Below are three actions you can do in the team chat. <b>Click each button below to see how it works.</b></p>
+    <h2>Share intel from your file <span class="done-tag" id="demoShareDone"></span></h2>
+    <p><b>Drag one entry</b> from your case file into the team chat. It goes to both teammates.</p>
+    <div class="demo">
+      <div id="demoDragSource" class="file" draggable="true" data-stamp="2 days ago, 2:45 PM" data-crate="3" data-body="Field team: Crate 3 arriving at Ridgeline Bunker." style="cursor:grab;">
+        <span class="grip">&#8942;&#8942;</span>
+        <div class="file-main">
+          <div class="file-head"><span class="file-stamp">2 days ago, 2:45 PM</span></div>
+          <div class="file-body">Field team: Crate 3 arriving at Ridgeline Bunker.</div>
+        </div>
+      </div>
+      <div id="demoDropZone" style="margin-top:8px;border:2px dashed #bbb;border-radius:6px;padding:16px;text-align:center;color:#888;font-size:13px;">Drag the entry here to share it with the team</div>
+      <div class="mini-chat" id="demoChat1"></div>
+    </div>
+    <h2>Add intel a teammate shares <span class="done-tag" id="demoAddDone"></span></h2>
+    <p>When a teammate shares an entry, it appears in the chat with an <b>Add to case file</b> button that you can use to add it to your file.</p>
+    <div class="demo">
+      <div class="mini-chat">
+        <div class="msg" style="max-width:100%"><div class="who">Teammate</div>Sharing intel on Crate 1<div class="filepill"><span class="fs">Today, 10:15 AM</span>Field team confirms Crate 1 at The Marina, unloading in progress.</div>
+          <div class="msg-actions"><button id="demoAddBtn" class="primary">Add to case file</button><span style="font-size:12.5px;color:#666;align-self:center;">← click to try it</span></div></div>
+      </div>
+      <div id="demoAdded" style="margin-top:8px"></div>
+    </div>
+    <h2>Ask and reply in team chat</h2>
+    <p>Use the chat to request intelligence about one of your crates. This is the same control you will use during the investigation.</p>
+    <div class="demo"><div class="team-actions" style="border:0;background:none;padding:0;"><select id="demoAskCrate" style="font-size:15px;"><option value="2">Ask the team about Crate 2</option><option value="3">Ask the team about Crate 3</option><option value="6">Ask the team about Crate 6</option></select><button id="demoAskBtn" style="font-size:15px;">Ask</button></div><div class="mini-chat" id="demoChat3"></div><p style="font-size:15px;margin:9px 0 0;color:#666;">During the investigation, this sends a request to both teammates. You can also reply to a teammate’s request in your own words.</p></div>
+    <button class="btn" id="demoContinue" disabled data-act="goto(5)">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="s5">
+  <div class="panel">
+    <h1>Your AI assistant</h1>
+    <p>Use the AI assistant to review and organize the intelligence in your own case file.</p>
+    <div class="demo">
+      <p style="margin-bottom:10px;">Ask about one of your crates from the menu, or type your own question.</p>
+      <div class="team-actions" style="border:0;background:none;padding:0 0 8px;">
+        <select id="demoAiAsk"><option value="">Ask the assistant about</option><option value="2">Crate 2 (smart watches)</option><option value="5">Crate 5 (headphones)</option></select>
+        <button id="demoAIBtn">Ask</button>
+      </div>
+      <div class="composer" style="border:0;background:none;padding:0;"><input id="demoAIIn" type="text" placeholder="Or type a question"><button id="demoAITypeBtn">Send</button></div>
+      <div class="mini-chat" id="demoAIOutput"></div>
+    </div>
+    <button class="btn" data-act="showConnecting()">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="connectingScreen">
+  <div class="panel">
+    <h1>Connecting to your team</h1>
+    <ul class="joining-list">
+      <li><span class="dot online"></span> <span id="jtLabel">JT</span> <span class="status">connected</span></li>
+      <li><span class="dot online"></span> <span id="youLabel">You</span> <span class="status">connected</span></li>
+      <li><span class="dot" id="pDot"></span> <span id="pLabel">Waiting</span> <span class="status" id="pStat"></span></li>
+    </ul>
+    <p style="color:#666;margin-bottom:14px;">The 6-minute clock starts when all of you have pressed Start.</p>
+    <button class="btn" id="startBtn" disabled data-act="pressStart()">Start</button>
+  </div>
+</div>
+
+<div class="task-screen" id="s6">
+  <div class="task-header">
+    <b>The Case</b><span class="goal">Locate your crates</span><span class="mine-strip" id="mineStrip">Your crates</span><span class="timer" id="timer">6:00</span>
+  </div>
+  <div class="task-grid">
+    <div class="pane" id="casePane">
+      <div class="pane-head">Case file <span class="count" id="fileCount"></span>
+      </div>
+      <div class="files-list" id="filesList"></div>
+    </div>
+    <div class="pane" id="teamPane">
+      <div class="pane-head">Team chat <span class="count" id="teamNames"></span></div>
+      <div class="pressure-strip" id="pressureStrip"></div>
+      <div class="msgs" id="chatList"></div>
+      <div class="team-actions">
+        <select id="askCrate"><option value="">Ask the team for intel on</option></select>
+        <button data-act="askTeam()">Ask</button>
+      </div>
+      <div class="team-actions share-hint">Drag an entry from your case file into this panel to share it.</div>
+    </div>
+    <div class="pane" id="aiPane">
+      <div class="pane-head">AI assistant</div>
+      <div class="ai-starter">Ask about a crate and I will review the evidence in your case file.</div>
+      <div class="msgs" id="aiList"></div>
+      <div class="team-actions">
+        <select id="aiAskCrate"><option value="">Ask the assistant about</option></select>
+        <button data-act="askAI()">Ask</button>
+      </div>
+      <div class="composer"><input type="text" id="aiIn" placeholder="Or type a question"><button id="aiSendBtn" data-act="sendAI()">Send</button></div>
+    </div>
+  </div>
+  <div class="checkin-overlay" id="checkinOverlay"><div class="checkin-box"><h2>Brief team check-in</h2><div class="sub">The task clock is paused.</div><div id="checkinBody"></div></div></div>
+  <div class="submit-bar">
+    <div class="prompt">Enter a location for each of your crates. Your answers are recorded automatically when the clock runs out.</div>
+    <div class="submit-row" id="pickerRow"></div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="confidenceScreen">
+  <div class="panel">
+    <h1>Confidence ratings</h1>
+    <p>Now that the investigation has ended, please rate how confident you are in each location response.</p>
+    <div class="confidence-grid" id="confidenceGrid"></div>
+    <button class="btn" id="confidenceContinue" disabled data-act="finishConfidence()">Continue</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div></div><textarea id="log" style="display:none"></textarea></div>
+<button id="NextButton">Next</button>
+<div class="demo-post" id="demoPost"><h1>A few questions</h1><p>Please answer about the session you just completed.</p><div id="demoItems"></div><button class="btn" id="demoToDebrief">Continue</button></div>
+<div class="demo-post" id="demoDebrief"><h2 style="font-size:24px;margin-bottom:10px;">What this study was really about</h2>
+<p style="font-size:17px;line-height:1.55;">Thank you for taking part. Now that the session is over, we want to explain the parts of the study we could not describe beforehand.</p>
+<p style="font-size:17px;line-height:1.55;">The other members of your team were not other participants. They were automated accounts, configured by our research team to respond to messages and share information about the task. There were no other people in your session.</p>
+<h3 style="font-size:19px;margin:16px 0 8px;">Why we could not tell you in advance</h3>
+<p style="font-size:17px;line-height:1.55;">This study examines whether learning that teammates feel pressed for time changes how much people ask them for information, and whether they turn to an AI assistant instead. The time-pressure ratings shown for your teammates at the check-in were assigned by the research team, not reported by anyone. Your own rating was recorded exactly as you entered it. Participants were randomly assigned to see teammates reporting either higher or lower time pressure. Your teammates&rsquo; actual responsiveness, and the AI assistant, were identical for everyone.</p>
+<p style="font-size:17px;line-height:1.55;">We used automated teammates rather than live participants so that every person in the study would encounter teammates who behave the same way.</p>
+<p style="font-size:15px;color:#666;">Questions: [Principal Investigator] (pi@university.edu) or [Co-Investigator] (coi@university.edu). Protocol XXXX-XXXX.</p><p style="font-size:15px;color:#666;margin-top:18px">Demo only: payload written at the end of the task</p><pre class="demo-payload" id="demoPayload"></pre><button class="btn" onclick="location.reload()">Run again</button></div>
+<script>
+(function(){
+  var params=new URLSearchParams(location.search); var sel=document.getElementById('demoCondition');
+  if(params.get('cond')) sel.value=params.get('cond');
+  window.DEMO_CONDITION=sel.value;
+  sel.addEventListener('change',function(){ location.search='?cond='+this.value; });
+  document.getElementById('demoRestart').addEventListener('click',function(){ location.reload(); });
+  var ITEMS=["I had the information I needed to make good decisions.", "There was important information that I did not have.", "My teammates knew things that I did not.", "The AI assistant was useful for this task.", "Asking my teammates for information would have taken up time they did not have.", "I expected my teammates to reply quickly if I asked them something.", "My teammates were willing to help me.", "My teammates seemed competent at the task.", "After the check-in, I felt more rushed myself."];
+  window.DEMO_ED={};
+  function showPost(){
+    if(document.getElementById('demoPost').style.display==='block') return;
+    document.getElementById('Questions').style.display='none'; var flat=window.DEMO_ED;
+    var box=document.getElementById('demoItems'); box.innerHTML='';
+    ITEMS.forEach(function(t,i){ var d=document.createElement('div'); d.className='q'; d.innerHTML='<p>'+t+'</p><div class="likert">'+[1,2,3,4,5,6,7].map(function(n){return '<button>'+n+'</button>';}).join('')+'</div><div class="ends"><span>Strongly disagree</span><span>Strongly agree</span></div>'; box.appendChild(d); });
+    box.querySelectorAll('.likert').forEach(function(l){ l.addEventListener('click',function(e){ if(e.target.tagName!=='BUTTON')return; l.querySelectorAll('button').forEach(function(b){b.classList.remove('on');}); e.target.classList.add('on'); }); });
+    document.getElementById('demoPayload').textContent=JSON.stringify(flat,null,1);
+    document.getElementById('demoPost').style.display='block'; window.scrollTo(0,0);
+  };
+  document.getElementById('demoToDebrief').addEventListener('click',function(){ document.getElementById('demoPost').style.display='none'; document.getElementById('demoDebrief').style.display='block'; window.scrollTo(0,0); });
+  window.Qualtrics={SurveyEngine:{
+    addOnload:function(f){ f.call({hideNextButton:function(){},showNextButton:function(){},clickNextButton:function(){ showPost(); },getQuestionContainer:function(){return document.getElementById('Questions');}}); },
+    setJSEmbeddedData:function(k,v){ window.DEMO_ED[k]=v; }, setEmbeddedData:function(k,v){ window.DEMO_ED[k]=v; } } };
+  document.getElementById('NextButton').addEventListener('click',showPost);
+})();
+</script>
+<script>
+/* ============================================================
+   INVESTIGATORS — task page
+   Question type: Text / Graphic (Descriptive Text)
+   ES5 only: no template literals, so nothing looks like piped text.
+   ============================================================ */
+
+Qualtrics.SurveyEngine.addOnload(function () {
+  var page = this;
+
+  function hideNext(hide) {
+    try { if (hide) { page.hideNextButton(); } else { page.showNextButton(); } } catch (e) {}
+    var sel = '#NextButton, [id^="NextButton"], .NextButton, button[aria-label="Next page"]';
+    var nodes = document.querySelectorAll(sel);
+    for (var i = 0; i < nodes.length; i++) { nodes[i].style.display = hide ? 'none' : ''; }
+  }
+  hideNext(true);
+  var guard = setInterval(function () { hideNext(true); }, 400);
+  setTimeout(function () { clearInterval(guard); }, 8000);
+
+  window.INV_CONDITION = (window.DEMO_CONDITION||"high") === "low" ? "low" : "high";
+
+  /* Embedded data. setJSEmbeddedData is the reliable path in current
+     Qualtrics; setEmbeddedData is kept as a fallback for older players.
+     Values are also mirrored into hidden inputs on the page, which submit
+     with the response even if the JS API silently no-ops. */
+  var edOK = 0, edFail = 0;
+  function ED(k, v) {
+    var wrote = false;
+    try {
+      if (Qualtrics.SurveyEngine.setJSEmbeddedData) { Qualtrics.SurveyEngine.setJSEmbeddedData(k, v); wrote = true; }
+    } catch (e) {}
+    try {
+      if (Qualtrics.SurveyEngine.setEmbeddedData) { Qualtrics.SurveyEngine.setEmbeddedData(k, v); wrote = true; }
+    } catch (e) {}
+    if (wrote) { edOK++; } else { edFail++; console.log('[INV] embedded data failed on ' + k); }
+  }
+
+  window.INV_FINISH = function (payload, fields) {
+    var keys = Object.keys(fields);
+    for (var i = 0; i < keys.length; i++) { ED(keys[i], String(fields[keys[i]])); }
+    console.log('[INV] embedded data written: ' + edOK + ' ok, ' + edFail + ' failed');
+
+    var json = '';
+    try { json = JSON.stringify(payload); } catch (e) { json = '{"error":"stringify"}'; }
+    if (window.INV_SAVE) { window.INV_SAVE(json); }
+
+    /* score line for the results page, piped from embedded data */
+    try {
+      var rows = payload.assignment.map(function (n) {
+        var truth = payload.truth[n], given = payload.answers[n] || '(no answer)';
+        return n + '|' + given + '|' + truth + '|' + (given === truth ? '1' : '0') + '|' +
+               (payload.confidence[n] === undefined ? '' : payload.confidence[n]);
+      }).join(';');
+      ED('inv_scoresheet', rows);
+      try { window.sessionStorage.setItem('inv_scoresheet', rows); } catch (e2) {}
+    } catch (e) {}
+
+    clearInterval(guard);
+    /* give the embedded-data queue time to flush before the page submits */
+    setTimeout(function () {
+      hideNext(false);
+      try { page.clickNextButton(); } catch (e) {
+        var b = document.querySelector('#NextButton, [id^="NextButton"]');
+        if (b) { b.click(); }
+      }
+    }, 1200);
+  };
+
+
+  /* Stylesheet is injected from here: Qualtrics caps question text at 20,000
+     characters, and the markup plus CSS together exceed it. */
+  (function () {
+    if (document.getElementById('invStyle')) { return; }
+    var st = document.createElement('style');
+    st.id = 'invStyle';
+    st.textContent = "*{box-sizing:border-box;margin:0;padding:0;}html, body{height:100%;}body{font-family:system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif;background:#f4f4f4;color:#222;height:100vh;display:flex;flex-direction:column;font-size:18px;}.screen{display:none;flex:1;align-items:center;justify-content:center;padding:30px;overflow-y:auto;}.screen.active{display:flex;}.panel{background:white;border-radius:8px;padding:32px 34px;max-width:780px;width:100%;box-shadow:0 2px 10px rgba(0,0,0,0.06);}.consent-panel{max-width:780px;padding:30px 34px;}.consent-panel h1{font-size:28px;}.consent-panel h2{font-size:21px;margin-top:20px;}.consent-copy{max-height:52vh;overflow-y:auto;padding-right:12px;margin:12px 0 18px;}.consent-copy p{font-size:16px;}.consent-actions{display:flex;gap:10px;}.consent-actions .btn{width:auto;flex:1;}.btn.secondary{background:white;color:#444;border:1px solid #999;}.btn.secondary:hover{background:#f2f2f2;}.panel h1{font-size:27px;line-height:1.2;margin-bottom:16px;}.panel h2{font-size:21px;line-height:1.3;margin:21px 0 10px;}.panel p{font-size:18px;line-height:1.58;margin-bottom:15px;color:#444;}.panel ul{margin:0 0 16px 22px;color:#444;line-height:1.58;font-size:18px;}.panel li{margin-bottom:6px;}.panel input[type=text]{padding:9px 12px;font-size:18px;border:1px solid #ccc;border-radius:6px;margin-bottom:18px;}#initials{width:120px;display:block;text-transform:uppercase;}.btn{display:block;width:100%;padding:11px;font:inherit;font-weight:600;background:#2f6b5e;color:white;border:none;border-radius:6px;cursor:pointer;}.btn:hover{background:#245248;}.btn:disabled{background:#aaa;cursor:default;}.callout{background:#f6f8f7;border:1px solid #d7e0dc;border-left:4px solid #2f6b5e;border-radius:6px;padding:10px 12px;margin-bottom:16px;font-size:14px;line-height:1.5;color:#333;}.callout b{color:#2f6b5e;}.preview{display:grid;grid-template-columns:60% 40%;grid-template-rows:40% 30% 30%;grid-template-areas:\"case chat\" \"case ai\" \"submit submit\";gap:5px;padding:5px;background:#eaeaea;border-radius:6px;height:190px;margin-bottom:16px;}.preview > div{background:white;border:1px solid #ddd;border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:600;color:#555;padding:4px;}.preview .p-case{grid-area:case;}.preview .p-chat{grid-area:chat;}.preview .p-ai{grid-area:ai;}.preview .p-submit{grid-area:submit;background:#f8f8f8;}.demo{border:1px dashed #bbb;border-radius:6px;padding:10px;background:#fafafa;margin-bottom:14px;}.demo .mini-chat{margin-top:8px;display:flex;flex-direction:column;gap:6px;}.done-tag{font-size:12px;color:#2f6b5e;font-weight:700;margin-left:8px;}.joining-list{list-style:none;margin-bottom:16px;}.joining-list li{padding:10px 0;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;}.joining-list li:last-child{border-bottom:none;}.dot{width:10px;height:10px;border-radius:50%;background:#ccc;}.dot.online{background:#2f6b5e;}.status{margin-left:auto;font-size:12px;color:#999;}.task-screen{display:none;flex:1;flex-direction:column;overflow:hidden;}.task-screen.active{display:flex;}.task-header{padding:10px 14px;background:#222;color:white;display:flex;align-items:center;gap:14px;font-size:15px;}.task-header .goal{color:#ccc;}.task-header .mine-strip{background:rgba(255,255,255,0.1);padding:2px 9px;border-radius:3px;}.task-header .timer{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:700;font-size:15px;padding:2px 10px;background:rgba(255,255,255,0.08);border-radius:4px;}.task-header .timer.low{background:#B91C1C;}.task-grid{flex:1;display:grid;grid-template-columns:minmax(0,45%) minmax(0,55%);grid-template-rows:minmax(0,55%) minmax(0,45%);gap:8px;padding:8px;overflow:hidden;}.pane{background:white;border-radius:6px;display:flex;flex-direction:column;overflow:hidden;}#teamPane{border:2px solid #7895B8;box-shadow:0 1px 4px rgba(51,78,112,0.12);}#teamPane .pane-head{background:#E6EEF9;color:#274A71;}#teamPane .team-actions, #teamPane .composer{background:#F4F8FD;}#aiPane{border:2px solid #927CB8;box-shadow:0 1px 5px rgba(84,59,124,0.14);}#aiPane .pane-head{background:#F0EBF8;color:#543F79;}#aiPane .composer{background:#F8F5FC;padding:5px 8px;align-items:center;}#aiPane .team-actions{background:#F8F5FC;}#aiPane .team-actions select{font-size:12px;padding:4px 6px;}#aiPane .team-actions button{background:#6E5797;}#aiPane .team-actions button:hover{background:#59457C;}#aiPane .composer input, .panel .composer input{font-size:12px;padding:4px 6px;border-color:#AD9ACB;margin:0;}#aiPane .composer button, .panel .composer button{font-size:12px;padding:5px 12px;line-height:1.2;background:#6E5797;}#aiPane .composer button:hover{background:#59457C;}.ai-starter{padding:5px 10px;background:#F8F5FC;border-bottom:1px solid #DED4EE;color:#6A5A83;font-size:12px;line-height:1.3;}#casePane{grid-row:1 / 3;}.pane-head{padding:9px 12px;background:#f0f0f0;font-size:14px;font-weight:700;border-bottom:1px solid #ddd;color:#444;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}.pane-head .count{font-weight:500;color:#888;}.pane-head .budget{margin-left:auto;font-weight:700;font-size:12px;font-variant-numeric:tabular-nums;background:#E4EEEB;color:#2f6b5e;padding:2px 9px;border-radius:3px;}.pane-head .budget.low{background:#FEE2E2;color:#B91C1C;}.file-tools{margin-left:auto;display:flex;gap:5px;align-items:center;font-weight:500;}.file-tools select{font:inherit;font-size:11.5px;padding:2px 5px;border:1px solid #bbb;border-radius:3px;background:white;}.crate-filter{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid #eee;background:#fafafa;flex-wrap:wrap;align-items:center;font-size:11.5px;color:#777;}.tag{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:10px;border:1px solid transparent;cursor:pointer;white-space:nowrap;}.tag.mine{background:#f0f0f0;color:#555;border-color:#ddd;}.tag.other{background:#f0f0f0;color:#555;border-color:#ddd;}.tag.on{outline:2px solid #222;outline-offset:1px;}.tag.clear{background:white;color:#777;border-color:#ccc;}.files-list{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;}.file{border:1px solid #ddd;border-radius:5px;background:white;padding:7px 9px 7px 7px;display:flex;gap:6px;}.file.shared{background:#fbf9ef;border-color:#dcd1a3;}.file.dragging{opacity:0.4;}.file.over{border-top:2px solid #2f6b5e;}.file.hidden{display:none;}.grip{color:#bbb;cursor:grab;font-size:14px;line-height:1;padding-top:2px;user-select:none;}.file-main{flex:1;min-width:0;}.file-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}.file-stamp{font-size:11.5px;font-weight:700;color:#666;}.file-source{font-size:11px;color:#999;}.file-body{font-size:15px;color:#333;line-height:1.48;}.msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;font-size:16px;}.pane.share-over{outline:3px dashed #2f6b5e;outline-offset:-4px;background:#f0f8f5;}.pane.ai-over{outline:3px dashed #6E5797;outline-offset:-4px;background:#F8F5FC;}.msg{padding:6px 9px;background:#f0f0f0;border-radius:5px;max-width:88%;line-height:1.4;}.msg.you{align-self:flex-end;background:#dee9e4;}.msg .who{font-size:10.5px;font-weight:700;color:#666;margin-bottom:2px;}.msg.ai{background:#e5ecf5;max-width:92%;}.msg.system{align-self:center;background:transparent;color:#888;font-size:11.5px;font-style:italic;text-align:center;}.msg .filepill{display:block;margin-top:5px;padding:6px 8px;background:white;border:1px solid #ccc;border-radius:4px;font-size:12px;line-height:1.4;}.msg .filepill .fs{display:block;font-weight:700;color:#666;font-size:10.5px;margin-bottom:3px;}.msg-actions{margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;}.msg-actions button{font-size:11px;padding:3px 8px;border:1px solid #888;background:white;border-radius:3px;cursor:pointer;}.msg-actions button:hover{background:#eef0f4;}.msg-actions button:disabled{color:#aaa;border-color:#ccc;cursor:default;background:white;}.msg-actions button.primary{background:#2f6b5e;color:white;border-color:#2f6b5e;}.thread{margin-top:6px;padding-left:8px;border-left:2px solid #cfd8d4;display:flex;flex-direction:column;gap:4px;}.thread .msg{max-width:100%;font-size:12.5px;padding:5px 8px;}.thread .msg.you{align-self:stretch;}.reply-box{display:flex;gap:4px;margin-top:5px;}.reply-box input{flex:1;font:inherit;font-size:12.5px;padding:4px 7px;border:1px solid #aaa;border-radius:3px;}.reply-box button{font-size:11px;padding:3px 9px;background:#2f6b5e;color:white;border:none;border-radius:3px;cursor:pointer;}.typing{padding:0 10px 4px;font-size:11.5px;color:#999;min-height:18px;}.team-actions{padding:5px 8px;border-top:1px solid #ddd;background:#f8f8f8;display:flex;gap:5px;align-items:center;flex-wrap:nowrap;}.team-actions + .team-actions{border-top:1px solid #eee;}.team-actions select{flex:1 1 auto;min-width:0;padding:4px 6px;font:inherit;font-size:12px;line-height:1.3;border:1px solid #ccc;border-radius:4px;background:white;}.team-actions button, .composer button{flex:0 0 auto;white-space:nowrap;padding:5px 12px;font-size:12px;background:#2f6b5e;color:white;border:none;border-radius:4px;cursor:pointer;}.composer{display:flex;gap:5px;padding:6px 8px;border-top:1px solid #ddd;background:#f8f8f8;align-items:center;}.composer input{flex:1;padding:5px 8px;font:inherit;font-size:13px;border:1px solid #ccc;border-radius:4px;margin:0;}.composer input:disabled{background:#f0f0f0;color:#999;}.composer button:disabled{background:#aaa;cursor:default;}.submit-bar{background:#F2F8F5;border-top:3px solid #2f6b5e;box-shadow:0 -2px 8px rgba(25,74,61,0.10);padding:13px 16px 15px;display:flex;flex-direction:column;gap:10px;}.submit-bar .prompt{font-size:15px;font-weight:700;color:#244E44;}.submit-row{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;}.picker{display:flex;flex-direction:column;gap:4px;flex:1;min-width:180px;}.picker label{font-size:12px;color:#444;font-weight:600;display:flex;align-items:center;gap:6px;}.picker select{padding:5px 7px;font:inherit;font-size:13px;border:1px solid #999;border-radius:4px;background:white;}.picker.done select{background:#f0f8ee;border-color:#6ea567;}.confidence-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin:18px 0;}.confidence-card{border:1px solid #d6dfec;border-radius:6px;padding:13px;background:#f8fbff;}.confidence-card label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;}.confidence-card select{width:100%;padding:7px;font:inherit;font-size:14px;border:1px solid #9aaec6;border-radius:4px;background:white;}.confidence-card input[type=range]{width:100%;margin:11px 0 5px;}.confidence-scale{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;color:#666;line-height:1.25;}.initials-error{display:none;margin:-8px 0 12px;color:#B91C1C;font-size:13px;font-weight:600;}.submit-bar .submit-btn:disabled{background:#aaa;cursor:not-allowed;}.submit-bar .submit-btn{padding:8px 22px;font:inherit;font-weight:600;background:#2f6b5e;color:white;border:none;border-radius:5px;cursor:pointer;align-self:flex-end;}.results-panel{background:white;border-radius:8px;padding:32px 34px;max-width:780px;width:100%;box-shadow:0 2px 10px rgba(0,0,0,0.06);}.results-panel h1{font-size:27px;margin-bottom:10px;}.results-panel h2{font-size:21px;margin:20px 0 10px;}.results-panel p{font-size:18px;color:#444;line-height:1.55;margin-bottom:15px;}.score-line{font-size:42px;font-weight:700;color:#2f6b5e;text-align:center;margin:12px 0 6px;}.score-sub{text-align:center;color:#666;margin-bottom:20px;font-size:14px;}.results-table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:16px;}.results-table th, .results-table td{padding:8px 10px;text-align:left;border-bottom:1px solid #eee;}.results-table th{font-size:12px;font-weight:700;color:#666;background:#f8f8f8;}.results-table td.mark{text-align:center;font-weight:700;font-size:18px;}.results-table td.correct{color:#2f6b5e;}.results-table td.incorrect{color:#B91C1C;}.q{margin-bottom:16px;}.q p{margin-bottom:8px;font-size:17px;}.likert{display:flex;gap:5px;}.likert button{flex:1;padding:7px 0;font:inherit;font-size:13px;border:1px solid #bbb;background:white;border-radius:4px;cursor:pointer;}.likert button.on{background:#dee9e4;border-color:#2f6b5e;font-weight:700;}.ends{display:flex;justify-content:space-between;font-size:11.5px;color:#888;margin-top:3px;}@media (max-width:900px){.task-grid{grid-template-columns:1fr;grid-template-rows:auto;}#casePane{grid-row:auto;min-height:40vh;}.pane{min-height:30vh;}.task-screen{overflow:auto;}.confidence-grid{grid-template-columns:1fr;}}#shareEntry.share-highlight{outline:3px solid #2f6b5e;outline-offset:1px;background:#F2F8F5;}.share-hint{font-size:12px;color:#777;font-style:italic;}#casePane.share-prompt{outline:3px solid #2f6b5e;outline-offset:-3px;}#teamPane.drop-hint{outline:3px dashed #2f6b5e;outline-offset:-3px;background:#F5FAF8;}" + '\n#invRoot{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:18px;color:#222}' + ".task-header .timer.paused{background:#6B7280;}.checkin-overlay{position:fixed;inset:0;background:rgba(20,20,20,0.55);display:none;align-items:center;justify-content:center;z-index:50;}.checkin-overlay.active{display:flex;}.checkin-box{background:white;border-radius:8px;padding:26px 28px;max-width:560px;width:92%;box-shadow:0 6px 30px rgba(0,0,0,0.25);}.checkin-box h2{font-size:21px;margin:0 0 6px;}.checkin-box .sub{font-size:14px;color:#666;margin-bottom:14px;}.checkin-box p.qtext{font-size:17px;margin-bottom:10px;color:#222;}.checkin-box .note{font-size:13px;color:#777;margin-top:12px;}.checkin-box .btn{margin-top:16px;}.pressure-strip{padding:6px 10px;background:#F4F8FD;border-bottom:1px solid #D7E2F0;font-size:12.5px;color:#274A71;display:none;line-height:1.4;}.pressure-strip.active{display:block;}.pressure-strip .lbl{font-weight:700;margin-right:6px;}.pressure-strip .chip,.checkin-box .chip{display:inline-block;padding:2px 10px;border-radius:12px;background:white;border:1px solid #C9D7E8;margin:0 8px 6px 0;font-variant-numeric:tabular-nums;white-space:nowrap;}.checkin-box .chip{background:#F4F8FD;font-size:16px;padding:5px 12px;margin:0 10px 8px 0;}.pressure-strip .chip b,.checkin-box .chip b{font-weight:700;margin-left:4px;}.checkin-box .chip-row{margin:10px 0 6px;display:flex;flex-wrap:wrap;}"
+      + '\n#invRoot .screen{min-height:70vh}'
+      + '\n#invRoot .screen.active{display:flex}'
+      + '\n#invRoot .task-screen.active{display:flex;height:88vh}';
+    document.head.appendChild(st);
+  })();
+
+  function startApp() {
+    function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+    function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+    function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+    function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+    function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+    function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
+    function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+    function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+    function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+    function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+    function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+    function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+    function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+    /* ============================================================
+       WORLD GENERATOR
+       Builds the eight-crate world fresh for each participant.
+    
+       Of the four assigned crates:
+         two are own-file      the final move happened yesterday morning, so the
+                               participant's file already names the true hideout.
+                               One of these ends yesterday evening, the other ends
+                               this afternoon, so neither looks conspicuously fresh
+                               or conspicuously stale.
+         two are team-dependent the final move happens today, AFTER the participant's
+                               file ends. Their file therefore terminates plausibly
+                               on a hideout the crate has since left. One ends
+                               yesterday evening, the other this morning.
+    
+       Which crates play which role is randomised per participant; the four assigned
+       crates are always displayed in ascending crate order.
+       ============================================================ */
+    
+    var HIDEOUTS = ['The Sawmill', 'The Marina', 'Blackwell Storage', 'Old Cannery', 'Fairground Sheds', 'Ridgeline Bunker'];
+    var CRATE_CONTENTS = ['laptops', 'smart watches', 'gaming consoles', 'TVs', 'headphones', 'cameras', 'tablets', 'power tools'];
+    var N_CRATES = 8;
+    var N_ASSIGNED = 4;
+    
+    /* ---------- small helpers ---------- */
+    function shuffled(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+      return a;
+    }
+    function pick(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+    function fmtStamp(day, hour, minute) {
+      var ap = hour < 12 ? 'AM' : 'PM';
+      var h = hour % 12;
+      if (h === 0) h = 12;
+      var mm = minute < 10 ? '0' + minute : String(minute);
+      var label = day === 0 ? 'Today' : day === -1 ? 'Yesterday' : -day + ' days ago';
+      return label + ', ' + h + ':' + mm + ' ' + ap;
+    }
+    function mins(day, hour, minute) {
+      return day * 1440 + hour * 60 + minute;
+    }
+    
+    /* ---------- sentence templates ---------- */
+    var T_ARRIVE = ['Field team: Crate {n} arriving at {h}.', 'Surveillance photo: Crate {n} at the loading dock of {h}.', 'Field team: {c} unloaded at {h}.', 'Warehouse camera confirms Crate {n} offloaded at {h}.'];
+    var T_STILL = ['Informant: {c} still on site at {h}.', 'Field team: Crate {n} ({c}) at {h}, confirmed by walk-by.', 'Warehouse camera: {c} still at {h}.', 'Anonymous tip: {c} have not moved from {h}.', 'Field team: activity at {h}, Crate {n} still on site.'];
+    var T_DEPART = ['Traffic camera: a van leaves {h} headed east, Crate {n} believed aboard.', 'Field team: a pickup departs {h} with the {c} crate aboard.', 'Drone footage: Crate {n} ({c}) is loaded onto a vehicle at {h}.'];
+    var T_TRANSIT = ['Traffic camera: vehicle carrying the {c} leaves {h} heading toward the {to} area.', 'GPS ping: vehicle linked to Crate {n} between {h} and {to}.'];
+    function fill(tmpl, n, c, h, to) {
+      return tmpl.replace('{n}', n).replace('{c}', c).replace('{h}', h).replace('{to}', (to || '').replace('The ', ''));
+    }
+    
+    /* ---------- one crate's timeline ---------- */
+    function buildTimeline(num, contents, role) {
+      var walk = shuffled(HIDEOUTS).slice(0, 3); // legA -> legB -> truth
+      var truth = walk[2];
+      var out = [];
+      var seq = 0;
+      function add(day, hour, minute, text, leg) {
+        out.push({
+          id: 'C' + num + '-' + ++seq,
+          ts: mins(day, hour, minute),
+          stamp: fmtStamp(day, hour, minute),
+          body: text,
+          leg: leg,
+          crate: num
+        });
+      }
+    
+      /* leg A, three and two days ago */
+      add(-3, 9, 0, fill(pick(T_ARRIVE), num, contents, walk[0]), 0);
+      add(-3, 17, 0, fill(pick(T_STILL), num, contents, walk[0]), 0);
+      add(-2, 10, 0, fill(pick(T_STILL), num, contents, walk[0]), 0);
+      add(-2, 19, 0, fill(pick(T_DEPART), num, contents, walk[0]), 0);
+    
+      /* leg B */
+      add(-1, 6, 30, fill(pick(T_TRANSIT), num, contents, walk[0], walk[1]), 1);
+      add(-1, 8, 15, fill(pick(T_ARRIVE), num, contents, walk[1]), 1);
+      if (role === 'own') {
+        /* the final move happens later the same morning, so the participant's own
+           file can carry the answer */
+        add(-1, 11, 0, fill(pick(T_DEPART), num, contents, walk[1]), 2);
+        add(-1, 12, 30, fill(pick(T_TRANSIT), num, contents, walk[1], truth), 2);
+        add(-1, 14, 0, fill(pick(T_ARRIVE), num, contents, truth), 2);
+        add(-1, 18, 0, fill(pick(T_STILL), num, contents, truth), 2);
+        add(0, 9, 30, fill(pick(T_STILL), num, contents, truth), 3);
+        add(0, 13, 0, fill(pick(T_STILL), num, contents, truth), 3);
+        add(0, 16, 30, fill(pick(T_STILL), num, contents, truth), 3);
+      } else {
+        /* the crate stays put through yesterday and into this morning, then moves */
+        add(-1, 13, 0, fill(pick(T_STILL), num, contents, walk[1]), 1);
+        add(-1, 19, 0, fill(pick(T_STILL), num, contents, walk[1]), 1);
+        add(0, 8, 45, fill(pick(T_STILL), num, contents, walk[1]), 1);
+        add(0, 11, 30, fill(pick(T_DEPART), num, contents, walk[1]), 2);
+        add(0, 12, 15, fill(pick(T_TRANSIT), num, contents, walk[1], truth), 2);
+        add(0, 14, 0, fill(pick(T_ARRIVE), num, contents, truth), 2);
+        add(0, 16, 0, fill(pick(T_STILL), num, contents, truth), 2);
+        add(0, 17, 30, fill(pick(T_STILL), num, contents, truth), 2);
+      }
+      out.sort(function (a, b) {
+        return a.ts - b.ts;
+      });
+      return {
+        num: num,
+        contents: contents,
+        truth: truth,
+        walk: walk,
+        role: role,
+        entries: out
+      };
+    }
+    
+    /* ---------- deal the world ---------- */
+    function buildWorld() {
+      var nums = [];
+      for (var i = 1; i <= N_CRATES; i++) nums.push(i);
+      var assigned = shuffled(nums).slice(0, N_ASSIGNED).sort(function (a, b) {
+        return a - b;
+      });
+      var roles = shuffled(['own', 'own', 'team', 'team']);
+      var roleOf = {},
+        cutOf = {};
+      /* one of each pair ends yesterday evening, the other later */
+      var ownCuts = shuffled([mins(-1, 20, 0), mins(0, 15, 0)]);
+      var teamCuts = shuffled([mins(-1, 20, 0), mins(0, 9, 30)]);
+      var oi = 0,
+        ti = 0;
+      assigned.forEach(function (n, i) {
+        roleOf[n] = roles[i];
+        cutOf[n] = roles[i] === 'own' ? ownCuts[oi++] : teamCuts[ti++];
+      });
+      var crates = [],
+        clues = {},
+        dist = {
+          participant: [],
+          JT: [],
+          PM: []
+        };
+      var _loop = function _loop(_i) {
+        var isMine = assigned.indexOf(_i) !== -1;
+        var role = isMine ? roleOf[_i] : 'other';
+        var tl = buildTimeline(_i, CRATE_CONTENTS[_i - 1], role === 'own' ? 'own' : 'team');
+        crates.push({
+          num: _i,
+          contents: tl.contents,
+          truth: tl.truth,
+          mine: isMine,
+          role: role
+        });
+        tl.entries.forEach(function (e) {
+          clues[e.id] = {
+            stamp: e.stamp,
+            body: e.body,
+            crate: _i,
+            ts: e.ts
+          };
+        });
+        if (isMine) {
+          var cut = cutOf[_i];
+          tl.entries.forEach(function (e) {
+            if (e.ts <= cut) dist.participant.push(e.id);else (Math.random() < 0.5 ? dist.JT : dist.PM).push(e.id);
+          });
+        } else {
+          /* a crate someone else owns: the participant holds two current entries,
+             which are useful to a teammate and useless to them */
+          var late = tl.entries.filter(function (e) {
+            return e.ts >= mins(0, 12, 0);
+          });
+          var give = late.slice(-2);
+          tl.entries.forEach(function (e) {
+            if (give.indexOf(e) !== -1) dist.participant.push(e.id);else (Math.random() < 0.5 ? dist.JT : dist.PM).push(e.id);
+          });
+        }
+      };
+      for (var _i = 1; _i <= N_CRATES; _i++) {
+        _loop(_i);
+      }
+      return {
+        assigned: assigned,
+        roleOf: roleOf,
+        crates: crates,
+        clues: clues,
+        dist: dist
+      };
+    }
+    
+    /* ---------- derive the tables the rest of the app expects ---------- */
+    var WORLD = buildWorld();
+    var MINE = WORLD.assigned; /* ascending, always */
+    var CRATES = WORLD.crates.map(function (c) {
+      return {
+        num: c.num,
+        contents: c.contents,
+        truth: c.truth,
+        needsTeam: c.role === 'team',
+        mine: c.mine,
+        role: c.role
+      };
+    });
+    var ALL_CLUES = WORLD.clues;
+    var DIST = WORLD.dist;
+    
+    /* Teammate requests: two for crates the participant does not own, so sharing
+       can be prompted, and one for a crate they do own. One unowned crate is never
+       requested, which preserves a clean proactive-sharing measure. */
+    var TEAMMATE_QUESTIONS = function () {
+      var notMine = shuffled(CRATES.filter(function (c) {
+        return !c.mine;
+      }).map(function (c) {
+        return c.num;
+      }));
+      var mineShuf = shuffled(MINE.slice());
+      var seats = shuffled(['JT', 'PM', 'JT']);
+      return [{
+        at: 40,
+        from: seats[0],
+        crateNum: notMine[0]
+      }, {
+        at: 150,
+        from: seats[1],
+        crateNum: mineShuf[0]
+      }, {
+        at: 240,
+        from: seats[2],
+        crateNum: notMine[1]
+      }];
+    }();
+    var PHRASE_SHARE = [function (n) {
+      return "Sharing intel on Crate ".concat(n);
+    }];
+    var PHRASE_ASK = [function (n) {
+      return "Requesting intel on Crate ".concat(n, ".");
+    }];
+    var GREETINGS = ['Hi!', 'Hello!', 'Hey!'];
+    
+    /* ---------------- state + log ---------------- */
+    var entries = [],
+      sortMode = 'custom',
+      filterMode = null,
+      uidSeq = 0;
+    var answers = {},
+      confidence = {},
+      post = {};
+    var requestedCrates = new Set();
+    var       timeLeft = 360,
+      taskTimer = null,
+      elapsed = 0;
+    var log = [];
+    var counters = {
+      req: 0,
+      share: 0,
+      pro: 0,
+      reply: 0,
+      prompt: 0,
+      first: null
+    };
+    var $ = function $(id) {
+      return document.getElementById(id);
+    };
+    var rand = function rand(a) {
+      return a[Math.floor(Math.random() * a.length)];
+    };
+    /* Lognormal delay: most replies land near the middle of the range, with an
+       occasional long pause, which reads far more like a person than a uniform draw. */
+    var delay = function delay(lo, hi) {
+      var mid = (lo + hi) / 2;
+      var u1 = Math.max(1e-9, Math.random()),
+        u2 = Math.random();
+      var z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+      var ms = mid * Math.exp(0.45 * z) * 1000;
+      return Math.min(hi * 2.2 * 1000, Math.max(lo * 1000, ms));
+    };
+    var mmss = function mmss(s) {
+      return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    };
+    var initials = function initials() {
+      return $('initials').value.trim().toUpperCase() || 'You';
+    };
+    var teammateName = function teammateName(seat) {
+      return initials() === seat ? 'AR' : seat;
+    };
+    var isMine = function isMine(n) {
+      return MINE.includes(n);
+    };
+    var CONDITION = window.INV_CONDITION === 'low' ? 'low' : 'high';
+    var CHECKIN_AT = 60;
+    var CHECKIN_COLLECT_MS = 3500;
+    var PRESSURE_CONFIG = { high: [6, 7], low: [2, 3] };
+    var pressureAssign = null, checkinDone = false, paused = false, ownPressure = null;
+    function record(type, data) {
+      log.push(_objectSpread({
+        t: elapsed,
+        type: type
+      }, data));
+      if (type === 'team_request') {
+        counters.req++;
+        if (counters.first === null) counters.first = elapsed;
+      }
+      if (type === 'share_to_team') {
+        counters.share++;
+        if (data.proactive) counters.pro++;
+      }
+      if (type === 'free_reply') counters.reply++;
+      if (type === 'ai_prompt') counters.prompt++;
+    }
+    function crateOf(id) {
+      return parseInt(id.split('-')[0].slice(1), 10);
+    }
+    function tagHtml(e) {
+      return '';
+    } /* entries are no longer labelled by crate */
+    function parseStamp(stamp) {
+      var parts = stamp.split(',').map(function (s) {
+        return s.trim();
+      });
+      var dayPart = (parts[0] || '').toLowerCase();
+      var timePart = parts[1] || '12:00 PM';
+      var day = 0;
+      if (dayPart === 'yesterday') day = -1;else if (dayPart !== 'today') {
+        var m = dayPart.match(/(\d+)\s+days?\s+ago/);
+        day = m ? -parseInt(m[1]) : 0;
+      }
+      var h = 12,
+        mi = 0;
+      var tm = timePart.match(/(\d+):(\d+)\s*(AM|PM)?/i);
+      if (tm) {
+        h = parseInt(tm[1]);
+        mi = parseInt(tm[2]);
+        var ap = (tm[3] || '').toUpperCase();
+        if (ap === 'PM' && h < 12) h += 12;
+        if (ap === 'AM' && h === 12) h = 0;
+      }
+      return day * 1440 + h * 60 + mi;
+    }
+    function extractLocations(body) {
+      var b = body.toLowerCase();
+      return HIDEOUTS.filter(function (h) {
+        return b.includes(h.replace(/^the\s+/i, '').toLowerCase());
+      });
+    }
+    function detectCrateInText(text) {
+      var t = text.toLowerCase();
+      var _iterator = _createForOfIteratorHelper(CRATES),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var c = _step.value;
+          if (t.includes('crate ' + c.num) || t.includes('crate' + c.num) || t.includes(c.contents) || c.contents.includes(' ') && t.includes(c.contents.split(' ').pop())) return c.num;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      return null;
+    }
+    
+    /* ---------------- navigation ---------------- */
+    function _continueFromIntro() {
+      var value = $('initials').value.trim();
+      if (!value) {
+        $('initialsError').style.display = 'block';
+        $('initials').focus();
+        return;
+      }
+      $('initialsError').style.display = 'none';
+      goto(3);
+    }
+    function goto(n) {
+      document.querySelectorAll('.screen, .task-screen').forEach(function (el) {
+        return el.classList.remove('active');
+      });
+      $('s' + n).classList.add('active');
+      if (n === 6) startTask();
+    }
+
+    function _showConnecting() {
+      document.querySelectorAll('.screen, .task-screen').forEach(function (el) {
+        return el.classList.remove('active');
+      });
+      $('connectingScreen').classList.add('active');
+      startJoining();
+    }
+    function startJoining() {
+      $('youLabel').textContent = initials();
+      $('jtLabel').textContent = teammateName('JT');
+      setTimeout(function () {
+        $('pDot').classList.add('online');
+        $('pLabel').textContent = teammateName('PM');
+        $('pStat').textContent = 'connected';
+        $('startBtn').disabled = false;
+      }, 10600);
+    }
+    function _pressStart() {
+      var b = $('startBtn');
+      b.disabled = true;
+      b.textContent = 'Waiting for teammates';
+      setTimeout(function () {
+        b.textContent = 'Start';
+        goto(6);
+      }, 1800);
+    }
+    
+    /* ---------------- walkthrough ---------------- */
+    var demoShared = false,
+      demoAdded = false,
+      demoMode = false;
+    var DEMO_ENTRIES = [{
+      uid: -1,
+      id: 'K3-04',
+      stamp: '2 days ago, 2:45 PM',
+      body: 'Field team: Crate 3 arriving at Ridgeline Bunker.',
+      crate: 3,
+      all: false,
+      from: null
+    }, {
+      uid: -2,
+      id: 'K4-04',
+      stamp: 'Yesterday, 5:45 PM',
+      body: 'Camera near Sawmill entrance captured Crate 4 still on site.',
+      crate: 4,
+      all: false,
+      from: null
+    }];
+    (function () {
+      var src = document.getElementById('demoDragSource');
+      var zone = document.getElementById('demoDropZone');
+      if (!src || !zone) return;
+      function completeDemoShare() {
+        document.getElementById('demoChat1').innerHTML = '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>Sharing intel on Crate ' + src.dataset.crate + '<div class="filepill"><span class="fs">' + src.dataset.stamp + '</span>' + src.dataset.body + '</div></div>';
+        src.style.opacity = '0.45';
+        src.draggable = false;
+        src.style.cursor = 'default';
+        zone.textContent = 'Shared';
+        zone.style.borderColor = '#2f6b5e';
+        zone.style.color = '#2f6b5e';
+        demoShared = true;
+        $('demoShareDone').textContent = 'Done';
+        checkDemo();
+      }
+      src.addEventListener('dragstart', function (e) {
+        e.dataTransfer.setData('text/plain', 'demo');
+        e.dataTransfer.effectAllowed = 'copy';
+      });
+      src.addEventListener('click', completeDemoShare); /* keyboard and fallback */
+      zone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        zone.style.borderColor = '#2f6b5e';
+        zone.style.background = '#F0F8F5';
+      });
+      zone.addEventListener('dragleave', function () {
+        zone.style.borderColor = '#bbb';
+        zone.style.background = '';
+      });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        zone.style.background = '';
+        completeDemoShare();
+      });
+    })();
+    $('demoAddBtn').addEventListener('click', function () {
+      this.textContent = "Added \u2713";
+      this.disabled = true;
+      $('demoAdded').innerHTML = '<p style="font-size:12.5px;color:#666;margin-bottom:6px">Now in your case file:</p>' + "<div class=\"file shared\"><span class=\"grip\">\u22EE\u22EE</span><div class=\"file-main\"><div class=\"file-head\">" + "<span class=\"file-stamp\">Today, 10:15 AM</span><span class=\"tag crate-1\">Crate 1 \xB7 laptops</span>" + '<span class="file-source">from teammate</span></div>' + '<div class="file-body">Field team confirms Crate 1 at The Marina, unloading in progress.</div></div></div>';
+      demoAdded = true;
+      $('demoAddDone').textContent = 'Done';
+      checkDemo();
+    });
+    (function () {
+      var out = $('demoAIOutput');
+      var sel = $('demoAiAsk'),
+        menuBtn = $('demoAIBtn');
+      var typed = $('demoAIIn'),
+        typeBtn = $('demoAITypeBtn');
+      function reply(question) {
+        var asked = '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>' + question + '</div>';
+        out.innerHTML = asked + '<div class="msg ai" style="max-width:100%"><div class="who">AI</div><i>Reviewing your case file</i></div>';
+        setTimeout(function () {
+          out.innerHTML = asked + '<div class="msg ai" style="max-width:100%"><div class="who">AI</div>' + "\u2022 10:15 AM. Field report identifies a crate near one of the hideouts.<br>" + "\u2022 1:30 PM. A later report narrows the possible location.<br><br>" + 'During the investigation I will review the actual entries in your case file.</div>';
+        }, 1800);
+      }
+      menuBtn.addEventListener('click', function () {
+        if (!sel.value) {
+          sel.focus();
+          return;
+        }
+        var label = sel.options[sel.selectedIndex].textContent;
+        reply('What does my file say about ' + label.split(' (')[0] + '?');
+      });
+      typeBtn.addEventListener('click', function () {
+        var v = typed.value.trim();
+        if (!v) {
+          typed.focus();
+          return;
+        }
+        reply(v);
+      });
+    })();
+    $('demoAskBtn').addEventListener('click', function () {
+      var n = $('demoAskCrate').value;
+      this.disabled = true;
+      var out = $('demoChat3');
+      out.innerHTML = '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>Requesting intel on Crate ' + n + '.</div>';
+      setTimeout(function () {
+        out.innerHTML += '<div class="msg system">Request sent to both teammates.</div>';
+      }, 900);
+    });
+    function checkDemo() {
+      $('demoContinue').disabled = !(demoShared && demoAdded);
+    }
+    
+    /* ---------------- share modal: one entry per open ---------------- */
+    var sharedIds = new Set();
+    var shareCtx = null;
+    function shareableEntries() {
+      return entries.filter(function (e) {
+        return !e.from && !sharedIds.has(e.id);
+      });
+    }
+    
+    /* Sharing is drag-only: entries move from the case file into the team chat.
+       There is no ordered list of shareable entries, so the control cannot hand
+       the participant their own intel in chronological order. */
+    function _openShareModal(ctx) {
+      shareCtx = ctx || null;
+      var pane = document.getElementById('casePane');
+      var chat = document.getElementById('teamPane');
+      if (pane) {
+        pane.classList.add('share-prompt');
+        setTimeout(function () {
+          return pane.classList.remove('share-prompt');
+        }, 2600);
+        try {
+          pane.scrollIntoView({
+            block: 'nearest'
+          });
+        } catch (err) {}
+      }
+      if (chat) {
+        chat.classList.add('drop-hint');
+        setTimeout(function () {
+          return chat.classList.remove('drop-hint');
+        }, 2600);
+      }
+      record('share_prompted', {
+        crate: ctx ? ctx.crate : null,
+        from: ctx ? ctx.from : null
+      });
+    }
+    function _closeShareModal() {
+      shareCtx = null;
+    }
+    function doShare(e, ctx) {
+      if (sharedIds.has(e.id)) return;
+      var label = e.all ? null : e.crate;
+      var head = label ? 'Sharing intel on Crate ' + label : 'Sharing intel';
+      var pill = head + '<div class="filepill"><span class="fs">' + e.stamp + '</span>' + e.body + '</div>';
+      sharedIds.add(e.id);
+      addChat('You', pill, true);
+      var proactive = !e.all && !isMine(e.crate) && !requestedCrates.has(e.crate) && !ctx;
+      record('share_to_team', {
+        id: e.id,
+        crate: e.all ? 'all' : e.crate,
+        mine: e.all ? false : isMine(e.crate),
+        prompted: !!ctx,
+        to: ctx ? ctx.from : null,
+        proactive: proactive
+      });
+      if (ctx && ctx.msgEl) disableActions(ctx.msgEl);
+    }
+    
+    /* ---------------- case file ---------------- */
+    function initEntries() {
+      var sh = DIST.participant.slice();
+      for (var i = sh.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [sh[j], sh[i]];
+        sh[i] = _ref[0];
+        sh[j] = _ref[1];
+      }
+      entries = sh.map(function (id) {
+        return {
+          uid: ++uidSeq,
+          id: id,
+          stamp: ALL_CLUES[id].stamp,
+          body: ALL_CLUES[id].body,
+          crate: crateOf(id),
+          all: !!ALL_CLUES[id].all,
+          from: null
+        };
+      });
+    }
+    function visibleEntries() {
+      var l = entries.slice();
+      if (sortMode === 'newest') l.sort(function (a, b) {
+        return parseStamp(b.stamp) - parseStamp(a.stamp);
+      });
+      if (sortMode === 'oldest') l.sort(function (a, b) {
+        return parseStamp(a.stamp) - parseStamp(b.stamp);
+      });
+      return l;
+    }
+    function renderFilter() {
+      var f = $('crateFilter');
+      f.innerHTML = '';
+    }
+    function renderFiles() {
+      var list = $('filesList');
+      list.innerHTML = '';
+      visibleEntries().forEach(function (e) {
+        var hidden = false;
+        var d = document.createElement('div');
+        d.className = 'file' + (e.from ? ' shared' : '') + (hidden ? ' hidden' : '');
+        d.draggable = true;
+        d.dataset.uid = e.uid;
+        d.innerHTML = "<span class=\"grip\" title=\"Drag to reorder\">\u22EE\u22EE</span><div class=\"file-main\"><div class=\"file-head\"><span class=\"file-stamp\">".concat(e.stamp, "</span>").concat(tagHtml(e)).concat(e.from ? "<span class=\"file-source\">from ".concat(e.from, "</span>") : '', "</div><div class=\"file-body\">").concat(e.body, "</div></div>");
+        list.appendChild(d);
+      });
+      $('fileCount').textContent = entries.length + ' entries';
+      wireDrag();
+    }
+    function wireDrag() {
+      var list = $('filesList');
+      var dragUid = null;
+      list.querySelectorAll('.file').forEach(function (el) {
+        el.addEventListener('dragstart', function (e) {
+          dragUid = +el.dataset.uid;
+          el.classList.add('dragging');
+          e.dataTransfer.setData('text/plain', 'case:' + dragUid);
+          e.dataTransfer.effectAllowed = 'copyMove';
+        });
+        el.addEventListener('dragend', function () {
+          el.classList.remove('dragging');
+          list.querySelectorAll('.over').forEach(function (x) {
+            return x.classList.remove('over');
+          });
+        });
+        el.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          el.classList.add('over');
+        });
+        el.addEventListener('dragleave', function () {
+          return el.classList.remove('over');
+        });
+        el.addEventListener('drop', function (e) {
+          e.preventDefault();
+          var t = +el.dataset.uid;
+          if (dragUid === null || dragUid === t) return;
+          var from = entries.findIndex(function (x) {
+              return x.uid === dragUid;
+            }),
+            to = entries.findIndex(function (x) {
+              return x.uid === t;
+            });
+          var _entries$splice = entries.splice(from, 1),
+            _entries$splice2 = _slicedToArray(_entries$splice, 1),
+            m = _entries$splice2[0];
+          entries.splice(to, 0, m);
+          record('reorder', {
+            uid: dragUid,
+            to: to
+          });
+          renderFiles();
+        });
+      });
+    }
+    var aiPending = null;
+    /* The assistant does not accept dragged entries. Intel moves only through the
+       team chat, so the two request channels stay symmetric. */
+    function wireAIDrop() {}
+    function wireTeamDrop() {
+      var pane = $('teamPane');
+      pane.addEventListener('dragover', function (e) {
+        if (e.dataTransfer.types.includes('text/plain')) {
+          e.preventDefault();
+          pane.classList.add('share-over');
+        }
+      });
+      pane.addEventListener('dragleave', function (e) {
+        if (!pane.contains(e.relatedTarget)) pane.classList.remove('share-over');
+      });
+      pane.addEventListener('drop', function (e) {
+        e.preventDefault();
+        pane.classList.remove('share-over');
+        var value = e.dataTransfer.getData('text/plain');
+        if (!value.startsWith('case:')) return;
+        var entry = entries.find(function (x) {
+          return x.uid === Number(value.slice(5));
+        });
+        if (entry && !sharedIds.has(entry.id)) {
+          record('share_via_drag', {
+            id: entry.id
+          });
+          doShare(entry);
+        }
+      });
+    }
+    function addToFile(from, id) {
+      if (entries.some(function (e) {
+        return e.id === id;
+      })) return false;
+      entries.push({
+        uid: ++uidSeq,
+        id: id,
+        stamp: ALL_CLUES[id].stamp,
+        body: ALL_CLUES[id].body,
+        crate: crateOf(id),
+        all: !!ALL_CLUES[id].all,
+        from: from
+      });
+      renderFiles();
+      return true;
+    }
+    
+    /* ---------------- submit ---------------- */
+    function renderPickers() {
+      var row = $('pickerRow');
+      row.innerHTML = '';
+      MINE.forEach(function (n) {
+        var c = CRATES.find(function (x) {
+          return x.num === n;
+        });
+        var w = document.createElement('div');
+        w.className = 'picker';
+        w.id = 'picker-c' + n;
+        w.innerHTML = "<label><span class=\"tag\">Crate ".concat(n, "</span>").concat(c.contents, "</label><select data-act=\"pick\" data-crate=\"").concat(n, "\"><option value=\"\">Location?</option>").concat(HIDEOUTS.map(function (h) {
+          return "<option>".concat(h, "</option>");
+        }).join(''), "</select>\n      ");
+        row.appendChild(w);
+      });
+    }
+    function updateSubmitGate() {}
+    function pickAnswer(n, val) {
+      var p = $('picker-c' + n);
+      if (val) {
+        answers[n] = val;
+        p.classList.add('done');
+      } else {
+        delete answers[n];
+        p.classList.remove('done');
+      }
+      record('answer_set', {
+        crate: n,
+        value: val || null
+      });
+      updateSubmitGate();
+    }
+    function populateAiAskDropdown() {
+      var s = $('aiAskCrate');
+      if (!s) return;
+      while (s.options.length > 1) s.remove(1);
+      MINE.forEach(function (n) {
+        var c = CRATES.find(function (x) {
+          return x.num === n;
+        });
+        var o = document.createElement('option');
+        o.value = n;
+        o.textContent = 'Crate ' + n + ' (' + c.contents + ')';
+        s.appendChild(o);
+      });
+    }
+    function _askAI() {
+      var sel = $('aiAskCrate');
+      var n = parseInt(sel.value, 10);
+      if (!n) return;
+      sel.value = '';
+      sendAIQuery('What does my file say about Crate ' + n + '?', n, 'menu');
+    }
+    function populateAskDropdown() {
+      var s = $('askCrate');
+      while (s.options.length > 1) s.remove(1);
+      MINE.forEach(function (n) {
+        var c = CRATES.find(function (x) {
+          return x.num === n;
+        });
+        var o = document.createElement('option');
+        o.value = n;
+        o.textContent = "Crate ".concat(n, " (").concat(c.contents, ")");
+        s.appendChild(o);
+      });
+    }
+    
+    /* ---------------- chat ---------------- */
+    var chatHistory = [];
+    function pushHistory(who, html) {
+      var tmp = document.createElement('div'); tmp.innerHTML = html;
+      var txt = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!txt) return;
+      chatHistory.push((who === 'You' ? 'YOU' : who) + ': ' + txt.slice(0, 160));
+      if (chatHistory.length > 14) chatHistory.shift();
+    }
+    function addChat(who, html, mine, opts) {
+      if (who !== 'system') pushHistory(mine ? 'You' : who, html);
+      var list = $('chatList');
+      var el = document.createElement('div');
+      el.className = 'msg' + (mine ? ' you' : '');
+      el.innerHTML = "<div class=\"who\">".concat(who, "</div>").concat(html);
+      var acts = opts && opts.actions ? opts.actions.slice() : [];
+      if (!mine && who !== 'system' && !(opts && opts.noReply)) acts.push({
+        label: 'Reply',
+        onClick: function onClick(btn, m) {
+          return openReply(m, who);
+        }
+      });
+      if (acts.length) {
+        var w = document.createElement('div');
+        w.className = 'msg-actions';
+        acts.forEach(function (a) {
+          var b = document.createElement('button');
+          b.textContent = a.label;
+          if (a.primary) b.className = 'primary';
+          b.onclick = function () {
+            return a.onClick(b, el);
+          };
+          w.appendChild(b);
+        });
+        el.appendChild(w);
+      }
+      list.appendChild(el);
+      list.scrollTop = list.scrollHeight;
+      return el;
+    }
+    function addSystem(text) {
+      var list = $('chatList');
+      var el = document.createElement('div');
+      el.className = 'msg system';
+      el.textContent = text;
+      list.appendChild(el);
+      list.scrollTop = list.scrollHeight;
+    }
+    function agentSays(who, html, opts) {
+      var lo = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 5;
+      var hi = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 12;
+      var display = teammateName(who);
+      /* a teammate has to read, find the record and type: scale with what they send */
+      var chars = String(html).replace(/<[^>]*>/g, '').length;
+      var wait = delay(lo, hi) + Math.min(9000, chars * 28);
+      setTimeout(function () {
+        record('teammate_message', {
+          from: who,
+          wait_ms: Math.round(wait)
+        });
+        addChat(display, html, false, opts);
+      }, wait);
+    }
+    function threadOf(msgEl) {
+      var t = msgEl.querySelector(':scope > .thread');
+      if (!t) {
+        t = document.createElement('div');
+        t.className = 'thread';
+        msgEl.appendChild(t);
+      }
+      return t;
+    }
+    function threadMsg(msgEl, who, text, mine) {
+      pushHistory(mine ? 'You' : who, text);
+      var t = threadOf(msgEl);
+      var el = document.createElement('div');
+      el.className = 'msg' + (mine ? ' you' : '');
+      el.innerHTML = "<div class=\"who\">".concat(who, "</div>").concat(text);
+      t.appendChild(el);
+      $('chatList').scrollTop = $('chatList').scrollHeight;
+    }
+    
+    /* ============================================================
+       TEAMMATE REPLIES — live model, one channel only
+       Scripted seats answer requests and post their own requests.
+       The ONLY generative turn is a reply inside a thread, where
+       nothing about the seeking or sharing measures is at stake.
+       The seat is given its own records so it can speak in
+       character, and is forbidden from naming any hideout: intel
+       moves only through the logged request mechanic.
+       ============================================================ */
+    var TEAMMATE_LIVE = true; // set false for fully scripted seats
+    
+    function seatRecords(seat) {
+      return DIST[seat].map(function (id) {
+        return _objectSpread({
+          id: id
+        }, ALL_CLUES[id]);
+      }).sort(function (a, b) {
+        return parseStamp(a.stamp) - parseStamp(b.stamp);
+      });
+    }
+    function teammateSystem(seat) {
+      var other = seat === 'JT' ? 'PM' : 'JT';
+      return [
+        'You are ' + seat + ', an investigator on a small team chatting over text while everyone works their own part of a case. The other two people are ' + other + ' and a colleague who goes by their initials. Eight stolen crates are being moved between six hideouts. Each of you was privately given four crates to track and a file of time-stamped intel. People pull entries from each other\'s files by sending a request in the chat. You are mid-task and a little distracted.',
+        '',
+        'You are answering the latest message from your colleague. Read the recent chat so your reply follows from what they actually said. Sound like a real coworker typing quickly, not like software. Match their energy. If they are chatty or joking, be a bit warm back. If they are terse, be terse.',
+        '',
+        'What to do with different kinds of messages:',
+        '- Thanks -> a quick no worries.',
+        '- Small talk or a joke -> play along in a few words.',
+        '- Asking how it is going -> something vague and human, like being partway through or stuck on one crate.',
+        '- They tell you where a crate is or pass on intel -> react like it helps, say you are noting it. Do not repeat the location back, and do not tell them to send a request.',
+        '- They offer to help -> tell them what you are stuck on, for example a crate number, and that anything recent on it would be great.',
+        '- They ask you for intel on a crate -> say to send you a request for it and you will pass along whatever your file has.',
+        '- They ask where a crate is -> say you would have to check and a request will pull the entries.',
+        '',
+        'Voice:',
+        '- One or two short sentences. Lower case is fine. Casual, a little clipped. No greeting, no sign off, no name at the start.',
+        '- Do not use the words "share control", "request button", "control", "interface", "system", or "file" more than once. Say things like "send me a request", "throw it in the chat", "pass it along", "my notes", "what i have".',
+        '- Never use the same phrasing twice in a conversation. Vary it.',
+        '- Never name a hideout or say where any crate is, including one they just told you about.',
+        '- You may mention a crate number you are working on, but never list all four.',
+        '- Do not promise to do anything later. Do not mention being an AI, a model, or a study.',
+        '- No exclamation points, emojis, em dashes, colons or semicolons.',
+        '',
+        'Rough feel of good replies (do not copy these, write your own):',
+        'to "Crate 8 is at the Marina." something like "oh nice, that helps, noting it"',
+        'to "I hope I can be very helpful to you!!" something like "ha, same. i am stuck on 3 if anything recent turns up in yours"',
+        'to "thanks!" something like "np"',
+        'to "any idea where crate 2 is?" something like "not off the top of my head, send me a request for 2 and i will pass along what i have"'
+      ].join('\n');
+    }
+    function teammateFallback(participantText) {
+      var t = String(participantText).toLowerCase();
+      var asksIntel = /(crate|intel|info|information|anything|recent|newer|update|know|have|send|share|where)/.test(t);
+      var social = /(how are you|hi\b|hey\b|hello|thanks|thank you|good luck|ok\b|okay|sure|nice|cool)/.test(t);
+      var gives = /( is at | was at |spotted|seen at|moved to|located)/.test(t);
+      var offers = /(can i help|how can i|need anything|want me to|i can send|let me know if|helpful)/.test(t);
+      if (gives) return rand(['oh nice, that helps, noting it', 'good to know, adding that to my notes']);
+      if (offers) return rand(['same here. i am stuck on one of mine if anything recent turns up in yours', 'appreciate it, anything recent you come across just pass it along']);
+      if (social && !asksIntel) return rand(['doing fine, bit swamped', 'ok, deep in my own crates', 'fine, you?']);
+      if (asksIntel) return rand(['send me a request for it and i will pass along what i have', 'shoot me a request and i will send whatever is in mine']);
+      return rand(['noted', 'got it', 'makes sense']);
+    }
+    function teammateReply(seat, threadText, participantText) {
+      var controller = new AbortController();
+      var timer = setTimeout(function () {
+        return controller.abort();
+      }, 25000);
+      var started = Date.now();
+      var holdings = seatRecords(seat).map(function (e) {
+        return 'Crate ' + crateOf(e.id) + ' at ' + e.stamp;
+      }).join('; ');
+      return fetch(AI_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          messages: [{
+            role: 'system',
+            content: teammateSystem(seat)
+          }, {
+            role: 'user',
+            content: 'YOUR FILE COVERS (no contents shown, never reveal locations): ' + holdings + '\n\nRECENT CHAT (oldest first, YOU marks the colleague you are replying to):\n' + chatHistory.join('\n') + '\n\nTHE MESSAGE YOU ARE REPLYING TO, IN A THREAD UNDER YOUR EARLIER LINE "' + threadText.replace(/"/g, '') + '":\n' + participantText
+          }]
+        })
+      }).then(function (r) {
+        clearTimeout(timer);
+        if (!r.ok) throw new Error('status ' + r.status);
+        return r.json();
+      }).then(function (data) {
+        var raw = (data && data.reply || '').trim();
+        var leaked = hideoutsIn(raw);
+        var fell = leaked.length > 0 || !raw;
+        record('teammate_reply', {
+          seat: seat,
+          latency_ms: Date.now() - started,
+          raw: raw,
+          leaked: leaked,
+          fallback: fell
+        });
+        if (fell) console.log('[INV] teammate fallback', seat, leaked.length ? 'leaked ' + leaked.join(',') : 'empty reply');
+        if (!raw || leaked.length) return teammateFallback(participantText);
+        return raw.replace(/</g, '&lt;');
+      }).catch(function (err) {
+        record('teammate_reply_error', {
+          seat: seat,
+          message: err && err.message,
+          latency_ms: Date.now() - started
+        });
+        console.log('[INV] teammate call failed', seat, err && err.message);
+        return teammateFallback(participantText);
+      });
+    }
+    function openReply(msgEl, to) {
+      if (msgEl.querySelector('.reply-box')) return;
+      telem.replyOpens++;
+      record('reply_open', {
+        to: to
+      });
+      var t = threadOf(msgEl);
+      var box = document.createElement('div');
+      box.className = 'reply-box';
+      box.innerHTML = "<input type=\"text\" placeholder=\"Reply to ".concat(to, "\" maxlength=\"200\"><button>Send</button>");
+      var inp = box.querySelector('input'),
+        send = box.querySelector('button');
+      var go = function go() {
+        var v = inp.value.trim();
+        if (!v) return;
+        box.remove();
+        threadMsg(msgEl, 'You', v, true);
+        record('free_reply', {
+          to: to,
+          text: v
+        });
+        var seat = to === 'JT' || to === 'PM' ? to : 'JT';
+        var threadText = msgEl.childNodes[1] && msgEl.childNodes[1].textContent || '';
+        if (!TEAMMATE_LIVE || typeof fetch !== 'function') return;
+        teammateReply(seat, threadText, v).then(function (text) {
+          var wait = delay(4, 10) + Math.min(8000, text.length * 35);
+          setTimeout(function () {
+            return threadMsg(msgEl, teammateName(seat), text, false);
+          }, wait);
+        });
+      };
+      send.onclick = go;
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') go();
+      });
+      t.appendChild(box);
+      inp.focus();
+    }
+    function seatLatest(seat, n) {
+      var ids = DIST[seat].filter(function (id) {
+        return crateOf(id) === n;
+      });
+      if (!ids.length) return null;
+      ids.sort(function (a, b) {
+        return parseStamp(ALL_CLUES[a].stamp) - parseStamp(ALL_CLUES[b].stamp);
+      });
+      var id = ids[ids.length - 1];
+      return _objectSpread({
+        from: seat,
+        id: id
+      }, ALL_CLUES[id]);
+    }
+    function _askTeam() {
+      var sel = $('askCrate');
+      var n = parseInt(sel.value);
+      if (!n) return;
+      addChat('You', "Requesting intel on Crate ".concat(n, "."), true);
+      sel.value = '';
+      record('team_request', {
+        crate: n
+      });
+      var jt = seatLatest('JT', n),
+        pm = seatLatest('PM', n);
+      var order = jt && pm ? parseStamp(jt.stamp) >= parseStamp(pm.stamp) ? [jt, pm] : [pm, jt] : [jt, pm].filter(Boolean);
+      if (!order.length) return;
+      var lead = order[0];
+      agentSays(lead.from, "".concat(rand(PHRASE_SHARE)(n), "<div class=\"filepill\"><span class=\"fs\">").concat(lead.stamp, "</span>").concat(lead.body, "</div>"), {
+        actions: [{
+          label: 'Add to case file',
+          primary: true,
+          onClick: function onClick(btn) {
+            if (addToFile(lead.from, lead.id)) record('added_from_team', {
+              crate: n,
+              from: lead.from,
+              id: lead.id
+            });
+            btn.textContent = "Added \u2713";
+            btn.disabled = true;
+          }
+        }]
+      });
+      record('team_share_received', {
+        crate: n,
+        from: lead.from,
+        id: lead.id
+      });
+    }
+    function disableActions(msgEl) {
+      msgEl.querySelectorAll(':scope > .msg-actions button').forEach(function (b) {
+        if (b.textContent !== 'Reply') b.disabled = true;
+      });
+    }
+    
+    /* ---------------- AI assistant: answers only about a named crate ---------------- */
+    function addAI(html, mine) {
+      var l = $('aiList');
+      var el = document.createElement('div');
+      el.className = 'msg' + (mine ? ' you' : ' ai');
+      el.innerHTML = "<div class=\"who\">".concat(mine ? 'You' : 'AI', "</div>").concat(html);
+      l.appendChild(el);
+      l.scrollTop = l.scrollHeight;
+    }
+    function analyzeCrate(n) {
+      var c = CRATES.find(function (x) {
+        return x.num === n;
+      });
+      var pats = [new RegExp('crate\\s*' + n + '\\b', 'i'), new RegExp('\\b' + c.contents.replace(/\s+/g, '\\s+') + '\\b', 'i')];
+      var matches = entries.map(function (e) {
+        return _objectSpread(_objectSpread({}, e), {}, {
+          ts: parseStamp(e.stamp),
+          locs: extractLocations(e.body)
+        });
+      }).filter(function (e) {
+        return e.crate === n || pats.some(function (p) {
+          return p.test(e.body);
+        });
+      }).sort(function (a, b) {
+        return a.ts - b.ts;
+      });
+      if (!matches.length) return 'Your case file has no entries on Crate ' + n + ' (' + c.contents + ').';
+      var out = '<b>Crate ' + n + ' (' + c.contents + ')</b>, ' + matches.length + ' entr' + (matches.length === 1 ? 'y' : 'ies') + ' in your file, oldest to newest.<ul style="margin:6px 0 6px 18px;">';
+      matches.forEach(function (m) {
+        out += '<li style="margin-bottom:3px;"><b>' + m.stamp + '</b>' + (m.from ? ' <i>(from ' + m.from + ')</i>' : '') + '. ' + m.body + '</li>';
+      });
+      out += '</ul>';
+      var withLoc = matches.filter(function (m) {
+        return m.locs.length;
+      });
+      if (withLoc.length) {
+        var latest = withLoc[withLoc.length - 1];
+        out += '<b>Most recent location named in your file.</b> ' + latest.locs.join(', ') + ' (' + latest.stamp + ').';
+      }
+      return out;
+    }
+    
+    /* ============================================================
+       AI ASSISTANT — live model via the university relay
+       The model is given ONLY this participant's own case-file
+       entries. It reports what the file says and nothing else.
+       Falls back to the built-in analyzer on error or timeout.
+       ============================================================ */
+    var AI_ENDPOINT = 'https://qualtrics-relay.example.com/chatgpt';
+    var AI_TIMEOUT_MS = 20000;
+    var AI_LIVE = true; // set false to run entirely on the built-in analyzer
+    
+    /* wake the relay early; a cold start can take longer than the timeout */
+    try {
+      fetch(AI_ENDPOINT.replace('/chatgpt', '/')).catch(function () {});
+    } catch (e) {}
+    var AI_SYSTEM = ['You are an assistant embedded in an investigation workspace. You help one investigator', 'review the intelligence in their own case file. You can see only the entries given to you below.', '', 'What to do:', '- Summarise what the entries say about the crate, in time order, and state the most recent', '  location the entries name, together with its timestamp.', '', 'Rules:', '- Answer only from the entries provided. Never invent a sighting, a time, or a location.', '- Never mention a hideout that does not appear in the entries provided.', '- Report what the file says. Do not comment on what the file does not say. Never say that', '  information is missing, unavailable, unconfirmed, outdated or stale, and never state where', '  a crate currently is or is not beyond naming the most recent entry.', '- Do not suggest asking anyone, and do not speculate about what other investigators know.', '- Do not mention being an AI. Do not use exclamation points, emojis, em dashes, colons or semicolons.', '- Two to four sentences. Plain text only.'].join('\n');
+    function entriesForPrompt(crateNum) {
+      var pool = entries.slice();
+      if (crateNum) pool = pool.filter(function (e) {
+        return e.crate === crateNum || e.all;
+      });
+      return pool.sort(function (a, b) {
+        return parseStamp(a.stamp) - parseStamp(b.stamp);
+      });
+    }
+    function hideoutsIn(text) {
+      var t = String(text).toLowerCase();
+      return HIDEOUTS.filter(function (h) {
+        return t.indexOf(h.replace(/^the\s+/i, '').toLowerCase()) !== -1;
+      });
+    }
+    function callAssistant(userText, crateNum) {
+      var pool = entriesForPrompt(crateNum);
+      var context = pool.map(function (e) {
+        return e.stamp + ' | Crate ' + (e.all ? 'general' : e.crate) + ' | ' + e.body;
+      }).join('\n') || '(no entries in this case file for that crate)';
+      var allowed = pool.reduce(function (acc, e) {
+        return acc.concat(hideoutsIn(e.body));
+      }, []);
+      var controller = new AbortController();
+      var timer = setTimeout(function () {
+        return controller.abort();
+      }, AI_TIMEOUT_MS);
+      var started = Date.now();
+      return fetch(AI_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          messages: [{
+            role: 'system',
+            content: AI_SYSTEM
+          }, {
+            role: 'user',
+            content: 'CASE FILE ENTRIES:\n' + context + '\n\nQUESTION:\n' + userText
+          }]
+        })
+      }).then(function (r) {
+        clearTimeout(timer);
+        if (!r.ok) throw new Error('status ' + r.status);
+        return r.json();
+      }).then(function (data) {
+        var raw = data && data.reply || '';
+        var leaked = hideoutsIn(raw).filter(function (h) {
+          return allowed.indexOf(h) === -1;
+        });
+        record('ai_reply', {
+          crate: crateNum,
+          latency_ms: Date.now() - started,
+          leaked: leaked,
+          raw: raw,
+          fallback: false
+        });
+        if (!raw.trim() || leaked.length) return {
+          text: analyzeCrate(crateNum),
+          fallback: true
+        };
+        return {
+          text: raw.replace(/</g, '&lt;').replace(/\n/g, '<br>'),
+          fallback: false
+        };
+      }).catch(function (err) {
+        clearTimeout(timer);
+        record('ai_error', {
+          crate: crateNum,
+          message: err && err.message,
+          latency_ms: Date.now() - started
+        });
+        return {
+          text: crateNum ? analyzeCrate(crateNum) : 'Ask me about a specific crate by number or by contents.',
+          fallback: true
+        };
+      });
+    }
+    function _sendAI() {
+      var v = $('aiIn').value.trim();
+      if (!v) return;
+      $('aiIn').value = '';
+      var n = detectCrateInText(v);
+      var ctxEntry = aiPending;
+      aiPending = null;
+      if (!n && ctxEntry && !ctxEntry.all) n = ctxEntry.crate;
+      sendAIQuery(v, n, 'typed', ctxEntry);
+    }
+    function sendAIQuery(text, n, route, ctxEntry) {
+      addAI(text, true);
+      record('ai_prompt', {
+        text: text,
+        crate: n,
+        route: route,
+        context_entry: ctxEntry ? ctxEntry.id : null
+      });
+      if (!AI_LIVE || typeof fetch !== 'function') {
+        setTimeout(function () {
+          addAI(n ? analyzeCrate(n) : 'Ask me about a specific crate by number or by contents.');
+        }, delay(3, 7));
+        return;
+      }
+      var thinking = document.createElement('div');
+      thinking.className = 'msg ai';
+      thinking.innerHTML = '<div class="who">AI</div><i>Reviewing your case file</i>';
+      $('aiList').appendChild(thinking);
+      $('aiList').scrollTop = $('aiList').scrollHeight;
+    
+      /* Floor measured from the moment of asking, not added to the API latency.
+         If the model takes longer than the floor, the reply appears at once. */
+      var askedAt = Date.now();
+      var floor = delay(2, 4);
+      callAssistant(text, n).then(function (res) {
+        var remaining = Math.max(0, floor - (Date.now() - askedAt));
+        setTimeout(function () {
+          thinking.remove();
+          addAI(res.text);
+        }, remaining);
+      });
+    }
+    function updateBudgetDisplay() {}
+    
+    /* ============================================================
+       TELEMETRY
+       Attention, navigation and interaction traces beyond the
+       task-relevant events already recorded.
+       ============================================================ */
+    var telem = {
+      blurs: 0,
+      hiddenMs: 0,
+      hiddenAt: 0,
+      lastActivity: 0,
+      idleGaps: 0,
+      maxIdleGap: 0,
+      clicksCase: 0,
+      clicksTeam: 0,
+      clicksAI: 0,
+      clicksSubmit: 0,
+      caseScrollMax: 0,
+      chatScrollMax: 0,
+      firstActionAt: null,
+      shareMenuOpens: 0,
+      replyOpens: 0
+    };
+    function tick(what) {
+      if (telem.firstActionAt === null && taskTimer) {
+        telem.firstActionAt = elapsed;
+        record('first_action', {
+          what: what
+        });
+      }
+      if (taskTimer && telem.lastActivity) {
+        var gap = elapsed - telem.lastActivity;
+        if (gap >= 20) {
+          telem.idleGaps++;
+          telem.maxIdleGap = Math.max(telem.maxIdleGap, gap);
+          record('idle_gap', {
+            seconds: gap
+          });
+        }
+      }
+      telem.lastActivity = elapsed;
+    }
+    function wireTelemetry() {
+      window.addEventListener('blur', function () {
+        if (!taskTimer) return;
+        telem.blurs++;
+        telem.hiddenAt = Date.now();
+        record('window_blur', {});
+      });
+      window.addEventListener('focus', function () {
+        if (!taskTimer || !telem.hiddenAt) return;
+        var away = Math.round((Date.now() - telem.hiddenAt) / 1000);
+        telem.hiddenMs += away * 1000;
+        telem.hiddenAt = 0;
+        record('window_focus', {
+          away_seconds: away
+        });
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (!taskTimer) return;
+        record('visibility', {
+          state: document.visibilityState
+        });
+      });
+      var root = document.getElementById('invRoot') || document;
+      root.addEventListener('click', function (e) {
+        if (!taskTimer) return;
+        if (e.target.closest('#casePane')) {
+          telem.clicksCase++;
+          tick('case');
+        } else if (e.target.closest('#teamPane')) {
+          telem.clicksTeam++;
+          tick('team');
+        } else if (e.target.closest('#aiPane')) {
+          telem.clicksAI++;
+          tick('ai');
+        } else if (e.target.closest('.submit-bar')) {
+          telem.clicksSubmit++;
+          tick('submit');
+        }
+      }, true);
+      var fl = document.getElementById('filesList');
+      if (fl) fl.addEventListener('scroll', function () {
+        var pct = Math.round(100 * (fl.scrollTop + fl.clientHeight) / Math.max(1, fl.scrollHeight));
+        if (pct > telem.caseScrollMax) {
+          telem.caseScrollMax = Math.min(100, pct);
+        }
+      });
+      var cl = document.getElementById('chatList');
+      if (cl) cl.addEventListener('scroll', function () {
+        var pct = Math.round(100 * (cl.scrollTop + cl.clientHeight) / Math.max(1, cl.scrollHeight));
+        if (pct > telem.chatScrollMax) {
+          telem.chatScrollMax = Math.min(100, pct);
+        }
+      });
+      var ac = document.getElementById('askCrate');
+      if (ac) ac.addEventListener('change', function () {
+        if (taskTimer) record('ask_menu_select', {
+          crate: ac.value || null
+        });
+      });
+      var ai = document.getElementById('aiIn');
+      if (ai) {
+        ai.addEventListener('focus', function () {
+          if (taskTimer) record('ai_input_focus', {});
+        });
+        var typed = false;
+        ai.addEventListener('input', function () {
+          if (taskTimer && !typed) {
+            typed = true;
+            record('ai_typing_started', {});
+          }
+        });
+      }
+    }
+    
+    /* ---------------- lifecycle ---------------- */
+    var timeouts = [];
+    function startTask() {
+      Object.keys(answers).forEach(function (k) {
+        return delete answers[k];
+      });
+      log.length = 0;
+      Object.assign(counters, {
+        req: 0,
+        share: 0,
+        pro: 0,
+        reply: 0,
+        prompt: 0,
+        first: null
+      });
+      requestedCrates.clear();
+      sharedIds.clear();
+      checkinDone = false; paused = false; ownPressure = null; pressureAssign = null;
+      $('pressureStrip').className = 'pressure-strip'; $('pressureStrip').innerHTML = '';
+      $('checkinOverlay').classList.remove('active');
+      timeLeft = 360;
+      elapsed = 0;
+      sortMode = 'custom';
+      filterMode = null;
+      $('chatList').innerHTML = '';
+      $('aiList').innerHTML = '';
+      $('teamNames').textContent = "".concat(teammateName('JT'), ", ").concat(initials(), ", ").concat(teammateName('PM'));
+      var strip = document.getElementById('mineStrip');
+      if (strip) strip.textContent = 'Your crates: ' + MINE.join(', ');
+      initEntries();
+      renderFiles();
+      renderPickers();
+      populateAskDropdown();
+      populateAiAskDropdown();
+      updateBudgetDisplay();
+      Object.assign(telem, {
+        blurs: 0,
+        hiddenMs: 0,
+        hiddenAt: 0,
+        lastActivity: 0,
+        idleGaps: 0,
+        maxIdleGap: 0,
+        clicksCase: 0,
+        clicksTeam: 0,
+        clicksAI: 0,
+        clicksSubmit: 0,
+        caseScrollMax: 0,
+        chatScrollMax: 0,
+        firstActionAt: null,
+        shareMenuOpens: 0,
+        replyOpens: 0
+      });
+      record('world', {
+        assigned: MINE,
+        roles: MINE.map(function (n) {
+          return n + '=' + CRATES.find(function (c) {
+            return c.num === n;
+          }).role;
+        }),
+        truth: CRATES.map(function (c) {
+          return c.num + '=' + c.truth;
+        }),
+        requests: TEAMMATE_QUESTIONS
+      });
+      record('task_start', {
+        teammate_live: TEAMMATE_LIVE,
+        ai_live: AI_LIVE,
+        condition: CONDITION,
+        checkin_at: CHECKIN_AT,
+        participant_assignment: MINE,
+        initialOrder: entries.map(function (e) {
+          return e.id;
+        })
+      });
+      addSystem('Team connected. 6 minutes on the clock.');
+      addAI('I can read your case file, including entries you have added from the team. Ask me about a crate by number or by contents.');
+      timeouts.push(setTimeout(function () {
+        var el = addChat('system', 'Let your teammates know you are here.', false, {
+          noReply: true,
+          actions: GREETINGS.map(function (g) {
+            return {
+              label: g,
+              onClick: function onClick(b, m) {
+                addChat('You', g, true);
+                record('greeting', {
+                  text: g
+                });
+                m.remove();
+                agentSays('JT', rand(GREETINGS), null, 1.5, 3);
+                setTimeout(function () {
+                  return agentSays('PM', rand(GREETINGS), null, 1, 2);
+                }, delay(3.5, 5));
+              }
+            };
+          })
+        });
+        el.classList.add('system');
+        el.querySelector('.who').remove();
+      }, 2000));
+      var fired = {};
+      if (taskTimer) clearInterval(taskTimer);
+      taskTimer = setInterval(function () {
+        if (paused) return;
+        timeLeft--;
+        elapsed++;
+        $('timer').textContent = mmss(timeLeft);
+        $('timer').classList.toggle('low', timeLeft <= 60);
+        TEAMMATE_QUESTIONS.forEach(function (q, i) {
+          if (fired[i] || elapsed < q.at) return;
+          fired[i] = true;
+          requestedCrates.add(q.crateNum);
+          record('teammate_request', { from: q.from, crate: q.crateNum });
+          addChat(teammateName(q.from), rand(PHRASE_ASK)(q.crateNum), false, {
+            actions: [{ label: 'Share intel', primary: true, onClick: function onClick(b, el) {
+              return _openShareModal({ crate: q.crateNum, from: q.from, msgEl: el });
+            } }]
+          });
+        });
+        if (!checkinDone && elapsed >= CHECKIN_AT) openCheckin();
+        if (timeLeft === 60) addSystem('One minute left.');
+        if (timeLeft <= 0) endTask('timeout');
+      }, 1000);
+    }
+    function openCheckin() {
+      checkinDone = true; paused = true;
+      $('timer').classList.add('paused');
+      record('checkin_open', { elapsed: elapsed, requests_before: counters.req, prompts_before: counters.prompt, shares_before: counters.share });
+      var body = $('checkinBody');
+      var btns = '';
+      for (var i = 1; i <= 7; i++) btns += '<button data-v="' + i + '">' + i + '</button>';
+      body.innerHTML = '<p class="qtext">How much time pressure do you feel while working on this task right now?</p>' +
+        '<div class="likert" id="checkinLikert">' + btns + '</div>' +
+        '<div class="ends"><span>1 &#8212; No time pressure</span><span>7 &#8212; A great deal of time pressure</span></div>' +
+        '<div class="note">Your rating will be visible to your teammates. Your teammates are answering the same question.</div>' +
+        '<button class="btn" id="checkinSubmit" disabled>Submit rating</button>';
+      var lk = $('checkinLikert');
+      lk.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'BUTTON') return;
+        var bs = lk.querySelectorAll('button');
+        for (var j = 0; j < bs.length; j++) bs[j].classList.remove('on');
+        e.target.classList.add('on');
+        ownPressure = Number(e.target.getAttribute('data-v'));
+        $('checkinSubmit').disabled = false;
+      });
+      $('checkinSubmit').addEventListener('click', submitCheckin);
+      $('checkinOverlay').classList.add('active');
+    }
+    function submitCheckin() {
+      if (ownPressure === null) return;
+      record('checkin_own_rating', { value: ownPressure, elapsed: elapsed });
+      var vals = PRESSURE_CONFIG[CONDITION];
+      var flip = Math.random() < 0.5;
+      pressureAssign = { JT: flip ? vals[1] : vals[0], PM: flip ? vals[0] : vals[1] };
+      record('checkin_assigned', { condition: CONDITION, JT: pressureAssign.JT, PM: pressureAssign.PM, higher_seat: flip ? 'JT' : 'PM' });
+      $('checkinBody').innerHTML = '<p class="qtext">Thanks. Collecting your teammates&#8217; ratings&#8230;</p>';
+      setTimeout(revealCheckin, CHECKIN_COLLECT_MS);
+    }
+    function revealCheckin() {
+      var chip = function (who, v) { return '<span class="chip">' + who + ' <b>' + v + '/7</b></span>'; };
+      var row = chip(teammateName('JT'), pressureAssign.JT) + chip('You (' + initials() + ')', ownPressure) + chip(teammateName('PM'), pressureAssign.PM);
+      $('checkinBody').innerHTML = '<p class="qtext">Time pressure reported at the check-in</p><div class="chip-row">' + row + '</div>' +
+        '<div class="note">These ratings will stay visible above the team chat.</div><button class="btn" id="checkinResume">Resume task</button>';
+      $('checkinResume').addEventListener('click', function () {
+        $('checkinOverlay').classList.remove('active');
+        var st = $('pressureStrip');
+        st.innerHTML = '<span class="lbl">Time pressure reported at the check-in:</span>' + row;
+        st.classList.add('active');
+        paused = false;
+        $('timer').classList.remove('paused');
+        record('checkin_resume', { elapsed: elapsed });
+      });
+    }
+    function endTask(how) {
+      clearInterval(taskTimer);
+      timeouts.forEach(clearTimeout);
+      timeouts.length = 0;
+      _closeShareModal();
+      $('checkinOverlay').classList.remove('active');
+      record('task_end', {
+        how: how,
+        answers: _objectSpread({}, answers),
+        elapsed: elapsed
+      });
+      Object.keys(confidence).forEach(function (k) {
+        return delete confidence[k];
+      });
+      renderConfidence();
+      document.querySelectorAll('.screen, .task-screen').forEach(function (el) {
+        return el.classList.remove('active');
+      });
+      $('confidenceScreen').classList.add('active');
+    }
+    
+    /* ---------------- post + results ---------------- */
+    function renderConfidence() {
+      var grid = $('confidenceGrid');
+      grid.innerHTML = '';
+      MINE.forEach(function (n) {
+        var c = CRATES.find(function (x) {
+            return x.num === n;
+          }),
+          answer = answers[n];
+        var card = document.createElement('div');
+        card.className = 'confidence-card';
+        var confidenceControl = answer ? "<p style=\"font-size:13px;margin-bottom:2px;color:#444;\">Confidence: <b id=\"confidenceValue-".concat(n, "\">").concat(confidence[n] === undefined ? 'Move the slider to rate' : confidence[n] + '%', "</b></p><input type=\"range\" min=\"0\" max=\"100\" value=\"").concat(confidence[n] === undefined ? 50 : confidence[n], "\" aria-label=\"Confidence for Crate ").concat(n, "\" data-act=\"setConfidence\" data-crate=\"").concat(n, "\"><div class=\"confidence-scale\"><span>0%<br>Completely unsure</span><span style=\"text-align:right;\">100%<br>Positive</span></div>") : "<p style=\"font-size:13px;margin-bottom:7px;color:#555;\">No location selected.</p>";
+        card.innerHTML = "<label><span class=\"tag\">Crate ".concat(n, "</span> ").concat(c.contents, "</label><p style=\"font-size:13px;margin-bottom:7px;color:#555;\">").concat(answer ? "Response: <b>".concat(answer, "</b>") : '', "</p>").concat(confidenceControl);
+        grid.appendChild(card);
+      });
+      grid.querySelectorAll('input[type=range]').forEach(function (r) {
+        r.addEventListener('input', function () {
+          return setConfidence(Number(r.dataset.crate), r.value);
+        });
+        r.addEventListener('change', function () {
+          return setConfidence(Number(r.dataset.crate), r.value);
+        });
+      });
+      var cc = $('confidenceContinue');
+      if (cc && !cc.dataset.wired) {
+        cc.dataset.wired = '1';
+        cc.addEventListener('click', function () {
+          return _finishConfidence();
+        });
+      }
+      updateConfidenceContinue();
+    }
+    function setConfidence(n, value) {
+      var _confidence$n;
+      confidence[n] = Number(value);
+      $('confidenceValue-' + n).textContent = confidence[n] + '%';
+      record('confidence_set', {
+        crate: n,
+        value: (_confidence$n = confidence[n]) !== null && _confidence$n !== void 0 ? _confidence$n : null
+      });
+      updateConfidenceContinue();
+    }
+    function updateConfidenceContinue() {
+      $('confidenceContinue').disabled = MINE.some(function (crate) {
+        return answers[crate] && confidence[crate] === undefined;
+      });
+    }
+    function _finishConfidence() {
+      record('confidence_complete', {
+        confidence: _objectSpread({}, confidence)
+      });
+      var correct = MINE.filter(function (n) {
+        return answers[n] === CRATES.find(function (c) {
+          return c.num === n;
+        }).truth;
+      }).length;
+      var teamDep = MINE.filter(function (n) {
+        return CRATES.find(function (c) {
+          return c.num === n;
+        }).needsTeam;
+      });
+      var truth = {},
+        roles = {};
+      MINE.forEach(function (n) {
+        var c = CRATES.find(function (x) {
+          return x.num === n;
+        });
+        truth[n] = c.truth;
+        roles[n] = c.role;
+      });
+      var payload = {
+        condition: CONDITION,
+        initials: initials(),
+        assignment: MINE,
+        truth: truth,
+        roles: roles,
+        answers: answers,
+        confidence: confidence,
+        ownPressure: ownPressure,
+        pressureAssign: pressureAssign,
+        counters: counters,
+        log: log
+      };
+      if (window.INV_FINISH) window.INV_FINISH(payload, {
+        inv_condition: CONDITION,
+        inv_initials: initials(),
+        inv_team_requests: counters.req,
+        inv_first_request_sec: counters.first === null ? '' : counters.first,
+        inv_shares: counters.share,
+        inv_proactive_shares: counters.pro,
+        inv_replies: counters.reply,
+        inv_prompts_used: counters.prompt,
+        inv_checkin_at: CHECKIN_AT,
+        inv_own_pressure: ownPressure === null ? '' : ownPressure,
+        inv_pressure_JT: pressureAssign ? pressureAssign.JT : '',
+        inv_pressure_PM: pressureAssign ? pressureAssign.PM : '',
+        inv_requests_pre_checkin: (function () { var o = log.filter(function (x) { return x.type === 'checkin_open'; })[0]; return o ? o.requests_before : ''; })(),
+        inv_prompts_pre_checkin: (function () { var o = log.filter(function (x) { return x.type === 'checkin_open'; })[0]; return o ? o.prompts_before : ''; })(),
+        inv_shares_pre_checkin: (function () { var o = log.filter(function (x) { return x.type === 'checkin_open'; })[0]; return o ? o.shares_before : ''; })(),
+        inv_requests_post_checkin: (function () { var o = log.filter(function (x) { return x.type === 'checkin_open'; })[0]; return o ? counters.req - o.requests_before : ''; })(),
+        inv_prompts_post_checkin: (function () { var o = log.filter(function (x) { return x.type === 'checkin_open'; })[0]; return o ? counters.prompt - o.prompts_before : ''; })(),
+        inv_correct_total: correct,
+        inv_assignment: MINE.join(','),
+        inv_roles: MINE.map(function (n) {
+          return n + '=' + CRATES.find(function (c) {
+            return c.num === n;
+          }).role;
+        }).join(';'),
+        inv_correct_teamdep: teamDep.filter(function (n) {
+          return answers[n] === CRATES.find(function (c) {
+            return c.num === n;
+          }).truth;
+        }).length,
+        inv_correct_ownfile: MINE.filter(function (n) {
+          return !CRATES.find(function (c) {
+            return c.num === n;
+          }).needsTeam && answers[n] === CRATES.find(function (c) {
+            return c.num === n;
+          }).truth;
+        }).length,
+        inv_answers: MINE.map(function (n) {
+          return n + '=' + (answers[n] || 'blank');
+        }).join('; '),
+        inv_confidence: MINE.map(function (n) {
+          return n + '=' + (confidence[n] === undefined ? '' : confidence[n]);
+        }).join('; '),
+        inv_first_action_sec: telem.firstActionAt === null ? '' : telem.firstActionAt,
+        inv_window_blurs: telem.blurs,
+        inv_seconds_away: Math.round(telem.hiddenMs / 1000),
+        inv_idle_gaps: telem.idleGaps,
+        inv_max_idle_gap: telem.maxIdleGap,
+        inv_clicks_case: telem.clicksCase,
+        inv_clicks_team: telem.clicksTeam,
+        inv_clicks_ai: telem.clicksAI,
+        inv_case_scroll_pct: telem.caseScrollMax,
+        inv_share_menu_opens: telem.shareMenuOpens,
+        inv_reply_opens: telem.replyOpens,
+        inv_entries_added: entries.filter(function (e) {
+          return e.from;
+        }).length,
+        inv_events: log.length,
+        inv_teammate_replies: log.filter(function (x) {
+          return x.type === 'teammate_reply';
+        }).length,
+        inv_teammate_reply_fallbacks: log.filter(function (x) {
+          return x.type === 'teammate_reply' && x.fallback;
+        }).length
+      });
+    }
+    $('aiIn').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') _sendAI();
+    });
+    wireTeamDrop();
+    wireAIDrop();
+    wireTelemetry();
+    
+    /* expose the functions referenced by inline handlers in the markup */
+    if (typeof goto === 'function') window.goto = goto;
+    if (typeof _continueFromIntro === 'function') window.continueFromIntro = _continueFromIntro;
+    if (typeof _showConnecting === 'function') window.showConnecting = _showConnecting;
+    if (typeof _pressStart === 'function') window.pressStart = _pressStart;
+    if (typeof _askTeam === 'function') window.askTeam = _askTeam;
+    if (typeof _openShareModal === 'function') window.openShareModal = _openShareModal;
+    if (typeof _closeShareModal === 'function') window.closeShareModal = _closeShareModal;
+    if (typeof pickAnswer === 'function') window.pickAnswer = pickAnswer;
+    if (typeof setConfidence === 'function') window.setConfidence = setConfidence;
+    if (typeof _finishConfidence === 'function') window.finishConfidence = _finishConfidence;
+    if (typeof _sendAI === 'function') window.sendAI = _sendAI;
+    if (typeof _askAI === 'function') window.askAI = _askAI;
+    if (typeof conf === 'function') window.conf = conf;
+    
+    /* ------------------------------------------------------------------
+       Delegated handlers. Qualtrics strips inline on* attributes from
+       question HTML, so every control carries data-act instead.
+       ------------------------------------------------------------------ */
+    (function () {
+      var ACTIONS = {
+        'continueFromIntro': function continueFromIntro() {
+          return _continueFromIntro();
+        },
+        'goto(4)': function goto4() {
+          return goto(4);
+        },
+        'goto(5)': function goto5() {
+          return goto(5);
+        },
+        'showConnecting': function showConnecting() {
+          return _showConnecting();
+        },
+        'pressStart': function pressStart() {
+          return _pressStart();
+        },
+        'askTeam': function askTeam() {
+          return _askTeam();
+        },
+        'openShareModal': function openShareModal() {
+          return _openShareModal();
+        },
+        'closeShareModal': function closeShareModal() {
+          return _closeShareModal();
+        },
+        'sendAI': function sendAI() {
+          return _sendAI();
+        },
+        'askAI': function askAI() {
+          return _askAI();
+        },
+        'finishConfidence': function finishConfidence() {
+          return _finishConfidence();
+        }
+      };
+      var root = document.getElementById('invRoot') || document;
+      root.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-act]');
+        if (!el) return;
+        var act = el.dataset.act.replace(/\(\)$/, '');
+        if (ACTIONS[act] || ACTIONS[el.dataset.act]) {
+          e.preventDefault();
+          (ACTIONS[act] || ACTIONS[el.dataset.act])();
+        }
+      });
+      root.addEventListener('change', function (e) {
+        var el = e.target.closest('[data-act="pick"]');
+        if (!el) return;
+        pickAnswer(Number(el.dataset.crate), el.value);
+      });
+      root.addEventListener('input', function (e) {
+        var el = e.target.closest('[data-act="setConfidence"]');
+        if (!el) return;
+        setConfidence(Number(el.dataset.crate), el.value);
+      });
+    })();
+  }
+
+  try { startApp(); } catch (err) {
+    console.log('[INV] app failed to start: ' + (err && err.message));
+    var box = document.getElementById('invRoot');
+    if (box) {
+      var p = document.createElement('p');
+      p.style.cssText = 'color:#B91C1C;padding:10px;font-weight:600';
+      p.appendChild(document.createTextNode('Setup error: ' + (err && err.message)));
+      box.insertBefore(p, box.firstChild);
+    }
+    hideNext(false);
+  }
+});
+
+</script>
+</body></html>

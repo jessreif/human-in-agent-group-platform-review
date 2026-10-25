@@ -1,0 +1,65 @@
+{
+ "version": "assistant_release_panel_v1",
+ "note": "SEALED 2026-10-12 (BA-108). This panel is immutable: it is the exact configuration that collected release/evidence/assistant-panel-v1-2026-10-10.json on 2026-10-10. An in-place edit to tp_ai_v7/tp_scripted_v9 (post-collection) made the archived evidence unverifiable; the historical profile pins are restored here and must never change. Successor panels get a new version (see assistant-panel-v2.json).",
+ "profiles": {
+  "tp_ai_v6": "generated",
+  "tp_scripted_v8": "intentional_deterministic"
+ },
+ "arms": [
+  "high",
+  "low"
+ ],
+ "seeds": [
+  "1212121212121212121212121212121212121212121212121212121212121212"
+ ],
+ "probes": [
+  {
+   "id": "crate1",
+   "question": "Where is crate 1?",
+   "scope": 1
+  },
+  {
+   "id": "crate7",
+   "question": "Where is crate seven?",
+   "scope": 7
+  },
+  {
+   "id": "crate8",
+   "question": "Where is crate 8 now?",
+   "scope": 8
+  },
+  {
+   "id": "bare3",
+   "question": "What about 3?",
+   "scope": 3
+  },
+  {
+   "id": "contents",
+   "question": "Where are the power tools?",
+   "scope": 8,
+   "route": "intentional_deterministic"
+  }
+ ],
+ "required_regressions": [
+  "destination_only",
+  "arrival_from_transit",
+  "wrong_time",
+  "stale_current",
+  "wrong_citation",
+  "duplicate_citation",
+  "unknown_location",
+  "false_denial",
+  "wrong_subject",
+  "contents_inversion",
+  "negation_role",
+  "invalid_utf8",
+  "storage_invalid",
+  "snapshot_missing",
+  "snapshot_hash",
+  "scope_followup",
+  "policy_drift",
+  "generation_stall",
+  "delivery_loss",
+  "retry_limit"
+ ]
+}

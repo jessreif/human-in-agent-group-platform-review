@@ -1,0 +1,1700 @@
+{
+  "$defs": {
+    "AckPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "probabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/AckProbability"
+          },
+          "propertyNames": {
+            "enum": [
+              "JT",
+              "PM"
+            ]
+          },
+          "title": "Probabilities",
+          "type": "object"
+        },
+        "prompted_seat": {
+          "const": "requesting_seat",
+          "title": "Prompted Seat",
+          "type": "string"
+        },
+        "unprompted_seat_weights": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "propertyNames": {
+            "enum": [
+              "JT",
+              "PM"
+            ]
+          },
+          "title": "Unprompted Seat Weights",
+          "type": "object"
+        }
+      },
+      "required": [
+        "probabilities",
+        "unprompted_seat_weights",
+        "prompted_seat"
+      ],
+      "title": "AckPolicy",
+      "type": "object"
+    },
+    "AckProbability": {
+      "additionalProperties": false,
+      "properties": {
+        "prompted": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Prompted",
+          "type": "number"
+        },
+        "unprompted": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Unprompted",
+          "type": "number"
+        }
+      },
+      "required": [
+        "prompted",
+        "unprompted"
+      ],
+      "title": "AckProbability",
+      "type": "object"
+    },
+    "Allocation": {
+      "additionalProperties": false,
+      "properties": {
+        "block_size": {
+          "enum": [
+            2,
+            4,
+            6
+          ],
+          "title": "Block Size",
+          "type": "integer"
+        },
+        "method": {
+          "const": "permuted_block",
+          "title": "Method",
+          "type": "string"
+        },
+        "rng_stream": {
+          "const": "assignment",
+          "title": "Rng Stream",
+          "type": "string"
+        },
+        "strata": {
+          "items": {
+            "enum": [
+              "study_key",
+              "batch_id"
+            ],
+            "type": "string"
+          },
+          "title": "Strata",
+          "type": "array"
+        }
+      },
+      "required": [
+        "method",
+        "block_size",
+        "strata",
+        "rng_stream"
+      ],
+      "title": "Allocation",
+      "type": "object"
+    },
+    "ArmSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_weight": {
+          "const": 1,
+          "title": "Allocation Weight",
+          "type": "integer"
+        },
+        "arm": {
+          "enum": [
+            "high",
+            "low",
+            "eval",
+            "control",
+            "mixed"
+          ],
+          "title": "Arm",
+          "type": "string"
+        },
+        "manipulation": {
+          "discriminator": {
+            "mapping": {
+              "evaluation_exposure": "#/$defs/EvaluationArm",
+              "pressure_values": "#/$defs/PressureArm"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/PressureArm"
+            },
+            {
+              "$ref": "#/$defs/EvaluationArm"
+            }
+          ],
+          "title": "Manipulation"
+        }
+      },
+      "required": [
+        "arm",
+        "allocation_weight",
+        "manipulation"
+      ],
+      "title": "ArmSpec",
+      "type": "object"
+    },
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "version"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "Assistant": {
+      "additionalProperties": false,
+      "properties": {
+        "fallback": {
+          "const": "deterministic_file_summary",
+          "title": "Fallback",
+          "type": "string"
+        },
+        "model_change_within_session": {
+          "const": false,
+          "title": "Model Change Within Session",
+          "type": "boolean"
+        },
+        "prompt": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "provider": {
+          "enum": [
+            "univ_local_unresolved_d05",
+            "local_openai_chat",
+            "local_openai_chat/gemma4:26b@sha256:5571076f3d70050487b26b341705799e0ab29b808164f90d20d4cf84f699d251"
+          ],
+          "title": "Provider",
+          "type": "string"
+        },
+        "source_access": {
+          "const": "participant_file_at_accepted_request",
+          "title": "Source Access",
+          "type": "string"
+        },
+        "validator_version": {
+          "enum": [
+            "validator.pending_wp10a",
+            "teammate_output_v7"
+          ],
+          "title": "Validator Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "source_access",
+        "prompt",
+        "validator_version",
+        "fallback",
+        "model_change_within_session"
+      ],
+      "title": "Assistant",
+      "type": "object"
+    },
+    "ChannelPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "items": {
+            "enum": [
+              "file_work",
+              "answer_drafting",
+              "structured_seeking",
+              "sharing",
+              "social_reply",
+              "assistant_prompting"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Enabled",
+          "type": "array"
+        },
+        "from_active_s": {
+          "minimum": 0,
+          "title": "From Active S",
+          "type": "integer"
+        },
+        "name": {
+          "enum": [
+            "task",
+            "solo_review"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "until_active_s": {
+          "exclusiveMinimum": 0,
+          "title": "Until Active S",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "from_active_s",
+        "until_active_s",
+        "enabled"
+      ],
+      "title": "ChannelPhase",
+      "type": "object"
+    },
+    "Channels": {
+      "additionalProperties": false,
+      "properties": {
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/ChannelPhase"
+          },
+          "minItems": 1,
+          "title": "Phases",
+          "type": "array"
+        }
+      },
+      "required": [
+        "phases"
+      ],
+      "title": "Channels",
+      "type": "object"
+    },
+    "Checkin": {
+      "additionalProperties": false,
+      "properties": {
+        "at_active_s": {
+          "exclusiveMaximum": 360,
+          "minimum": 1,
+          "title": "At Active S",
+          "type": "integer"
+        },
+        "collect_wall_ms": {
+          "maximum": 30000,
+          "minimum": 0,
+          "title": "Collect Wall Ms",
+          "type": "integer"
+        },
+        "inactivity_cap_wall_s": {
+          "maximum": 600,
+          "minimum": 30,
+          "title": "Inactivity Cap Wall S",
+          "type": "integer"
+        },
+        "inactivity_outcome": {
+          "const": "technical_stop/checkin_incomplete",
+          "title": "Inactivity Outcome",
+          "type": "string"
+        },
+        "own_rating_skippable": {
+          "title": "Own Rating Skippable",
+          "type": "boolean"
+        },
+        "resume": {
+          "const": "explicit",
+          "title": "Resume",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at_active_s",
+        "collect_wall_ms",
+        "inactivity_cap_wall_s",
+        "inactivity_outcome",
+        "own_rating_skippable",
+        "resume"
+      ],
+      "title": "Checkin",
+      "type": "object"
+    },
+    "ClassPolicy": {
+      "additionalProperties": false,
+      "description": "Timing policy for one response class (spec §4.2, §6.3, §6.5).",
+      "properties": {
+        "delay": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "fixed": "#/$defs/Fixed",
+                "lognormal": "#/$defs/Lognormal"
+              },
+              "propertyName": "family"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Lognormal"
+              },
+              {
+                "$ref": "#/$defs/Fixed"
+              }
+            ]
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Delay",
+          "type": "array"
+        },
+        "fallback": {
+          "enum": [
+            "deterministic_script",
+            "deterministic_file_summary",
+            "none"
+          ],
+          "title": "Fallback",
+          "type": "string"
+        },
+        "floor": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "fixed": "#/$defs/Fixed",
+                  "lognormal": "#/$defs/Lognormal"
+                },
+                "propertyName": "family"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/Lognormal"
+                },
+                {
+                  "$ref": "#/$defs/Fixed"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Floor"
+        },
+        "mechanism": {
+          "enum": [
+            "demo_structured_delay_length",
+            "demo_social_additive",
+            "demo_assistant_floor",
+            "concurrent"
+          ],
+          "title": "Mechanism",
+          "type": "string"
+        },
+        "platform_delay": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "fixed": "#/$defs/Fixed",
+                  "lognormal": "#/$defs/Lognormal"
+                },
+                "propertyName": "family"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/Lognormal"
+                },
+                {
+                  "$ref": "#/$defs/Fixed"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Platform Delay"
+        },
+        "presence_cue": {
+          "enum": [
+            "none",
+            "typing_indicator"
+          ],
+          "title": "Presence Cue",
+          "type": "string"
+        },
+        "rendering": {
+          "const": "complete",
+          "title": "Rendering",
+          "type": "string"
+        },
+        "seat_overrides": {
+          "additionalProperties": {
+            "$ref": "#/$defs/SeatOverride"
+          },
+          "propertyNames": {
+            "enum": [
+              "JT",
+              "PM"
+            ]
+          },
+          "title": "Seat Overrides",
+          "type": "object"
+        },
+        "think": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "fixed": "#/$defs/Fixed",
+                  "lognormal": "#/$defs/Lognormal"
+                },
+                "propertyName": "family"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/Lognormal"
+                },
+                {
+                  "$ref": "#/$defs/Fixed"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Think"
+        },
+        "timeout_ms": {
+          "anyOf": [
+            {
+              "maximum": 60000,
+              "minimum": 1000,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeout Ms"
+        },
+        "typing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Typing"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "mechanism",
+        "delay",
+        "fallback",
+        "rendering",
+        "presence_cue"
+      ],
+      "title": "ClassPolicy",
+      "type": "object"
+    },
+    "Concurrency": {
+      "additionalProperties": false,
+      "properties": {
+        "assistant_pending_prompts": {
+          "maximum": 10,
+          "minimum": 1,
+          "title": "Assistant Pending Prompts",
+          "type": "integer"
+        },
+        "over_cap": {
+          "const": "reject_visible",
+          "title": "Over Cap",
+          "type": "string"
+        },
+        "per_seat_pending_requests": {
+          "maximum": 10,
+          "minimum": 1,
+          "title": "Per Seat Pending Requests",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "per_seat_pending_requests",
+        "assistant_pending_prompts",
+        "over_cap"
+      ],
+      "title": "Concurrency",
+      "type": "object"
+    },
+    "CrosstalkPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "answered_rule": {
+          "const": "committed_share_since_request",
+          "title": "Answered Rule",
+          "type": "string"
+        },
+        "speaker": {
+          "const": "other_seat",
+          "title": "Speaker",
+          "type": "string"
+        }
+      },
+      "required": [
+        "speaker",
+        "answered_rule"
+      ],
+      "title": "CrosstalkPolicy",
+      "type": "object"
+    },
+    "DecisionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "enum": [
+            "D01",
+            "D02",
+            "D03",
+            "D04",
+            "D05",
+            "D06",
+            "D07",
+            "D08",
+            "D09",
+            "D10",
+            "D11",
+            "D12",
+            "D13",
+            "D14"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "unresolved",
+            "resolved"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision",
+        "status"
+      ],
+      "title": "DecisionRef",
+      "type": "object"
+    },
+    "EvaluationArm": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure_copy": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "kind": {
+          "const": "evaluation_exposure",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "exposure_copy"
+      ],
+      "title": "EvaluationArm",
+      "type": "object"
+    },
+    "EvaluationManipulation": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "evaluation_exposure",
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "surfaces": {
+          "items": {
+            "enum": [
+              "intro",
+              "callout",
+              "strip",
+              "system_message",
+              "peer_intro"
+            ],
+            "type": "string"
+          },
+          "title": "Surfaces",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "surfaces",
+        "status"
+      ],
+      "title": "EvaluationManipulation",
+      "type": "object"
+    },
+    "Fixed": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "const": "fixed",
+          "title": "Family",
+          "type": "string"
+        },
+        "seconds": {
+          "maximum": 600,
+          "minimum": 0,
+          "title": "Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "family",
+        "seconds"
+      ],
+      "title": "Fixed",
+      "type": "object"
+    },
+    "Instruments": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "consent": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "debrief": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "open_ended": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "peer_ratings": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "post_task": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "training": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "consent",
+        "training",
+        "confidence",
+        "peer_ratings",
+        "post_task",
+        "debrief"
+      ],
+      "title": "Instruments",
+      "type": "object"
+    },
+    "Interaction": {
+      "additionalProperties": false,
+      "description": "UX round 3 (FR-1) feature flag: how the participant asks teammates and the\nassistant. ``structured_and_nl`` offers the per-crate request controls alongside\nfree text; ``nl_only`` removes them — ``structured_seeking`` may not open in any\nphase and assistant asks must carry typed text. Arm-invariant by construction (it\nis not under ``condition_set``), so both arms of a profile always share it.",
+      "properties": {
+        "mode": {
+          "enum": [
+            "structured_and_nl",
+            "nl_only"
+          ],
+          "title": "Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "title": "Interaction",
+      "type": "object"
+    },
+    "Lognormal": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "const": "lognormal",
+          "title": "Family",
+          "type": "string"
+        },
+        "location": {
+          "enum": [
+            "median",
+            "mean"
+          ],
+          "title": "Location",
+          "type": "string"
+        },
+        "location_s": {
+          "exclusiveMinimum": 0,
+          "maximum": 600,
+          "title": "Location S",
+          "type": "number"
+        },
+        "sigma": {
+          "exclusiveMinimum": 0,
+          "maximum": 2,
+          "title": "Sigma",
+          "type": "number"
+        },
+        "truncation": {
+          "$ref": "#/$defs/Truncation"
+        }
+      },
+      "required": [
+        "family",
+        "location",
+        "location_s",
+        "sigma",
+        "truncation"
+      ],
+      "title": "Lognormal",
+      "type": "object"
+    },
+    "Outcomes": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_statuses": {
+          "items": {
+            "enum": [
+              "completed",
+              "declined",
+              "withdrawn",
+              "technical_stop",
+              "abandoned"
+            ],
+            "type": "string"
+          },
+          "title": "Completion Statuses",
+          "type": "array"
+        },
+        "payment_policy": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "ratings_contingent_pay": {
+          "const": false,
+          "title": "Ratings Contingent Pay",
+          "type": "boolean"
+        },
+        "withdrawal_payment": {
+          "enum": [
+            "unaffected",
+            "forfeits_base"
+          ],
+          "title": "Withdrawal Payment",
+          "type": "string"
+        }
+      },
+      "required": [
+        "payment_policy",
+        "completion_statuses",
+        "withdrawal_payment",
+        "ratings_contingent_pay"
+      ],
+      "title": "Outcomes",
+      "type": "object"
+    },
+    "PressureArm": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "pressure_values",
+          "title": "Kind",
+          "type": "string"
+        },
+        "teammate_values": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Teammate Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "teammate_values"
+      ],
+      "title": "PressureArm",
+      "type": "object"
+    },
+    "PressureManipulation": {
+      "additionalProperties": false,
+      "properties": {
+        "copy_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "higher_seat_policy": {
+          "const": "independent_fair_coin",
+          "title": "Higher Seat Policy",
+          "type": "string"
+        },
+        "kind": {
+          "const": "pressure_checkin",
+          "title": "Kind",
+          "type": "string"
+        },
+        "remarks": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "rng_stream": {
+          "const": "ratings",
+          "title": "Rng Stream",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "copy_ref",
+        "higher_seat_policy",
+        "rng_stream",
+        "status"
+      ],
+      "title": "PressureManipulation",
+      "type": "object"
+    },
+    "RateLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "experimental_request_budget": {
+          "const": "unlimited",
+          "title": "Experimental Request Budget",
+          "type": "string"
+        },
+        "operational_commands_per_minute": {
+          "maximum": 600,
+          "minimum": 10,
+          "title": "Operational Commands Per Minute",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "experimental_request_budget",
+        "operational_commands_per_minute"
+      ],
+      "title": "RateLimits",
+      "type": "object"
+    },
+    "ScriptedRequests": {
+      "additionalProperties": false,
+      "properties": {
+        "script": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "seat_multiset": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "JT",
+                  "PM"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Multiset"
+        },
+        "seat_plan": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/SeatPick"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seat Plan"
+        },
+        "seat_policy": {
+          "enum": [
+            "shuffle_fixed_multiset",
+            "coin_majority_shuffle",
+            "seat_plan"
+          ],
+          "title": "Seat Policy",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "targets": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "unassigned",
+                  "assigned",
+                  "assigned_own"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Targets"
+        },
+        "times_active_s": {
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Times Active S",
+          "type": "array"
+        }
+      },
+      "required": [
+        "script",
+        "times_active_s",
+        "seat_policy",
+        "status"
+      ],
+      "title": "ScriptedRequests",
+      "type": "object"
+    },
+    "SeatOverride": {
+      "additionalProperties": false,
+      "properties": {
+        "delay": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "fixed": "#/$defs/Fixed",
+                "lognormal": "#/$defs/Lognormal"
+              },
+              "propertyName": "family"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Lognormal"
+              },
+              {
+                "$ref": "#/$defs/Fixed"
+              }
+            ]
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Delay",
+          "type": "array"
+        }
+      },
+      "required": [
+        "delay"
+      ],
+      "title": "SeatOverride",
+      "type": "object"
+    },
+    "SeatPick": {
+      "additionalProperties": false,
+      "description": "One ``seat_plan`` slot (UX v7, 2026-10-11): the named seat asks the\nparticipant about an ordinal crate of its own dealt four-crate assignment —\n``pick`` indexes the sorted list (0 = lowest, -1 = highest).",
+      "properties": {
+        "pick": {
+          "maximum": 3,
+          "minimum": -4,
+          "title": "Pick",
+          "type": "integer"
+        },
+        "seat": {
+          "enum": [
+            "JT",
+            "PM"
+          ],
+          "title": "Seat",
+          "type": "string"
+        }
+      },
+      "required": [
+        "seat",
+        "pick"
+      ],
+      "title": "SeatPick",
+      "type": "object"
+    },
+    "Task": {
+      "additionalProperties": false,
+      "properties": {
+        "crate_overlap": {
+          "anyOf": [
+            {
+              "enum": [
+                "independent",
+                "none",
+                "some",
+                "full"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Crate Overlap"
+        },
+        "difficulty_version": {
+          "const": 1,
+          "title": "Difficulty Version",
+          "type": "integer"
+        },
+        "generator": {
+          "enum": [
+            "investigators.world/demo_v1",
+            "investigators.world/overlap_v1"
+          ],
+          "title": "Generator",
+          "type": "string"
+        },
+        "n_assigned": {
+          "const": 4,
+          "title": "N Assigned",
+          "type": "integer"
+        },
+        "n_crates": {
+          "maximum": 12,
+          "minimum": 4,
+          "title": "N Crates",
+          "type": "integer"
+        },
+        "n_hideouts": {
+          "const": 6,
+          "title": "N Hideouts",
+          "type": "integer"
+        },
+        "n_own_file": {
+          "const": 2,
+          "title": "N Own File",
+          "type": "integer"
+        },
+        "n_team_dependent": {
+          "const": 2,
+          "title": "N Team Dependent",
+          "type": "integer"
+        },
+        "participant_intel_budget": {
+          "anyOf": [
+            {
+              "const": 20,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Participant Intel Budget"
+        }
+      },
+      "required": [
+        "n_crates",
+        "n_hideouts",
+        "n_assigned",
+        "n_own_file",
+        "n_team_dependent",
+        "generator",
+        "difficulty_version"
+      ],
+      "title": "Task",
+      "type": "object"
+    },
+    "Teammates": {
+      "additionalProperties": false,
+      "properties": {
+        "acknowledgments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AckPolicy"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assistant_referral": {
+          "const": "none",
+          "title": "Assistant Referral",
+          "type": "string"
+        },
+        "crosstalk": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CrosstalkPolicy"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fallback_bank": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "social_generation": {
+          "enum": [
+            "model_with_validated_fallback",
+            "deterministic_only"
+          ],
+          "title": "Social Generation",
+          "type": "string"
+        },
+        "social_prompt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "unsolicited_requests": {
+          "const": "none",
+          "title": "Unsolicited Requests",
+          "type": "string"
+        },
+        "voice_bank": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "voice_bank",
+        "fallback_bank",
+        "social_prompt",
+        "social_generation",
+        "acknowledgments",
+        "crosstalk",
+        "assistant_referral",
+        "unsolicited_requests",
+        "status"
+      ],
+      "title": "Teammates",
+      "type": "object"
+    },
+    "Timing": {
+      "additionalProperties": false,
+      "properties": {
+        "active_budget_s": {
+          "enum": [
+            300,
+            360
+          ],
+          "title": "Active Budget S",
+          "type": "integer"
+        },
+        "availability_windows": {
+          "const": "always_available",
+          "title": "Availability Windows",
+          "type": "string"
+        },
+        "checkin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Checkin"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clock_basis": {
+          "const": "active_task",
+          "title": "Clock Basis",
+          "type": "string"
+        },
+        "concurrency": {
+          "$ref": "#/$defs/Concurrency"
+        },
+        "contingent_responsiveness": {
+          "const": "none",
+          "title": "Contingent Responsiveness",
+          "type": "string"
+        },
+        "countdown_visible": {
+          "const": true,
+          "title": "Countdown Visible",
+          "type": "boolean"
+        },
+        "deadline_structure": {
+          "const": "single_global_freeze",
+          "title": "Deadline Structure",
+          "type": "string"
+        },
+        "delay_attribution": {
+          "const": "none",
+          "title": "Delay Attribution",
+          "type": "string"
+        },
+        "delivery_failure_injection": {
+          "const": "none",
+          "title": "Delivery Failure Injection",
+          "type": "string"
+        },
+        "early_submission": {
+          "const": false,
+          "title": "Early Submission",
+          "type": "boolean"
+        },
+        "ordering": {
+          "const": "scheduled_chronological",
+          "title": "Ordering",
+          "type": "string"
+        },
+        "proactive_sharing": {
+          "const": "none",
+          "title": "Proactive Sharing",
+          "type": "string"
+        },
+        "rate_limits": {
+          "$ref": "#/$defs/RateLimits"
+        },
+        "response_classes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ClassPolicy"
+          },
+          "propertyNames": {
+            "enum": [
+              "structured_record",
+              "social_greeting",
+              "social_reply",
+              "assistant",
+              "acknowledgment",
+              "crosstalk"
+            ]
+          },
+          "title": "Response Classes",
+          "type": "object"
+        },
+        "scripted_requests": {
+          "$ref": "#/$defs/ScriptedRequests"
+        },
+        "trajectory": {
+          "const": "constant",
+          "title": "Trajectory",
+          "type": "string"
+        },
+        "two_stage": {
+          "$ref": "#/$defs/TwoStage"
+        },
+        "visibility": {
+          "const": "simultaneous_all_recipients",
+          "title": "Visibility",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "minItems": 1,
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "active_budget_s",
+        "clock_basis",
+        "countdown_visible",
+        "checkin",
+        "scripted_requests",
+        "response_classes",
+        "ordering",
+        "deadline_structure",
+        "early_submission",
+        "trajectory",
+        "delivery_failure_injection",
+        "visibility",
+        "delay_attribution",
+        "contingent_responsiveness",
+        "availability_windows",
+        "proactive_sharing",
+        "two_stage",
+        "concurrency",
+        "rate_limits",
+        "warnings"
+      ],
+      "title": "Timing",
+      "type": "object"
+    },
+    "Truncation": {
+      "additionalProperties": false,
+      "description": "``clamp`` pins out-of-range draws to the bound; ``reject`` redraws (spec §6.5: these have\ndifferent distributions and are recorded as such).",
+      "properties": {
+        "hi_s": {
+          "exclusiveMinimum": 0,
+          "title": "Hi S",
+          "type": "number"
+        },
+        "lo_s": {
+          "minimum": 0,
+          "title": "Lo S",
+          "type": "number"
+        },
+        "max_attempts": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Attempts"
+        },
+        "method": {
+          "enum": [
+            "clamp",
+            "reject"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "on_exhaustion": {
+          "anyOf": [
+            {
+              "const": "clamp",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On Exhaustion"
+        }
+      },
+      "required": [
+        "method",
+        "lo_s",
+        "hi_s"
+      ],
+      "title": "Truncation",
+      "type": "object"
+    },
+    "TwoStage": {
+      "additionalProperties": false,
+      "properties": {
+        "acknowledgment_counts_as_fulfillment": {
+          "const": false,
+          "title": "Acknowledgment Counts As Fulfillment",
+          "type": "boolean"
+        },
+        "acknowledgment_resets_substantive_schedule": {
+          "const": false,
+          "title": "Acknowledgment Resets Substantive Schedule",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "acknowledgment_resets_substantive_schedule",
+        "acknowledgment_counts_as_fulfillment"
+      ],
+      "title": "TwoStage",
+      "type": "object"
+    },
+    "Typing": {
+      "additionalProperties": false,
+      "properties": {
+        "cap_ms": {
+          "maximum": 60000,
+          "minimum": 0,
+          "title": "Cap Ms",
+          "type": "integer"
+        },
+        "per_char_ms": {
+          "maximum": 200,
+          "minimum": 0,
+          "title": "Per Char Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "per_char_ms",
+        "cap_ms"
+      ],
+      "title": "Typing",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "allocation_policy": {
+      "$ref": "#/$defs/Allocation"
+    },
+    "assistant": {
+      "$ref": "#/$defs/Assistant"
+    },
+    "channels": {
+      "$ref": "#/$defs/Channels"
+    },
+    "condition_set": {
+      "items": {
+        "$ref": "#/$defs/ArmSpec"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "title": "Condition Set",
+      "type": "array"
+    },
+    "decisions": {
+      "items": {
+        "$ref": "#/$defs/DecisionRef"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "instruments": {
+      "$ref": "#/$defs/Instruments"
+    },
+    "interaction": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Interaction"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "manifest_id": {
+      "pattern": "^[a-z0-9_]+_v[0-9]+$",
+      "title": "Manifest Id",
+      "type": "string"
+    },
+    "manifest_version": {
+      "minimum": 1,
+      "title": "Manifest Version",
+      "type": "integer"
+    },
+    "manipulation": {
+      "discriminator": {
+        "mapping": {
+          "evaluation_exposure": "#/$defs/EvaluationManipulation",
+          "pressure_checkin": "#/$defs/PressureManipulation"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/PressureManipulation"
+        },
+        {
+          "$ref": "#/$defs/EvaluationManipulation"
+        }
+      ],
+      "title": "Manipulation"
+    },
+    "material_status": {
+      "enum": [
+        "reference",
+        "proposed_unapproved",
+        "approved",
+        "unresolved_placeholder"
+      ],
+      "title": "Material Status",
+      "type": "string"
+    },
+    "modes_allowed": {
+      "items": {
+        "enum": [
+          "preview",
+          "qa",
+          "live"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Modes Allowed",
+      "type": "array"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "outcomes": {
+      "$ref": "#/$defs/Outcomes"
+    },
+    "profile_kind": {
+      "enum": [
+        "reference",
+        "proposed_pilot"
+      ],
+      "title": "Profile Kind",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "investigators.manifest/1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "study_key": {
+      "enum": [
+        "investigators_time_pressure",
+        "investigators_peer_eval"
+      ],
+      "title": "Study Key",
+      "type": "string"
+    },
+    "task": {
+      "$ref": "#/$defs/Task"
+    },
+    "teammates": {
+      "$ref": "#/$defs/Teammates"
+    },
+    "timing": {
+      "$ref": "#/$defs/Timing"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "manifest_version",
+    "study_key",
+    "profile_kind",
+    "material_status",
+    "title",
+    "decisions",
+    "modes_allowed",
+    "allocation_policy",
+    "condition_set",
+    "task",
+    "timing",
+    "channels",
+    "manipulation",
+    "teammates",
+    "assistant",
+    "instruments",
+    "outcomes"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}

@@ -1,0 +1,64 @@
+{
+ "version": "assistant_release_panel_v2",
+ "note": "AI-only successor panel (fielded design is AI teammates x high/low pressure; scripted teammates are QA/preview-only). Profile pins are the fielded generation at collection time; bump the profile set only by minting the NEXT panel version, never by editing a sealed panel.",
+ "profiles": {
+  "tp_ai_v13": "generated"
+ },
+ "arms": [
+  "high",
+  "low"
+ ],
+ "seeds": [
+  "1212121212121212121212121212121212121212121212121212121212121212"
+ ],
+ "probes": [
+  {
+   "id": "crate1",
+   "question": "Where is crate 1?",
+   "scope": 1
+  },
+  {
+   "id": "crate7",
+   "question": "Where is crate seven?",
+   "scope": 7
+  },
+  {
+   "id": "crate8",
+   "question": "Where is crate 8 now?",
+   "scope": 8
+  },
+  {
+   "id": "bare3",
+   "question": "What about 3?",
+   "scope": 3
+  },
+  {
+   "id": "contents",
+   "question": "Where are the power tools?",
+   "scope": 8,
+   "route": "intentional_deterministic"
+  }
+ ],
+ "required_regressions": [
+  "destination_only",
+  "arrival_from_transit",
+  "wrong_time",
+  "stale_current",
+  "wrong_citation",
+  "duplicate_citation",
+  "unknown_location",
+  "false_denial",
+  "wrong_subject",
+  "contents_inversion",
+  "negation_role",
+  "invalid_utf8",
+  "storage_invalid",
+  "snapshot_missing",
+  "snapshot_hash",
+  "scope_followup",
+  "policy_drift",
+  "generation_stall",
+  "delivery_loss",
+  "retry_limit"
+ ]
+}

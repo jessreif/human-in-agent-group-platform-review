@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playable Demos</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --card: #ffffff; --text: #1f2328; --muted: #5b616b;
+    --border: #dfe1e4; --accent: #2f5fb3; --accent-soft: #e8eefa; --tag: #f0f1f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181c; --card: #1f2227; --text: #e8eaed; --muted: #a2a8b3;
+      --border: #33373e; --accent: #8fb0ef; --accent-soft: #233150; --tag: #2a2e35;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 920px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.9rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.2rem; margin: 40px 0 6px; }
+  p { margin: 0 0 12px; }
+  .lede { font-size: 1.05rem; color: var(--muted); max-width: 62ch; }
+  .note {
+    background: var(--accent-soft); border-radius: 10px; padding: 14px 16px;
+    margin: 20px 0 0; max-width: 70ch;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+  a.card {
+    display: block; background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px; color: inherit; text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  a.card:hover, a.card:focus-visible { border-color: var(--accent); transform: translateY(-1px); outline: none; }
+  .card h3 { margin: 0 0 6px; font-size: 1.02rem; }
+  .card p { color: var(--muted); font-size: 0.93rem; margin: 0 0 10px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: var(--tag); border-radius: 999px; padding: 2px 10px; font-size: 0.8rem; color: var(--muted); }
+  .play { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
+  ul { padding-left: 20px; margin: 6px 0 12px; }
+  li { margin: 4px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: var(--tag); padding: 1px 5px; border-radius: 4px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 16px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Playable demos</h1>
+  <p class="lede">Click through a participant's session on the Human-in-Agent-Group Platform: consent, training, the Investigation Task with two agent teammates, and the post-task questions. Each demo below matches one condition from the pilot studies.</p>
+
+  <div class="note">
+    <strong>These are mock-ups, not the live platform.</strong> They run entirely in your browser with no server or model, and the agent teammates' replies are canned. To see what agent teammates actually said to participants, open the <a href="../pilots/analysis/transcript_viewer.html">pilot transcript viewer</a>.
+  </div>
+
+  <h2>Pilot 1: information environment</h2>
+  <p>Participants were assigned to one of four conditions that varied how much their crates overlapped with their agent teammates' crates and how many intelligence records were in their own case file. There was no workload check-in.</p>
+  <div class="grid">
+    <a class="card" href="../frontend/public/demos/investigators_ovnone_noassist_nopress_aiqa_nobonus_demo.html">
+      <h3>No overlap, full case file</h3>
+      <p>The participant's crates do not overlap with the teammates'. 12 crates in the task.</p>
+      <div class="tags"><span class="tag">Overlap: none</span><span class="tag">Case file: full</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+    <a class="card" href="../frontend/public/demos/investigators_ovnone_thin_noassist_nopress_aiqa_nobonus_demo.html">
+      <h3>No overlap, thin case file</h3>
+      <p>No overlap, and the participant's case file holds 20 records. 12 crates in the task.</p>
+      <div class="tags"><span class="tag">Overlap: none</span><span class="tag">Case file: thin</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+    <a class="card" href="../frontend/public/demos/investigators_ovsome_noassist_nopress_aiqa_nobonus_demo.html">
+      <h3>Partial overlap, full case file</h3>
+      <p>Some of the participant's crates are also assigned to teammates. 8 crates in the task.</p>
+      <div class="tags"><span class="tag">Overlap: partial</span><span class="tag">Case file: full</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+    <a class="card" href="../frontend/public/demos/investigators_ovsome_thin_noassist_nopress_aiqa_nobonus_demo.html">
+      <h3>Partial overlap, thin case file</h3>
+      <p>Partial overlap, and the participant's case file holds 20 records. 8 crates in the task.</p>
+      <div class="tags"><span class="tag">Overlap: partial</span><span class="tag">Case file: thin</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+  </div>
+
+  <h2>Pilot 2: agent teammates' workload</h2>
+  <p>Every participant had partial overlap and a thin case file. One minute into the task, a check-in asked each team member to rate their workload from 1 to 7. The ratings the agent teammates reported were the manipulation.</p>
+  <div class="grid">
+    <a class="card" href="../frontend/public/demos/investigators_ovsome_thin_noassist_aiqa_nobonus_high_demo.html">
+      <h3>High workload</h3>
+      <p>Both agent teammates report a high workload at the check-in.</p>
+      <div class="tags"><span class="tag">Check-in: high</span><span class="tag">Overlap: partial</span><span class="tag">Case file: thin</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+    <a class="card" href="../frontend/public/demos/investigators_ovsome_thin_noassist_aiqa_nobonus_mixed_demo.html">
+      <h3>Mixed workload</h3>
+      <p>One agent teammate reports a low workload and the other a high workload.</p>
+      <div class="tags"><span class="tag">Check-in: mixed</span><span class="tag">Overlap: partial</span><span class="tag">Case file: thin</span></div>
+      <span class="play">Play demo →</span>
+    </a>
+  </div>
+
+  <h2>What to expect</h2>
+  <ul>
+    <li>The task itself lasts 5 minutes; the screens before and after it add a few more.</li>
+    <li>The <code>skip →</code> button in the top bar exists only in the demos. It ends the task early so you can see the post-task screens.</li>
+    <li>Before the task there is an optional page where you can ask an AI about the task rules, as in the pilots. The AI assistant panel that answers questions about your case file is turned off, as it was in the pilots.</li>
+    <li>The completion code at the end is a placeholder, not a payment code.</li>
+  </ul>
+  <p><a href="README.md">demos/README.md</a> lists exactly what the demos do and do not simulate.</p>
+
+  <footer>
+    The demos are generated from <code>demos/template/investigators_demo.html</code> by <code>scripts/build_demo_mocks.py</code>. Running the script also produces every other combination of settings.
+  </footer>
+</main>
+</body>
+</html>

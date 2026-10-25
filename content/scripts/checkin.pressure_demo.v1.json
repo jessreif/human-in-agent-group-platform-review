@@ -1,0 +1,20 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "checkin_copy",
+  "artifact_id": "checkin.pressure_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D02", "D06"],
+  "sources": [{"ref": "REF-TP-01"}, {"ref": "tp demo lines 1829-1860"}],
+  "notes": ["Identical in both TP arms; only the displayed teammate values differ (arm manipulation)."],
+  "body": {
+    "question": "How much time pressure do you feel while working on this task right now?",
+    "scale_min_label": "1 — No time pressure",
+    "scale_max_label": "7 — A great deal of time pressure",
+    "note": "Your rating will be visible to your teammates. Your teammates are answering the same question.",
+    "collecting": "Thanks. Collecting your teammates’ ratings…",
+    "reveal_title": "Time pressure reported at the check-in",
+    "reveal_note": "These ratings will stay visible above the team chat.",
+    "resume_label": "Resume task"
+  }
+}

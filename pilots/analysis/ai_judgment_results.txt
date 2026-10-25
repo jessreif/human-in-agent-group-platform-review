@@ -1,0 +1,68 @@
+Answers by sample:
+                                      
+                                       S30 S60
+  All were automated                    15  27
+  All were human                         6   9
+  I am not sure                          6  16
+  Some were human, some were automated   3   8
+
+'All were automated' (n = 42 ) vs any other answer (n = 48 ); Mann-Whitney; rank-biserial > 0 = higher among AI judges
+                           predictor judged_AI   other rank_biserial     p
+                      Records shared      8.36    6.83          0.11 0.377
+               AGENT shares received      1.83    1.58          0.10 0.395
+ AGENT free-text (non-template) msgs      4.43    3.71          0.10 0.399
+                 Teammates competent      4.88    5.29         -0.10 0.424
+                 AGENT msgs received     12.83   11.92          0.09 0.441
+                     Social messages      1.07    1.00          0.07 0.507
+           Teammates willing to help      5.31    5.62         -0.08 0.528
+              AGENT duplicate shares      0.12    0.08          0.03 0.555
+                      File dwell (s)   2799.32 2757.74          0.07 0.563
+            AGENT scripted fallbacks      0.24    0.17          0.04 0.565
+ AGENT 'which crate?' clarifications      0.43    0.31          0.05 0.587
+                    Request messages      1.50    1.44          0.06 0.617
+                          Confidence     71.16   70.21          0.06 0.636
+              Expected quick replies      5.07    5.17         -0.05 0.656
+         Teammate requests fulfilled      2.93    2.81          0.03 0.797
+                      Correct (of 4)      2.21    2.25         -0.02 0.847
+       AGENT model-generated replies      2.05    2.04          0.02 0.849
+                         Any request      0.71    0.73         -0.01 0.880
+                         Typed intel      0.43    0.52          0.02 0.880
+                Participant messages      3.88    3.56          0.02 0.899
+                      Other messages      0.86    0.60          0.00 0.993
+
+Means by full answer:
+                            tp_post_10  n n_msgs n_req_msgs n_social n_agent_msgs ag_free_text ag_clarify teammate_generated_replies correct_total tp_post_07
+1                   All were automated 42   3.88       1.50     1.07        12.83         4.43       0.43                       2.05          2.21       5.31
+2                       All were human 15   3.00       1.07     1.00        11.40         3.73       0.20                       1.93          2.00       5.53
+3                        I am not sure 22   3.77       1.59     0.95        12.18         3.55       0.41                       1.77          2.41       5.77
+4 Some were human, some were automated 11   3.91       1.64     1.09        12.09         4.00       0.27                       2.73          2.27       5.45
+  tp_post_08
+1       4.88
+2       5.33
+3       5.45
+4       4.91
+
+Multivariable logit (standardized predictors):
+                    OR Std. Error Pr(>|z|)
+(Intercept)      0.858      0.496    0.757
+z(n_msgs)        1.190      0.462    0.706
+z(ag_free_text)  1.035      0.493    0.944
+z(correct_total) 0.921      0.268    0.758
+z(tp_post_08)    0.759      0.232    0.236
+sampleS60        1.029      0.673    0.966
+
+By condition:
+                 
+                   0  1
+  none_full none   6  9
+  none_thin none   9  6
+  some_full none  10  5
+  some_thin high   8  7
+  some_thin mixed  7  8
+  some_thin none   8  7
+Fisher, condition: p = 0.7976283 
+
+Sessions where an agent disclosed being automated:
+                             session_id         tp_post_10
+60 6ba93392-2ca2-44db-b77d-e0da1f1a93d2 All were automated
+62 6004eb58-a068-496a-82f2-1f4317584abd All were automated

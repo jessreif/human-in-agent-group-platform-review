@@ -1,0 +1,21 @@
+{
+  "schema_version": "investigators.profile_diff/1",
+  "from_manifest": "tp_demo_v6",
+  "to_manifest": "tp_demo_nl_v3",
+  "status": "proposed_unapproved",
+  "decisions": [
+    "D07"
+  ],
+  "differences": [
+    {
+      "path": "behavior.controls.interaction_mode",
+      "kind": "policy",
+      "rationale": "FR-1 (UX round 3, plan \u00a717.2): natural-language-only interaction \u2014 the per-crate request controls for teammates and the assistant are removed; both arms share the mode (arm-invariant control)."
+    },
+    {
+      "path": "behavior.channels",
+      "kind": "channels",
+      "rationale": "nl_only never opens structured_seeking (schema cross-rule); every other channel and phase boundary is unchanged."
+    }
+  ]
+}

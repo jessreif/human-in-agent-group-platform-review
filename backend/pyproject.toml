@@ -1,0 +1,95 @@
+[project]
+name = "investigators-backend"
+version = "0.1.0"
+description = "Investigators team experiment: API, worker and research services (WP01 scaffold)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sqlalchemy>=2.0.36",
+    "psycopg[binary]>=3.2",
+    "alembic>=1.14",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "prometheus-client>=0.21",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "httpx>=0.28",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pyyaml>=6.0",
+    "types-pyyaml>=6.0",
+    "pytest-xdist>=3.8.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["migrations/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "BLE", "SIM", "RUF", "ARG", "N", "C901", "PLR0912", "PLR0915"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+# ARG: pytest fixtures are requested as parameters for their side effects.
+"tests/**" = ["S105", "S106", "S108", "S311", "ARG", "N", "C901", "PLR0912", "PLR0915"]
+# harness is simulation/test tooling: seeded RNG is the point (replay), docker
+# subprocesses mirror scripts/test_backend.sh, urllib only ever reaches the
+# worker-netns loopback Ollama.
+"harness/**" = ["S105", "S310", "S311", "S603", "S607"]
+# The WP11 integration module deliberately sits at tests/ level (so
+# `pytest -m integration tests/test_wp11*` collects it) and re-imports the
+# integration conftest fixtures — test parameters shadowing those module names
+# are the fixture mechanism, not accidental rebinding.
+"tests/test_wp11_integration.py" = ["F811"]
+# Complexity ratchet (audit 2026-10-17): these files held functions above the
+# thresholds when the rule was enabled. Remove an entry once its file is clean;
+# never add one — new code must meet the thresholds.
+"app/api/admin.py" = ["C901", "PLR0912", "PLR0915"]
+"app/coding/text.py" = ["C901", "PLR0912", "PLR0915"]
+"app/domain/manifests/binding.py" = ["C901", "PLR0912", "PLR0915"]
+"app/domain/manifests/schema.py" = ["C901", "PLR0912", "PLR0915"]
+"app/domain/world.py" = ["C901", "PLR0912", "PLR0915"]
+"app/export/historical.py" = ["C901", "PLR0912", "PLR0915"]
+"app/export/study.py" = ["C901", "PLR0912", "PLR0915"]
+"app/measurement/telemetry.py" = ["C901", "PLR0912", "PLR0915"]
+"app/services/adminviews.py" = ["C901", "PLR0912", "PLR0915"]
+"app/services/dashboard_analysis.py" = ["C901", "PLR0912", "PLR0915"]
+"app/services/entry.py" = ["C901", "PLR0912", "PLR0915"]
+"app/services/scheduler.py" = ["C901", "PLR0912", "PLR0915"]
+"app/services/team_chat.py" = ["C901", "PLR0912", "PLR0915"]
+"app/workers/main.py" = ["C901", "PLR0912", "PLR0915"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 20
+
+[tool.ruff.lint.pylint]
+max-branches = 20
+max-statements = 80
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["app", "harness"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers -p no:cacheprovider"
+markers = [
+    "integration: requires a disposable PostgreSQL database (INVESTIGATORS_TEST_DATABASE_URL + explicit destructive opt-in)",
+    "cluster_serial: drops this worker's templates so one test can DROP ROLE, then rebuilds them",
+    "medium: loopback socket or a real semaphore wait; no database",
+]
+filterwarnings = [
+    "error::DeprecationWarning:app.*",
+    # Starlette 1.x nudges TestClient users toward httpx2; harmless for these tests.
+    "ignore:Using `httpx` with `starlette.testclient`",
+]

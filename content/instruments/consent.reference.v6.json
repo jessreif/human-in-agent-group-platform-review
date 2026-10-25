@@ -1,0 +1,51 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "material_reference",
+  "artifact_id": "consent.reference",
+  "version": 6,
+  "status": "approved",
+  "decisions": [],
+  "sources": [
+    {
+      "ref": "S5 approved protocol XXXX-XXXX Appendix B (consent form)"
+    }
+  ],
+  "notes": [
+    "v6 (2026-10-09, owner direction after the first N=5 pilot): estimated duration 15 -> 12 minutes and payment $4.00 -> $3.00 (pairs with payment.s5_base_only@v4 and the 300 s task). Owner confirms the rate stays above the university IRB $10/hour minimum and approves the wording for live fielding. Every other sentence is verbatim v5.",
+    "v5 (2026-10-08, owner direction): removes 'You may skip questions during the study and doing so will not affect your payment.' \u2014 all measurement items are required to advance (no blank/skipped responses); the final-screen submit rule is unchanged. Owner to confirm the office-hours scope covers the removal before fielding; v4 remains the last version carrying the skip promise.",
+    "BA-37: literal Appendix B text, online-panel variant \u2014 the protocol note says bracketed text is shown to online-panel participants but not [School] Behavioral Lab participants. The bracketed payment sentences are the panel variant ($4.00 matches the Appendix A listing).",
+    "Includes the approved sentences the prior placeholder-rendered copy omitted: 'You may skip questions during the study and doing so will not affect your payment' and 'If you do leave the study early, you will not be paid.'",
+    "Variant selection (panel vs lab) and the remaining D06 materials freeze await research-lead review; any wording change publishes a new version.",
+    "v3 corrects '#XXXXXXXX' -> '#XXXX-XXXX' per Appendix B (raw text layer shows '#2027-' + line wrap + '0060').",
+    "2026-10-06: Approved unchanged for live fielding \u2014 consent wording frozen as currently bound (decision D06 resolved 'freeze all as bound'; study-owner approval)."
+  ],
+  "body": {
+    "material": "consent",
+    "reference_copy": "S5 approved protocol XXXX-XXXX Appendix B (consent), panel variant",
+    "freeze_decision": "D06",
+    "text": {
+      "heading": "Team Decision-Making Study",
+      "subheading": "[University] \u00b7 Protocol XXXX-XXXX",
+      "sections": [
+        {
+          "title": "Key Information",
+          "paragraphs": [
+            "This is a research study conducted by researchers at [University]. This study examines how small teams work together and make decisions. Your participation is completely voluntary and you may withdraw at any time by closing your browser.",
+            "In this study you will take part in an online team session with other team members. Your team will be given information about a business decision and asked to discuss it by text chat and make a recommendation. You will then answer questions about how your team worked together and about your experience with technology at work.",
+            "Your typed messages during the team session will be visible to the other members of your team. Please do not share your real name, your employer, your location, or any other identifying or personal information during the session. You will be asked to enter initials to identify yourself.",
+            "There are some features of this study's design that we are not describing to you now, because telling you in advance would change how people behave during the task and make the results invalid. We will explain these fully at the end of the session, before you finish.",
+            "We estimate the study will take approximately 12 minutes to complete, and you will be paid $3.00. To be compensated you need to reach the end of the study and click Submit. A payment code will appear on the final page of the study.",
+            "To be paid for the study, you must advance to the final screen and click submit.",
+            "We do not ask for your name or any other information that might identify you. The participant recruitment platform will provide us with demographic information including your age, level of education, employment status, and gender, which we may analyze as part of this research. Your platform identification number will be removed from our data, and de-identified information, including chat transcripts produced during the study, may be shared with other researchers, made public, or used for future research purposes.",
+            "This study may use AI tools to generate content you see during the session. The AI tools used in this study run on a secure university-managed server.",
+            "Taking part in this study involves no more than minimal risk. As in any group discussion, another team member could write something you find unhelpful. You may leave the session at any time by closing your browser, without giving a reason. If you do leave the study early, you will not be paid. There are no direct benefits to you for participating.",
+            "If you have questions about this research, please contact [Principal Investigator] (pi@university.edu) or [Co-Investigator] (coi@university.edu). You may also contact the university's human research protection program by emailing irb@university.edu. Please refer to protocol number #XXXX-XXXX."
+          ]
+        }
+      ],
+      "question": "Would you like to participate?",
+      "accept_label": "Yes, I consent to participate",
+      "decline_label": "No, I do not wish to participate"
+    }
+  }
+}

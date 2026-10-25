@@ -1,0 +1,48 @@
+{
+    "schema_version": "investigators.artifact/1",
+    "kind": "pressure_remarks",
+    "artifact_id": "remarks.tp_workload",
+    "version": 1,
+    "status": "approved",
+    "decisions": [],
+    "sources": [
+        {
+            "ref": "Owner direction 2026-10-17 (v15): workload relabel; low arm becomes mixed"
+        }
+    ],
+    "notes": [
+        "Two fixed team-chat lines per arm, after the check-in (active 60): the first at active 75 (15 s after the task resumes), the reply at active 83.",
+        "Speaker order is a per-session fair coin (seat_order fair_coin_per_session): 'first' is the drawn seat, 'second' the other seat, so remark speaker is balanced across JT/PM.",
+        "v15 mixed arm: 'lines' covers the non-mixed declared arm (high); 'mixed_lines' carries one line per speaker level — at delivery the scheduler resolves the speaker seat's level from the check-in's recorded assigned_values (high seat = 6, low seat = 2).",
+        "Deterministic bound copy delivered identically in the AI and scripted teammate builds; it bypasses generation, so the generated-output gate (urgency/voice_format/condition_leak) does not apply.",
+        "Exact wording drafted by Devin for owner review during internal eval; level structure and timing are the approved part."
+    ],
+    "body": {
+        "seat_order": "fair_coin_per_session",
+        "channel": "team",
+        "remarks": [
+            {
+                "at_active_s": 75,
+                "speaker": "first",
+                "lines": {
+                    "high": "Yikes this workload is heavy, I don't think I am going to finish on time"
+                },
+                "mixed_lines": {
+                    "high": "Yikes this workload is heavy, I don't think I am going to finish on time",
+                    "low": "Ok this workload seems light, I think I'll finish with time to spare"
+                }
+            },
+            {
+                "at_active_s": 83,
+                "speaker": "second",
+                "lines": {
+                    "high": "i know right!"
+                },
+                "mixed_lines": {
+                    "high": "ugh lucky, mine's heavy, don't think I'll finish",
+                    "low": "mine's actually pretty light, think I'll finish early"
+                }
+            }
+        ]
+    }
+}

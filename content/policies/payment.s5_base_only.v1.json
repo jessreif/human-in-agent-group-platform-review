@@ -1,0 +1,17 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "payment_policy",
+  "artifact_id": "payment.s5_base_only",
+  "version": 1,
+  "status": "proposed_unapproved",
+  "decisions": ["D04"],
+  "sources": [{"ref": "S5 approved protocol: $4 online base, no bonus selected"}, {"ref": "spec §13 Bonus"}],
+  "notes": ["Proposed for v2 profiles. Stays non-activatable until D04 confirms base pay and technical-stop/withdrawal handling. No ratings-contingent pay."],
+  "body": {
+    "currency": "USD",
+    "base_cents": 400,
+    "bonus": {"type": "none", "cents_per_correct": 0, "max_cents": 0},
+    "activatable": false,
+    "technical_stop": "unresolved_d04"
+  }
+}

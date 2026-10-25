@@ -1,0 +1,15 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "material_reference",
+  "artifact_id": "debrief.pe_reference",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D03", "D06", "D09"],
+  "sources": [{"ref": "pe demo debrief"}, {"ref": "DEF-12"}],
+  "notes": ["The demo debrief says no ratings of the participant were collected; reconcile with the eval-arm expectation under D03 before paid PE recruitment."],
+  "body": {
+    "material": "debrief",
+    "reference_copy": "investigators_peer_eval_demo.html debrief section",
+    "freeze_decision": "D03"
+  }
+}

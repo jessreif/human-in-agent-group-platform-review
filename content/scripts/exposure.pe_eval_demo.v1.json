@@ -1,0 +1,19 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "exposure_copy",
+  "artifact_id": "exposure.pe_eval_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D03"],
+  "sources": [{"ref": "demo_constants.peer_evaluation.EVAL_CONFIG.eval"}, {"ref": "REF-PE-01"}],
+  "notes": ["Verbatim demo markup. The evaluation expectation must be reconciled with the approved protocol before any paid PE batch (D03)."],
+  "body": {
+    "arm": "eval",
+    "format": "demo_html_reference",
+    "intro": "<div class=\"callout eval\"><b>Rating your teammates.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were during the task. Your teammates&#8217; ratings of you will be recorded along with your responses.</div>",
+    "callout": "<b>Reminder.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were.",
+    "strip": "Teammates will rate your helpfulness",
+    "system_message": "Your teammates will rate how helpful you were once the session ends.",
+    "peer_intro": "As mentioned at the start, please rate each of your teammates. Your teammates have been asked to rate you in the same way."
+  }
+}

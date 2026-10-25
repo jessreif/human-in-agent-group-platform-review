@@ -1,0 +1,80 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "fallback_bank",
+  "artifact_id": "fallbacks.neutral",
+  "version": 4,
+  "status": "proposed_unapproved",
+  "decisions": ["D07"],
+  "sources": [
+    {"ref": "authored"},
+    {"ref": "spec §7.3 neutral next-pilot script"},
+    {"ref": "INV-0705"},
+    {"ref": "O-1/O-3 2026-10-03: nl_only ask wording + fixed disclosure line"},
+    {"ref": "UX_Feedback_v4 item 13 (2026-10-05): the two seats' social replies must not be near-identical pleasantries"}
+  ],
+  "notes": [
+    "Proposed for v2 profiles pending D07 content review. Removes busy/distracted cues ('bit swamped', 'deep in my own crates'), unsolicited 'stuck on <crate>' solicitations and memory claims ('adding that to my notes') from fallbacks.demo v1.",
+    "v2 (UX round 3, AI-1/AI-2): warmer pleasantry replies with a question back and more multiword variety per rule for the session no-repeat draw. Still free of busy/stuck/time wording (INV-0705).",
+    "v3 (O-1/O-3): asks_intel_nl invites a typed crate ask where no picker exists; identity_probe is the fixed truthful disclosure for 'are you a bot/real?' probes (answered before generation, never model text).",
+    "v4 (UX round 4, item 13): the social pool mixes one pleasantry-with-return-question with topically distinct task-state lines, so two seats replying to the same pleasantry cannot converge on two paraphrases of 'doing alright'. Still free of busy/stuck/time wording (INV-0705)."
+  ],
+  "body": {
+    "classifier": "neutral_keyword_v2",
+    "rules": [
+      {
+        "when": "gives_location",
+        "lines": [
+          "thanks, noted",
+          "good to know, thanks",
+          "thanks for passing that along"
+        ]
+      },
+      {
+        "when": "offers_help",
+        "lines": [
+          "thanks, appreciated",
+          "thanks",
+          "that is kind of you, thanks"
+        ]
+      },
+      {
+        "when": "social",
+        "lines": [
+          "doing well, thanks. how about you?",
+          "still going through my entries",
+          "a couple of mine are taking a while",
+          "made some progress on one of mine",
+          "comparing my entries with what the team has shared",
+          "the case is more detailed than it looked at first"
+        ]
+      },
+      {
+        "when": "asks_intel",
+        "lines": [
+          "send me a request for it and i will pass along what i have",
+          "a request will pull whatever i have on it",
+          "if you send a request i will pass along what i have"
+        ]
+      },
+      {
+        "when": "asks_intel_nl",
+        "lines": [
+          "tell me which crate and i will send what i have on it",
+          "name the crate and i will pass along my latest",
+          "say the crate number and i will share what is in mine"
+        ]
+      },
+      {
+        "when": "identity_probe",
+        "lines": [
+          "i'm an automated account, not a person",
+          "i'm an automated teammate account"
+        ]
+      },
+      {
+        "when": "default",
+        "lines": ["noted", "got it", "makes sense"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "material_reference",
+  "artifact_id": "debrief.tp_reference",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D06", "D09"],
+  "sources": [{"ref": "tp demo lines 194-200 (demoDebrief)"}],
+  "notes": ["Demo debrief explains automated teammates and assigned pressure ratings. Data-use choice wording is added under D09 (INV-0907)."],
+  "body": {
+    "material": "debrief",
+    "reference_copy": "investigators_time_pressure_demo.html lines 194-200",
+    "freeze_decision": "D06"
+  }
+}

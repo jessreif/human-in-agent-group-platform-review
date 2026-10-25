@@ -1,0 +1,182 @@
+# Investigators team experiment services (INV-0106), modelled on dct/docker-compose.yml:
+# env_file .env, host.docker.internal:host-gateway, healthchecks, restart unless-stopped.
+#
+# - Loopback-only ports: investigators-ui 127.0.0.1:8518, investigators-api 127.0.0.1:8519.
+#   These are local defaults, not a public deployment. Do not publish other host
+#   ports from this file. The production vhost snippet is not included.
+# - Before the first `up`, run scripts/preflight_ports.sh (re-verifies 8518/8519 are free).
+# - Build with scripts/build_images.sh so images carry the source-bundle checksum stamp.
+# - Base images are pinned by digest; see docs/TOOLCHAIN.md when refreshing them.
+# - The UI serves static files only and receives no environment secrets (least privilege).
+name: investigators
+
+x-backend-build: &backend-build
+  context: ./backend
+  dockerfile: Dockerfile
+  additional_contexts:
+    content: ./content
+  args:
+    PYTHON_IMAGE: python:3.12-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+    INVESTIGATORS_BUILD_SOURCE_SHA256: ${INVESTIGATORS_BUILD_SOURCE_SHA256:-unset}
+    INVESTIGATORS_BEHAVIOR_SOURCE_SHA256: ${INVESTIGATORS_BEHAVIOR_SOURCE_SHA256:-unset}
+    INVESTIGATORS_BUILD_TIME: ${INVESTIGATORS_BUILD_TIME:-unset}
+    INVESTIGATORS_IMAGE_REF: investigators-backend:local
+
+x-hardening: &hardening
+  read_only: true
+  tmpfs:
+    - /tmp:size=16m
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+
+services:
+  investigators-api:
+    <<: *hardening
+    build: *backend-build
+    image: investigators-backend:local
+    container_name: investigators-api
+    env_file:
+      - .env
+    environment:
+      # Read-only docs root for the researcher "documentation" tab (/admin/docs).
+      ADMIN_DOCS_DIR: /srv/docs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # Docs are served live off the host tree (edited .md files stay current) —
+      # a directory mount, not per-file, so atomic editor rewrites never go stale.
+      # .env is masked: env_file already injects its values, the file must not be readable.
+      - ./:/srv/docs:ro
+      - /dev/null:/srv/docs/.env:ro
+      # Export output root for ADMIN_EXPORT_DIR (/admin/exports writes). Containers
+      # run read_only, so this is the only sanctioned writable path; the host dir is
+      # outside the repo so export files never sit under the /srv/docs tree.
+      - ./local-data/exports:/srv/exports
+    ports:
+      - "127.0.0.1:8519:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  investigators-ollama:
+    # Local LLM host container (INV-1001): the WORKER joins this container's network
+    # namespace so the approved provider URL http://127.0.0.1:11434 is LITERAL
+    # loopback for the worker — the adapter refuses any non-loopback host. Ollama
+    # binds only lo inside the shared netns, so nothing else can reach it. This
+    # service owns the netns because it is the stable side: routine worker
+    # rebuilds never disturb it (an ollama recreate orphans the worker instead —
+    # then run `up -d investigators-ollama investigators-worker` together).
+    image: ollama/ollama:0.32.1@sha256:6345fbc18bd73a1e16404be681dbc6fd291a027cab43ed541abe78c4c81051b0
+    container_name: investigators-ollama
+    runtime: nvidia
+    init: true
+    user: "974:971"
+    tmpfs:
+      - /tmp/ollama-home
+    volumes:
+      - ./local-data/ollama-models:/opt/ollama/models
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - HOME=/tmp/ollama-home
+      - OLLAMA_HOME=/tmp/ollama-home/.ollama
+      - OLLAMA_MODELS=/opt/ollama/models
+      - OLLAMA_HOST=127.0.0.1:11434
+      - OLLAMA_KEEP_ALIVE=24h
+      - NVIDIA_VISIBLE_DEVICES=all
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  investigators-ollama-warmup:
+    # Post-start model warm-load (2026-10-03): investigators-ollama is a private
+    # server inside its own netns. A cold gemma4:26b load (~40s first call)
+    # exceeds the worker's whole-call deadline, so teammate generation fell
+    # back to deterministic script whenever the resident model had expired. This
+    # one-shot warms the model at stack start and pins it ~1y via --keepalive.
+    # The GPU is dedicated to this study while other Ollama consumers are
+    # paused; the host gpu-default-state sweep is stopped, so nothing else
+    # contends for VRAM or manages this netns-isolated server's residents.
+    image: ollama/ollama:0.32.1@sha256:6345fbc18bd73a1e16404be681dbc6fd291a027cab43ed541abe78c4c81051b0
+    container_name: investigators-ollama-warmup
+    network_mode: "service:investigators-ollama"
+    depends_on:
+      investigators-ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_HOST=127.0.0.1:11434
+      - HOME=/tmp
+    # Image entrypoint is `ollama`, so command is the subcommand + args only.
+    command: ["run", "gemma4:26b", "--keepalive=8760h", "warm"]
+    restart: "no"
+
+  investigators-worker:
+    <<: *hardening
+    build: *backend-build
+    image: investigators-backend:local
+    container_name: investigators-worker
+    command: ["python", "-m", "app.workers.main"]
+    env_file:
+      - .env
+    # Shares the ollama container's netns (see its comment): http://127.0.0.1:11434
+    # is the pinned loopback model endpoint; the DB still resolves via
+    # host.docker.internal because this container's own /etc/hosts is written from
+    # extra_hosts below.
+    network_mode: "service:investigators-ollama"
+    depends_on:
+      investigators-ollama:
+        condition: service_started
+      investigators-ollama-warmup:
+        condition: service_completed_successfully
+    # no extra_hosts here — a shared-netns container inherits the owner's
+    # /etc/hosts; the host.docker.internal mapping lives on investigators-ollama.
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-m", "app.workers.healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  investigators-ui:
+    <<: *hardening
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NODE_IMAGE: node:20-bookworm-slim@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+        NGINX_IMAGE: nginxinc/nginx-unprivileged:stable-alpine@sha256:ed04ec1ff34502c339ee5c3ae3f855442398edc1d05591e2b98981dcbbd20b1e
+        INVESTIGATORS_BUILD_SOURCE_SHA256: ${INVESTIGATORS_BUILD_SOURCE_SHA256:-unset}
+        INVESTIGATORS_BUILD_TIME: ${INVESTIGATORS_BUILD_TIME:-unset}
+    image: investigators-ui:local
+    container_name: investigators-ui
+    ports:
+      - "127.0.0.1:8518:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

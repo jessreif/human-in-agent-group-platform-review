@@ -1,0 +1,3189 @@
+{
+  "$defs": {
+    "BonusPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "cents_per_correct": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Cents Per Correct",
+          "type": "integer"
+        },
+        "max_cents": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Max Cents",
+          "type": "integer"
+        },
+        "type": {
+          "enum": [
+            "none",
+            "per_correct_assigned_crate"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "BonusPolicy",
+      "type": "object"
+    },
+    "CheckinCopyArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/CheckinCopyBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "checkin_copy",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "CheckinCopyArtifact",
+      "type": "object"
+    },
+    "CheckinCopyBody": {
+      "additionalProperties": false,
+      "properties": {
+        "collecting": {
+          "title": "Collecting",
+          "type": "string"
+        },
+        "note": {
+          "title": "Note",
+          "type": "string"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "resume_label": {
+          "title": "Resume Label",
+          "type": "string"
+        },
+        "reveal_note": {
+          "title": "Reveal Note",
+          "type": "string"
+        },
+        "reveal_title": {
+          "title": "Reveal Title",
+          "type": "string"
+        },
+        "scale_max_label": {
+          "title": "Scale Max Label",
+          "type": "string"
+        },
+        "scale_min_label": {
+          "title": "Scale Min Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question",
+        "scale_min_label",
+        "scale_max_label",
+        "note",
+        "collecting",
+        "reveal_title",
+        "reveal_note",
+        "resume_label"
+      ],
+      "title": "CheckinCopyBody",
+      "type": "object"
+    },
+    "CodingCorpusArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/CodingCorpusBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "coding_corpus",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "CodingCorpusArtifact",
+      "type": "object"
+    },
+    "CodingCorpusBody": {
+      "additionalProperties": false,
+      "description": "The blinded development corpus (INV-1203). ``corpus_kind`` is ``development``\nforever — real held-out pilot text is a different artifact lineage (WP12b) and its\nmetrics are never reported together with this set.",
+      "properties": {
+        "blinding_policy": {
+          "minLength": 1,
+          "title": "Blinding Policy",
+          "type": "string"
+        },
+        "cases": {
+          "items": {
+            "$ref": "#/$defs/CorpusCase"
+          },
+          "minItems": 1,
+          "title": "Cases",
+          "type": "array"
+        },
+        "corpus_kind": {
+          "const": "development",
+          "title": "Corpus Kind",
+          "type": "string"
+        },
+        "unavoidable_unmasking": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Unavoidable Unmasking",
+          "type": "array"
+        }
+      },
+      "required": [
+        "corpus_kind",
+        "blinding_policy",
+        "cases"
+      ],
+      "title": "CodingCorpusBody",
+      "type": "object"
+    },
+    "CodingPromptArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/CodingPromptBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "coding_prompt",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "CodingPromptArtifact",
+      "type": "object"
+    },
+    "CodingPromptBody": {
+      "additionalProperties": false,
+      "description": "The model-coding prompt: a config point only. ``dormant_until`` names the decision\n(D05) that must resolve before any model-assisted run may exist.",
+      "properties": {
+        "dormant_until": {
+          "const": "D05",
+          "title": "Dormant Until",
+          "type": "string"
+        },
+        "purpose": {
+          "const": "coding",
+          "title": "Purpose",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "purpose",
+        "dormant_until",
+        "text"
+      ],
+      "title": "CodingPromptBody",
+      "type": "object"
+    },
+    "CodingRubricArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/CodingRubricBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "coding_rubric",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "CodingRubricArtifact",
+      "type": "object"
+    },
+    "CodingRubricBody": {
+      "additionalProperties": false,
+      "description": "The versioned coding rubric (``coding.rubric@v1``). Declarative: it fixes the code\nvocabulary, span model and adjudication rules; the deterministic coder implements them\nunder ``code_version`` and the corpus pins expected-vs-actual behavior (INV-1209).",
+      "properties": {
+        "assertion_values": {
+          "items": {
+            "enum": [
+              "asserted",
+              "uncertain",
+              "hedged",
+              "negated"
+            ],
+            "type": "string"
+          },
+          "title": "Assertion Values",
+          "type": "array"
+        },
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/RubricCategory"
+          },
+          "minItems": 1,
+          "title": "Categories",
+          "type": "array"
+        },
+        "code_schema": {
+          "const": "investigators.coding/1",
+          "title": "Code Schema",
+          "type": "string"
+        },
+        "event_types": {
+          "items": {
+            "enum": [
+              "arrival",
+              "still_at",
+              "departure",
+              "transit"
+            ],
+            "type": "string"
+          },
+          "title": "Event Types",
+          "type": "array"
+        },
+        "novelty_values": {
+          "items": {
+            "enum": [
+              "first_introduction",
+              "self_repetition",
+              "other_source_repetition",
+              "attachment",
+              "unresolved"
+            ],
+            "type": "string"
+          },
+          "title": "Novelty Values",
+          "type": "array"
+        },
+        "span_kinds": {
+          "items": {
+            "enum": [
+              "crate",
+              "location",
+              "time",
+              "evidence"
+            ],
+            "type": "string"
+          },
+          "title": "Span Kinds",
+          "type": "array"
+        },
+        "stance_values": {
+          "items": {
+            "enum": [
+              "endorse",
+              "question",
+              "contradict",
+              "uncertain",
+              "no_stance"
+            ],
+            "type": "string"
+          },
+          "title": "Stance Values",
+          "type": "array"
+        },
+        "subject_statuses": {
+          "items": {
+            "enum": [
+              "coded",
+              "not_coded",
+              "failed",
+              "abstained"
+            ],
+            "type": "string"
+          },
+          "title": "Subject Statuses",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code_schema",
+        "subject_statuses",
+        "assertion_values",
+        "event_types",
+        "stance_values",
+        "novelty_values",
+        "span_kinds",
+        "categories"
+      ],
+      "title": "CodingRubricBody",
+      "type": "object"
+    },
+    "CorpusAttachment": {
+      "additionalProperties": false,
+      "description": "An authenticated attachment on a corpus subject: exact evidence with provenance\nthat bypasses semantic matching (spec §9.4, INV-1202).",
+      "properties": {
+        "crate": {
+          "maximum": 8,
+          "minimum": 1,
+          "title": "Crate",
+          "type": "integer"
+        },
+        "event_type": {
+          "enum": [
+            "arrival",
+            "still_at",
+            "departure",
+            "transit"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "location_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location Id"
+        },
+        "record_id": {
+          "minLength": 1,
+          "title": "Record Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "record_id",
+        "crate",
+        "event_type"
+      ],
+      "title": "CorpusAttachment",
+      "type": "object"
+    },
+    "CorpusCase": {
+      "additionalProperties": false,
+      "properties": {
+        "adversarial": {
+          "default": false,
+          "title": "Adversarial",
+          "type": "boolean"
+        },
+        "arm": {
+          "enum": [
+            "high",
+            "low",
+            "eval",
+            "control",
+            "mixed"
+          ],
+          "title": "Arm",
+          "type": "string"
+        },
+        "blinding_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Blinding Note"
+        },
+        "case_id": {
+          "pattern": "^dev\\.[a-z0-9_.]+$",
+          "title": "Case Id",
+          "type": "string"
+        },
+        "expected": {
+          "$ref": "#/$defs/CorpusExpected"
+        },
+        "history": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CorpusHistoryItem"
+          },
+          "title": "History",
+          "type": "array"
+        },
+        "source": {
+          "enum": [
+            "synthetic",
+            "staff_authored",
+            "generated",
+            "fallback"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "study_key": {
+          "enum": [
+            "investigators_time_pressure",
+            "investigators_peer_eval"
+          ],
+          "title": "Study Key",
+          "type": "string"
+        },
+        "subject": {
+          "$ref": "#/$defs/CorpusSubject"
+        }
+      },
+      "required": [
+        "case_id",
+        "study_key",
+        "arm",
+        "source",
+        "subject",
+        "expected"
+      ],
+      "title": "CorpusCase",
+      "type": "object"
+    },
+    "CorpusExpected": {
+      "additionalProperties": false,
+      "properties": {
+        "acknowledgment_only": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Acknowledgment Only"
+        },
+        "assertions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ExpectedAssertion"
+          },
+          "title": "Assertions",
+          "type": "array"
+        },
+        "n_questions": {
+          "default": 0,
+          "minimum": 0,
+          "title": "N Questions",
+          "type": "integer"
+        },
+        "n_solicitations": {
+          "default": 0,
+          "minimum": 0,
+          "title": "N Solicitations",
+          "type": "integer"
+        },
+        "solicitation_crates": {
+          "default": [],
+          "items": {
+            "type": "integer"
+          },
+          "title": "Solicitation Crates",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "coded",
+            "not_coded",
+            "failed",
+            "abstained"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "CorpusExpected",
+      "type": "object"
+    },
+    "CorpusHistoryItem": {
+      "additionalProperties": false,
+      "description": "One already-visible history entry for a corpus case: a delivered/held record or a\nprior broadcast message. ``scope`` marks recipient visibility — ``participant_file``\nitems are in the participant's own file and never entered the shared channel.",
+      "properties": {
+        "actor": {
+          "minLength": 1,
+          "title": "Actor",
+          "type": "string"
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Body"
+        },
+        "crate": {
+          "anyOf": [
+            {
+              "maximum": 8,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Crate"
+        },
+        "event_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "arrival",
+                "still_at",
+                "departure",
+                "transit"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Type"
+        },
+        "kind": {
+          "enum": [
+            "record",
+            "message"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "location_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location Id"
+        },
+        "record_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Record Id"
+        },
+        "scope": {
+          "enum": [
+            "broadcast",
+            "participant_file"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "seq": {
+          "minimum": 0,
+          "title": "Seq",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "seq",
+        "actor",
+        "scope"
+      ],
+      "title": "CorpusHistoryItem",
+      "type": "object"
+    },
+    "CorpusSubject": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "enum": [
+            "participant",
+            "JT",
+            "PM",
+            "assistant",
+            "system"
+          ],
+          "title": "Actor",
+          "type": "string"
+        },
+        "attachments": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CorpusAttachment"
+          },
+          "title": "Attachments",
+          "type": "array"
+        },
+        "body": {
+          "default": "",
+          "title": "Body",
+          "type": "string"
+        },
+        "channel": {
+          "enum": [
+            "team",
+            "assistant",
+            "system"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "context_crate": {
+          "anyOf": [
+            {
+              "maximum": 8,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Context Crate"
+        },
+        "seq": {
+          "minimum": 1,
+          "title": "Seq",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "seq",
+        "actor",
+        "channel"
+      ],
+      "title": "CorpusSubject",
+      "type": "object"
+    },
+    "ExpectedAssertion": {
+      "additionalProperties": false,
+      "description": "Expected fields of one coded assertion, in subject order. Only declared fields are\ncompared — anything omitted is deliberately unchecked.",
+      "properties": {
+        "ambiguous": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ambiguous"
+        },
+        "assertion": {
+          "anyOf": [
+            {
+              "enum": [
+                "asserted",
+                "uncertain",
+                "hedged",
+                "negated"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assertion"
+        },
+        "attribution": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attribution"
+        },
+        "crate": {
+          "anyOf": [
+            {
+              "maximum": 8,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Crate"
+        },
+        "event_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "arrival",
+                "still_at",
+                "departure",
+                "transit"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Type"
+        },
+        "inference": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inference"
+        },
+        "location_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location Id"
+        },
+        "novel_to_recipient": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Novel To Recipient"
+        },
+        "novelty": {
+          "anyOf": [
+            {
+              "enum": [
+                "first_introduction",
+                "self_repetition",
+                "other_source_repetition",
+                "attachment",
+                "unresolved"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Novelty"
+        },
+        "off_crate": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Off Crate"
+        },
+        "span_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Span Text"
+        },
+        "stance": {
+          "anyOf": [
+            {
+              "enum": [
+                "endorse",
+                "question",
+                "contradict",
+                "uncertain",
+                "no_stance"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stance"
+        },
+        "temporal_challenge": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Challenge"
+        }
+      },
+      "title": "ExpectedAssertion",
+      "type": "object"
+    },
+    "ExposureCopyArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/ExposureCopyBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "exposure_copy",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "ExposureCopyArtifact",
+      "type": "object"
+    },
+    "ExposureCopyBody": {
+      "additionalProperties": false,
+      "properties": {
+        "arm": {
+          "enum": [
+            "eval",
+            "control"
+          ],
+          "title": "Arm",
+          "type": "string"
+        },
+        "callout": {
+          "title": "Callout",
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "demo_html_reference",
+            "plain_text"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "intro": {
+          "title": "Intro",
+          "type": "string"
+        },
+        "peer_intro": {
+          "title": "Peer Intro",
+          "type": "string"
+        },
+        "strip": {
+          "title": "Strip",
+          "type": "string"
+        },
+        "system_message": {
+          "title": "System Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "arm",
+        "format",
+        "intro",
+        "callout",
+        "strip",
+        "system_message",
+        "peer_intro"
+      ],
+      "title": "ExposureCopyBody",
+      "type": "object"
+    },
+    "FallbackBankArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/FallbackBankBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "fallback_bank",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "FallbackBankArtifact",
+      "type": "object"
+    },
+    "FallbackBankBody": {
+      "additionalProperties": false,
+      "properties": {
+        "classifier": {
+          "enum": [
+            "demo_keyword_v1",
+            "neutral_keyword_v2"
+          ],
+          "title": "Classifier",
+          "type": "string"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/FallbackRule"
+          },
+          "minItems": 1,
+          "title": "Rules",
+          "type": "array"
+        }
+      },
+      "required": [
+        "classifier",
+        "rules"
+      ],
+      "title": "FallbackBankBody",
+      "type": "object"
+    },
+    "FallbackRule": {
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Lines",
+          "type": "array"
+        },
+        "when": {
+          "enum": [
+            "gives_location",
+            "offers_help",
+            "social",
+            "social_high",
+            "social_low",
+            "asks_intel",
+            "asks_intel_nl",
+            "identity_probe",
+            "default"
+          ],
+          "title": "When",
+          "type": "string"
+        }
+      },
+      "required": [
+        "when",
+        "lines"
+      ],
+      "title": "FallbackRule",
+      "type": "object"
+    },
+    "InstrumentArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/InstrumentBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "instrument",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "InstrumentArtifact",
+      "type": "object"
+    },
+    "InstrumentBody": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "enum": [
+            "session",
+            "per_answered_crate",
+            "per_teammate_seat"
+          ],
+          "title": "Applies To",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Item"
+          },
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        },
+        "order": {
+          "const": "fixed",
+          "title": "Order",
+          "type": "string"
+        },
+        "response": {
+          "$ref": "#/$defs/ItemResponse"
+        }
+      },
+      "required": [
+        "applies_to",
+        "order",
+        "response",
+        "items"
+      ],
+      "title": "InstrumentBody",
+      "type": "object"
+    },
+    "Item": {
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Item Id",
+          "type": "string"
+        },
+        "options": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Options"
+        },
+        "skippable": {
+          "title": "Skippable",
+          "type": "boolean"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id",
+        "text",
+        "skippable"
+      ],
+      "title": "Item",
+      "type": "object"
+    },
+    "ItemResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "counts_only_after_input": {
+          "const": true,
+          "title": "Counts Only After Input",
+          "type": "boolean"
+        },
+        "max": {
+          "title": "Max",
+          "type": "integer"
+        },
+        "max_label": {
+          "title": "Max Label",
+          "type": "string"
+        },
+        "min": {
+          "title": "Min",
+          "type": "integer"
+        },
+        "min_label": {
+          "title": "Min Label",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "likert",
+            "slider",
+            "free_text"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "min",
+        "max",
+        "min_label",
+        "max_label",
+        "counts_only_after_input"
+      ],
+      "title": "ItemResponse",
+      "type": "object"
+    },
+    "LowTimeState": {
+      "additionalProperties": false,
+      "properties": {
+        "from_active_s": {
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "From Active S",
+          "type": "integer"
+        },
+        "style": {
+          "const": "low_time",
+          "title": "Style",
+          "type": "string"
+        },
+        "until_active_s": {
+          "enum": [
+            300,
+            360
+          ],
+          "title": "Until Active S",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "from_active_s",
+        "until_active_s",
+        "style"
+      ],
+      "title": "LowTimeState",
+      "type": "object"
+    },
+    "MaterialReferenceArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/MaterialReferenceBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "material_reference",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "MaterialReferenceArtifact",
+      "type": "object"
+    },
+    "MaterialReferenceBody": {
+      "additionalProperties": false,
+      "description": "A participant-facing material. Unresolved versions only name where the reference copy\nlives and which decision freezes it; published versions also carry the literal copy in\n``text``. Placeholders bind in preview/QA only, never in live.",
+      "properties": {
+        "freeze_decision": {
+          "enum": [
+            "D01",
+            "D02",
+            "D03",
+            "D04",
+            "D05",
+            "D06",
+            "D07",
+            "D08",
+            "D09",
+            "D10",
+            "D11",
+            "D12",
+            "D13",
+            "D14"
+          ],
+          "title": "Freeze Decision",
+          "type": "string"
+        },
+        "material": {
+          "enum": [
+            "consent",
+            "training",
+            "debrief"
+          ],
+          "title": "Material",
+          "type": "string"
+        },
+        "reference_copy": {
+          "minLength": 1,
+          "title": "Reference Copy",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MaterialText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "material",
+        "reference_copy",
+        "freeze_decision"
+      ],
+      "title": "MaterialReferenceBody",
+      "type": "object"
+    },
+    "MaterialSection": {
+      "additionalProperties": false,
+      "description": "A titled or untitled run of paragraphs inside published participant copy.",
+      "properties": {
+        "paragraphs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Paragraphs",
+          "type": "array"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        }
+      },
+      "required": [
+        "paragraphs"
+      ],
+      "title": "MaterialSection",
+      "type": "object"
+    },
+    "MaterialText": {
+      "additionalProperties": false,
+      "description": "Literal participant-facing copy carried by a ``material_reference`` version (BA-37).\n\nWhen present, the served copy IS this body — the client renders it verbatim and never\nsubstitutes component literals. ``None`` marks an unresolved placeholder version whose\nwording is still a pointer to ``reference_copy``.",
+      "properties": {
+        "accept_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accept Label"
+        },
+        "decline_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Decline Label"
+        },
+        "heading": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Heading"
+        },
+        "question": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Question"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/MaterialSection"
+          },
+          "minItems": 1,
+          "title": "Sections",
+          "type": "array"
+        },
+        "subheading": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Subheading"
+        }
+      },
+      "required": [
+        "sections"
+      ],
+      "title": "MaterialText",
+      "type": "object"
+    },
+    "PaymentPolicyArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/PaymentPolicyBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "payment_policy",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "PaymentPolicyArtifact",
+      "type": "object"
+    },
+    "PaymentPolicyBody": {
+      "additionalProperties": false,
+      "properties": {
+        "activatable": {
+          "title": "Activatable",
+          "type": "boolean"
+        },
+        "base_cents": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Base Cents"
+        },
+        "bonus": {
+          "$ref": "#/$defs/BonusPolicy"
+        },
+        "currency": {
+          "const": "USD",
+          "title": "Currency",
+          "type": "string"
+        },
+        "technical_stop": {
+          "enum": [
+            "unresolved_d04",
+            "base_paid",
+            "base_withheld"
+          ],
+          "title": "Technical Stop",
+          "type": "string"
+        }
+      },
+      "required": [
+        "currency",
+        "base_cents",
+        "bonus",
+        "activatable",
+        "technical_stop"
+      ],
+      "title": "PaymentPolicyBody",
+      "type": "object"
+    },
+    "PressureRemark": {
+      "additionalProperties": false,
+      "description": "One teammate chat line reinforcing the arm's workload level.\n\n``speaker`` is positional: ``first`` is the seat drawn by the per-session fair coin,\n``second`` is the other seat — so speaker identity is balanced, never fixed to JT.\n\n``mixed_lines`` (v15, 2026-10-17): under the ``mixed`` arm the two seats carry\ndifferent scripted workload levels, so the delivered line is keyed by the\n*speaker's* level — ``{\"high\": ..., \"low\": ...}`` — resolved at delivery from\nthe session's recorded check-in ``assigned_values``. ``lines`` keeps\nwhole-arm text for the paired-level arms (high/low/eval/control); \"mixed\" is\nnot a valid ``lines`` key because one line cannot describe both seats.",
+      "properties": {
+        "at_active_s": {
+          "exclusiveMaximum": 360,
+          "minimum": 1,
+          "title": "At Active S",
+          "type": "integer"
+        },
+        "lines": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "propertyNames": {
+            "enum": [
+              "high",
+              "low",
+              "eval",
+              "control",
+              "mixed"
+            ]
+          },
+          "title": "Lines",
+          "type": "object"
+        },
+        "mixed_lines": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "propertyNames": {
+                "enum": [
+                  "high",
+                  "low"
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mixed Lines"
+        },
+        "speaker": {
+          "enum": [
+            "first",
+            "second"
+          ],
+          "title": "Speaker",
+          "type": "string"
+        },
+        "speaker_level": {
+          "anyOf": [
+            {
+              "enum": [
+                "high",
+                "low"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Speaker Level"
+        }
+      },
+      "required": [
+        "at_active_s",
+        "speaker",
+        "lines"
+      ],
+      "title": "PressureRemark",
+      "type": "object"
+    },
+    "PressureRemarksArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/PressureRemarksBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "pressure_remarks",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "PressureRemarksArtifact",
+      "type": "object"
+    },
+    "PressureRemarksBody": {
+      "additionalProperties": false,
+      "description": "Fixed, arm-specific teammate remarks in the team chat (2026-10-09 pilot revision).\n\nDeterministic bound copy delivered identically in the AI and scripted teammate builds:\nit never passes through generation, so the generated-output gate does not apply.\nDelivered on the active clock, so a check-in pause cannot move it.",
+      "properties": {
+        "channel": {
+          "const": "team",
+          "title": "Channel",
+          "type": "string"
+        },
+        "remarks": {
+          "items": {
+            "$ref": "#/$defs/PressureRemark"
+          },
+          "maxItems": 6,
+          "minItems": 1,
+          "title": "Remarks",
+          "type": "array"
+        },
+        "seat_order": {
+          "const": "fair_coin_per_session",
+          "title": "Seat Order",
+          "type": "string"
+        }
+      },
+      "required": [
+        "remarks",
+        "seat_order",
+        "channel"
+      ],
+      "title": "PressureRemarksBody",
+      "type": "object"
+    },
+    "PromptArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/PromptBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "prompt",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "PromptArtifact",
+      "type": "object"
+    },
+    "PromptBody": {
+      "additionalProperties": false,
+      "properties": {
+        "placeholders": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Placeholders",
+          "type": "array"
+        },
+        "purpose": {
+          "enum": [
+            "assistant",
+            "social"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "purpose",
+        "text"
+      ],
+      "title": "PromptBody",
+      "type": "object"
+    },
+    "QaTimingOverlayArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/QaTimingOverlayBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "qa_timing_overlay",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "QaTimingOverlayArtifact",
+      "type": "object"
+    },
+    "QaTimingOverlayBody": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_modes": {
+          "items": {
+            "const": "qa",
+            "type": "string"
+          },
+          "title": "Allowed Modes",
+          "type": "array"
+        },
+        "analytic_eligible": {
+          "const": false,
+          "title": "Analytic Eligible",
+          "type": "boolean"
+        },
+        "clock_speed_factor": {
+          "maximum": 60,
+          "minimum": 2,
+          "title": "Clock Speed Factor",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "clock_speed_factor",
+        "analytic_eligible",
+        "allowed_modes"
+      ],
+      "title": "QaTimingOverlayBody",
+      "type": "object"
+    },
+    "RequestScriptArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/RequestScriptBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "request_script",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "RequestScriptArtifact",
+      "type": "object"
+    },
+    "RequestScriptBody": {
+      "additionalProperties": false,
+      "properties": {
+        "selection": {
+          "enum": [
+            "single_template",
+            "uniform_per_request",
+            "uniform_without_replacement"
+          ],
+          "title": "Selection",
+          "type": "string"
+        },
+        "templates": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Templates",
+          "type": "array"
+        }
+      },
+      "required": [
+        "templates",
+        "selection"
+      ],
+      "title": "RequestScriptBody",
+      "type": "object"
+    },
+    "RubricCategory": {
+      "additionalProperties": false,
+      "properties": {
+        "category_id": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Category Id",
+          "type": "string"
+        },
+        "definition": {
+          "minLength": 1,
+          "title": "Definition",
+          "type": "string"
+        },
+        "examples": {
+          "items": {
+            "$ref": "#/$defs/RubricExample"
+          },
+          "minItems": 1,
+          "title": "Examples",
+          "type": "array"
+        }
+      },
+      "required": [
+        "category_id",
+        "definition",
+        "examples"
+      ],
+      "title": "RubricCategory",
+      "type": "object"
+    },
+    "RubricExample": {
+      "additionalProperties": false,
+      "properties": {
+        "codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Codes",
+          "type": "array"
+        },
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "codes"
+      ],
+      "title": "RubricExample",
+      "type": "object"
+    },
+    "SeatVoice": {
+      "additionalProperties": false,
+      "properties": {
+        "after_share": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "After Share",
+          "type": "array"
+        },
+        "greetings": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Greetings",
+          "type": "array"
+        },
+        "no_news": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "No News",
+          "type": "array"
+        },
+        "thanks": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Thanks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "greetings"
+      ],
+      "title": "SeatVoice",
+      "type": "object"
+    },
+    "SourceAnchor": {
+      "additionalProperties": false,
+      "description": "Where the content comes from: a behavior/defect ID in the reference fixtures, a demo line\nrange, a spec section, or ``authored`` for new proposed wording.",
+      "properties": {
+        "ref": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "title": "SourceAnchor",
+      "type": "object"
+    },
+    "VoiceBankArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/VoiceBankBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "voice_bank",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "VoiceBankArtifact",
+      "type": "object"
+    },
+    "VoiceBankBody": {
+      "additionalProperties": false,
+      "properties": {
+        "repeat_policy": {
+          "enum": [
+            "no_repeat_until_exhausted",
+            "uniform_with_replacement"
+          ],
+          "title": "Repeat Policy",
+          "type": "string"
+        },
+        "seats": {
+          "additionalProperties": {
+            "$ref": "#/$defs/SeatVoice"
+          },
+          "propertyNames": {
+            "enum": [
+              "JT",
+              "PM"
+            ]
+          },
+          "title": "Seats",
+          "type": "object"
+        }
+      },
+      "required": [
+        "seats",
+        "repeat_policy"
+      ],
+      "title": "VoiceBankBody",
+      "type": "object"
+    },
+    "WarningArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "body": {
+          "$ref": "#/$defs/WarningBody"
+        },
+        "decisions": {
+          "default": [],
+          "items": {
+            "enum": [
+              "D01",
+              "D02",
+              "D03",
+              "D04",
+              "D05",
+              "D06",
+              "D07",
+              "D08",
+              "D09",
+              "D10",
+              "D11",
+              "D12",
+              "D13",
+              "D14"
+            ],
+            "type": "string"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "kind": {
+          "const": "warning",
+          "title": "Kind",
+          "type": "string"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "investigators.artifact/1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 1,
+          "title": "Sources",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "reference",
+            "proposed_unapproved",
+            "approved",
+            "unresolved_placeholder"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "version",
+        "status",
+        "sources",
+        "kind",
+        "body"
+      ],
+      "title": "WarningArtifact",
+      "type": "object"
+    },
+    "WarningBody": {
+      "additionalProperties": false,
+      "properties": {
+        "arm_invariant": {
+          "const": true,
+          "title": "Arm Invariant",
+          "type": "boolean"
+        },
+        "delivery": {
+          "$ref": "#/$defs/WarningDelivery"
+        },
+        "exposure": {
+          "$ref": "#/$defs/WarningExposure"
+        },
+        "low_time_state": {
+          "$ref": "#/$defs/LowTimeState"
+        },
+        "sender": {
+          "const": "system",
+          "title": "Sender",
+          "type": "string"
+        },
+        "teammate_voice": {
+          "const": false,
+          "title": "Teammate Voice",
+          "type": "boolean"
+        },
+        "text": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "trigger": {
+          "$ref": "#/$defs/WarningTrigger"
+        }
+      },
+      "required": [
+        "text",
+        "sender",
+        "teammate_voice",
+        "arm_invariant",
+        "trigger",
+        "low_time_state",
+        "delivery",
+        "exposure"
+      ],
+      "title": "WarningBody",
+      "type": "object"
+    },
+    "WarningDelivery": {
+      "additionalProperties": false,
+      "properties": {
+        "logical_job_key": {
+          "pattern": "^warning\\.[a-z0-9_]+\\.v[0-9]+$",
+          "title": "Logical Job Key",
+          "type": "string"
+        },
+        "pauses_with": {
+          "const": "active_task_clock",
+          "title": "Pauses With",
+          "type": "string"
+        },
+        "per_session": {
+          "const": 1,
+          "title": "Per Session",
+          "type": "integer"
+        },
+        "waits_on": {
+          "default": [],
+          "maxItems": 0,
+          "minItems": 0,
+          "title": "Waits On",
+          "type": "array"
+        },
+        "when_task_closed": {
+          "const": "suppress_and_log",
+          "title": "When Task Closed",
+          "type": "string"
+        }
+      },
+      "required": [
+        "per_session",
+        "logical_job_key",
+        "when_task_closed",
+        "pauses_with"
+      ],
+      "title": "WarningDelivery",
+      "type": "object"
+    },
+    "WarningExposure": {
+      "additionalProperties": false,
+      "properties": {
+        "receipts": {
+          "items": {
+            "enum": [
+              "commit",
+              "receive",
+              "render"
+            ],
+            "type": "string"
+          },
+          "title": "Receipts",
+          "type": "array"
+        },
+        "record": {
+          "const": "warning_exposure",
+          "title": "Record",
+          "type": "string"
+        }
+      },
+      "required": [
+        "record",
+        "receipts"
+      ],
+      "title": "WarningExposure",
+      "type": "object"
+    },
+    "WarningTrigger": {
+      "additionalProperties": false,
+      "properties": {
+        "at_active_s": {
+          "exclusiveMaximum": 360,
+          "minimum": 1,
+          "title": "At Active S",
+          "type": "integer"
+        },
+        "clock_basis": {
+          "const": "active_task",
+          "title": "Clock Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clock_basis",
+        "at_active_s"
+      ],
+      "title": "WarningTrigger",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "checkin_copy": "#/$defs/CheckinCopyArtifact",
+      "coding_corpus": "#/$defs/CodingCorpusArtifact",
+      "coding_prompt": "#/$defs/CodingPromptArtifact",
+      "coding_rubric": "#/$defs/CodingRubricArtifact",
+      "exposure_copy": "#/$defs/ExposureCopyArtifact",
+      "fallback_bank": "#/$defs/FallbackBankArtifact",
+      "instrument": "#/$defs/InstrumentArtifact",
+      "material_reference": "#/$defs/MaterialReferenceArtifact",
+      "payment_policy": "#/$defs/PaymentPolicyArtifact",
+      "pressure_remarks": "#/$defs/PressureRemarksArtifact",
+      "prompt": "#/$defs/PromptArtifact",
+      "qa_timing_overlay": "#/$defs/QaTimingOverlayArtifact",
+      "request_script": "#/$defs/RequestScriptArtifact",
+      "voice_bank": "#/$defs/VoiceBankArtifact",
+      "warning": "#/$defs/WarningArtifact"
+    },
+    "propertyName": "kind"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/WarningArtifact"
+    },
+    {
+      "$ref": "#/$defs/RequestScriptArtifact"
+    },
+    {
+      "$ref": "#/$defs/VoiceBankArtifact"
+    },
+    {
+      "$ref": "#/$defs/FallbackBankArtifact"
+    },
+    {
+      "$ref": "#/$defs/PromptArtifact"
+    },
+    {
+      "$ref": "#/$defs/CheckinCopyArtifact"
+    },
+    {
+      "$ref": "#/$defs/PressureRemarksArtifact"
+    },
+    {
+      "$ref": "#/$defs/ExposureCopyArtifact"
+    },
+    {
+      "$ref": "#/$defs/InstrumentArtifact"
+    },
+    {
+      "$ref": "#/$defs/MaterialReferenceArtifact"
+    },
+    {
+      "$ref": "#/$defs/PaymentPolicyArtifact"
+    },
+    {
+      "$ref": "#/$defs/QaTimingOverlayArtifact"
+    },
+    {
+      "$ref": "#/$defs/CodingRubricArtifact"
+    },
+    {
+      "$ref": "#/$defs/CodingPromptArtifact"
+    },
+    {
+      "$ref": "#/$defs/CodingCorpusArtifact"
+    }
+  ]
+}

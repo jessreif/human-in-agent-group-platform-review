@@ -1,0 +1,438 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "coding_corpus",
+  "artifact_id": "coding.corpus_dev",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D05", "D11"],
+  "sources": [
+    {"ref": "INV-1203 blinded development corpus"},
+    {"ref": "INV-1209 expected-vs-actual validation suite"},
+    {"ref": "spec §9.4 coding/validation, §12.2 held-out corpus split"},
+    {"ref": "staff-authored paraphrase and adversarial cases, authored for this corpus"}
+  ],
+  "notes": [
+    "Blinded DEVELOPMENT corpus v1. Synthetic/staff-authored/generated/fallback text only; contains no real pilot data. Immutable: corrections publish a new artifact version. Reported separately from any future real held-out corpus (WP12b) — corpus_kind=development forever, and development metrics never stand in for human-gold validation."
+  ],
+  "body": {
+    "corpus_kind": "development",
+    "blinding_policy": "Staff-authored gold was written against the rubric text before inspecting coder output; synthetic and generated cases were authored from the rubric only. Evaluators run expected-vs-actual with case order shuffled by the runner; reviewers must not read actual coder output before signing off expected labels.",
+    "unavoidable_unmasking": [
+      "Authorship tags (synthetic/staff_authored/generated/fallback) and the adversarial flag are visible in the artifact — blinded scoring masks them at evaluation time, but the corpus file itself is not blinded.",
+      "The deterministic coder is rules-based, so corpus cases necessarily resemble rubric examples; residual leakage is documented rather than eliminated — real held-out human gold (WP12b) remains the binding validation.",
+      "Case ids encode the phenomenon under test (e.g. dev.negated_arrival); scorers treat ids as opaque during review."
+    ],
+    "cases": [
+      {
+        "case_id": "dev.basic_arrival_asserted",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-3-blackwell-dep", "crate": 3, "location_id": "Blackwell Storage", "event_type": "departure"}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Crate 8 arrived at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "event_type": "arrival", "assertion": "asserted", "stance": "no_stance", "inference": false, "novelty": "first_introduction", "novel_to_recipient": true, "span_text": "arrived at The Marina"}
+          ],
+          "n_questions": 0,
+          "n_solicitations": 0
+        }
+      },
+      {
+        "case_id": "dev.acknowledgment_only",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "staff_authored",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Thanks!"},
+        "expected": {"status": "coded", "assertions": [], "n_questions": 0, "n_solicitations": 0, "acknowledgment_only": true}
+      },
+      {
+        "case_id": "dev.stance_endorse_fresh",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "staff_authored",
+        "adversarial": false,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-8-marina-arr", "crate": 8, "location_id": "The Marina", "event_type": "arrival"}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Right — crate 8's Marina card is the fresh one."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "event_type": "still_at", "assertion": "asserted", "stance": "endorse", "novelty": "other_source_repetition", "novel_to_recipient": false}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.wrong_crate_reference",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-8-marina-arr", "crate": 8, "location_id": "The Marina", "event_type": "arrival"}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Crate 7 arrived at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 7, "location_id": "The Marina", "event_type": "arrival", "assertion": "asserted", "novelty": "first_introduction", "novel_to_recipient": true}
+          ]
+        },
+        "blinding_note": "Crate id must bind the lineage — a naive location-only match would wrongly call this a repetition of the crate-8 Marina record."
+      },
+      {
+        "case_id": "dev.negated_arrival",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 3 did not arrive at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 3, "location_id": "The Marina", "event_type": "arrival", "assertion": "negated", "novelty": "unresolved", "novel_to_recipient": false, "span_text": "did not arrive at The Marina"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.never_left",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 8 never left Blackwell Storage."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "Blackwell Storage", "event_type": "departure", "assertion": "negated"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.stale_record_challenge",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [
+          {"kind": "message", "seq": 1, "actor": "JT", "scope": "broadcast", "body": "Crate 8 departed Blackwell Storage."}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "JT says crate 8 is at The Marina, but that record is old."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "assertion": "uncertain", "stance": "contradict", "attribution": "JT", "temporal_challenge": true, "novelty": "unresolved"}
+          ]
+        },
+        "blinding_note": "Quoted disagreement: the speaker challenges the attributed source rather than owning the claim."
+      },
+      {
+        "case_id": "dev.transit_not_arrival",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 4 is heading to The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 4, "location_id": "The Marina", "event_type": "transit", "assertion": "asserted", "novelty": "first_introduction"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.departure_not_arrival",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-3-blackwell-arr", "crate": 3, "location_id": "Blackwell Storage", "event_type": "arrival"}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Crate 3 departed Blackwell Storage."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 3, "location_id": "Blackwell Storage", "event_type": "departure", "assertion": "asserted", "novelty": "first_introduction", "novel_to_recipient": true}
+          ]
+        },
+        "blinding_note": "Departure supersedes the prior arrival in truth state but is a distinct assertion event — it is new evidence, not a repetition of the arrival."
+      },
+      {
+        "case_id": "dev.stale_record_silent",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-3-blackwell-arr", "crate": 3, "location_id": "Blackwell Storage", "event_type": "arrival"},
+          {"kind": "record", "seq": 2, "actor": "PM", "scope": "broadcast", "record_id": "r-3-blackwell-dep", "crate": 3, "location_id": "Blackwell Storage", "event_type": "departure"}
+        ],
+        "subject": {"seq": 3, "actor": "participant", "channel": "team", "body": "Crate 3 is at Blackwell Storage."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 3, "location_id": "Blackwell Storage", "event_type": "still_at", "assertion": "asserted", "novelty": "unresolved", "novel_to_recipient": false}
+          ]
+        },
+        "blinding_note": "Chronology edge: the arrival lineage went stale when the departure landed; the restatement cannot be 'novel' and cannot silently re-endorse the arrival."
+      },
+      {
+        "case_id": "dev.own_file_restatement_novel_to_team",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "participant_file", "record_id": "r-8-marina-arr", "crate": 8, "location_id": "The Marina", "event_type": "arrival"}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Crate 8 is at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "event_type": "still_at", "assertion": "asserted", "novelty": "other_source_repetition", "novel_to_recipient": true}
+          ]
+        },
+        "blinding_note": "Recipient-specific novelty: the record was only in the participant's file, so the broadcast restatement is a repetition in lineage but still novel to the team recipients."
+      },
+      {
+        "case_id": "dev.self_repetition_paraphrase",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [
+          {"kind": "message", "seq": 1, "actor": "participant", "scope": "broadcast", "body": "Crate 5 arrived at Blackwell Storage."}
+        ],
+        "subject": {"seq": 2, "actor": "participant", "channel": "team", "body": "Crate 5 is at Blackwell Storage."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 5, "location_id": "Blackwell Storage", "event_type": "still_at", "assertion": "asserted", "novelty": "self_repetition", "novel_to_recipient": false}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.repeated_lineage_multi_channel",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-2-saw-arr", "crate": 2, "location_id": "The Sawmill", "event_type": "arrival"},
+          {"kind": "message", "seq": 2, "actor": "PM", "scope": "broadcast", "body": "Crate 2 arrived at The Sawmill."}
+        ],
+        "subject": {"seq": 3, "actor": "participant", "channel": "team", "body": "Crate 2 is at The Sawmill."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 2, "location_id": "The Sawmill", "event_type": "still_at", "assertion": "asserted", "novelty": "other_source_repetition", "novel_to_recipient": false}
+          ]
+        },
+        "blinding_note": "Multiple channels repeating one record stay one lineage; the broadcast match must not double-count or call this novel."
+      },
+      {
+        "case_id": "dev.solicitation_specific",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Anything useful for my crate 3?", "context_crate": 3},
+        "expected": {"status": "coded", "assertions": [], "n_questions": 1, "n_solicitations": 1, "solicitation_crates": [3]}
+      },
+      {
+        "case_id": "dev.solicitation_general",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Send me whatever records you have."},
+        "expected": {"status": "coded", "assertions": [], "n_questions": 0, "n_solicitations": 1, "solicitation_crates": []}
+      },
+      {
+        "case_id": "dev.inference_marker",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "generated",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 8 is at The Marina because the storm moved it."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "assertion": "asserted", "inference": true}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.uncertainty_hedge",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "generated",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 8 might be at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "assertion": "uncertain"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.late_restatement",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [
+          {"kind": "record", "seq": 1, "actor": "JT", "scope": "broadcast", "record_id": "r-8-marina-arr", "crate": 8, "location_id": "The Marina", "event_type": "arrival"},
+          {"kind": "message", "seq": 2, "actor": "PM", "scope": "broadcast", "body": "Send me whatever records you have."},
+          {"kind": "message", "seq": 4, "actor": "PM", "scope": "broadcast", "body": "Thanks!"}
+        ],
+        "subject": {"seq": 5, "actor": "participant", "channel": "team", "body": "Crate 8 arrived at The Marina."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "event_type": "arrival", "assertion": "asserted", "novelty": "other_source_repetition", "novel_to_recipient": false}
+          ]
+        },
+        "blinding_note": "Late response: a restatement after unrelated traffic must still resolve to the existing lineage, not count as novel."
+      },
+      {
+        "case_id": "dev.fallback_neutral_ack",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "fallback",
+        "adversarial": false,
+        "history": [
+          {"kind": "message", "seq": 1, "actor": "participant", "scope": "broadcast", "body": "Crate 8 is at The Marina."}
+        ],
+        "subject": {"seq": 2, "actor": "JT", "channel": "team", "body": "good to know, thanks"},
+        "expected": {"status": "coded", "assertions": [], "acknowledgment_only": true},
+        "blinding_note": "Exact fallback line from fallbacks.neutral@v1 (gives_location rule): an acknowledgment, never evidence."
+      },
+      {
+        "case_id": "dev.abstain_no_referent",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "What about the one near the dock?"},
+        "expected": {"status": "abstained", "assertions": [], "n_questions": 0, "n_solicitations": 0}
+      },
+      {
+        "case_id": "dev.abstain_conflicting_locations",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 5 was at The Marina and also at Blackwell Storage."},
+        "expected": {"status": "abstained", "assertions": []}
+      },
+      {
+        "case_id": "dev.quoted_disagreement_other",
+        "study_key": "investigators_peer_eval",
+        "arm": "eval",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "I think crate 8 is at The Marina, but JT disagrees."},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 8, "location_id": "The Marina", "assertion": "hedged", "stance": "uncertain", "attribution": "JT"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.off_crate_claim",
+        "study_key": "investigators_time_pressure",
+        "arm": "low",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Crate 7 is at The Marina.", "context_crate": 3},
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 7, "location_id": "The Marina", "off_crate": true, "novelty": "first_introduction"}
+          ]
+        }
+      },
+      {
+        "case_id": "dev.attachment_bypass",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "synthetic",
+        "adversarial": true,
+        "history": [],
+        "subject": {
+          "seq": 1,
+          "actor": "participant",
+          "channel": "team",
+          "body": "fyi",
+          "attachments": [
+            {"record_id": "r-6-bunker-arr", "crate": 6, "location_id": "Ridgeline Bunker", "event_type": "arrival"}
+          ]
+        },
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 6, "location_id": "Ridgeline Bunker", "event_type": "arrival", "assertion": "asserted", "stance": "no_stance", "novelty": "attachment", "novel_to_recipient": true}
+          ],
+          "acknowledgment_only": false
+        },
+        "blinding_note": "Authenticated attachment: 'fyi' carries no semantics; the assertion comes from the record, not the text."
+      },
+      {
+        "case_id": "dev.attachment_wrong_text",
+        "study_key": "investigators_peer_eval",
+        "arm": "control",
+        "source": "staff_authored",
+        "adversarial": true,
+        "history": [],
+        "subject": {
+          "seq": 1,
+          "actor": "participant",
+          "channel": "team",
+          "body": "Crate 7 is at The Marina.",
+          "attachments": [
+            {"record_id": "r-6-bunker-arr", "crate": 6, "location_id": "Ridgeline Bunker", "event_type": "arrival"}
+          ]
+        },
+        "expected": {
+          "status": "coded",
+          "assertions": [
+            {"crate": 6, "location_id": "Ridgeline Bunker", "event_type": "arrival", "assertion": "asserted", "novelty": "attachment"}
+          ]
+        },
+        "blinding_note": "Structured evidence is authoritative: the body names a different crate and is ignored for the attached claim."
+      },
+      {
+        "case_id": "dev.question_evidence_hypothesis",
+        "study_key": "investigators_time_pressure",
+        "arm": "high",
+        "source": "synthetic",
+        "adversarial": false,
+        "history": [],
+        "subject": {"seq": 1, "actor": "participant", "channel": "team", "body": "Did crate 3 arrive at The Marina?"},
+        "expected": {"status": "coded", "assertions": [], "n_questions": 1, "n_solicitations": 0}
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+ "schema_version": "investigators.artifact/1",
+ "kind": "material_reference",
+ "artifact_id": "training.reference",
+ "version": 6,
+ "status": "approved",
+ "decisions": [],
+ "sources": [
+  {
+   "ref": "demo_constants.shared.DEMO_ENTRIES"
+  },
+  {
+   "ref": "spec §2.1 training, §5.2"
+  }
+ ],
+ "notes": [
+  "v6 (2026-10-12, owner direction — UX_Feedback_v9): three participant-usability fixes. (1) 'Your workspace' gains a bolded final bullet immediately above Continue: 'All intelligence is accurate as of the time it was recorded, but a crate may have changed locations later. Your goal is to identify where the crate is now.' (2) 'Connecting you to your team' gains a reminder below 'The clock starts when all of you have pressed Start': 'Remember: Your goal is to identify the current location of your assigned crates. You and your teammates will each receive time-stamped intelligence that will help you solve the mystery. Be sure to scroll through your case file and check your record for each crate, including the day, time, and location.' (3) Practice page 1 gates on the share ALONE — the typed intel ask stays available as optional practice (invalid text still rejected practice_ask_invalid; the canned card still returns) but practice_ask_required is retired after a v10-pilot participant dead-ended on the combined requirement and reported it as an error. The reply-card sentence softens to 'A teammate may answer with a card like the ones above.' Reference copy only — rendered text lives in frontend source.",
+  "v5 (2026-10-12, owner direction — ask-routing fixes after live-log review): page 1 of training now requires a typed practice ask in addition to the practice share — live logs showed most participants never asked teammates for intel. The ask text must name a crate and read like an ask (the same classifier the task chat uses); a canned teammate card comes back in the reply, and completion is refused with practice_ask_required until an accepted practice ask exists (nl_only profiles only — structured-mode profiles keep the picker). Reference copy only — rendered text lives in frontend source.",
+  "v4 (2026-10-10, owner direction): the training flow gains a five-item true/false comprehension check as the final screen before 'Connecting you to your team' — the server holds the answer key, wrong answers are returned for highlighting, retries are allowed, and every attempt is recorded; completion requires a zero-miss attempt (still gated on the committed practice share). The Case background bonus sentence softens to the eligibility frame to match consent.reference@v8: 'you are eligible to receive a bonus based on your performance'. Reference copy only — rendered text lives in frontend source.",
+  "v3 (2026-10-10, owner direction): reference copy gains the incentive-compatibility sentence in the Case background page — 'Your task will be to locate each of your four assigned crates, and as noted, you will receive a financial bonus for correctly locating your assigned crates.' Pairs with consent.reference@v7 and the task answer-bar bonus line; the bonus is paid to every completer (payment.s5_base_only@v5).",
+  "Training uses a separate fixed practice world and event namespace (INV-0901); practice never counts analytically.",
+  "Approved for live pilot fielding (2026-10-07, BA-99 audit remediation): body identical to the bound reference version; approved successor minted so the restored approved-only live gate binds only approved material."
+ ],
+ "body": {
+  "material": "training",
+  "reference_copy": "demo training screens and DEMO_ENTRIES (K3-04, K4-04)",
+  "freeze_decision": "D06"
+ }
+}

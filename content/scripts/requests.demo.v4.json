@@ -1,0 +1,35 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "request_script",
+  "artifact_id": "requests.demo",
+  "version": 4,
+  "status": "approved",
+  "decisions": [],
+  "sources": [
+    {
+      "ref": "REF-REQ-01"
+    },
+    {
+      "ref": "UX_Feedback_v4 item 10 (2026-10-05): scripted teammate requests must vary in phrasing"
+    },
+    {
+      "ref": "INVESTIGATORS_TEAM_EXPERIMENT_RISK_ASSESSMENT.md \u00a72.3 G6; owner remediation direction 2026-10-08"
+    }
+  ],
+  "notes": [
+    "Identical in both demos. Timing and targets live in the manifest; this is wording only.",
+    "v2 adds per-request template draws (uniform_per_request) so requests no longer read as one canned line; every template still names the crate with {n}.",
+    "Approved for live pilot fielding (2026-10-07, BA-99 audit remediation): body identical to the bound reference version; approved successor minted so the restored approved-only live gate binds only approved material.",
+    "Owner-approved successor 2026-10-08: retain all five approved template wordings, but select without replacement across the three scheduled requests (both seats combined). A keyed session-wide permutation preserves replay and retry determinism; no change to timing, targets, or cell contrast."
+  ],
+  "body": {
+    "templates": [
+      "Requesting intel on Crate {n}.",
+      "Do you have anything on Crate {n}?",
+      "Any updates on Crate {n}?",
+      "What does your file have on Crate {n}?",
+      "Could use whatever you have on Crate {n}."
+    ],
+    "selection": "uniform_without_replacement"
+  }
+}

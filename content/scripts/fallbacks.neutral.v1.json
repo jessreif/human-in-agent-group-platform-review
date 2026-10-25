@@ -1,0 +1,22 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "fallback_bank",
+  "artifact_id": "fallbacks.neutral",
+  "version": 1,
+  "status": "proposed_unapproved",
+  "decisions": ["D07"],
+  "sources": [{"ref": "authored"}, {"ref": "spec §7.3 neutral next-pilot script"}, {"ref": "INV-0705"}],
+  "notes": [
+    "Proposed for v2 profiles pending D07 content review. Removes busy/distracted cues ('bit swamped', 'deep in my own crates'), unsolicited 'stuck on <crate>' solicitations and memory claims ('adding that to my notes') from fallbacks.demo v1."
+  ],
+  "body": {
+    "classifier": "neutral_keyword_v2",
+    "rules": [
+      {"when": "gives_location", "lines": ["thanks, noted", "good to know, thanks"]},
+      {"when": "offers_help", "lines": ["thanks, appreciated", "thanks"]},
+      {"when": "social", "lines": ["doing fine, you?", "all good here"]},
+      {"when": "asks_intel", "lines": ["send me a request for it and i will pass along what i have"]},
+      {"when": "default", "lines": ["noted", "got it", "makes sense"]}
+    ]
+  }
+}

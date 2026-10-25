@@ -1,0 +1,17 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "voice_bank",
+  "artifact_id": "voices.tp_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D07"],
+  "sources": [{"ref": "demo_constants.shared.GREETINGS"}, {"ref": "REF-TIME-03"}],
+  "notes": ["The TP demo has greetings only; it has no thanks/noNews/afterShare pools (between-study difference, spec §2.2)."],
+  "body": {
+    "seats": {
+      "JT": {"greetings": ["Hi!", "Hello!", "Hey!"]},
+      "PM": {"greetings": ["Hi!", "Hello!", "Hey!"]}
+    },
+    "repeat_policy": "uniform_with_replacement"
+  }
+}

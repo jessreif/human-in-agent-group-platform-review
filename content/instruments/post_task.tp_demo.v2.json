@@ -1,0 +1,45 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "instrument",
+  "artifact_id": "post_task.tp_demo",
+  "version": 2,
+  "status": "reference",
+  "decisions": ["D06"],
+  "sources": [
+    {"ref": "demo_constants.time_pressure.ITEMS"},
+    {"ref": "tp demo line 214 (1-7 likert, anchors)"},
+    {"ref": "DEF-08"},
+    {"ref": "UX_Feedback_v4 item 14 (2026-10-05): teammate-nature suspicion check before debrief"}
+  ],
+  "notes": [
+    "Demo items are not a complete verified survey export (spec §9.1); the demo never saved these responses (DEF-08). Skips allowed per S5 (D06).",
+    "v2 appends tp_post_10 — a fixed-choice item asked immediately before debrief ('which best describes them?'). Choice items carry an options list; the recorded value is the option text."
+  ],
+  "body": {
+    "applies_to": "session",
+    "order": "fixed",
+    "response": {"type": "likert", "min": 1, "max": 7, "min_label": "Strongly disagree", "max_label": "Strongly agree", "counts_only_after_input": true},
+    "items": [
+      {"item_id": "tp_post_01", "text": "I had the information I needed to make good decisions.", "skippable": true},
+      {"item_id": "tp_post_02", "text": "There was important information that I did not have.", "skippable": true},
+      {"item_id": "tp_post_03", "text": "My teammates knew things that I did not.", "skippable": true},
+      {"item_id": "tp_post_04", "text": "The AI assistant was useful for this task.", "skippable": true},
+      {"item_id": "tp_post_05", "text": "Asking my teammates for information would have taken up time they did not have.", "skippable": true},
+      {"item_id": "tp_post_06", "text": "I expected my teammates to reply quickly if I asked them something.", "skippable": true},
+      {"item_id": "tp_post_07", "text": "My teammates were willing to help me.", "skippable": true},
+      {"item_id": "tp_post_08", "text": "My teammates seemed competent at the task.", "skippable": true},
+      {"item_id": "tp_post_09", "text": "After the check-in, I felt more rushed myself.", "skippable": true},
+      {
+        "item_id": "tp_post_10",
+        "text": "Thinking about the other two members of your team, which best describes them?",
+        "skippable": true,
+        "options": [
+          "All were human",
+          "Some were human, some were automated",
+          "All were automated",
+          "I am not sure"
+        ]
+      }
+    ]
+  }
+}

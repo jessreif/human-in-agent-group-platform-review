@@ -1,0 +1,18 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "instrument",
+  "artifact_id": "peer_ratings.pe_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D06"],
+  "sources": [{"ref": "REF-PE-05"}, {"ref": "pe demo lines 2066-2071"}, {"ref": "DEF-11"}],
+  "notes": ["Collected in BOTH PE arms. The demo forced both ratings (DEF-11); skips are allowed here per S5 (D06). Intro copy comes from the arm's exposure_copy.peer_intro."],
+  "body": {
+    "applies_to": "per_teammate_seat",
+    "order": "fixed",
+    "response": {"type": "likert", "min": 1, "max": 7, "min_label": "Not at all helpful", "max_label": "Extremely helpful", "counts_only_after_input": true},
+    "items": [
+      {"item_id": "peer_helpfulness", "text": "How helpful was {seat} during the task?", "skippable": true}
+    ]
+  }
+}

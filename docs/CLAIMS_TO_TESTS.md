@@ -1,0 +1,24 @@
+# Claims to tests
+
+Each guarantee the platform makes, and the test or evaluation behind it, as checked against this tree on 2026-10-21. **Verified** means the named command passed in a run recorded in `docs/EVALUATIONS.md`. **Implemented** means a test file exists but no recorded run confirms that specific claim. The non-integration suite passed (2098 passed, 482 deselected); that result alone does not promote a row whose own test was not the subject of the run.
+
+| Claim | Status | Test or evaluation | Latest result |
+|---|---|---|---|
+| Agent teammates never claim to be human. A question about whether a teammate is automated gets a fixed, truthful reply. | **Verified** for the detector on the 103-item corpus. The reply text is **Implemented** through `identity_line` and the fallback bank. | `backend/tests/test_adversarial_classifiers.py`, `test_automation_probe_corpus_agreement` | 2026-10-21: precision 1.00, recall 1.00, tp=85, fp=0, fn=0, tn=18. 5 passed in that file. |
+| Withheld design features are corrected in the debrief. | **Described only.** Consent withholds the automation fact, the assigned check-in ratings, and the bonus rule until the debrief. See `docs/DISCLOSURE.md`. | No automated test checks screen wording. | — |
+| The participant’s path follows the stage graph. | **Implemented.** `STAGES` in `backend/app/db/schema.py` and `backend/app/domain/stage_graph.py`. Comprehension is a training step, not its own stage. | Stage-graph tests under `backend/tests/`. | Not run as a separate command. |
+| Response delays follow the profile’s distributions. | **Implemented.** Parameters are in the profiles and `backend/app/timing/distributions.py`. | Timing unit tests under `backend/tests/`. | Not run as a separate command. Measured latencies were not recomputed. |
+| Every session records the published profile it ran under. | **Implemented.** Manifest id and hash are bound at session start. | Manifest publication and binding tests. | The pilot exports record the hashes; all five match `content/published/manifests.json`. |
+| Generated replies that leak task information, claim to be human, reveal instructions, or break other named rules are blocked and replaced by a bank line. | **Implemented.** `engines.validate_teammate_output`. Repetition is rechecked at delivery. | Checker tests under `backend/tests/`. | Detection rates on a fresh adversarial set were not computed. |
+| The validator version is `teammate_output_v8`. | **Implemented.** `engines.VALIDATOR_VERSION`. | Constant in code. | Many profile records still name `teammate_output_v7`, an outdated label. |
+| Recruitment and payment are kept apart from the research record. | **Implemented** for the payment policy files. The recruitment client here is a stub. | `scripts/_prolific.py` raises `RecruitmentClientStub`. | — |
+| Automation replies are never delayed and do not count toward the open-request cap. | **Described only.** | Not confirmed by a recorded test run. | — |
+| Conditions may differ only in the declared manipulation. | **Implemented** as `check_paired_arms`, which accepts any path under `manipulation.arm` and rejects every other difference. | Tests cover the model and bank-only pair `tp_ai_v4` and `tp_scripted_v6`. | Later pairs were not re-tested for byte equality. |
+| Simulated participants follow rules that can be checked against the session log. | **Implemented** in `backend/harness/`. | Harness tests under `backend/tests/`; full runs need a disposable database. | Run summaries are in `docs/evidence/*/run-*/summary.md`. |
+| Another lab can run the same local model, and commercial APIs are never used for sessions. | **Implemented** for the refusal in `backend/app/providers/select.py`. Running the model **Requires model**. | — | Weights are not included. |
+| The prompt builder version is `grounded_prompts_v7`. | **Implemented.** | `backend/app/services/prompts.py` | — |
+| The assistant claim checker is `assistant_output_claims_v5`. | **Implemented.** | `backend/app/services/output_claims.py` | — |
+| Decoding uses temperature 0.2, max_tokens 400, seed `derived_session_job_v1`, and reasoning effort `none_when_supported`. | **Implemented** in `backend/app/services/generation_policy.py`. top_p, top_k, num_ctx, and stop sequences are not set. | — | **Requires model** to observe generations. |
+| An LLM codes open-ended responses. | **Planned.** The coder path is dormant. | A test checks the dormant path. | No reliability statistics exist. |
+| The database has 49 tables. | **Verified** as a count of `Table(` calls in `schema.py` on 2026-10-21. | Recorded in `docs/DATA_DICTIONARY.md`. | Not a live database catalog. |
+| There are 15 simulated-participant strategies. | **Described only.** Counted from `backend/harness/personas.py`, including `qa_asker`. | — | — |

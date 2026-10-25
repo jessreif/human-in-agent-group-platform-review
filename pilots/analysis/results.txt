@@ -1,0 +1,543 @@
+
+
+====================================================================================================
+0. FUNNEL / ATTRITION
+====================================================================================================
+     
+      abandoned completion technical_stop
+  S30         5         30              1
+  S60        12         60              2
+                      stage
+cond                   abandoned completion technical_stop
+  high                         1         15              1
+  mixed                        4         15              0
+  tp_ai_ovnone_thin_v3         3         15              0
+  tp_ai_ovnone_v3              5         15              2
+  tp_ai_ovsome_thin_v3         3         15              0
+  tp_ai_ovsome_v3              1         15              0
+S60 Fisher test completion ~ condition: p = 0.28 
+S30 Fisher test completion ~ condition: p = 0.662 
+
+
+====================================================================================================
+1. STUDY 1 (S60): CASE-FILE OVERLAP (none/some) x CASE-FILE SIZE (full/thin), n = 15/cell
+====================================================================================================
+
+--- Cell means (SD) ---
+                name        none/full        none/thin        some/full        some/thin                                    label
+          n_req_msgs      1.53 (1.30)      1.13 (1.19)      1.60 (1.45)      1.93 (2.25)            Request messages (hand-coded)
+             any_req      0.80 (0.41)      0.67 (0.49)      0.73 (0.46)      0.73 (0.46)                        Any request (0/1)
+        n_req_crates      1.80 (1.42)      1.40 (1.55)      1.67 (1.54)      1.60 (1.50)                Distinct crates requested
+        n_parsed_req      1.73 (1.53)      1.40 (1.45)      1.67 (1.63)      2.47 (2.59)               Requests (platform parser)
+         first_req_s   139.30 (69.50)   133.90 (57.61)   127.77 (56.62)   146.97 (72.48)              Active sec to first request
+             n_offer      0.00 (0.00)      0.07 (0.26)      0.07 (0.26)      0.07 (0.26)                           Offers of help
+       n_intel_typed      0.07 (0.26)      0.47 (0.74)      0.40 (0.74)      0.67 (1.05)                     Typed intel messages
+              n_msgs      2.60 (1.59)      2.93 (2.40)      3.73 (2.58)      4.80 (3.49)                 All participant messages
+   n_sched_fulfilled      3.40 (1.55)      2.73 (1.49)      2.73 (1.71)      2.53 (1.81)       Teammate requests fulfilled (of 5)
+            n_shares     8.80 (11.40)      5.00 (4.50)      6.73 (6.99)      7.73 (5.91)                   Records shared (total)
+  n_shares_proactive     5.40 (12.24)      2.27 (4.73)      4.00 (6.27)      5.20 (5.85)                        Unprompted shares
+       correct_total      2.00 (1.07)      2.27 (0.96)      1.93 (1.22)      2.73 (0.96)                           Correct (of 4)
+         correct_own      1.40 (0.74)      1.67 (0.62)      1.27 (0.80)      1.87 (0.52)           Correct own-file crates (of 2)
+        correct_team      0.60 (0.91)      0.60 (0.63)      0.67 (0.82)      0.87 (0.83)     Correct team-dependent crates (of 2)
+           conf_mean    65.86 (15.70)    72.77 (24.52)    72.82 (18.50)    80.85 (19.14)                  Mean confidence (0-100)
+         file_viewed     47.60 (7.55)     21.27 (1.28)     45.73 (7.39)     21.33 (2.61)                 Case-file records viewed
+       file_coverage      0.94 (0.15)      1.00 (0.00)      0.94 (0.16)      0.97 (0.07)             File coverage (share viewed)
+        file_dwell_s 2708.30 (909.46) 2677.31 (852.74) 2827.77 (853.30) 2573.73 (951.30)      File dwell (s, summed record-level)
+ own_records_in_file     10.17 (0.37)      4.28 (0.30)     10.12 (0.35)      4.43 (0.43)            Records in file per own crate
+          tp_post_01      5.00 (1.20)      5.27 (1.16)      5.00 (1.25)      5.40 (1.30)                          Had info needed
+          tp_post_02      5.00 (1.46)      4.53 (2.10)      4.40 (1.96)      4.20 (2.11)                  Important info I lacked
+          tp_post_03      5.53 (1.51)      5.13 (1.85)      5.47 (1.51)      4.33 (2.19)           Teammates knew things I didn't
+          tp_post_05      4.33 (1.59)      3.47 (1.73)      3.20 (1.90)      3.33 (2.09) Asking would take teammates' scarce time
+          tp_post_06      4.93 (1.28)      5.53 (0.83)      5.60 (1.12)      5.33 (1.29)                   Expected quick replies
+          tp_post_07      5.60 (1.55)      5.93 (1.03)      5.53 (1.25)      5.87 (1.30)                Teammates willing to help
+          tp_post_08      5.00 (1.69)      5.67 (0.98)      5.33 (1.50)      5.60 (1.59)                      Teammates competent
+
+--- Main effects & interaction (linear model, HC3 SEs; sum-coded so main effects are averaged over the other factor) ---
+Estimates are the difference some-none and thin-full (= -2 x sum-coded coefficient)
+                 var                                    label  n overlap_diff overlap_p overlap_d file_diff file_p  file_d int_p
+          n_req_msgs            Request messages (hand-coded) 60        0.433     0.316     0.273    -0.033  0.938  -0.021 0.396
+             any_req                        Any request (0/1) 60        0.000     1.000     0.000    -0.067  0.586  -0.149 0.586
+        n_req_crates                Distinct crates requested 60        0.033     0.934     0.022    -0.233  0.564  -0.157 0.680
+        n_parsed_req               Requests (platform parser) 60        0.500     0.319     0.270     0.233  0.640   0.125 0.259
+         first_req_s              Active sec to first request 44        0.767     0.970     0.008     6.906  0.736   0.110 0.549
+             n_offer                           Offers of help 60        0.033     0.579     0.151     0.033  0.579   0.151 0.579
+       n_intel_typed                     Typed intel messages 60        0.267     0.189     0.352     0.333  0.102   0.444 0.741
+              n_msgs                 All participant messages 60        1.500     0.035     0.579     0.700  0.319   0.261 0.600
+   n_sched_fulfilled       Teammate requests fulfilled (of 5) 60       -0.433     0.328    -0.265    -0.433  0.328  -0.265 0.597
+            n_shares                   Records shared (total) 60        0.333     0.871     0.044    -1.400  0.496  -0.184 0.245
+  n_shares_proactive                        Unprompted shares 60        0.767     0.716     0.098    -0.967  0.646  -0.124 0.305
+       correct_total                           Correct (of 4) 60        0.200     0.483     0.185     0.533  0.065   0.506 0.350
+         correct_own           Correct own-file crates (of 2) 60        0.033     0.854     0.047     0.433  0.020   0.647 0.360
+        correct_team     Correct team-dependent crates (of 2) 60        0.167     0.442     0.210     0.100  0.644   0.125 0.644
+           conf_mean                  Mean confidence (0-100) 60        7.519     0.159     0.381     7.469  0.162   0.378 0.915
+         file_viewed                 Case-file records viewed 60       -0.900     0.541    -0.064   -25.367  0.000  -4.676 0.512
+       file_coverage             File coverage (share viewed) 60       -0.016     0.591    -0.144     0.042  0.169   0.377 0.535
+        file_dwell_s      File dwell (s, summed record-level) 60        7.948     0.974     0.009  -142.512  0.553  -0.162 0.642
+ own_records_in_file            Records in file per own crate 60        0.050     0.611     0.017    -5.783  0.000 -15.903 0.310
+          tp_post_01                          Had info needed 60        0.067     0.840     0.055     0.333  0.314   0.276 0.840
+          tp_post_02                  Important info I lacked 60       -0.467     0.369    -0.245    -0.333  0.520  -0.175 0.797
+          tp_post_03           Teammates knew things I didn't 60       -0.433     0.368    -0.240    -0.767  0.114  -0.431 0.445
+          tp_post_05 Asking would take teammates' scarce time 60       -0.633     0.202    -0.346    -0.367  0.458  -0.198 0.313
+          tp_post_06                   Expected quick replies 60        0.233     0.450     0.203     0.167  0.589   0.144 0.163
+          tp_post_07                Teammates willing to help 60       -0.067     0.848    -0.052     0.333  0.340   0.262 1.000
+          tp_post_08                      Teammates competent 60        0.133     0.735     0.091     0.467  0.238   0.323 0.612
+
+--- Count models for help-seeking / sharing (negative binomial; Poisson if theta -> inf) ---
+
+ n_req_msgs  (var/mean = 1.63 )
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           0.420      0.128   3.279    0.001
+overlap1             -0.144      0.128  -1.124    0.261
+casefile1             0.028      0.128   0.220    0.826
+overlap1:casefile1    0.123      0.128   0.958    0.338
+
+ n_req_crates  (var/mean = 1.34 )
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           0.476      0.121   3.935    0.000
+overlap1             -0.014      0.121  -0.117    0.907
+casefile1             0.073      0.121   0.603    0.546
+overlap1:casefile1    0.053      0.121   0.435    0.664
+
+ n_parsed_req  (var/mean = 1.89 )
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           0.575      0.133   4.329    0.000
+overlap1             -0.132      0.133  -0.992    0.321
+casefile1            -0.045      0.133  -0.336    0.737
+overlap1:casefile1    0.151      0.133   1.140    0.254
+
+ n_shares_proactive  (var/mean = 14.2 )
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           1.385      0.178   7.801    0.000
+overlap1             -0.133      0.178  -0.747    0.455
+casefile1             0.151      0.178   0.853    0.394
+overlap1:casefile1    0.283      0.178   1.592    0.111
+
+ n_shares  (var/mean = 8.14 )
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           1.934      0.107  18.101    0.000
+overlap1             -0.042      0.107  -0.394    0.694
+casefile1             0.107      0.107   0.999    0.318
+overlap1:casefile1    0.176      0.107   1.647    0.100
+
+--- Any request (logistic) and teammate requests fulfilled (binomial of 5) ---
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           1.026      0.296   3.469    0.001
+overlap1              0.014      0.296   0.048    0.962
+casefile1             0.173      0.296   0.586    0.558
+overlap1:casefile1    0.173      0.296   0.586    0.558
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           0.289      0.118   2.450    0.014
+overlap1              0.182      0.118   1.542    0.123
+casefile1             0.182      0.118   1.542    0.123
+overlap1:casefile1    0.102      0.118   0.861    0.389
+Fisher exact, any request by overlap:
+       any_req
+overlap  0  1
+   none  8 22
+   some  8 22
+[1] 1
+Fisher exact, any request by casefile:
+        any_req
+casefile  0  1
+    full  7 23
+    thin  9 21
+[1] 0.771024
+
+--- Crate-level accuracy: correct ~ overlap * casefile * role + (1|participant) ---
+                         Estimate Std. Error z value Pr(>|z|)
+(Intercept)                 0.416      0.207   2.005    0.045
+overlap1                   -0.202      0.206  -0.979    0.327
+casefile1                  -0.457      0.208  -2.202    0.028
+role1                       1.197      0.198   6.040    0.000
+overlap1:casefile1          0.245      0.206   1.188    0.235
+overlap1:role1              0.010      0.173   0.059    0.953
+casefile1:role1            -0.335      0.174  -1.918    0.055
+overlap1:casefile1:role1    0.119      0.173   0.685    0.494
+
+Predicted P(correct) by cell x crate type:
+role = own:
+ overlap casefile      prob         SE  df asymp.LCL asymp.UCL
+ none    full     0.7296757 0.09718696 Inf 0.5068197 0.8763895
+ some    full     0.6566998 0.10685099 Inf 0.4303768 0.8288584
+ none    thin     0.8640025 0.06866360 Inf 0.6689886 0.9523144
+ some    thin     0.9506757 0.03813681 Inf 0.7965252 0.9895722
+
+role = team:
+ overlap casefile      prob         SE  df asymp.LCL asymp.UCL
+ none    full     0.2711112 0.09727851 Inf 0.1241359 0.4939628
+ some    full     0.3061505 0.10260792 Inf 0.1461760 0.5320951
+ none    thin     0.2695812 0.09729467 Inf 0.1229060 0.4929250
+ some    thin     0.4205872 0.11287330 Inf 0.2265012 0.6427792
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Observed P(correct):
+  overlap casefile role     p  n
+1    none     full  own 0.700 30
+2    none     full team 0.300 30
+3    none     thin  own 0.833 30
+4    none     thin team 0.300 30
+5    some     full  own 0.633 30
+6    some     full team 0.333 30
+7    some     thin  own 0.933 30
+8    some     thin team 0.433 30
+
+Without 3-way terms:
+                Estimate Std. Error z value Pr(>|z|)
+(Intercept)        0.394      0.205   1.927    0.054
+overlap1          -0.150      0.199  -0.752    0.452
+casefile1         -0.438      0.205  -2.140    0.032
+role1              1.180      0.194   6.073    0.000
+overlap1:role1     0.065      0.163   0.401    0.689
+casefile1:role1   -0.313      0.170  -1.846    0.065
+
+Effect of thin file on P(correct), by crate type (odds ratio):
+role = own:
+ contrast    odds.ratio    SE  df null z.ratio p.value
+ thin / full       4.49 2.588 Inf    1   2.601  0.0093
+
+role = team:
+ contrast    odds.ratio    SE  df null z.ratio p.value
+ thin / full       1.28 0.618 Inf    1   0.518  0.6042
+
+Results are averaged over the levels of: overlap 
+Tests are performed on the log odds ratio scale 
+
+--- Believability (tp_post_10) by cell ---
+           
+            All were automated All were human I am not sure Some were human, some were automated
+  none_full                  9              0             5                                    1
+  none_thin                  6              4             2                                    3
+  some_full                  5              3             6                                    1
+  some_thin                  7              2             3                                    3
+Fisher p = 0.3531647 
+
+
+====================================================================================================
+2. STUDY 2 (S30): TEAMMATE WORKLOAD CUE, HIGH (both heavy) vs MIXED (one heavy, one light), n = 15/arm
+====================================================================================================
+
+--- Seat levels revealed at the check-in ---
+        
+workload JT=2 PM=6 JT=6 PM=2 JT=6 PM=7 JT=7 PM=6
+   high          0         0         2        13
+   mixed         7         8         0         0
+        light_seat
+workload    JT PM
+   high  15  0  0
+   mixed  0  7  8
+
+--- Baseline equivalence: own workload rating at check-in (pre-reveal) ---
+# A tibble: 2 x 2
+  workload own        
+  <fct>    <chr>      
+1 high     4.07 (1.79)
+2 mixed    3.67 (1.05)
+
+	Welch Two Sample t-test
+
+data:  own_workload by workload
+t = 0.74667, df = 22.558, p-value = 0.463
+alternative hypothesis: true difference in means between group high and group mixed is not equal to 0
+95 percent confidence interval:
+ -0.7094004  1.5094004
+sample estimates:
+ mean in group high mean in group mixed 
+           4.066667            3.666667 
+
+
+--- High vs mixed: M (SD), Welch t, Wilcoxon, d (mixed - high) ---
+                 var                                    label              high             mixed  diff   t_p wilcox_p     d
+          tp_post_09   MC: my workload heavier after check-in       4.67 (1.54)       3.67 (1.99) -1.00 0.136    0.249 -0.56
+          tp_post_11         MC: teammates' workloads heavier       5.07 (1.94)       4.93 (1.33) -0.13 0.828    0.509 -0.08
+          tp_post_12       MC: teammates differed in workload       4.53 (2.00)       4.53 (1.25)  0.00 1.000    0.686  0.00
+          tp_post_01                          Had info needed       4.60 (1.55)       4.60 (1.59)  0.00 1.000    0.966  0.00
+          tp_post_02                  Important info I lacked       4.07 (1.94)       4.27 (1.83)  0.20 0.774    0.816  0.11
+          tp_post_03           Teammates knew things I didn't       5.40 (1.68)       4.47 (1.85) -0.93 0.159    0.151 -0.53
+          tp_post_05 Asking would take teammates' scarce time       4.40 (1.30)       3.53 (0.92) -0.87 0.045    0.051 -0.77
+          tp_post_06                   Expected quick replies       4.33 (1.84)       5.00 (1.60)  0.67 0.299    0.283  0.39
+          tp_post_07                Teammates willing to help       4.87 (1.60)       5.07 (1.71)  0.20 0.743    0.699  0.12
+          tp_post_08                      Teammates competent       4.13 (2.00)       4.87 (1.30)  0.73 0.245    0.374  0.44
+          n_req_msgs            Request messages (hand-coded)       1.40 (1.24)       1.20 (1.15) -0.20 0.650    0.682 -0.17
+             any_req                        Any request (0/1)       0.73 (0.46)       0.67 (0.49) -0.07 0.702    0.715 -0.14
+        n_req_crates                Distinct crates requested       1.60 (1.40)       1.27 (1.28) -0.33 0.502    0.521 -0.25
+        n_parsed_req               Requests (platform parser)       1.80 (1.26)       1.27 (1.33) -0.53 0.271    0.216 -0.41
+         first_req_s              Active sec to first request    142.91 (85.61)    147.64 (73.26)  4.73 0.893    0.972  0.06
+             n_offer                           Offers of help       0.40 (0.74)       0.07 (0.26) -0.33 0.116    0.141 -0.60
+       n_intel_typed                     Typed intel messages       0.47 (0.74)       0.80 (1.61)  0.33 0.476    0.882  0.27
+              n_msgs                 All participant messages       4.60 (2.69)       3.60 (2.82) -1.00 0.329    0.183 -0.36
+   n_sched_fulfilled       Teammate requests fulfilled (of 5)       3.13 (1.25)       2.67 (1.54) -0.47 0.370    0.440 -0.33
+            n_shares                   Records shared (total)       9.13 (5.60)       7.87 (4.78) -1.27 0.511    0.477 -0.24
+  n_shares_proactive                        Unprompted shares       6.00 (6.04)       5.20 (5.13) -0.80 0.699    0.707 -0.14
+       correct_total                           Correct (of 4)       2.47 (0.92)       2.00 (1.07) -0.47 0.210    0.259 -0.47
+         correct_own           Correct own-file crates (of 2)       1.87 (0.35)       1.67 (0.72) -0.20 0.347    0.565 -0.35
+        correct_team     Correct team-dependent crates (of 2)       0.60 (0.74)       0.33 (0.62) -0.27 0.292    0.274 -0.39
+           conf_mean                  Mean confidence (0-100)     63.78 (25.64)     67.83 (18.23)  4.05 0.622    0.787  0.18
+         file_viewed                 Case-file records viewed      21.20 (1.37)      21.00 (1.25) -0.20 0.680    0.619 -0.15
+       file_coverage             File coverage (share viewed)       0.98 (0.05)       0.99 (0.02)  0.01 0.287    0.539  0.40
+        file_dwell_s      File dwell (s, summed record-level) 2904.53 (1036.71) 2971.22 (1030.18) 66.69 0.861    0.590  0.06
+ own_records_in_file            Records in file per own crate       4.38 (0.34)       4.27 (0.31) -0.12 0.331    0.344 -0.36
+
+NB for request messages: 
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept)      0.336      0.222   1.516    0.130
+workloadmixed   -0.154      0.326  -0.472    0.637
+Any request:
+        any_req
+workload  0  1
+   high   4 11
+   mixed  5 10
+[1] 1
+
+Believability:
+       
+        All were automated All were human I am not sure Some were human, some were automated
+  high                   7              3             5                                    0
+  mixed                  8              3             1                                    3
+
+--- Fidelity: who answered the participant's typed requests (system-assigned responder), mixed arm ---
+responder_is_light
+FALSE  TRUE 
+   13     6 
+
+	Exact binomial test
+
+data:  sum(PRm$responder_is_light) and nrow(PRm)
+number of successes = 6, number of trials = 19, p-value = 0.1671
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.1257606 0.5655016
+sample estimates:
+probability of success 
+             0.3157895 
+
+Responder level x arm (all S30 parsed requests):
+        responder_level
+workload  2  6  7
+   high   0 14 13
+   mixed  6 13  0
+
+--- Helping: fulfilment of the 5 scheduled teammate requests, by requester's revealed workload ---
+Index 0 (45 s) precedes the 60 s check-in -> pre-manipulation baseline; indices 1-4 follow it
+   post       req_type p_fulfilled  n
+1 FALSE high-arm heavy       0.867 15
+2 FALSE   mixed: heavy       0.625  8
+3 FALSE   mixed: light       0.571  7
+4  TRUE high-arm heavy       0.567 60
+5  TRUE   mixed: heavy       0.533 30
+6  TRUE   mixed: light       0.500 30
+                     Estimate Std. Error z value Pr(>|z|)
+(Intercept)             0.296      0.326   0.908    0.364
+req_typemixed: heavy   -0.148      0.535  -0.277    0.782
+req_typemixed: light   -0.298      0.535  -0.557    0.577
+Within mixed arm only (paired by participant), post check-in:
+                             session_id mixed: heavy mixed: light
+1  028eec2a-90e0-4f24-9ab2-b3c69d1242a1          0.5          1.0
+2  05affc12-8118-4bbb-986d-33f6efb23dd6          1.0          1.0
+3  10a5ad50-4eea-409a-b3d6-cad4ada87f88          0.5          1.0
+4  29faebc8-19d6-4729-a990-918122f2e083          1.0          0.5
+5  49f13961-52de-4070-a589-6f223359c4b9          1.0          0.0
+6  4dd28f7b-cb9c-403e-8c8d-c5d56f849be2          0.0          0.0
+7  529ab702-6074-4269-be01-3a594c7ce2ed          1.0          0.0
+8  614d592e-7143-48cb-b8eb-483af4234f53          1.0          0.5
+9  62f4acb6-7656-4aff-860d-90afd2c88b23          0.5          0.0
+10 73a7050b-4237-4038-9daf-71bc66f4ae34          0.0          0.0
+11 7eba9bce-9267-497c-add1-1eaf2012783d          0.5          1.0
+12 882e2765-44dc-4ca0-aaf0-0867550dbdab          0.5          1.0
+13 c8c03243-6132-478a-80dc-42fc2d7ee1cc          0.0          0.0
+14 ca82961c-36e9-4223-b638-9dc67ea823d2          0.5          1.0
+15 f8576fe9-dec3-48f6-92ac-6371a03e166d          0.0          0.5
+mixed: heavy mixed: light 
+   0.5333333    0.5000000 
+
+	Wilcoxon signed rank test with continuity correction
+
+data:  mx$`mixed: light` and mx$`mixed: heavy`
+V = 30, p-value = 0.8127
+alternative hypothesis: true location shift is not equal to 0
+
+
+--- Crate-level accuracy, S30: correct ~ workload * role + (1|participant) ---
+                       Estimate Std. Error z value Pr(>|z|)
+(Intercept)               4.358      1.582   2.755    0.006
+workloadmixed            -1.219      1.512  -0.806    0.420
+roleteam                 -5.993      2.068  -2.897    0.004
+workloadmixed:roleteam   -0.260      1.774  -0.146    0.884
+  workload role     p
+1     high  own 0.933
+2     high team 0.300
+3    mixed  own 0.833
+4    mixed team 0.167
+
+
+====================================================================================================
+3. POOLED (N = 90)
+====================================================================================================
+
+--- Overall paradigm descriptives (N = 90) ---
+                 var       m     sd      md                                    label
+          n_req_msgs    1.47   1.46    1.00            Request messages (hand-coded)
+             any_req    0.72   0.45    1.00                        Any request (0/1)
+        n_req_crates    1.56   1.42    1.00                Distinct crates requested
+        n_parsed_req    1.72   1.69    1.00               Requests (platform parser)
+         first_req_s  139.71  67.60  126.50              Active sec to first request
+             n_offer    0.11   0.38    0.00                           Offers of help
+       n_intel_typed    0.48   0.95    0.00                     Typed intel messages
+              n_msgs    3.71   2.70    3.00                 All participant messages
+   n_sched_fulfilled    2.87   1.55    3.00       Teammate requests fulfilled (of 5)
+            n_shares    7.54   6.88    6.00                   Records shared (total)
+  n_shares_proactive    4.68   7.07    2.00                        Unprompted shares
+       correct_total    2.23   1.05    2.00                           Correct (of 4)
+         correct_own    1.62   0.66    2.00           Correct own-file crates (of 2)
+        correct_team    0.61   0.76    0.00     Correct team-dependent crates (of 2)
+           conf_mean   70.65  20.80   71.88                  Mean confidence (0-100)
+         file_viewed   29.69  12.86   22.00                 Case-file records viewed
+       file_coverage    0.97   0.09    1.00             File coverage (share viewed)
+        file_dwell_s 2777.14 925.40 2567.79      File dwell (s, summed record-level)
+ own_records_in_file    6.28   2.77    4.50            Records in file per own crate
+          tp_post_01    4.98   1.35    5.00                          Had info needed
+          tp_post_02    4.41   1.88    5.00                  Important info I lacked
+          tp_post_03    5.06   1.79    5.50           Teammates knew things I didn't
+          tp_post_05    3.71   1.66    4.00 Asking would take teammates' scarce time
+          tp_post_06    5.12   1.40    5.00                   Expected quick replies
+          tp_post_07    5.48   1.44    6.00                Teammates willing to help
+          tp_post_08    5.10   1.59    6.00                      Teammates competent
+
+Any request:  0.7222222 ; any unprompted share:  0.8111111 ; fulfilled >= 1 teammate request:  0.8666667 
+
+                  All were automated                       All were human                        I am not sure Some were human, some were automated 
+                                  42                                   15                                   22                                   11 
+
+--- Hand coding vs platform request parser ---
+r = 0.817 ; any-request agreement = 0.933 
+        parser_any
+hand_any FALSE TRUE
+   FALSE    22    3
+   TRUE      3   62
+
+--- Same task cell (some overlap / thin file): no cue (S60) vs high vs mixed (S30) -- different build & day, interpret cautiously ---
+                 var                                    label             none              high             mixed high_vs_none_p mixed_vs_none_p  kw_p
+          n_req_msgs            Request messages (hand-coded)      1.93 (2.25)       1.40 (1.24)       1.20 (1.15)          0.442           0.284 0.789
+             any_req                        Any request (0/1)      0.73 (0.46)       0.73 (0.46)       0.67 (0.49)          1.000           0.711 0.900
+        n_req_crates                Distinct crates requested      1.60 (1.50)       1.60 (1.40)       1.27 (1.28)          1.000           0.531 0.769
+        n_parsed_req               Requests (platform parser)      2.47 (2.59)       1.80 (1.26)       1.27 (1.33)          0.391           0.131 0.389
+         first_req_s              Active sec to first request   146.97 (72.48)    142.91 (85.61)    147.64 (73.26)          0.910           0.984 0.956
+             n_offer                           Offers of help      0.07 (0.26)       0.40 (0.74)       0.07 (0.26)          0.118           1.000 0.159
+       n_intel_typed                     Typed intel messages      0.67 (1.05)       0.47 (0.74)       0.80 (1.61)          0.563           0.796 0.855
+              n_msgs                 All participant messages      4.80 (3.49)       4.60 (2.69)       3.60 (2.82)          0.866           0.323 0.433
+   n_sched_fulfilled       Teammate requests fulfilled (of 5)      2.53 (1.81)       3.13 (1.25)       2.67 (1.54)          0.312           0.835 0.592
+            n_shares                   Records shared (total)      7.73 (5.91)       9.13 (5.60)       7.87 (4.78)          0.524           0.948 0.631
+  n_shares_proactive                        Unprompted shares      5.20 (5.85)       6.00 (6.04)       5.20 (5.13)          0.723           1.000 0.729
+       correct_total                           Correct (of 4)      2.73 (0.96)       2.47 (0.92)       2.00 (1.07)          0.456           0.063 0.190
+         correct_own           Correct own-file crates (of 2)      1.87 (0.52)       1.87 (0.35)       1.67 (0.72)          1.000           0.405 0.566
+        correct_team     Correct team-dependent crates (of 2)      0.87 (0.83)       0.60 (0.74)       0.33 (0.62)          0.375           0.061 0.151
+           conf_mean                  Mean confidence (0-100)    80.85 (19.14)     63.78 (25.64)     67.83 (18.23)          0.053           0.072 0.105
+         file_viewed                 Case-file records viewed     21.33 (2.61)      21.20 (1.37)      21.00 (1.25)          0.866           0.669 0.845
+       file_coverage             File coverage (share viewed)      0.97 (0.07)       0.98 (0.05)       0.99 (0.02)          0.600           0.170 0.353
+        file_dwell_s      File dwell (s, summed record-level) 2573.73 (951.30) 2904.53 (1036.71) 2971.22 (1030.18)          0.384           0.295 0.633
+ own_records_in_file            Records in file per own crate      4.43 (0.43)       4.38 (0.34)       4.27 (0.31)          0.733           0.242 0.539
+          tp_post_01                          Had info needed      5.40 (1.30)       4.60 (1.55)       4.60 (1.59)          0.146           0.153 0.270
+          tp_post_02                  Important info I lacked      4.20 (2.11)       4.07 (1.94)       4.27 (1.83)          0.863           0.929 0.971
+          tp_post_03           Teammates knew things I didn't      4.33 (2.19)       5.40 (1.68)       4.47 (1.85)          0.156           0.863 0.278
+          tp_post_05 Asking would take teammates' scarce time      3.33 (2.09)       4.40 (1.30)       3.53 (0.92)          0.113           0.745 0.132
+          tp_post_06                   Expected quick replies      5.33 (1.29)       4.33 (1.84)       5.00 (1.60)          0.103           0.548 0.315
+          tp_post_07                Teammates willing to help      5.87 (1.30)       4.87 (1.60)       5.07 (1.71)          0.077           0.171 0.124
+          tp_post_08                      Teammates competent      5.60 (1.59)       4.13 (2.00)       4.87 (1.30)          0.037           0.190 0.054
+
+Helping (teammate requests fulfilled), crate-level index>=1 by cue:
+    wl3     p  n
+1  none 0.500 60
+2  high 0.567 60
+3 mixed 0.517 60
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)   -0.006      0.404  -0.014    0.989
+wl3high        0.326      0.567   0.575    0.565
+wl3mixed       0.076      0.569   0.134    0.893
+
+--- Pooled associations (participant level, Spearman) ---
+                   n_req_msgs n_req_crates n_sched_fulfilled n_shares_proactive correct_total correct_own correct_team conf_mean file_viewed tp_post_02
+n_req_msgs               1.00         0.87              0.03               0.15          0.64        0.31         0.63      0.12        0.41       0.14
+n_req_crates             0.87         1.00              0.02               0.12          0.67        0.38         0.60      0.16        0.44       0.08
+n_sched_fulfilled        0.03         0.02              1.00              -0.13          0.00       -0.01        -0.01     -0.05        0.16      -0.14
+n_shares_proactive       0.15         0.12             -0.13               1.00          0.06        0.02         0.07     -0.06        0.04       0.11
+correct_total            0.64         0.67              0.00               0.06          1.00        0.67         0.80      0.15        0.13       0.04
+correct_own              0.31         0.38             -0.01               0.02          0.67        1.00         0.11      0.22       -0.13      -0.08
+correct_team             0.63         0.60             -0.01               0.07          0.80        0.11         1.00      0.03        0.26       0.14
+conf_mean                0.12         0.16             -0.05              -0.06          0.15        0.22         0.03      1.00       -0.06      -0.40
+file_viewed              0.41         0.44              0.16               0.04          0.13       -0.13         0.26     -0.06        1.00       0.06
+tp_post_02               0.14         0.08             -0.14               0.11          0.04       -0.08         0.14     -0.40        0.06       1.00
+tp_post_03               0.29         0.27             -0.01              -0.01          0.17        0.01         0.26     -0.10        0.17       0.49
+tp_post_05              -0.30        -0.30             -0.12               0.11         -0.32       -0.23        -0.23     -0.21       -0.14       0.19
+tp_post_06               0.10         0.07             -0.04               0.16         -0.03       -0.05         0.03      0.33        0.10      -0.14
+tp_post_07               0.36         0.34              0.09              -0.08          0.33        0.11         0.39      0.35        0.17      -0.08
+                   tp_post_03 tp_post_05 tp_post_06 tp_post_07
+n_req_msgs               0.29      -0.30       0.10       0.36
+n_req_crates             0.27      -0.30       0.07       0.34
+n_sched_fulfilled       -0.01      -0.12      -0.04       0.09
+n_shares_proactive      -0.01       0.11       0.16      -0.08
+correct_total            0.17      -0.32      -0.03       0.33
+correct_own              0.01      -0.23      -0.05       0.11
+correct_team             0.26      -0.23       0.03       0.39
+conf_mean               -0.10      -0.21       0.33       0.35
+file_viewed              0.17      -0.14       0.10       0.17
+tp_post_02               0.49       0.19      -0.14      -0.08
+tp_post_03               1.00      -0.06      -0.02       0.19
+tp_post_05              -0.06       1.00      -0.15      -0.28
+tp_post_06              -0.02      -0.15       1.00       0.22
+tp_post_07               0.19      -0.28       0.22       1.00
+n_req_crates vs correct_team : rho = 0.604  p = 3.05e-10 
+n_req_crates vs correct_own : rho = 0.375  p = 0.000267 
+n_req_crates vs correct_total : rho = 0.669  p = 5.61e-13 
+n_req_msgs vs tp_post_03 : rho = 0.286  p = 0.00625 
+n_req_msgs vs tp_post_05 : rho = -0.296  p = 0.00462 
+n_req_msgs vs tp_post_06 : rho = 0.104  p = 0.331 
+n_req_msgs vs tp_post_07 : rho = 0.36  p = 0.000492 
+n_req_msgs vs tp_post_02 : rho = 0.138  p = 0.195 
+
+--- Crate level (exploratory): did asking about a crate go with getting it right? correct ~ requested * role + sample + (1|participant) ---
+NB: 'requested' = participant asked about that crate number at least once; requests are NOT classified by need.
+                   Estimate Std. Error z value Pr(>|z|)
+(Intercept)           1.287      0.400   3.215    0.001
+requested             3.364      1.055   3.189    0.001
+roleteam             -4.493      0.639  -7.032    0.000
+sampleS60            -0.273      0.409  -0.668    0.504
+requested:roleteam    1.242      1.215   1.022    0.307
+  role requested     p   n got_agent_share
+1  own         0 0.713 115           0.017
+2  own         1 0.985  65           0.923
+3 team         0 0.045 112           0.027
+4 team         1 0.735  68           0.941
+
+--- Planning: n per cell for 80% power (two-sided alpha .05) at observed and benchmark d ---
+          study                var     d n_per_cell_80
+    S60 overlap         n_req_msgs  0.27           217
+    S60 overlap            any_req  0.00            NA
+    S60 overlap       n_req_crates  0.02            NA
+    S60 overlap  n_sched_fulfilled -0.26           234
+    S60 overlap n_shares_proactive  0.10          1571
+    S60 overlap      correct_total  0.18           486
+    S60 overlap       correct_team  0.21           357
+    S60 overlap         tp_post_05 -0.35           130
+   S60 casefile         n_req_msgs -0.02            NA
+   S60 casefile            any_req -0.15           699
+   S60 casefile       n_req_crates -0.16           615
+   S60 casefile  n_sched_fulfilled -0.26           234
+   S60 casefile n_shares_proactive -0.12          1092
+   S60 casefile      correct_total  0.51            62
+   S60 casefile       correct_team  0.12          1092
+   S60 casefile         tp_post_05 -0.20           394
+ S30 mixed-high         tp_post_09 -0.56            52
+ S30 mixed-high         tp_post_11 -0.08          2454
+ S30 mixed-high         tp_post_12  0.00            NA
+ S30 mixed-high         tp_post_05 -0.77            28
+ S30 mixed-high         n_req_msgs -0.17           545
+ S30 mixed-high            any_req -0.14           802
+ S30 mixed-high       n_req_crates -0.25           253
+ S30 mixed-high  n_sched_fulfilled -0.33           146
+ S30 mixed-high n_shares_proactive -0.14           802
+ S30 mixed-high      correct_total -0.47            73
+ S30 mixed-high       correct_team -0.39           105
+Benchmarks: d=.3 -> 176 /cell; d=.4 -> 100 ; d=.5 -> 64 
+
+Figures written to figures/

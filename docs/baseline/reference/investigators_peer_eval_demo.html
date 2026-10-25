@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigators — demonstration</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f4f4f4; color: #222; height: 100vh; display: flex; flex-direction: column; font-size: 18px; }
+
+  .screen { display: none; flex: 1; align-items: center; justify-content: center; padding: 30px; overflow-y: auto; }
+  .screen.active { display: flex; }
+  .panel { background: white; border-radius: 8px; padding: 32px 34px; max-width: 780px; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .consent-panel { max-width: 780px; padding: 30px 34px; }
+  .consent-panel h1 { font-size: 28px; }
+  .consent-panel h2 { font-size: 21px; margin-top: 20px; }
+  .consent-copy { max-height: 52vh; overflow-y: auto; padding-right: 12px; margin: 12px 0 18px; }
+  .consent-copy p { font-size: 16px; }
+  .consent-actions { display: flex; gap: 10px; }
+  .consent-actions .btn { width: auto; flex: 1; }
+  .btn.secondary { background: white; color: #444; border: 1px solid #999; }
+  .btn.secondary:hover { background: #f2f2f2; }
+  .panel h1 { font-size: 27px; line-height: 1.2; margin-bottom: 16px; }
+  .panel h2 { font-size: 21px; line-height: 1.3; margin: 21px 0 10px; }
+  .panel p { font-size: 18px; line-height: 1.58; margin-bottom: 15px; color: #444; }
+  .panel ul { margin: 0 0 16px 22px; color: #444; line-height: 1.58; font-size: 18px; }
+  .panel li { margin-bottom: 6px; }
+  .panel input[type=text] { padding: 9px 12px; font-size: 18px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 18px; }
+  #initials { width: 120px; display: block; text-transform: uppercase; }
+  .btn { display: block; width: 100%; padding: 11px; font: inherit; font-weight: 600; background: #2f6b5e; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  .btn:hover { background: #245248; }
+  .btn:disabled { background: #aaa; cursor: default; }
+  .callout { background: #f6f8f7; border: 1px solid #d7e0dc; border-left: 4px solid #2f6b5e; border-radius: 6px; padding: 10px 12px; margin-bottom: 16px; font-size: 14px; line-height: 1.5; color: #333; }
+  .callout b { color: #2f6b5e; }
+  .preview { display: grid; grid-template-columns: 60% 40%; grid-template-rows: 40% 30% 30%; grid-template-areas: "case chat" "case ai" "submit submit"; gap: 5px; padding: 5px; background: #eaeaea; border-radius: 6px; height: 190px; margin-bottom: 16px; }
+  .preview > div { background: white; border: 1px solid #ddd; border-radius: 4px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: 600; color: #555; padding: 4px; }
+  .preview .p-case { grid-area: case; } .preview .p-chat { grid-area: chat; } .preview .p-ai { grid-area: ai; } .preview .p-submit { grid-area: submit; background: #f8f8f8; }
+  .demo { border: 1px dashed #bbb; border-radius: 6px; padding: 10px; background: #fafafa; margin-bottom: 14px; }
+  .demo .mini-chat { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+  .done-tag { font-size: 12px; color: #2f6b5e; font-weight: 700; margin-left: 8px; }
+  .joining-list { list-style: none; margin-bottom: 16px; }
+  .joining-list li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+  .joining-list li:last-child { border-bottom: none; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; }
+  .dot.online { background: #2f6b5e; }
+  .status { margin-left: auto; font-size: 12px; color: #999; }
+
+  .task-screen { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+  .task-screen.active { display: flex; }
+  .task-header { padding: 10px 14px; background: #222; color: white; display: flex; align-items: center; gap: 14px; font-size: 15px; }
+  .task-header .goal { color: #ccc; }
+  .task-header .mine-strip { background: rgba(255,255,255,0.1); padding: 2px 9px; border-radius: 3px; }
+  .task-header .timer { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px; padding: 2px 10px; background: rgba(255,255,255,0.08); border-radius: 4px; }
+  .task-header .timer.low { background: #B91C1C; }
+  .task-header .eval-strip { padding: 2px 9px; border-radius: 3px; font-size: 13px; font-weight: 600; background: #7F1D1D; color: #FEE2E2; }
+  .callout.eval { background: #FEF6F6; border-color: #E9CBCB; border-left-color: #9A2C2C; }
+  .callout.eval b { color: #9A2C2C; }
+  .task-grid { flex: 1; display: grid; grid-template-columns: minmax(0,45%) minmax(0,55%); grid-template-rows: minmax(0,55%) minmax(0,45%); gap: 8px; padding: 8px; overflow: hidden; }
+  .pane { background: white; border-radius: 6px; display: flex; flex-direction: column; overflow: hidden; }
+  #teamPane { border: 2px solid #7895B8; box-shadow: 0 1px 4px rgba(51,78,112,0.12); }
+  #teamPane .pane-head { background: #E6EEF9; color: #274A71; }
+  #teamPane .team-actions, #teamPane .composer { background: #F4F8FD; }
+  #aiPane { border: 2px solid #927CB8; box-shadow: 0 1px 5px rgba(84,59,124,0.14); }
+  #aiPane .pane-head { background: #F0EBF8; color: #543F79; }
+  #aiPane .composer { background: #F8F5FC; padding: 5px 8px; align-items: center; }
+  #aiPane .team-actions { background: #F8F5FC; }
+  #aiPane .team-actions select { font-size: 12px; padding: 4px 6px; }
+  #aiPane .team-actions button { background: #6E5797; }
+  #aiPane .team-actions button:hover { background: #59457C; }
+  #aiPane .composer input, .panel .composer input { font-size: 12px; padding: 4px 6px; border-color: #AD9ACB; margin: 0; }
+  #aiPane .composer button, .panel .composer button { font-size: 12px; padding: 5px 12px; line-height: 1.2; background: #6E5797; }
+  #aiPane .composer button:hover { background: #59457C; }
+  .ai-starter { padding: 5px 10px; background: #F8F5FC; border-bottom: 1px solid #DED4EE; color: #6A5A83; font-size: 12px; line-height: 1.3; }
+  #casePane { grid-row: 1 / 3; }
+  .pane-head { padding: 9px 12px; background: #f0f0f0; font-size: 14px; font-weight: 700; border-bottom: 1px solid #ddd; color: #444; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .pane-head .count { font-weight: 500; color: #888; }
+  .pane-head .budget { margin-left: auto; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; background: #E4EEEB; color: #2f6b5e; padding: 2px 9px; border-radius: 3px; }
+  .pane-head .budget.low { background: #FEE2E2; color: #B91C1C; }
+  .file-tools { margin-left: auto; display: flex; gap: 5px; align-items: center; font-weight: 500; }
+  .file-tools select { font: inherit; font-size: 11.5px; padding: 2px 5px; border: 1px solid #bbb; border-radius: 3px; background: white; }
+  .crate-filter { display: flex; gap: 4px; padding: 6px 10px; border-bottom: 1px solid #eee; background: #fafafa; flex-wrap: wrap; align-items: center; font-size: 11.5px; color: #777; }
+
+  .tag { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 7px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; }
+  .tag.mine { background: #f0f0f0; color: #555; border-color: #ddd; }
+  .tag.other { background: #f0f0f0; color: #555; border-color: #ddd; }
+  .tag.on { outline: 2px solid #222; outline-offset: 1px; }
+  .tag.clear { background: white; color: #777; border-color: #ccc; }
+
+  .files-list { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .file { border: 1px solid #ddd; border-radius: 5px; background: white; padding: 7px 9px 7px 7px; display: flex; gap: 6px; }
+  .file.shared { background: #fbf9ef; border-color: #dcd1a3; }
+  .file.dragging { opacity: 0.4; }
+  .file.over { border-top: 2px solid #2f6b5e; }
+  .file.hidden { display: none; }
+  .grip { color: #bbb; cursor: grab; font-size: 14px; line-height: 1; padding-top: 2px; user-select: none; }
+  .file-main { flex: 1; min-width: 0; }
+  .file-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .file-stamp { font-size: 11.5px; font-weight: 700; color: #666; }
+  .file-source { font-size: 11px; color: #999; }
+  .file-body { font-size: 15px; color: #333; line-height: 1.48; }
+
+  .msgs { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
+  .pane.share-over { outline: 3px dashed #2f6b5e; outline-offset: -4px; background: #f0f8f5; }
+  .pane.ai-over { outline: 3px dashed #6E5797; outline-offset: -4px; background: #F8F5FC; }
+  .msg { padding: 6px 9px; background: #f0f0f0; border-radius: 5px; max-width: 88%; line-height: 1.4; }
+  .msg.you { align-self: flex-end; background: #dee9e4; }
+  .msg .who { font-size: 10.5px; font-weight: 700; color: #666; margin-bottom: 2px; }
+  .msg.ai { background: #e5ecf5; max-width: 92%; }
+  .msg.system { align-self: center; background: transparent; color: #888; font-size: 11.5px; font-style: italic; text-align: center; }
+  .msg .filepill { display: block; margin-top: 5px; padding: 6px 8px; background: white; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; line-height: 1.4; }
+  .msg .filepill .fs { display: block; font-weight: 700; color: #666; font-size: 10.5px; margin-bottom: 3px; }
+  .msg-actions { margin-top: 5px; display: flex; gap: 5px; flex-wrap: wrap; }
+  .msg-actions button { font-size: 11px; padding: 3px 8px; border: 1px solid #888; background: white; border-radius: 3px; cursor: pointer; }
+  .msg-actions button:hover { background: #eef0f4; }
+  .msg-actions button:disabled { color: #aaa; border-color: #ccc; cursor: default; background: white; }
+  .msg-actions button.primary { background: #2f6b5e; color: white; border-color: #2f6b5e; }
+  .thread { margin-top: 6px; padding-left: 8px; border-left: 2px solid #cfd8d4; display: flex; flex-direction: column; gap: 4px; }
+  .thread .msg { max-width: 100%; font-size: 12.5px; padding: 5px 8px; }
+  .thread .msg.you { align-self: stretch; }
+  .reply-box { display: flex; gap: 4px; margin-top: 5px; }
+  .reply-box input { flex: 1; font: inherit; font-size: 12.5px; padding: 4px 7px; border: 1px solid #aaa; border-radius: 3px; }
+  .reply-box button { font-size: 11px; padding: 3px 9px; background: #2f6b5e; color: white; border: none; border-radius: 3px; cursor: pointer; }
+  .typing { padding: 0 10px 4px; font-size: 11.5px; color: #999; min-height: 18px; }
+  .team-actions { padding: 5px 8px; border-top: 1px solid #ddd; background: #f8f8f8; display: flex; gap: 5px; align-items: center; flex-wrap: nowrap; }
+  .team-actions + .team-actions { border-top: 1px solid #eee; }
+  .team-actions select { flex: 1 1 auto; min-width: 0; padding: 4px 6px; font: inherit; font-size: 12px; line-height: 1.3; border: 1px solid #ccc; border-radius: 4px; background: white; }
+  .team-actions button, .composer button { flex: 0 0 auto; white-space: nowrap; padding: 5px 12px; font-size: 12px; background: #2f6b5e; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  .composer { display: flex; gap: 5px; padding: 6px 8px; border-top: 1px solid #ddd; background: #f8f8f8; align-items: center; }
+  .composer input { flex: 1; padding: 5px 8px; font: inherit; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; margin: 0; }
+  .composer input:disabled { background: #f0f0f0; color: #999; }
+  .composer button:disabled { background: #aaa; cursor: default; }
+
+  .submit-bar { background: #F2F8F5; border-top: 3px solid #2f6b5e; box-shadow: 0 -2px 8px rgba(25,74,61,0.10); padding: 13px 16px 15px; display: flex; flex-direction: column; gap: 10px; }
+  .submit-bar .prompt { font-size: 15px; font-weight: 700; color: #244E44; }
+  .submit-row { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+  .picker { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 180px; }
+  .picker label { font-size: 12px; color: #444; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .picker select { padding: 5px 7px; font: inherit; font-size: 13px; border: 1px solid #999; border-radius: 4px; background: white; }
+  .picker.done select { background: #f0f8ee; border-color: #6ea567; }
+  .confidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .confidence-card { border: 1px solid #d6dfec; border-radius: 6px; padding: 13px; background: #f8fbff; }
+  .confidence-card label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; }
+  .confidence-card select { width: 100%; padding: 7px; font: inherit; font-size: 14px; border: 1px solid #9aaec6; border-radius: 4px; background: white; }
+  .confidence-card input[type=range] { width: 100%; margin: 11px 0 5px; }
+  .confidence-scale { display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; color: #666; line-height: 1.25; }
+  .initials-error { display: none; margin: -8px 0 12px; color: #B91C1C; font-size: 13px; font-weight: 600; }
+  .submit-bar .submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+  .submit-bar .submit-btn { padding: 8px 22px; font: inherit; font-weight: 600; background: #2f6b5e; color: white; border: none; border-radius: 5px; cursor: pointer; align-self: flex-end; }
+
+  .results-panel { background: white; border-radius: 8px; padding: 32px 34px; max-width: 780px; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .results-panel h1 { font-size: 27px; margin-bottom: 10px; }
+  .results-panel h2 { font-size: 21px; margin: 20px 0 10px; }
+  .results-panel p { font-size: 18px; color: #444; line-height: 1.55; margin-bottom: 15px; }
+  .score-line { font-size: 42px; font-weight: 700; color: #2f6b5e; text-align: center; margin: 12px 0 6px; }
+  .score-sub { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
+  .results-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 16px; }
+  .results-table th, .results-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #eee; }
+  .results-table th { font-size: 12px; font-weight: 700; color: #666; background: #f8f8f8; }
+  .results-table td.mark { text-align: center; font-weight: 700; font-size: 18px; }
+  .results-table td.correct { color: #2f6b5e; } .results-table td.incorrect { color: #B91C1C; }
+  .q { margin-bottom: 16px; } .q p { margin-bottom: 8px; font-size: 17px; }
+  .likert { display: flex; gap: 5px; }
+  .likert button { flex: 1; padding: 7px 0; font: inherit; font-size: 13px; border: 1px solid #bbb; background: white; border-radius: 4px; cursor: pointer; }
+  .likert button.on { background: #dee9e4; border-color: #2f6b5e; font-weight: 700; }
+  .ends { display: flex; justify-content: space-between; font-size: 11.5px; color: #888; margin-top: 3px; }
+
+  @media (max-width: 900px) {
+    .task-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    #casePane { grid-row: auto; min-height: 40vh; } .pane { min-height: 30vh; } .task-screen { overflow: auto; }
+    .confidence-grid { grid-template-columns: 1fr; }
+  }
+
+
+  #shareEntry.share-highlight { outline: 3px solid #2f6b5e; outline-offset: 1px; background: #F2F8F5; }
+
+  .share-hint { font-size: 12px; color: #777; font-style: italic; }
+  #casePane.share-prompt { outline: 3px solid #2f6b5e; outline-offset: -3px; }
+  #teamPane.drop-hint { outline: 3px dashed #2f6b5e; outline-offset: -3px; background: #F5FAF8; }
+  body { background: #f4f4f4; }
+  .demo-banner { background: #B45309; color: #FFFBEB; padding: 7px 16px; font-size: 13px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .demo-banner b { color: #FFF7ED; }
+  .demo-banner select { font: inherit; font-size: 13px; padding: 2px 8px; border-radius: 3px; border: 1px solid #78350F; background: #FEF3C7; color: #78350F; }
+  .invScoreLine { font-size: 42px; font-weight: 700; color: #2f6b5e; text-align: center; margin: 14px 0 4px; }
+  .invScoreSub { text-align: center; color: #666; margin-bottom: 18px; font-size: 15px; }
+  .invScoreTable { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .invScoreTable th, .invScoreTable td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #eee; }
+  .invScoreTable th { font-size: 13px; font-weight: 700; color: #666; background: #f8f8f8; }
+  .invScoreTable td.ok { color: #2f6b5e; font-weight: 700; font-size: 18px; text-align: center; }
+  .invScoreTable td.no { color: #B91C1C; font-weight: 700; font-size: 18px; text-align: center; }
+  .consent-choices { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
+  .consent-opt { padding: 12px 16px; font: inherit; font-size: 16px; text-align: left; background: white; border: 1px solid #bbb; border-radius: 6px; cursor: pointer; }
+  .consent-opt:hover { border-color: #2f6b5e; background: #F2F8F5; }
+  .q { margin-bottom: 16px; } .q p { margin-bottom: 7px; }
+  .likert { display: flex; gap: 6px; flex-wrap: wrap; }
+  .likert button { flex: 1; padding: 9px 6px; font: inherit; font-size: 14px; border: 1px solid #bbb; background: white; border-radius: 4px; cursor: pointer; }
+  .likert button.on { background: #dee9e4; border-color: #2f6b5e; font-weight: 700; }
+  .ends { display: flex; justify-content: space-between; font-size: 12.5px; color: #888; margin-top: 4px; }
+  #invRoot { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 18px; color: #222; }
+  #invRoot .screen { min-height: 70vh; }
+  #invRoot .screen.active { display: flex; }
+  #invRoot .task-screen.active { display: flex; height: 88vh; }
+</style>
+</head>
+<body>
+<div class="demo-banner">
+  <b>Demonstration version</b>
+  <span>Scripted teammates and a rule-based assistant. No backend, no data recorded.</span>
+  <span id="demoCondEcho" style="font-weight:700;"></span>
+  <label>Condition:
+    <select id="demoCondition"><option value="eval">Peer evaluation</option><option value="control">Control</option></select>
+  </label>
+</div><div id="invRoot">
+<div class="screen active" id="sConsent">
+  <div class="panel">
+    <div style="text-align:left;">
+      <h2 style="font-size:25px;line-height:1.25;margin:0 0 6px;">Team Decision Making Study</h2>
+      <p style="font-size:15px;color:#666;margin:0 0 24px;">[University] &#183; Protocol XXXX-XXXX</p>
+      <h3 style="font-size:18px;margin:0 0 14px;">Key information</h3>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">This is a research study conducted by researchers at [University]. This study examines how small teams work together and make decisions. Your participation is completely voluntary and you may withdraw at any time by closing your browser.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">In this study you will take part in an online team session with other team members. Your team will be given information about a decision and asked to work together by text chat. You will then answer questions about how your team worked together and about your experience with technology at work.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">Your typed messages during the team session will be visible to the other members of your team. Please do not share your real name, your employer, your location, or any other identifying or personal information during the session. You will be asked to enter initials to identify yourself.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">There are some features of this study&#8217;s design that we are not describing now because telling you in advance would change how people behave during the task and make the results invalid. We will explain these fully at the end of the session, before you finish.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">We estimate the study will take approximately 15 minutes to complete. To be compensated, you need to reach the end of the study and click Submit. A payment code will appear on the final page of the study.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">We do not ask for your name or any other information that might identify you. Your platform identification number will be removed from our data. De-identified information, including chat transcripts produced during the study, may be shared with other researchers, made public, or used for future research purposes.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">This study may use AI tools to generate content you see during the session. The AI tools used in this study run on a secure university-managed server.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 16px;">Taking part in this study involves no more than minimal risk. As in any group discussion, another team member could write something you find unhelpful. You may leave at any time by closing your browser, without giving a reason. There are no direct benefits to you for participating.</p>
+      <p style="font-size:16px;line-height:1.7;margin:0 0 28px;">If you have questions about this research, please contact [Principal Investigator] (pi@university.edu) or [Co-Investigator] (coi@university.edu). You may also contact [University]&#8217;s human research protection program by emailing irb@university.edu. Please refer to protocol number XXXX-XXXX.</p>
+      <p style="font-size:17px;font-weight:700;margin:0 0 12px;padding-top:20px;border-top:1px solid #ddd;">Would you like to participate?</p>
+      <div class="consent-choices">
+        <button class="consent-opt" data-act="consentYes()">Yes, I consent to participate</button>
+        <button class="consent-opt" data-act="consentNo()">No, I do not wish to participate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="sDecline">
+  <div class="panel">
+    <h1>Thank you for your time</h1>
+    <p>You have chosen not to participate. You may now close this browser window.</p>
+    <button class="btn" onclick="location.reload()">Run again</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="screen" id="s2">
+  <div class="panel">
+    <h1>Team-based investigation game</h1>
+    <p>For this study, you will be one of three investigators working together on a shared case.</p>
+    <h2>Case Background</h2>
+    <p>Eight crates of high-value merchandise have been stolen. The thieves are moving the crates between six known hideouts. As a team, your goal is to identify the locations of all eight crates.</p>
+    <p>You and your teammates will each receive time-stamped intelligence that will help you solve the mystery. You can choose to share intelligence from your case file in the team chat if you want. You can also ask your teammates to share intelligence with you.</p>
+    <p>Each teammate has been <b>privately assigned four of the eight crates</b> to work on. Assignments can overlap. Your crates will be assigned after a brief training; you will not be told which crates your teammates have been assigned. Your file may contain information about crates outside your assignment, and that information may be valuable to a teammate.</p>
+    <p><b>Your task will be to locate each of your four assigned crates.</b> Next, you will review your workspace.</p>
+    <div id="evalIntroCallout"></div>
+    <p>You will be identified to your team by your initials.</p>
+    <label for="initials" style="display:block;font-size:14px;font-weight:600;color:#444;margin-bottom:6px;">Your initials</label>
+    <input type="text" id="initials" maxlength="3" placeholder="ABC" autofocus required>
+    <div class="initials-error" id="initialsError">Please enter your initials to continue.</div>
+    <button class="btn" data-act="continueFromIntro()">Continue to your workspace</button>
+  </div>
+</div>
+
+<div class="screen" id="s3">
+  <div class="panel">
+    <h1>Instructions and Background</h1>
+    <h2>Your workspace</h2>
+    <div class="preview">
+      <div class="p-case">Case file</div>
+      <div class="p-chat">Team chat</div>
+      <div class="p-ai">AI assistant</div>
+      <div class="p-submit">Submit a location for each of your crates</div>
+    </div>
+    <ul>
+      <li>You will have <b>8 minutes</b> to locate as many of the crates as you can.</li>
+      <li>You can drag entries in your case file to reorder them.</li>
+      <li>Everyone has a private four-crate assignment. Use the team chat to ask teammates for intel and to share information that may help them.</li>
+      <li>You can share intel entry from your case file in the team chat. Anything you share in the chat will be visible to both of your teammates.</li>
+      <li>The AI assistant can read your case file, including entries teammates have sent you, but only once you have added them to your file.</li>
+    </ul>
+    <div class="callout" id="evalCallout"></div>
+    <button class="btn" data-act="goto(4)">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="s4">
+  <div class="panel">
+    <h1>Sharing intel with your team</h1>
+    <p>Below are three actions you can do in the team chat. <b>Click each button below to see how it works.</b></p>
+    <h2>Share intel from your file <span class="done-tag" id="demoShareDone"></span></h2>
+    <p><b>Drag one entry</b> from your case file into the team chat. It goes to both teammates.</p>
+    <div class="demo">
+      <div id="demoDragSource" class="file" draggable="true" data-stamp="2 days ago, 2:45 PM" data-crate="3" data-body="Field team: Crate 3 arriving at Ridgeline Bunker." style="cursor:grab;">
+        <span class="grip">&#8942;&#8942;</span>
+        <div class="file-main">
+          <div class="file-head"><span class="file-stamp">2 days ago, 2:45 PM</span></div>
+          <div class="file-body">Field team: Crate 3 arriving at Ridgeline Bunker.</div>
+        </div>
+      </div>
+      <div id="demoDropZone" style="margin-top:8px;border:2px dashed #bbb;border-radius:6px;padding:16px;text-align:center;color:#888;font-size:13px;">Drag the entry here to share it with the team</div>
+      <div class="mini-chat" id="demoChat1"></div>
+    </div>
+    <h2>Add intel a teammate shares <span class="done-tag" id="demoAddDone"></span></h2>
+    <p>When a teammate shares an entry, it appears in the chat with an <b>Add to case file</b> button that you can use to add it to your file.</p>
+    <div class="demo">
+      <div class="mini-chat">
+        <div class="msg" style="max-width:100%"><div class="who">Teammate</div>Sharing intel on Crate 1<div class="filepill"><span class="fs">Today, 10:15 AM</span>Field team confirms Crate 1 at The Marina, unloading in progress.</div>
+          <div class="msg-actions"><button id="demoAddBtn" class="primary">Add to case file</button><span style="font-size:12.5px;color:#666;align-self:center;">← click to try it</span></div></div>
+      </div>
+      <div id="demoAdded" style="margin-top:8px"></div>
+    </div>
+    <h2>Ask and reply in team chat</h2>
+    <p>Use the chat to request intelligence about one of your crates. This is the same control you will use during the investigation.</p>
+    <div class="demo"><div class="team-actions" style="border:0;background:none;padding:0;"><select id="demoAskCrate" style="font-size:15px;"><option value="2">Ask the team about Crate 2</option><option value="3">Ask the team about Crate 3</option><option value="6">Ask the team about Crate 6</option></select><button id="demoAskBtn" style="font-size:15px;">Ask</button></div><div class="mini-chat" id="demoChat3"></div><p style="font-size:15px;margin:9px 0 0;color:#666;">During the investigation, this sends a request to both teammates. You can also reply to a teammate’s request in your own words.</p></div>
+    <button class="btn" id="demoContinue" disabled data-act="goto(5)">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="s5">
+  <div class="panel">
+    <h1>Your AI assistant</h1>
+    <p>Use the AI assistant to review and organize the intelligence in your own case file.</p>
+    <div class="demo">
+      <p style="margin-bottom:10px;">Ask about one of your crates from the menu, or type your own question.</p>
+      <div class="team-actions" style="border:0;background:none;padding:0 0 8px;">
+        <select id="demoAiAsk"><option value="">Ask the assistant about</option><option value="2">Crate 2 (smart watches)</option><option value="5">Crate 5 (headphones)</option></select>
+        <button id="demoAIBtn">Ask</button>
+      </div>
+      <div class="composer" style="border:0;background:none;padding:0;"><input id="demoAIIn" type="text" placeholder="Or type a question"><button id="demoAITypeBtn">Send</button></div>
+      <div class="mini-chat" id="demoAIOutput"></div>
+    </div>
+    <button class="btn" data-act="showConnecting()">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="connectingScreen">
+  <div class="panel">
+    <h1>Connecting to your team</h1>
+    <ul class="joining-list">
+      <li><span class="dot online"></span> <span id="jtLabel">JT</span> <span class="status">connected</span></li>
+      <li><span class="dot online"></span> <span id="youLabel">You</span> <span class="status">connected</span></li>
+      <li><span class="dot" id="pDot"></span> <span id="pLabel">Waiting</span> <span class="status" id="pStat"></span></li>
+    </ul>
+    <p style="color:#666;margin-bottom:14px;">The 8-minute clock starts when all of you have pressed Start.</p>
+    <button class="btn" id="startBtn" disabled data-act="pressStart()">Start</button>
+  </div>
+</div>
+
+<div class="task-screen" id="s6">
+  <div class="task-header">
+    <b>The Case</b><span class="goal">Locate your crates</span><span class="mine-strip" id="mineStrip">Your crates</span><span class="eval-strip" id="evalStrip" style="display:none;"></span><span class="timer" id="timer">8:00</span>
+  </div>
+  <div class="task-grid">
+    <div class="pane" id="casePane">
+      <div class="pane-head">Case file <span class="count" id="fileCount"></span>
+      </div>
+      <div class="files-list" id="filesList"></div>
+    </div>
+    <div class="pane" id="teamPane">
+      <div class="pane-head">Team chat <span class="count" id="teamNames"></span></div>
+      <div class="msgs" id="chatList"></div>
+      <div class="team-actions">
+        <select id="askCrate"><option value="">Ask the team for intel on</option></select>
+        <button data-act="askTeam()">Ask</button>
+      </div>
+      <div class="team-actions share-hint">Drag an entry from your case file into this panel to share it.</div>
+    </div>
+    <div class="pane" id="aiPane">
+      <div class="pane-head">AI assistant <span class="count">no usage limit</span></div>
+      <div class="ai-starter">Ask about a crate and I will review the evidence in your case file.</div>
+      <div class="msgs" id="aiList"></div>
+      <div class="team-actions">
+        <select id="aiAskCrate"><option value="">Ask the assistant about</option></select>
+        <button data-act="askAI()">Ask</button>
+      </div>
+      <div class="composer"><input type="text" id="aiIn" placeholder="Or type a question"><button id="aiSendBtn" data-act="sendAI()">Send</button></div>
+    </div>
+  </div>
+  <div class="submit-bar">
+    <div class="prompt">Enter a location for each of your crates. Answers are recorded when time runs out or when you submit.</div>
+    <div class="submit-row" id="pickerRow"></div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="confidenceScreen">
+  <div class="panel">
+    <h1>Confidence ratings</h1>
+    <p>Now that the investigation has ended, please rate how confident you are in each location response.</p>
+    <div class="confidence-grid" id="confidenceGrid"></div>
+    <button class="btn" id="confidenceContinue" disabled data-act="finishConfidence()">Continue</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="screen" id="sPeer">
+  <div class="panel">
+    <h1>Rate your teammates</h1>
+    <p id="peerIntro"></p>
+    <div id="peerItems"></div>
+    <button class="btn" id="peerContinue" disabled data-act="finishPeer()">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="sPost">
+  <div class="panel">
+    <h1>A few questions</h1>
+    <p>Please answer about the session you just completed.</p>
+    <div id="postItems"></div>
+    <button class="btn" style="margin-top:18px;" data-act="gotoComments()">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="sComplete">
+  <div class="panel">
+    <h1>Survey completed</h1>
+    <p style="font-size:17px;line-height:1.6;">Thank you for completing this study. Your payment code is:</p>
+    <p style="font-size:26px;font-weight:700;font-family:monospace;letter-spacing:1px;margin:0 0 22px;padding:14px 18px;background:#F2F8F5;border:1px solid #2f6b5e;border-radius:6px;display:inline-block;">DU7225</p>
+    <p style="font-size:15px;color:#666;">In the study this is the end-of-survey message, shown after the response is submitted.</p>
+    <button class="btn" style="margin-top:14px;" onclick="location.reload()">Run again</button>
+  </div>
+</div>
+<div class="screen" id="sComments">
+  <div class="panel">
+    <h1>Feedback</h1>
+    <p>Do you have any feedback about this study?</p>
+    <p style="font-size:15px;color:#666;">This question is optional.</p>
+    <textarea id="demoComments" rows="5" style="width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #ccc;border-radius:6px;margin-bottom:18px;"></textarea>
+    <button class="btn" data-act="gotoDebrief()">Continue</button>
+  </div>
+</div>
+
+<div class="screen" id="sDebrief">
+  <div class="panel">
+    <h1>What this study was really about</h1>
+    <p>Thank you for taking part. Now that the session is over, we want to explain the parts of the study we could not describe beforehand.</p>
+    <p>The other members of your team were not other participants. They were automated accounts, configured by our research team to respond to messages and share information about the task. There were no other people in your session.</p>
+    <h2>Why we could not tell you in advance</h2>
+    <p>This study examines whether expecting to be rated by teammates changes how people divide their information seeking between their teammates and an AI assistant. Participants were randomly assigned either to be told that they and their teammates would rate one another's helpfulness at the end of the session, or to be told only that they would complete a short questionnaire about the task. The AI assistant was identical for everyone, with no usage limit. Everyone rated their teammates at the end; only whether this was announced in advance differed.</p>
+    <p id="debriefCondition"></p>
+    <p>We used automated teammates rather than live participants so that every person in the study would encounter teammates who behave the same way.</p>
+    <p style="font-size:15px;color:#666;">Questions: [Principal Investigator] (pi@university.edu) or [Co-Investigator] (coi@university.edu). Protocol XXXX-XXXX.</p>
+    <button class="btn" data-act="gotoComplete()">Submit</button>
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+window.INV_CONDITION = "eval";
+/* ---------- demo-only: screens that are Qualtrics questions in the real study ---------- */
+const DEMO_POST_ITEMS = [
+  'I had the information I needed to make good decisions.',
+  'There was important information that I did not have.',
+  'My teammates knew things that I did not.',
+  'The AI assistant was useful for this task.',
+  'My teammates were forming an impression of how helpful I was.',
+  'My contributions during the session were going to be evaluated.',
+  'Asking my teammates for information would have made me look unprepared.'
+];
+function showScreen(id) {
+  document.querySelectorAll('.screen, .task-screen').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+window.INV_FINISH = function (payload) {
+  const box = document.getElementById('postItems'); box.innerHTML = '';
+  DEMO_POST_ITEMS.forEach((t, i) => {
+    const q = document.createElement('div'); q.className = 'q';
+    q.innerHTML = '<p>' + t + '</p><div class="likert" data-q="p' + i + '">' +
+      [1,2,3,4,5,6,7].map(n => '<button>' + n + '</button>').join('') +
+      '</div><div class="ends"><span>Strongly disagree</span><span>Strongly agree</span></div>';
+    box.appendChild(q);
+  });
+  document.querySelectorAll('.likert').forEach(l => l.onclick = e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    l.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+    e.target.classList.add('on');
+  });
+  showScreen('sPost');
+};
+function consentYes() { if (typeof applyCondition === 'function') applyCondition(); showScreen('s2'); const i = document.getElementById('initials'); if (i) i.focus(); }
+function consentNo() { showScreen('sDecline'); }
+function gotoSuspicion() { showScreen('sSusp'); }
+function gotoScore() {
+  const p = window.__PAYLOAD || {};
+  const host = document.getElementById('invScore');
+  let correct = 0, rows = '';
+  (p.assignment || []).forEach(n => {
+    const truth = p.truth[n], given = p.answers[n] || '(no answer)', ok = given === truth;
+    if (ok) correct++;
+    rows += '<tr><td><b>Crate ' + n + '</b></td><td>' + given + '</td><td>' + truth + '</td><td>' +
+      (p.confidence[n] === undefined ? '\u2014' : p.confidence[n] + '%') + '</td><td class="' +
+      (ok ? 'ok' : 'no') + '">' + (ok ? '\u2713' : '\u2717') + '</td></tr>';
+  });
+  host.innerHTML = '<div class="invScoreLine">' + correct + ' / ' + (p.assignment || []).length + '</div>' +
+    '<div class="invScoreSub">of your crates located correctly</div>' +
+    '<table class="invScoreTable"><thead><tr><th>Crate</th><th>Your answer</th><th>Actual location</th>' +
+    '<th>Your confidence</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>';
+  showScreen('sScore');
+}
+function gotoComments() { showScreen('sComments'); }
+function gotoDebrief() { showScreen('sDebrief'); }
+function gotoComplete() { showScreen('sComplete'); }
+['consentYes','consentNo','gotoSuspicion','gotoScore','gotoComments','gotoDebrief','gotoComplete'].forEach(n => { window[n] = eval(n); });
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const map = { 'consentYes()': consentYes, 'consentNo()': consentNo, 'gotoSuspicion()': gotoSuspicion, 'gotoScore()': gotoScore, 'gotoComments()': gotoComments, 'gotoDebrief()': gotoDebrief, 'gotoComplete()': gotoComplete };
+  if (map[el.dataset.act]) { e.preventDefault(); map[el.dataset.act](); }
+});
+
+
+/* ============================================================
+   WORLD GENERATOR
+   Builds the eight-crate world fresh for each participant.
+
+   Of the four assigned crates:
+     two are own-file      the final move happened yesterday morning, so the
+                           participant's file already names the true hideout.
+                           One of these ends yesterday evening, the other ends
+                           this afternoon, so neither looks conspicuously fresh
+                           or conspicuously stale.
+     two are team-dependent the final move happens today, AFTER the participant's
+                           file ends. Their file therefore terminates plausibly
+                           on a hideout the crate has since left. One ends
+                           yesterday evening, the other this morning.
+
+   Which crates play which role is randomised per participant; the four assigned
+   crates are always displayed in ascending crate order.
+   ============================================================ */
+
+const HIDEOUTS = ['The Sawmill', 'The Marina', 'Blackwell Storage',
+                  'Old Cannery', 'Fairground Sheds', 'Ridgeline Bunker'];
+
+const CRATE_CONTENTS = [
+  'laptops', 'smart watches', 'gaming consoles', 'TVs',
+  'headphones', 'cameras', 'tablets', 'power tools'
+];
+
+const N_CRATES = 8;
+const N_ASSIGNED = 4;
+
+/* ---------- small helpers ---------- */
+function shuffled(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function fmtStamp(day, hour, minute) {
+  const ap = hour < 12 ? 'AM' : 'PM';
+  let h = hour % 12; if (h === 0) h = 12;
+  const mm = minute < 10 ? '0' + minute : String(minute);
+  const label = day === 0 ? 'Today' : (day === -1 ? 'Yesterday' : (-day) + ' days ago');
+  return label + ', ' + h + ':' + mm + ' ' + ap;
+}
+function mins(day, hour, minute) { return day * 1440 + hour * 60 + minute; }
+
+/* ---------- sentence templates ---------- */
+const T_ARRIVE = [
+  'Field team: Crate {n} arriving at {h}.',
+  'Surveillance photo: Crate {n} at the loading dock of {h}.',
+  'Field team: {c} unloaded at {h}.',
+  'Warehouse camera confirms Crate {n} offloaded at {h}.'
+];
+const T_STILL = [
+  'Informant: {c} still on site at {h}.',
+  'Field team: Crate {n} ({c}) at {h}, confirmed by walk-by.',
+  'Warehouse camera: {c} still at {h}.',
+  'Anonymous tip: {c} have not moved from {h}.',
+  'Field team: activity at {h}, Crate {n} still on site.'
+];
+const T_DEPART = [
+  'Traffic camera: a van leaves {h} headed east.',
+  'Field team: a pickup departs {h} with two crates aboard.',
+  'Drone footage: a crate is loaded onto a vehicle at {h}.'
+];
+const T_TRANSIT = [
+  'Traffic camera: vehicle from {h} heading toward the {to} area.',
+  'GPS ping: known thief vehicle between {h} and {to}.'
+];
+function fill(tmpl, n, c, h, to) {
+  return tmpl.replace('{n}', n).replace('{c}', c)
+             .replace('{h}', h).replace('{to}', (to || '').replace('The ', ''));
+}
+
+/* ---------- one crate's timeline ---------- */
+function buildTimeline(num, contents, role) {
+  const walk = shuffled(HIDEOUTS).slice(0, 3);   // legA -> legB -> truth
+  const truth = walk[2];
+  const out = [];
+  let seq = 0;
+  function add(day, hour, minute, text, leg) {
+    out.push({ id: 'C' + num + '-' + (++seq), ts: mins(day, hour, minute),
+               stamp: fmtStamp(day, hour, minute), body: text, leg: leg, crate: num });
+  }
+
+  /* leg A, three and two days ago */
+  add(-3, 9, 0,  fill(pick(T_ARRIVE), num, contents, walk[0]), 0);
+  add(-3, 17, 0, fill(pick(T_STILL),  num, contents, walk[0]), 0);
+  add(-2, 10, 0, fill(pick(T_STILL),  num, contents, walk[0]), 0);
+  add(-2, 19, 0, fill(pick(T_DEPART), num, contents, walk[0]), 0);
+
+  /* leg B */
+  add(-1, 6, 30, fill(pick(T_TRANSIT), num, contents, walk[0], walk[1]), 1);
+  add(-1, 8, 15, fill(pick(T_ARRIVE),  num, contents, walk[1]), 1);
+
+  if (role === 'own') {
+    /* the final move happens later the same morning, so the participant's own
+       file can carry the answer */
+    add(-1, 11, 0,  fill(pick(T_DEPART),  num, contents, walk[1]), 2);
+    add(-1, 12, 30, fill(pick(T_TRANSIT), num, contents, walk[1], truth), 2);
+    add(-1, 14, 0,  fill(pick(T_ARRIVE),  num, contents, truth), 2);
+    add(-1, 18, 0,  fill(pick(T_STILL),   num, contents, truth), 2);
+    add(0, 9, 30,   fill(pick(T_STILL),   num, contents, truth), 3);
+    add(0, 13, 0,   fill(pick(T_STILL),   num, contents, truth), 3);
+    add(0, 16, 30,  fill(pick(T_STILL),   num, contents, truth), 3);
+  } else {
+    /* the crate stays put through yesterday and into this morning, then moves */
+    add(-1, 13, 0, fill(pick(T_STILL), num, contents, walk[1]), 1);
+    add(-1, 19, 0, fill(pick(T_STILL), num, contents, walk[1]), 1);
+    add(0, 8, 45,  fill(pick(T_STILL), num, contents, walk[1]), 1);
+    add(0, 11, 30, fill(pick(T_DEPART),  num, contents, walk[1]), 2);
+    add(0, 12, 15, fill(pick(T_TRANSIT), num, contents, walk[1], truth), 2);
+    add(0, 14, 0,  fill(pick(T_ARRIVE),  num, contents, truth), 2);
+    add(0, 16, 0,  fill(pick(T_STILL),   num, contents, truth), 2);
+    add(0, 17, 30, fill(pick(T_STILL),   num, contents, truth), 2);
+  }
+
+  out.sort(function (a, b) { return a.ts - b.ts; });
+  return { num: num, contents: contents, truth: truth, walk: walk, role: role, entries: out };
+}
+
+/* ---------- deal the world ---------- */
+function buildWorld() {
+  const nums = [];
+  for (let i = 1; i <= N_CRATES; i++) nums.push(i);
+
+  const assigned = shuffled(nums).slice(0, N_ASSIGNED).sort(function (a, b) { return a - b; });
+  const roles = shuffled(['own', 'own', 'team', 'team']);
+
+  const roleOf = {}, cutOf = {};
+  /* one of each pair ends yesterday evening, the other later */
+  const ownCuts = shuffled([mins(-1, 20, 0), mins(0, 15, 0)]);
+  const teamCuts = shuffled([mins(-1, 20, 0), mins(0, 9, 30)]);
+  let oi = 0, ti = 0;
+  assigned.forEach(function (n, i) {
+    roleOf[n] = roles[i];
+    cutOf[n] = roles[i] === 'own' ? ownCuts[oi++] : teamCuts[ti++];
+  });
+
+  const crates = [], clues = {}, dist = { participant: [], JT: [], PM: [] };
+
+  for (let i = 1; i <= N_CRATES; i++) {
+    const isMine = assigned.indexOf(i) !== -1;
+    const role = isMine ? roleOf[i] : 'other';
+    const tl = buildTimeline(i, CRATE_CONTENTS[i - 1], role === 'own' ? 'own' : 'team');
+    crates.push({ num: i, contents: tl.contents, truth: tl.truth,
+                  mine: isMine, role: role });
+
+    tl.entries.forEach(function (e) {
+      clues[e.id] = { stamp: e.stamp, body: e.body, crate: i, ts: e.ts };
+    });
+
+    if (isMine) {
+      const cut = cutOf[i];
+      tl.entries.forEach(function (e) {
+        if (e.ts <= cut) dist.participant.push(e.id);
+        else (Math.random() < 0.5 ? dist.JT : dist.PM).push(e.id);
+      });
+    } else {
+      /* a crate someone else owns: the participant holds two current entries,
+         which are useful to a teammate and useless to them */
+      const late = tl.entries.filter(function (e) { return e.ts >= mins(0, 12, 0); });
+      const give = late.slice(-2);
+      tl.entries.forEach(function (e) {
+        if (give.indexOf(e) !== -1) dist.participant.push(e.id);
+        else (Math.random() < 0.5 ? dist.JT : dist.PM).push(e.id);
+      });
+    }
+  }
+
+  return { assigned: assigned, roleOf: roleOf, crates: crates,
+           clues: clues, dist: dist };
+}
+
+
+/* ---------- derive the tables the rest of the app expects ---------- */
+const WORLD = buildWorld();
+const MINE = WORLD.assigned;                     /* ascending, always */
+const CRATES = WORLD.crates.map(function (c) {
+  return { num: c.num, contents: c.contents, truth: c.truth,
+           needsTeam: c.role === 'team', mine: c.mine, role: c.role };
+});
+const ALL_CLUES = WORLD.clues;
+const DIST = WORLD.dist;
+
+/* Teammate requests: two for crates the participant does not own, so sharing
+   can be prompted, and one for a crate they do own. One unowned crate is never
+   requested, which preserves a clean proactive-sharing measure. */
+const TEAMMATE_QUESTIONS = (function () {
+  const notMine = shuffled(CRATES.filter(function (c) { return !c.mine; }).map(function (c) { return c.num; }));
+  const mineShuf = shuffled(MINE.slice());
+  const seats = shuffled(['JT', 'PM', 'JT']);
+  return [
+    { at: 60,  from: seats[0], crateNum: notMine[0] },
+    { at: 180, from: seats[1], crateNum: mineShuf[0] },
+    { at: 300, from: seats[2], crateNum: notMine[1] }
+  ];
+})();
+
+const PHRASE_SHARE = [ n => `Sharing intel on Crate ${n}` ];
+const PHRASE_ASK   = [ n => `Requesting intel on Crate ${n}.` ];
+const GREETINGS = ['Hi!', 'Hello!', 'Hey!'];
+
+/* ---------------- state + log ---------------- */
+let entries = [], sortMode = 'custom', filterMode = null, uidSeq = 0;
+const answers = {}, confidence = {}, post = {}; const requestedCrates = new Set();
+let timeLeft = 480, taskTimer = null, elapsed = 0;
+const log = []; const counters = { req: 0, share: 0, pro: 0, reply: 0, prompt: 0, first: null };
+const $ = id => document.getElementById(id);
+const rand = a => a[Math.floor(Math.random() * a.length)];
+/* Lognormal delay: most replies land near the middle of the range, with an
+   occasional long pause, which reads far more like a person than a uniform draw. */
+const delay = function (lo, hi) {
+  const mid = (lo + hi) / 2;
+  const u1 = Math.max(1e-9, Math.random()), u2 = Math.random();
+  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  const ms = mid * Math.exp(0.45 * z) * 1000;
+  return Math.min(hi * 2.2 * 1000, Math.max(lo * 1000, ms));
+};
+const mmss = s => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+const initials = () => ($('initials').value.trim().toUpperCase() || 'You');
+const teammateName = seat => initials() === seat ? 'AR' : seat;
+const isMine = n => MINE.includes(n);
+let CONDITION = (window.INV_CONDITION === 'control') ? 'control' : 'eval';
+const EVAL_CONFIG = {
+  eval: {
+    key: 'eval',
+    intro: '<div class="callout eval"><b>Rating your teammates.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were during the task. Your teammates\u2019 ratings of you will be recorded along with your responses.</div>',
+    callout: '<b>Reminder.</b> At the end of the session, you and your teammates will each rate how helpful the other members of your team were.',
+    calloutClass: 'callout eval',
+    strip: 'Teammates will rate your helpfulness',
+    systemMsg: 'Your teammates will rate how helpful you were once the session ends.',
+    peerScreen: true,
+    peerIntro: 'As mentioned at the start, please rate each of your teammates. Your teammates have been asked to rate you in the same way.',
+    debrief: 'You were assigned to the peer-evaluation condition, so you were told your teammates would rate your helpfulness. No ratings of you were ever collected, and no one evaluated your performance.'
+  },
+  control: {
+    key: 'control',
+    intro: '<div class="callout"><b>After the session.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.</div>',
+    callout: '<b>Reminder.</b> At the end of the session, you and your teammates will each complete a short questionnaire about your experience on the task.',
+    calloutClass: 'callout',
+    strip: '',
+    systemMsg: '',
+    peerScreen: true,
+    peerIntro: 'Please rate each of your teammates.',
+    debrief: 'You were assigned to the control condition, so you were not told in advance that anyone would be rated.'
+  }
+};
+let EV = EVAL_CONFIG[CONDITION];
+function applyCondition() {
+  CONDITION = (window.INV_CONDITION === 'control') ? 'control' : 'eval';
+  EV = EVAL_CONFIG[CONDITION];
+  const ic = $('evalIntroCallout'); if (ic) ic.innerHTML = EV.intro;
+  const c = $('evalCallout'); if (c) { c.className = EV.calloutClass; c.innerHTML = EV.callout; }
+  const st = $('evalStrip'); if (st) { st.textContent = EV.strip; st.style.display = EV.strip ? '' : 'none'; }
+  const dc = $('debriefCondition'); if (dc) dc.textContent = EV.debrief;
+}
+function record(type, data) {
+  log.push({ t: elapsed, type, ...data });
+  if (type === 'team_request') { counters.req++; if (counters.first === null) counters.first = elapsed; }
+  if (type === 'share_to_team') { counters.share++; if (data.proactive) counters.pro++; }
+  if (type === 'free_reply') counters.reply++;
+  if (type === 'ai_prompt') counters.prompt++;
+
+}
+function crateOf(id) { return parseInt(id.split('-')[0].slice(1), 10); }
+function tagHtml(e) { return ''; }   /* entries are no longer labelled by crate */
+function parseStamp(stamp) {
+  const parts = stamp.split(',').map(s => s.trim()); const dayPart = (parts[0] || '').toLowerCase(); const timePart = parts[1] || '12:00 PM';
+  let day = 0; if (dayPart === 'yesterday') day = -1; else if (dayPart !== 'today') { const m = dayPart.match(/(\d+)\s+days?\s+ago/); day = m ? -parseInt(m[1]) : 0; }
+  let h = 12, mi = 0; const tm = timePart.match(/(\d+):(\d+)\s*(AM|PM)?/i);
+  if (tm) { h = parseInt(tm[1]); mi = parseInt(tm[2]); const ap = (tm[3] || '').toUpperCase(); if (ap === 'PM' && h < 12) h += 12; if (ap === 'AM' && h === 12) h = 0; }
+  return day * 1440 + h * 60 + mi;
+}
+function extractLocations(body) { const b = body.toLowerCase(); return HIDEOUTS.filter(h => b.includes(h.replace(/^the\s+/i, '').toLowerCase())); }
+function detectCrateInText(text) {
+  const t = text.toLowerCase();
+  for (const c of CRATES) { if (t.includes('crate ' + c.num) || t.includes('crate' + c.num) || t.includes(c.contents) || (c.contents.includes(' ') && t.includes(c.contents.split(' ').pop()))) return c.num; }
+  return null;
+}
+
+/* ---------------- navigation ---------------- */
+function continueFromIntro() {
+  const value = $('initials').value.trim();
+  if (!value) { $('initialsError').style.display = 'block'; $('initials').focus(); return; }
+  $('initialsError').style.display = 'none'; goto(3);
+}
+function goto(n) {
+  document.querySelectorAll('.screen, .task-screen').forEach(el => el.classList.remove('active'));
+  $('s' + n).classList.add('active');
+  if (n === 3) applyCondition();
+  if (n === 6) startTask();
+}
+function showConnecting() {
+  document.querySelectorAll('.screen, .task-screen').forEach(el => el.classList.remove('active'));
+  $('connectingScreen').classList.add('active'); startJoining();
+}
+function startJoining() {
+  $('youLabel').textContent = initials();
+  $('jtLabel').textContent = teammateName('JT');
+  setTimeout(() => { $('pDot').classList.add('online'); $('pLabel').textContent = teammateName('PM'); $('pStat').textContent = 'connected'; $('startBtn').disabled = false; }, 10600);
+}
+function pressStart() { const b = $('startBtn'); b.disabled = true; b.textContent = 'Waiting for teammates'; setTimeout(() => { b.textContent = 'Start'; goto(6); }, 1800); }
+
+/* ---------------- walkthrough ---------------- */
+let demoShared = false, demoAdded = false, demoMode = false;
+const DEMO_ENTRIES = [
+  { uid: -1, id: 'K3-04', stamp: '2 days ago, 2:45 PM', body: 'Field team: Crate 3 arriving at Ridgeline Bunker.', crate: 3, all: false, from: null },
+  { uid: -2, id: 'K4-04', stamp: 'Yesterday, 5:45 PM', body: 'Camera near Sawmill entrance captured Crate 4 still on site.', crate: 4, all: false, from: null }
+];
+(function () {
+  const src = document.getElementById('demoDragSource');
+  const zone = document.getElementById('demoDropZone');
+  if (!src || !zone) return;
+  function completeDemoShare() {
+    document.getElementById('demoChat1').innerHTML =
+      '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>Sharing intel on Crate ' + src.dataset.crate +
+      '<div class="filepill"><span class="fs">' + src.dataset.stamp + '</span>' + src.dataset.body + '</div></div>';
+    src.style.opacity = '0.45'; src.draggable = false; src.style.cursor = 'default';
+    zone.textContent = 'Shared';
+    zone.style.borderColor = '#2f6b5e'; zone.style.color = '#2f6b5e';
+    demoShared = true; $('demoShareDone').textContent = 'Done'; checkDemo();
+  }
+  src.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', 'demo'); e.dataTransfer.effectAllowed = 'copy'; });
+  src.addEventListener('click', completeDemoShare);          /* keyboard and fallback */
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = '#2f6b5e'; zone.style.background = '#F0F8F5'; });
+  zone.addEventListener('dragleave', () => { zone.style.borderColor = '#bbb'; zone.style.background = ''; });
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.style.background = ''; completeDemoShare(); });
+})();
+$('demoAddBtn').addEventListener('click', function () {
+  this.textContent = 'Added \u2713'; this.disabled = true;
+  $('demoAdded').innerHTML = '<p style="font-size:12.5px;color:#666;margin-bottom:6px">Now in your case file:</p>' +
+    '<div class="file shared"><span class="grip">\u22ee\u22ee</span><div class="file-main"><div class="file-head">' +
+    '<span class="file-stamp">Today, 10:15 AM</span><span class="tag crate-1">Crate 1 \u00b7 laptops</span>' +
+    '<span class="file-source">from teammate</span></div>' +
+    '<div class="file-body">Field team confirms Crate 1 at The Marina, unloading in progress.</div></div></div>';
+  demoAdded = true; $('demoAddDone').textContent = 'Done'; checkDemo();
+});
+(function () {
+  const out = $('demoAIOutput');
+  const sel = $('demoAiAsk'), menuBtn = $('demoAIBtn');
+  const typed = $('demoAIIn'), typeBtn = $('demoAITypeBtn');
+  function reply(question) {
+    const asked = '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>' + question + '</div>';
+    out.innerHTML = asked + '<div class="msg ai" style="max-width:100%"><div class="who">AI</div><i>Reviewing your case file</i></div>';
+    setTimeout(function () {
+      out.innerHTML = asked + '<div class="msg ai" style="max-width:100%"><div class="who">AI</div>' +
+        '\u2022 10:15 AM. Field report identifies a crate near one of the hideouts.<br>' +
+        '\u2022 1:30 PM. A later report narrows the possible location.<br><br>' +
+        'During the investigation I will review the actual entries in your case file.</div>';
+    }, 1800);
+  }
+  menuBtn.addEventListener('click', function () {
+    if (!sel.value) { sel.focus(); return; }
+    const label = sel.options[sel.selectedIndex].textContent;
+    reply('What does my file say about ' + label.split(' (')[0] + '?');
+  });
+  typeBtn.addEventListener('click', function () {
+    const v = typed.value.trim(); if (!v) { typed.focus(); return; }
+    reply(v);
+  });
+})();
+$('demoAskBtn').addEventListener('click', function () {
+  const n = $('demoAskCrate').value; this.disabled = true;
+  const out = $('demoChat3');
+  out.innerHTML = '<div class="msg you" style="align-self:flex-end"><div class="who">You</div>Requesting intel on Crate ' + n + '.</div>';
+  setTimeout(function () { out.innerHTML += '<div class="msg system">Request sent to both teammates.</div>'; }, 900);
+});
+function checkDemo() { $('demoContinue').disabled = !(demoShared && demoAdded); }
+
+/* ---------------- share modal: one entry per open ---------------- */
+const sharedIds = new Set();
+let shareCtx = null;
+
+function shareableEntries() { return entries.filter(e => !e.from && !sharedIds.has(e.id)); }
+
+/* Sharing is drag-only: entries move from the case file into the team chat.
+   There is no ordered list of shareable entries, so the control cannot hand
+   the participant their own intel in chronological order. */
+function openShareModal(ctx) {
+  shareCtx = ctx || null;
+  const pane = document.getElementById('casePane');
+  const chat = document.getElementById('teamPane');
+  if (pane) {
+    pane.classList.add('share-prompt');
+    setTimeout(() => pane.classList.remove('share-prompt'), 2600);
+    try { pane.scrollIntoView({ block: 'nearest' }); } catch (err) {}
+  }
+  if (chat) {
+    chat.classList.add('drop-hint');
+    setTimeout(() => chat.classList.remove('drop-hint'), 2600);
+  }
+  record('share_prompted', { crate: ctx ? ctx.crate : null, from: ctx ? ctx.from : null });
+}
+function closeShareModal() { shareCtx = null; }
+
+function doShare(e, ctx) {
+  if (sharedIds.has(e.id)) return;
+  const label = e.all ? '(all crates)' : e.crate;
+  const pill = 'Sharing intel on Crate ' + label +
+    '<div class="filepill"><span class="fs">' + e.stamp + '</span>' + e.body + '</div>';
+  sharedIds.add(e.id);
+  addChat('You', pill, true);
+  const proactive = !e.all && !isMine(e.crate) && !requestedCrates.has(e.crate) && !ctx;
+  record('share_to_team', { id: e.id, crate: e.all ? 'all' : e.crate, mine: e.all ? false : isMine(e.crate),
+                            prompted: !!ctx, to: ctx ? ctx.from : null, proactive });
+  if (ctx && ctx.msgEl) disableActions(ctx.msgEl);
+}
+
+/* ---------------- case file ---------------- */
+function initEntries() {
+  const sh = DIST.participant.slice(); for (let i = sh.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [sh[i], sh[j]] = [sh[j], sh[i]]; }
+  entries = sh.map(id => ({ uid: ++uidSeq, id, stamp: ALL_CLUES[id].stamp, body: ALL_CLUES[id].body, crate: crateOf(id), all: !!ALL_CLUES[id].all, from: null }));
+}
+function visibleEntries() { let l = entries.slice(); if (sortMode === 'newest') l.sort((a, b) => parseStamp(b.stamp) - parseStamp(a.stamp)); if (sortMode === 'oldest') l.sort((a, b) => parseStamp(a.stamp) - parseStamp(b.stamp)); return l; }
+function renderFilter() {
+  const f = $('crateFilter');
+  f.innerHTML = '';
+}
+function renderFiles() {
+  const list = $('filesList'); list.innerHTML = '';
+  visibleEntries().forEach(e => {
+    const hidden = false;
+    const d = document.createElement('div'); d.className = 'file' + (e.from ? ' shared' : '') + (hidden ? ' hidden' : ''); d.draggable = true; d.dataset.uid = e.uid;
+    d.innerHTML = `<span class="grip" title="Drag to reorder">\u22ee\u22ee</span><div class="file-main"><div class="file-head"><span class="file-stamp">${e.stamp}</span>${tagHtml(e)}${e.from ? `<span class="file-source">from ${e.from}</span>` : ''}</div><div class="file-body">${e.body}</div></div>`;
+    list.appendChild(d);
+  });
+  $('fileCount').textContent = entries.length + ' entries'; wireDrag();
+}
+function wireDrag() {
+  const list = $('filesList'); let dragUid = null;
+  list.querySelectorAll('.file').forEach(el => {
+    el.addEventListener('dragstart', e => { dragUid = +el.dataset.uid; el.classList.add('dragging'); e.dataTransfer.setData('text/plain', 'case:' + dragUid); e.dataTransfer.effectAllowed = 'copyMove'; });
+    el.addEventListener('dragend', () => { el.classList.remove('dragging'); list.querySelectorAll('.over').forEach(x => x.classList.remove('over')); });
+    el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('over'); });
+    el.addEventListener('dragleave', () => el.classList.remove('over'));
+    el.addEventListener('drop', e => { e.preventDefault(); const t = +el.dataset.uid; if (dragUid === null || dragUid === t) return;
+      const from = entries.findIndex(x => x.uid === dragUid), to = entries.findIndex(x => x.uid === t); const [m] = entries.splice(from, 1); entries.splice(to, 0, m); record('reorder', { uid: dragUid, to }); renderFiles(); });
+  });
+}
+let aiPending = null;
+/* The assistant does not accept dragged entries. Intel moves only through the
+   team chat, so the two request channels stay symmetric. */
+function wireAIDrop() {}
+
+function wireTeamDrop() {
+  const pane = $('teamPane');
+  pane.addEventListener('dragover', e => {
+    if (e.dataTransfer.types.includes('text/plain')) { e.preventDefault(); pane.classList.add('share-over'); }
+  });
+  pane.addEventListener('dragleave', e => { if (!pane.contains(e.relatedTarget)) pane.classList.remove('share-over'); });
+  pane.addEventListener('drop', e => {
+    e.preventDefault(); pane.classList.remove('share-over');
+    const value = e.dataTransfer.getData('text/plain');
+    if (!value.startsWith('case:')) return;
+    const entry = entries.find(x => x.uid === Number(value.slice(5)));
+    if (entry && !sharedIds.has(entry.id)) { record('share_via_drag', { id: entry.id }); doShare(entry); }
+  });
+}
+function addToFile(from, id) {
+  if (entries.some(e => e.id === id)) return false;
+  entries.push({ uid: ++uidSeq, id, stamp: ALL_CLUES[id].stamp, body: ALL_CLUES[id].body, crate: crateOf(id), all: !!ALL_CLUES[id].all, from }); renderFiles(); return true;
+}
+
+/* ---------------- submit ---------------- */
+function renderPickers() {
+  const row = $('pickerRow'); row.innerHTML = '';
+  MINE.forEach(n => {
+    const c = CRATES.find(x => x.num === n); const w = document.createElement('div'); w.className = 'picker'; w.id = 'picker-c' + n;
+    w.innerHTML = `<label><span class="tag">Crate ${n}</span>${c.contents}</label><select data-act="pick" data-crate="${n}"><option value="">Location?</option>${HIDEOUTS.map(h => `<option>${h}</option>`).join('')}</select>
+      `;
+    row.appendChild(w);
+  });
+  const btn = document.createElement('button');
+  btn.className = 'submit-btn'; btn.id = 'submitBtn'; btn.textContent = 'Submit';
+  btn.disabled = true; btn.title = 'Enter a location for every crate first';
+  btn.onclick = () => { if (!btn.disabled) endTask('submitted'); };
+  row.appendChild(btn);
+  updateSubmitGate();
+}
+function updateSubmitGate() {
+  const btn = document.getElementById('submitBtn'); if (!btn) return;
+  const done = MINE.every(n => !!answers[n]);
+  btn.disabled = !done;
+  btn.title = done ? '' : 'Enter a location for every crate first';
+}
+function pickAnswer(n, val) {
+  const p = $('picker-c' + n);
+  if (val) { answers[n] = val; p.classList.add('done'); }
+  else { delete answers[n]; p.classList.remove('done'); }
+  record('answer_set', { crate: n, value: val || null });
+  updateSubmitGate();
+}
+function populateAiAskDropdown() {
+  const s = $('aiAskCrate'); if (!s) return;
+  while (s.options.length > 1) s.remove(1);
+  MINE.forEach(n => {
+    const c = CRATES.find(x => x.num === n);
+    const o = document.createElement('option'); o.value = n;
+    o.textContent = 'Crate ' + n + ' (' + c.contents + ')';
+    s.appendChild(o);
+  });
+}
+function askAI() {
+  const sel = $('aiAskCrate'); const n = parseInt(sel.value, 10); if (!n) return;
+  sel.value = '';
+  sendAIQuery('What does my file say about Crate ' + n + '?', n, 'menu');
+}
+function populateAskDropdown() { const s = $('askCrate'); while (s.options.length > 1) s.remove(1); MINE.forEach(n => { const c = CRATES.find(x => x.num === n); const o = document.createElement('option'); o.value = n; o.textContent = `Crate ${n} (${c.contents})`; s.appendChild(o); }); }
+
+/* ---------------- chat ---------------- */
+function addChat(who, html, mine, opts) {
+  const list = $('chatList'); const el = document.createElement('div');
+  el.className = 'msg' + (mine ? ' you' : ''); el.innerHTML = `<div class="who">${who}</div>${html}`;
+  const acts = (opts && opts.actions) ? opts.actions.slice() : [];
+  if (!mine && who !== 'system' && !(opts && opts.noReply)) acts.push({ label: 'Reply', onClick: (btn, m) => openReply(m, who) });
+  if (acts.length) { const w = document.createElement('div'); w.className = 'msg-actions'; acts.forEach(a => { const b = document.createElement('button'); b.textContent = a.label; if (a.primary) b.className = 'primary'; b.onclick = () => a.onClick(b, el); w.appendChild(b); }); el.appendChild(w); }
+  list.appendChild(el); list.scrollTop = list.scrollHeight; return el;
+}
+function addSystem(text) { const list = $('chatList'); const el = document.createElement('div'); el.className = 'msg system'; el.textContent = text; list.appendChild(el); list.scrollTop = list.scrollHeight; }
+function agentSays(who, html, opts, lo = 5, hi = 12) {
+  const display = teammateName(who);
+  /* a teammate has to read, find the record and type: scale with what they send */
+  const chars = String(html).replace(/<[^>]*>/g, '').length;
+  const wait = delay(lo, hi) + Math.min(9000, chars * 28);
+  setTimeout(() => {
+    record('teammate_message', { from: who, wait_ms: Math.round(wait) });
+    addChat(display, html, false, opts);
+  }, wait);
+}
+function threadOf(msgEl) { let t = msgEl.querySelector(':scope > .thread'); if (!t) { t = document.createElement('div'); t.className = 'thread'; msgEl.appendChild(t); } return t; }
+function threadMsg(msgEl, who, text, mine) { const t = threadOf(msgEl); const el = document.createElement('div'); el.className = 'msg' + (mine ? ' you' : ''); el.innerHTML = `<div class="who">${who}</div>${text}`; t.appendChild(el); $('chatList').scrollTop = $('chatList').scrollHeight; }
+
+/* ============================================================
+   TEAMMATE REPLIES — live model, one channel only
+   Scripted seats answer requests and post their own requests.
+   The ONLY generative turn is a reply inside a thread, where
+   nothing about the seeking or sharing measures is at stake.
+   The seat is given its own records so it can speak in
+   character, and is forbidden from naming any hideout: intel
+   moves only through the logged request mechanic.
+   ============================================================ */
+const TEAMMATE_LIVE = false;   // demo: no backend   // set false for fully scripted seats
+
+function seatRecords(seat) {
+  return DIST[seat].map(id => ({ id, ...ALL_CLUES[id] }))
+    .sort((a, b) => parseStamp(a.stamp) - parseStamp(b.stamp));
+}
+
+function teammateSystem(seat) {
+  return [
+    'You are ' + seat + ', one of three investigators on a case. Each of you was privately assigned',
+    'three of six stolen crates. You are in a short text chat with a colleague while you both work.',
+    '',
+    'You are replying to one message from that colleague. Reply the way a busy colleague would.',
+    '',
+    'Rules:',
+    '- One or two short sentences. Lower case is fine. No greeting, no sign off.',
+    '- Never name a hideout or say where any crate is. If they want intel, tell them to use the',
+    '  request button and you will send what you have.',
+    '- Never say which crates you were assigned.',
+    '- Do not offer to check anything later, and do not promise anything.',
+    '- Do not mention being an AI, a model, or a study.',
+    '- No exclamation points, emojis, em dashes, colons or semicolons.'
+  ].join('\n');
+}
+
+function teammateFallback(participantText) {
+  const t = String(participantText).toLowerCase();
+  const asksIntel = /(crate|intel|info|information|anything|recent|newer|update|know|have|send|share|where)/.test(t);
+  const social = /(how are you|hi\b|hey\b|hello|thanks|thank you|good luck|ok\b|okay|sure|nice|cool)/.test(t);
+  if (social && !asksIntel) return rand(['doing fine, bit busy', 'good, deep in my own crates', 'fine, you?']);
+  if (asksIntel) return rand(['request it and i will send what i have', 'use the request button and i will send what is in my file']);
+  return rand(['noted', 'got it', 'makes sense']);
+}
+
+function teammateReply(seat, threadText, participantText) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 25000);
+  const started = Date.now();
+  const holdings = seatRecords(seat).map(e => 'Crate ' + crateOf(e.id) + ' at ' + e.stamp).join('; ');
+
+  return fetch(AI_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    signal: controller.signal,
+    body: JSON.stringify({
+      messages: [
+        { role: 'system', content: teammateSystem(seat) },
+        { role: 'user', content:
+            'YOUR FILE COVERS (no contents shown, do not reveal locations): ' + holdings +
+            '\n\nYOUR EARLIER MESSAGE: ' + threadText +
+            '\n\nCOLLEAGUE JUST WROTE: ' + participantText }
+      ]
+    })
+  }).then(r => { clearTimeout(timer); if (!r.ok) throw new Error('status ' + r.status); return r.json(); })
+    .then(data => {
+      const raw = ((data && data.reply) || '').trim();
+      const leaked = hideoutsIn(raw);
+      const fell = leaked.length > 0 || !raw;
+      record('teammate_reply', { seat: seat, latency_ms: Date.now() - started, raw: raw, leaked: leaked, fallback: fell });
+      if (fell) console.log('[INV] teammate fallback', seat, leaked.length ? 'leaked ' + leaked.join(',') : 'empty reply');
+      if (!raw || leaked.length) return teammateFallback(participantText);
+      return raw.replace(/</g, '&lt;');
+    })
+    .catch(err => {
+      record('teammate_reply_error', { seat: seat, message: err && err.message, latency_ms: Date.now() - started });
+      console.log('[INV] teammate call failed', seat, err && err.message);
+      return teammateFallback(participantText);
+    });
+}
+
+function openReply(msgEl, to) {
+  if (msgEl.querySelector('.reply-box')) return;
+  telem.replyOpens++; record('reply_open', { to: to });
+  const t = threadOf(msgEl); const box = document.createElement('div'); box.className = 'reply-box';
+  box.innerHTML = `<input type="text" placeholder="Reply to ${to}" maxlength="200"><button>Send</button>`;
+  const inp = box.querySelector('input'), send = box.querySelector('button');
+  const go = () => {
+    const v = inp.value.trim(); if (!v) return;
+    box.remove(); threadMsg(msgEl, 'You', v, true); record('free_reply', { to, text: v });
+    const seat = (to === 'JT' || to === 'PM') ? to : 'JT';
+    const threadText = (msgEl.childNodes[1] && msgEl.childNodes[1].textContent) || '';
+    if (!TEAMMATE_LIVE || typeof fetch !== 'function') {
+      const canned = teammateFallback(v);
+      setTimeout(() => threadMsg(msgEl, teammateName(seat), canned, false), delay(4, 10));
+      return;
+    }
+    teammateReply(seat, threadText, v).then(text => {
+      const wait = delay(4, 10) + Math.min(8000, text.length * 35);
+      setTimeout(() => threadMsg(msgEl, teammateName(seat), text, false), wait);
+    });
+  };
+  send.onclick = go; inp.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  t.appendChild(box); inp.focus();
+}
+function seatLatest(seat, n) { const ids = DIST[seat].filter(id => crateOf(id) === n); if (!ids.length) return null; ids.sort((a, b) => parseStamp(ALL_CLUES[a].stamp) - parseStamp(ALL_CLUES[b].stamp)); const id = ids[ids.length - 1]; return { from: seat, id, ...ALL_CLUES[id] }; }
+function askTeam() {
+  const sel = $('askCrate'); const n = parseInt(sel.value); if (!n) return;
+  addChat('You', `Requesting intel on Crate ${n}.`, true); sel.value = ''; record('team_request', { crate: n });
+  const jt = seatLatest('JT', n), pm = seatLatest('PM', n);
+  const order = (jt && pm) ? ((parseStamp(jt.stamp) >= parseStamp(pm.stamp)) ? [jt, pm] : [pm, jt]) : [jt, pm].filter(Boolean);
+  if (!order.length) return;
+  const lead = order[0];
+  agentSays(lead.from, `${rand(PHRASE_SHARE)(n)}<div class="filepill"><span class="fs">${lead.stamp}</span>${lead.body}</div>`, { actions: [{ label: 'Add to case file', primary: true, onClick: btn => { if (addToFile(lead.from, lead.id)) record('added_from_team', { crate: n, from: lead.from, id: lead.id }); btn.textContent = 'Added \u2713'; btn.disabled = true; } }] });
+  record('team_share_received', { crate: n, from: lead.from, id: lead.id });
+}
+function disableActions(msgEl) { msgEl.querySelectorAll(':scope > .msg-actions button').forEach(b => { if (b.textContent !== 'Reply') b.disabled = true; }); }
+
+/* ---------------- AI assistant: answers only about a named crate ---------------- */
+function addAI(html, mine) { const l = $('aiList'); const el = document.createElement('div'); el.className = 'msg' + (mine ? ' you' : ' ai'); el.innerHTML = `<div class="who">${mine ? 'You' : 'AI'}</div>${html}`; l.appendChild(el); l.scrollTop = l.scrollHeight; }
+function analyzeCrate(n) {
+  const c = CRATES.find(x => x.num === n);
+  const pats = [new RegExp('crate\\s*' + n + '\\b', 'i'), new RegExp('\\b' + c.contents.replace(/\s+/g, '\\s+') + '\\b', 'i')];
+  const matches = entries.map(e => ({ ...e, ts: parseStamp(e.stamp), locs: extractLocations(e.body) }))
+    .filter(e => e.crate === n || pats.some(p => p.test(e.body)))
+    .sort((a, b) => a.ts - b.ts);
+  if (!matches.length) return 'Your case file has no entries on Crate ' + n + ' (' + c.contents + ').';
+  let out = '<b>Crate ' + n + ' (' + c.contents + ')</b>, ' + matches.length + ' entr' + (matches.length === 1 ? 'y' : 'ies') + ' in your file, oldest to newest.<ul style="margin:6px 0 6px 18px;">';
+  matches.forEach(m => { out += '<li style="margin-bottom:3px;"><b>' + m.stamp + '</b>' + (m.from ? ' <i>(from ' + m.from + ')</i>' : '') + '. ' + m.body + '</li>'; });
+  out += '</ul>';
+  const withLoc = matches.filter(m => m.locs.length);
+  if (withLoc.length) {
+    const latest = withLoc[withLoc.length - 1];
+    out += '<b>Most recent location named in your file.</b> ' + latest.locs.join(', ') + ' (' + latest.stamp + ').';
+  }
+  return out;
+}
+
+
+/* ============================================================
+   AI ASSISTANT — live model via the university relay
+   The model is given ONLY this participant's own case-file
+   entries. It reports what the file says and nothing else.
+   Falls back to the built-in analyzer on error or timeout.
+   ============================================================ */
+const AI_ENDPOINT = 'https://qualtrics-relay.example.com/chatgpt';
+const AI_TIMEOUT_MS = 20000;
+const AI_LIVE = false;   // demo: no backend   // set false to run entirely on the built-in analyzer
+
+/* wake the relay early; a cold start can take longer than the timeout */
+
+const AI_SYSTEM = [
+  'You are an assistant embedded in an investigation workspace. You help one investigator',
+  'review the intelligence in their own case file. You can see only the entries given to you below.',
+  '',
+  'What to do:',
+  '- Summarise what the entries say about the crate, in time order, and state the most recent',
+  '  location the entries name, together with its timestamp.',
+  '',
+  'Rules:',
+  '- Answer only from the entries provided. Never invent a sighting, a time, or a location.',
+  '- Never mention a hideout that does not appear in the entries provided.',
+  '- Report what the file says. Do not comment on what the file does not say. Never say that',
+  '  information is missing, unavailable, unconfirmed, outdated or stale, and never state where',
+  '  a crate currently is or is not beyond naming the most recent entry.',
+  '- Do not suggest asking anyone, and do not speculate about what other investigators know.',
+  '- Do not mention being an AI. Do not use exclamation points, emojis, em dashes, colons or semicolons.',
+  '- Two to four sentences. Plain text only.'
+].join('\n');
+
+function entriesForPrompt(crateNum) {
+  let pool = entries.slice();
+  if (crateNum) pool = pool.filter(e => e.crate === crateNum || e.all);
+  return pool.sort((a, b) => parseStamp(a.stamp) - parseStamp(b.stamp));
+}
+
+function hideoutsIn(text) {
+  const t = String(text).toLowerCase();
+  return HIDEOUTS.filter(h => t.indexOf(h.replace(/^the\s+/i, '').toLowerCase()) !== -1);
+}
+
+function callAssistant(userText, crateNum) {
+  const pool = entriesForPrompt(crateNum);
+  const context = pool.map(e => e.stamp + ' | Crate ' + (e.all ? 'general' : e.crate) + ' | ' + e.body).join('\n')
+    || '(no entries in this case file for that crate)';
+  const allowed = pool.reduce((acc, e) => acc.concat(hideoutsIn(e.body)), []);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+  const started = Date.now();
+
+  return fetch(AI_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    signal: controller.signal,
+    body: JSON.stringify({
+      messages: [
+        { role: 'system', content: AI_SYSTEM },
+        { role: 'user', content: 'CASE FILE ENTRIES:\n' + context + '\n\nQUESTION:\n' + userText }
+      ]
+    })
+  }).then(r => {
+    clearTimeout(timer);
+    if (!r.ok) throw new Error('status ' + r.status);
+    return r.json();
+  }).then(data => {
+    const raw = (data && data.reply) || '';
+    const leaked = hideoutsIn(raw).filter(h => allowed.indexOf(h) === -1);
+    record('ai_reply', { crate: crateNum, latency_ms: Date.now() - started, leaked: leaked, raw: raw, fallback: false });
+    if (!raw.trim() || leaked.length) return { text: analyzeCrate(crateNum), fallback: true };
+    return { text: raw.replace(/</g, '&lt;').replace(/\n/g, '<br>'), fallback: false };
+  }).catch(err => {
+    clearTimeout(timer);
+    record('ai_error', { crate: crateNum, message: err && err.message, latency_ms: Date.now() - started });
+    return { text: crateNum ? analyzeCrate(crateNum) : 'Ask me about a specific crate by number or by contents.', fallback: true };
+  });
+}
+
+function sendAI() {
+  const v = $('aiIn').value.trim(); if (!v) return;
+  $('aiIn').value = '';
+  let n = detectCrateInText(v); const ctxEntry = aiPending; aiPending = null;
+  if (!n && ctxEntry && !ctxEntry.all) n = ctxEntry.crate;
+  sendAIQuery(v, n, 'typed', ctxEntry);
+}
+
+function sendAIQuery(text, n, route, ctxEntry) {
+  addAI(text, true);
+  record('ai_prompt', { text: text, crate: n, route: route,
+                        context_entry: ctxEntry ? ctxEntry.id : null });
+
+  if (!AI_LIVE || typeof fetch !== 'function') {
+    setTimeout(function () {
+      addAI(n ? analyzeCrate(n) : 'Ask me about a specific crate by number or by contents.');
+    }, delay(3, 7));
+    return;
+  }
+  const thinking = document.createElement('div');
+  thinking.className = 'msg ai'; thinking.innerHTML = '<div class="who">AI</div><i>Reviewing your case file</i>';
+  $('aiList').appendChild(thinking); $('aiList').scrollTop = $('aiList').scrollHeight;
+
+  /* Floor measured from the moment of asking, not added to the API latency.
+     If the model takes longer than the floor, the reply appears at once. */
+  const askedAt = Date.now();
+  const floor = delay(2, 4);
+  callAssistant(text, n).then(function (res) {
+    const remaining = Math.max(0, floor - (Date.now() - askedAt));
+    setTimeout(function () { thinking.remove(); addAI(res.text); }, remaining);
+  });
+}
+
+function updateBudgetDisplay() { /* no prompt budget in this design */ }
+
+
+/* ============================================================
+   TELEMETRY
+   Attention, navigation and interaction traces beyond the
+   task-relevant events already recorded.
+   ============================================================ */
+const telem = {
+  blurs: 0, hiddenMs: 0, hiddenAt: 0, lastActivity: 0, idleGaps: 0, maxIdleGap: 0,
+  clicksCase: 0, clicksTeam: 0, clicksAI: 0, clicksSubmit: 0,
+  caseScrollMax: 0, chatScrollMax: 0, firstActionAt: null, shareMenuOpens: 0, replyOpens: 0
+};
+function tick(what) {
+  if (telem.firstActionAt === null && taskTimer) { telem.firstActionAt = elapsed; record('first_action', { what: what }); }
+  if (taskTimer && telem.lastActivity) {
+    const gap = elapsed - telem.lastActivity;
+    if (gap >= 20) { telem.idleGaps++; telem.maxIdleGap = Math.max(telem.maxIdleGap, gap); record('idle_gap', { seconds: gap }); }
+  }
+  telem.lastActivity = elapsed;
+}
+function wireTelemetry() {
+  window.addEventListener('blur', () => { if (!taskTimer) return; telem.blurs++; telem.hiddenAt = Date.now(); record('window_blur', {}); });
+  window.addEventListener('focus', () => {
+    if (!taskTimer || !telem.hiddenAt) return;
+    const away = Math.round((Date.now() - telem.hiddenAt) / 1000);
+    telem.hiddenMs += away * 1000; telem.hiddenAt = 0; record('window_focus', { away_seconds: away });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!taskTimer) return;
+    record('visibility', { state: document.visibilityState });
+  });
+  const root = document.getElementById('invRoot') || document;
+  root.addEventListener('click', e => {
+    if (!taskTimer) return;
+    if (e.target.closest('#casePane')) { telem.clicksCase++; tick('case'); }
+    else if (e.target.closest('#teamPane')) { telem.clicksTeam++; tick('team'); }
+    else if (e.target.closest('#aiPane')) { telem.clicksAI++; tick('ai'); }
+    else if (e.target.closest('.submit-bar')) { telem.clicksSubmit++; tick('submit'); }
+  }, true);
+  const fl = document.getElementById('filesList');
+  if (fl) fl.addEventListener('scroll', () => {
+    const pct = Math.round(100 * (fl.scrollTop + fl.clientHeight) / Math.max(1, fl.scrollHeight));
+    if (pct > telem.caseScrollMax) { telem.caseScrollMax = Math.min(100, pct); }
+  });
+  const cl = document.getElementById('chatList');
+  if (cl) cl.addEventListener('scroll', () => {
+    const pct = Math.round(100 * (cl.scrollTop + cl.clientHeight) / Math.max(1, cl.scrollHeight));
+    if (pct > telem.chatScrollMax) { telem.chatScrollMax = Math.min(100, pct); }
+  });
+  const ac = document.getElementById('askCrate');
+  if (ac) ac.addEventListener('change', () => { if (taskTimer) record('ask_menu_select', { crate: ac.value || null }); });
+  const ai = document.getElementById('aiIn');
+  if (ai) {
+    ai.addEventListener('focus', () => { if (taskTimer) record('ai_input_focus', {}); });
+    let typed = false;
+    ai.addEventListener('input', () => { if (taskTimer && !typed) { typed = true; record('ai_typing_started', {}); } });
+  }
+}
+
+/* ---------------- lifecycle ---------------- */
+const timeouts = [];
+const peerRatings = {};
+function renderPeer() {
+  $('peerIntro').textContent = EV.peerIntro;
+  const box = $('peerItems'); box.innerHTML = '';
+  ['JT','PM'].forEach(seat => {
+    const q = document.createElement('div'); q.className = 'q';
+    q.innerHTML = '<p>How helpful was <b>' + teammateName(seat) + '</b> during the task?</p><div class="likert" data-peer="' + seat + '">' +
+      [1,2,3,4,5,6,7].map(n => '<button>' + n + '</button>').join('') +
+      '</div><div class="ends"><span>Not at all helpful</span><span>Extremely helpful</span></div>';
+    box.appendChild(q);
+  });
+  box.querySelectorAll('.likert').forEach(l => l.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    l.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+    e.target.classList.add('on');
+    peerRatings[l.dataset.peer] = Number(e.target.textContent);
+    record('peer_rating', { seat: l.dataset.peer, value: peerRatings[l.dataset.peer] });
+    $('peerContinue').disabled = !(peerRatings.JT && peerRatings.PM);
+  }));
+  const pc = $('peerContinue');
+  if (pc && !pc.dataset.wired) { pc.dataset.wired = '1'; pc.addEventListener('click', () => finishPeer()); }
+  pc.disabled = true;
+}
+function finishPeer() {
+  if (!(peerRatings.JT && peerRatings.PM)) return;
+  record('peer_ratings_complete', { ...peerRatings });
+  if (window.__FLAT) { window.__FLAT.inv_peer_rating_JT = peerRatings.JT; window.__FLAT.inv_peer_rating_PM = peerRatings.PM; }
+  if (window.INV_FINISH) window.INV_FINISH(window.__PAYLOAD, window.__FLAT);
+}
+function startTask() {
+  Object.keys(answers).forEach(k => delete answers[k]); log.length = 0; Object.assign(counters, { req: 0, share: 0, pro: 0, reply: 0, prompt: 0, first: null }); requestedCrates.clear(); sharedIds.clear();
+  applyCondition(); timeLeft = 480; elapsed = 0; sortMode = 'custom'; filterMode = null;
+  $('chatList').innerHTML = ''; $('aiList').innerHTML = ''; $('teamNames').textContent = `${teammateName('JT')}, ${initials()}, ${teammateName('PM')}`;
+  const strip = document.getElementById('mineStrip');
+  if (strip) strip.textContent = 'Your crates: ' + MINE.join(', ');
+  initEntries(); renderFiles(); renderPickers(); populateAskDropdown(); populateAiAskDropdown(); updateBudgetDisplay();
+  Object.assign(telem, { blurs: 0, hiddenMs: 0, hiddenAt: 0, lastActivity: 0, idleGaps: 0, maxIdleGap: 0, clicksCase: 0, clicksTeam: 0, clicksAI: 0, clicksSubmit: 0, caseScrollMax: 0, chatScrollMax: 0, firstActionAt: null, shareMenuOpens: 0, replyOpens: 0 });
+  record('world', { assigned: MINE, roles: MINE.map(n => n + '=' + CRATES.find(c => c.num === n).role),
+    truth: CRATES.map(c => c.num + '=' + c.truth), requests: TEAMMATE_QUESTIONS });
+  record('task_start', { teammate_live: TEAMMATE_LIVE, ai_live: AI_LIVE, condition: CONDITION, participant_assignment: MINE, initialOrder: entries.map(e => e.id) });
+  addSystem('Team connected. 8 minutes on the clock.');
+  if (EV.systemMsg) addSystem(EV.systemMsg);
+  addAI('I can read your case file, including entries you have added from the team. Ask me about a crate by number or by contents.');
+  timeouts.push(setTimeout(() => {
+    const el = addChat('system', 'Let your teammates know you are here.', false, { noReply: true, actions: GREETINGS.map(g => ({ label: g, onClick: (b, m) => {
+      addChat('You', g, true); record('greeting', { text: g }); m.remove();
+      agentSays('JT', rand(GREETINGS), null, 1.5, 3); setTimeout(() => agentSays('PM', rand(GREETINGS), null, 1, 2), delay(3.5, 5));
+    } })) });
+    el.classList.add('system'); el.querySelector('.who').remove();
+  }, 2000));
+  TEAMMATE_QUESTIONS.forEach(q => timeouts.push(setTimeout(() => {
+    requestedCrates.add(q.crateNum); record('teammate_request', { from: q.from, crate: q.crateNum });
+    addChat(teammateName(q.from), rand(PHRASE_ASK)(q.crateNum), false, { actions: [ { label: 'Share intel', primary: true, onClick: (b, el) => openShareModal({ crate: q.crateNum, from: q.from, msgEl: el }) } ] });
+  }, q.at * 1000)));
+  if (taskTimer) clearInterval(taskTimer);
+  taskTimer = setInterval(() => { timeLeft--; elapsed++; $('timer').textContent = mmss(timeLeft); $('timer').classList.toggle('low', timeLeft <= 60); if (timeLeft === 60) addSystem('One minute left.'); if (timeLeft <= 0) endTask('timeout'); }, 1000);
+}
+function endTask(how) {
+  clearInterval(taskTimer); timeouts.forEach(clearTimeout); timeouts.length = 0; closeShareModal();
+  record('task_end', { how, answers: { ...answers }, elapsed });
+  Object.keys(confidence).forEach(k => delete confidence[k]);
+  renderConfidence();
+  document.querySelectorAll('.screen, .task-screen').forEach(el => el.classList.remove('active'));
+  $('confidenceScreen').classList.add('active');
+}
+
+/* ---------------- post + results ---------------- */
+function renderConfidence() {
+  const grid = $('confidenceGrid'); grid.innerHTML = '';
+  MINE.forEach(n => {
+    const c = CRATES.find(x => x.num === n), answer = answers[n];
+    const card = document.createElement('div'); card.className = 'confidence-card';
+    const confidenceControl = answer ? `<p style="font-size:13px;margin-bottom:2px;color:#444;">Confidence: <b id="confidenceValue-${n}">${confidence[n] === undefined ? 'Move the slider to rate' : confidence[n] + '%'}</b></p><input type="range" min="0" max="100" value="${confidence[n] === undefined ? 50 : confidence[n]}" aria-label="Confidence for Crate ${n}" data-act="setConfidence" data-crate="${n}"><div class="confidence-scale"><span>0%<br>Completely unsure</span><span style="text-align:right;">100%<br>Positive</span></div>` : `<p style="font-size:13px;margin-bottom:7px;color:#555;">No location selected.</p>`;
+    card.innerHTML = `<label><span class="tag">Crate ${n}</span> ${c.contents}</label><p style="font-size:13px;margin-bottom:7px;color:#555;">${answer ? `Response: <b>${answer}</b>` : ''}</p>${confidenceControl}`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('input[type=range]').forEach(r => {
+    r.addEventListener('input', () => setConfidence(Number(r.dataset.crate), r.value));
+    r.addEventListener('change', () => setConfidence(Number(r.dataset.crate), r.value));
+  });
+  const cc = $('confidenceContinue');
+  if (cc && !cc.dataset.wired) { cc.dataset.wired = '1'; cc.addEventListener('click', () => finishConfidence()); }
+  updateConfidenceContinue();
+}
+function setConfidence(n, value) {
+  confidence[n] = Number(value); $('confidenceValue-' + n).textContent = confidence[n] + '%';
+  record('confidence_set', { crate: n, value: confidence[n] ?? null });
+  updateConfidenceContinue();
+}
+function updateConfidenceContinue() { $('confidenceContinue').disabled = MINE.some(crate => answers[crate] && confidence[crate] === undefined); }
+function finishConfidence() {
+  record('confidence_complete', { confidence: { ...confidence } });
+  const correct = MINE.filter(n => answers[n] === CRATES.find(c => c.num === n).truth).length;
+  const teamDep = MINE.filter(n => CRATES.find(c => c.num === n).needsTeam);
+  const truth = {}, roles = {};
+  MINE.forEach(n => { const c = CRATES.find(x => x.num === n); truth[n] = c.truth; roles[n] = c.role; });
+  const payload = {
+    condition: CONDITION, initials: initials(), assignment: MINE, truth, roles,
+    answers, confidence, peerRatings,
+    counters, log
+  };
+  window.__PAYLOAD = payload;
+  window.__FLAT = {
+    inv_condition: CONDITION,
+    inv_initials: initials(),
+    inv_team_requests: counters.req,
+    inv_first_request_sec: counters.first === null ? '' : counters.first,
+    inv_shares: counters.share,
+    inv_proactive_shares: counters.pro,
+    inv_replies: counters.reply,
+    inv_prompts_used: counters.prompt,
+    inv_peer_rating_JT: peerRatings.JT === undefined ? '' : peerRatings.JT,
+    inv_peer_rating_PM: peerRatings.PM === undefined ? '' : peerRatings.PM,
+    inv_correct_total: correct,
+    inv_assignment: MINE.join(','),
+    inv_roles: MINE.map(n => n + '=' + CRATES.find(c => c.num === n).role).join(';'),
+    inv_correct_teamdep: teamDep.filter(n => answers[n] === CRATES.find(c => c.num === n).truth).length,
+    inv_correct_ownfile: MINE.filter(n => !CRATES.find(c => c.num === n).needsTeam && answers[n] === CRATES.find(c => c.num === n).truth).length,
+    inv_answers: MINE.map(n => n + '=' + (answers[n] || 'blank')).join('; '),
+    inv_confidence: MINE.map(n => n + '=' + (confidence[n] === undefined ? '' : confidence[n])).join('; '),
+    inv_first_action_sec: telem.firstActionAt === null ? '' : telem.firstActionAt,
+    inv_window_blurs: telem.blurs,
+    inv_seconds_away: Math.round(telem.hiddenMs / 1000),
+    inv_idle_gaps: telem.idleGaps,
+    inv_max_idle_gap: telem.maxIdleGap,
+    inv_clicks_case: telem.clicksCase,
+    inv_clicks_team: telem.clicksTeam,
+    inv_clicks_ai: telem.clicksAI,
+    inv_case_scroll_pct: telem.caseScrollMax,
+    inv_share_menu_opens: telem.shareMenuOpens,
+    inv_reply_opens: telem.replyOpens,
+    inv_entries_added: entries.filter(e => e.from).length,
+    inv_events: log.length,
+    inv_teammate_replies: log.filter(x => x.type === 'teammate_reply').length,
+    inv_teammate_reply_fallbacks: log.filter(x => x.type === 'teammate_reply' && x.fallback).length
+  };
+  if (EV.peerScreen) { renderPeer(); showScreen('sPeer'); }
+  else if (window.INV_FINISH) window.INV_FINISH(payload, window.__FLAT);
+}
+
+$('aiIn').addEventListener('keydown', e => { if (e.key === 'Enter') sendAI(); });
+
+
+wireTeamDrop(); wireAIDrop(); wireTelemetry();
+
+
+/* expose the functions referenced by inline handlers in the markup */
+if (typeof goto === 'function') window.goto = goto;
+if (typeof continueFromIntro === 'function') window.continueFromIntro = continueFromIntro;
+if (typeof showConnecting === 'function') window.showConnecting = showConnecting;
+if (typeof pressStart === 'function') window.pressStart = pressStart;
+if (typeof askTeam === 'function') window.askTeam = askTeam;
+if (typeof openShareModal === 'function') window.openShareModal = openShareModal;
+if (typeof closeShareModal === 'function') window.closeShareModal = closeShareModal;
+if (typeof pickAnswer === 'function') window.pickAnswer = pickAnswer;
+if (typeof setConfidence === 'function') window.setConfidence = setConfidence;
+if (typeof finishConfidence === 'function') window.finishConfidence = finishConfidence;
+if (typeof finishPeer === 'function') window.finishPeer = finishPeer;
+if (typeof sendAI === 'function') window.sendAI = sendAI;
+if (typeof askAI === 'function') window.askAI = askAI;
+if (typeof conf === 'function') window.conf = conf;
+
+
+/* ------------------------------------------------------------------
+   Delegated handlers. Qualtrics strips inline on* attributes from
+   question HTML, so every control carries data-act instead.
+   ------------------------------------------------------------------ */
+(function () {
+  const ACTIONS = {
+    'continueFromIntro': () => continueFromIntro(),
+    'goto(4)': () => goto(4),
+    'goto(5)': () => goto(5),
+    'showConnecting': () => showConnecting(),
+    'pressStart': () => pressStart(),
+    'askTeam': () => askTeam(),
+    'openShareModal': () => openShareModal(),
+    'closeShareModal': () => closeShareModal(),
+    'sendAI': () => sendAI(),
+    'askAI': () => askAI(),
+    'finishConfidence': () => finishConfidence(),
+    'finishPeer': () => finishPeer()
+  };
+  const root = document.getElementById('invRoot') || document;
+  root.addEventListener('click', e => {
+    const el = e.target.closest('[data-act]'); if (!el) return;
+    const act = el.dataset.act.replace(/\(\)$/, '');
+    if (ACTIONS[act] || ACTIONS[el.dataset.act]) {
+      e.preventDefault();
+      (ACTIONS[act] || ACTIONS[el.dataset.act])();
+    }
+  });
+  root.addEventListener('change', e => {
+    const el = e.target.closest('[data-act="pick"]'); if (!el) return;
+    pickAnswer(Number(el.dataset.crate), el.value);
+  });
+  root.addEventListener('input', e => {
+    const el = e.target.closest('[data-act="setConfidence"]'); if (!el) return;
+    setConfidence(Number(el.dataset.crate), el.value);
+  });
+})();
+
+function demoEcho(){ var e=document.getElementById('demoCondEcho'); if(e) e.textContent = 'Active: ' + (window.INV_CONDITION === 'control' ? 'control' : 'peer evaluation'); }
+document.getElementById('demoCondition').addEventListener('change', function(){
+  window.INV_CONDITION = this.value;
+  applyCondition();
+  demoEcho();
+});
+applyCondition();
+demoEcho();
+})();
+</script>
+</body>
+</html>

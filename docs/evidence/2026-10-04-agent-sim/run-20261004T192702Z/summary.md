@@ -1,0 +1,533 @@
+# Agent-sim run
+
+- stamp: `20261004T192702Z`
+- label: `smoke2`
+- source bundle: `dedbbedba8d33ebb08ab0c827dacd7f406469256313b7736483c3ccd457ae84f`
+- sessions: 1
+- findings (fail severity): 3
+
+| persona | session | arm | terminal | reason | steps | fails |
+|---|---|---|---|---|---|---|
+| normal | `a799dfc1` | high | data_use_choice | — | 400 | 3 |
+
+## Findings
+
+- **FAIL** `RUNNER` (normal, `a799dfc1`): max_steps 400 exhausted
+- **FAIL** `INV-NEAR-REPEAT` (normal, `a799dfc1`): delivered near-repeat (JT vs PM)
+  - evidence: `{"a": "i'm on crates 1, 2, 6 and 7", "b": "I'm on crates 1, 2, 6 and 8"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `a799dfc1`): command proceed rejected with unexpected reason 'wrong_stage'
+  - evidence: `{"reason": "wrong_stage"}`
+- **FAIL** `EXPECT:terminal:completion` (normal, `a799dfc1`): terminal stage 'data_use_choice' (wanted 'completion')
+- **INFO** `EXPECT:episodes:no_orphaned` (normal, `a799dfc1`): 0 request episodes still pending

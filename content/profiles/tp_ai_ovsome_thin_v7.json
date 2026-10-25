@@ -1,0 +1,443 @@
+{
+ "allocation_policy": {
+  "block_size": 2,
+  "method": "permuted_block",
+  "rng_stream": "assignment",
+  "strata": [
+   "study_key",
+   "batch_id"
+  ]
+ },
+ "assistant": {
+  "fallback": "deterministic_file_summary",
+  "model_change_within_session": false,
+  "prompt": {
+   "artifact_id": "prompt.assistant_demo",
+   "version": 4
+  },
+  "provider": "local_openai_chat/gemma4:26b@sha256:5571076f3d70050487b26b341705799e0ab29b808164f90d20d4cf84f699d251",
+  "source_access": "participant_file_at_accepted_request",
+  "validator_version": "teammate_output_v7"
+ },
+ "channels": {
+  "phases": [
+   {
+    "enabled": [
+     "file_work",
+     "answer_drafting",
+     "sharing",
+     "social_reply",
+     "assistant_prompting"
+    ],
+    "from_active_s": 0,
+    "name": "task",
+    "until_active_s": 300
+   }
+  ]
+ },
+ "condition_set": [
+  {
+   "allocation_weight": 1,
+   "arm": "high",
+   "manipulation": {
+    "kind": "pressure_values",
+    "teammate_values": [
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "allocation_weight": 1,
+   "arm": "mixed",
+   "manipulation": {
+    "kind": "pressure_values",
+    "teammate_values": [
+     2,
+     6
+    ]
+   }
+  }
+ ],
+ "decisions": [
+  {
+   "decision": "D01",
+   "status": "resolved"
+  },
+  {
+   "decision": "D02",
+   "status": "resolved"
+  },
+  {
+   "decision": "D04",
+   "status": "resolved"
+  },
+  {
+   "decision": "D06",
+   "status": "resolved"
+  },
+  {
+   "decision": "D07",
+   "status": "resolved"
+  },
+  {
+   "decision": "D10",
+   "status": "resolved"
+  }
+ ],
+ "instruments": {
+  "confidence": {
+   "artifact_id": "confidence.demo",
+   "version": 3
+  },
+  "consent": {
+   "artifact_id": "consent.reference",
+   "version": 9
+  },
+  "debrief": {
+   "artifact_id": "debrief.tp_reference",
+   "version": 4
+  },
+  "open_ended": {
+   "artifact_id": "open_ended.tp_followup",
+   "version": 1
+  },
+  "peer_ratings": null,
+  "post_task": {
+   "artifact_id": "post_task.tp_demo",
+   "version": 9
+  },
+  "training": {
+   "artifact_id": "training.reference",
+   "version": 8
+  }
+ },
+ "interaction": {
+  "mode": "nl_only"
+ },
+ "manifest_id": "tp_ai_ovsome_thin_v7",
+ "manifest_version": 7,
+ "manipulation": {
+  "copy_ref": {
+   "artifact_id": "checkin.workload",
+   "version": 2
+  },
+  "higher_seat_policy": "independent_fair_coin",
+  "kind": "pressure_checkin",
+  "remarks": {
+   "artifact_id": "remarks.tp_workload",
+   "version": 2
+  },
+  "rng_stream": "ratings",
+  "status": "approved"
+ },
+ "material_status": "approved",
+ "modes_allowed": [
+  "preview",
+  "qa",
+  "live"
+ ],
+ "notes": [
+  "tp_ai_ovsome_thin_v7 succeeds tp_ai_ovsome_thin_v6 under owner direction 2026-10-18 (felt-workload consistency): binds post_task.tp_demo@v9 (tp_post_11 'seemed to feel like their workloads were heavier'). Nothing else changes.",
+  "tp_ai_ovsome_thin_v6 succeeds tp_ai_ovsome_thin_v5 under owner direction 2026-10-18 (felt-workload reframe): binds checkin.workload@v2 (subjective question + Very light/Overwhelming anchors), remarks.tp_workload@v2 (felt-register remark copy incl. per-seat mixed lines), post_task.tp_demo@v8 (tp_post_12 'feel differently about their workloads'). Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_ovsome_thin_v5 succeeds tp_ai_ovsome_thin_v4 under owner direction 2026-10-18 (v15 polish): binds post_task.tp_demo@v7 \u2014 tp_post_12 reworded to the 'After the check-in, ...' frame. Participant-facing answer-bar copy reworded in code (not artifacts): 'Locate your crates, then record at bottom of page' ribbon heading, 'N of 4 crates recorded' counter, 'Record where each of your crates is currently located.' footer prompt. Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_ovsome_thin_v3 succeeds tp_ai_ovsome_thin_v2 for 2026-10-14 student feedback: consent v9 and training v8 only. Preview testing approved; no live batch/group creation, rebind, enrollment change or fielding.",
+  "tp_ai_v13 succeeds tp_ai_v12 under the 2026-10-12 plan-progress-audit remediation (BA-105): binds instruments.open_ended = open_ended.tp_followup@v1 \u2014 the two required free-text follow-ups (crate_strategy, source_reliance; 0-4000 chars) between post_questionnaire and debrief become reviewed artifact content instead of a code-defined stage. Sessions on this profile store instrument_id 'open_ended.tp_followup'; v10-era rows keep the legacy id 'open_ended_followup'. Profiles without the pin now have NO open_ended stage at all \u2014 the code no longer injects one on unbound manifests. All other artifact pins unchanged from tp_ai_v12 (training v6 / consent v8 / post_task v5 / debrief v3 / assistant v4 / remarks v1 / requests v4 / fallbacks v5 / social v4 / voices v2). Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_v12 succeeds tp_ai_v11 under owner direction 2026-10-12 (UX_Feedback_v9): binds training.reference@v6 \u2014 three usability fixes. (1) 'Your workspace' gains a bolded final bullet restating the goal ('All intelligence is accurate as of the time it was recorded, but a crate may have changed locations later. Your goal is to identify where the crate is now.'). (2) 'Connecting you to your team' gains a goal reminder below the clock line. (3) Practice page 1 gates on the share ALONE \u2014 the typed intel ask becomes optional practice (still classifier-validated, canned card unchanged) and 'will answer' softens to 'may answer'; the practice_ask_required gate is retired after a v10-pilot participant dead-ended on the combined requirement. All other artifact pins unchanged from tp_ai_v11 (consent v8 / payment v5 / post_task v5 / debrief v3 / assistant v4 / remarks v1 / requests v4 / fallbacks v5 / social v4 / voices v2). Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_v11 succeeds tp_ai_v10 under owner direction 2026-10-15 (UX_Feedback_v8 follow-up): binds post_task.tp_demo@v5 \u2014 adds the teammate-direction manipulation check 'After the check-in, my teammates seemed more rushed.' immediately after tp_post_09 (the own-rushed item); the teammate-nature item stays last. Also in this build (code, not artifacts): the open_ended stage between post_questionnaire and debrief carries the two sequential free-text follow-ups (code-defined, not manifest-bound), and the file-added cue drops 'New'. Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_v10 succeeds tp_ai_v9 under owner direction 2026-10-12 (UX_Feedback_v7): timing.scripted_requests switches to seat_plan \u2014 five asks at active 45/100/155/210/245s, each seat asking about an ordinal crate of its own dealt four-crate assignment (JT lowest/2nd/3rd + PM lowest/highest; JT is the chattier seat per the pressure manipulation). Teammate assignments are now dealt before planning and the asks are drawn from them, so the seat always asks about a crate on its own beat. Also in this build (code, not artifacts): new intel lands at the top of the case file, the practice-ask card is labelled 'Teammate (practice)' instead of revealing the JT pin, and the comprehension item reads 'my teammates' case files'. All artifact pins unchanged from tp_ai_v9 (social v4 / training v5 / consent v8 / payment v5 / debrief v3). Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_v9 succeeds tp_ai_v8 under owner direction 2026-10-12 (ask-routing fixes after live-log review of the v8 fielding): (1) timing.scripted_requests.targets becomes ['unassigned','assigned_own','unassigned'] \u2014 the active-130 s ask now targets one of the participant's own-file assigned crates and the planner guarantees the asking seat holds no records on it, ending the pattern where a teammate asked about a team-dependent crate it already held the truth for; (2) teammates.social_prompt binds prompt.social_demo@v4 \u2014 the v3 'send me a request' wording pointed at an affordance that does not exist in typed-chat mode, and generation is now told to invite a single-crate ask instead of answering questions with bare acknowledgements; (3) instruments.training binds training.reference@v5 \u2014 the typed practice ask joins the practice share as a completion gate (practice_ask_required), teaching the ask mechanic before the task. Also in this build (code, not artifacts): multi-crate typed asks fan out to one card per named crate (cap 4), a broadcast ask delivers the single newest record across both seats' holdings, intel-flavoured text naming no crate gets the 'name the crate' invite, and the answer bar shows a neutral 'New entry on Crate N added to your file' cue when teammate intel lands. consent.reference@v8, payment.s5_base_only@v5, debrief.tp_reference@v3 unchanged. Preview/QA first per owner \u2014 no new fielding group. Nothing else changes.",
+  "tp_ai_v8 succeeds tp_ai_v7 under owner direction 2026-10-10 (comprehension check + revised incentive phrasing): binds consent.reference@v8 ('eligible to receive a bonus of up to $0.50 based on your performance on the task') and training.reference@v4 (five-item true/false comprehension gate before 'Connecting you to your team', server-held answer key, recorded attempts). payment.s5_base_only@v5 and debrief.tp_reference@v3 unchanged. Preview/QA first per owner \u2014 no new fielding group until lab testing passes. Nothing else changes.",
+  "tp_ai_v7 succeeds tp_ai_v6 under owner direction 2026-10-10 (incentive compatibility): binds consent.reference@v7 ('$3.00 plus a $0.50 bonus for correctly locating your assigned crates'), payment.s5_base_only@v5 (350 cents flat to every completer \u2014 the offered bonus is paid to all, non-deception per owner/university IRB), training.reference@v3 (Case background bonus sentence) and debrief.tp_reference@v3 ('the accuracy bonus is paid to every completer'). Pilot incentive frame, not a pre-registered condition \u2014 applies identically to all cells. Field through successor group study.live.v8; old pins remain immutable. Nothing else changes: timing, remarks, requests, teammate treatment, assistant pins identical.",
+  "Proposal under D01: 60 active s of own-file review and answer drafting with teammate and AI channels closed, then the check-in (outside active time), then 300 active s with all channels (spec \u00a74.1).",
+  "Scripted requests at interaction seconds 20/120/210 = active 80/180/270 remain a proposal until D01; they are not values from S4.",
+  "All response classes use the concurrent mechanism (spec \u00a76.5); distributions reuse the reference parameters pending D10.",
+  "Request seats: majority seat drawn by a fair coin (not always JT) so request sender stays balanced against the rating seat (spec \u00a77.1 invariant 7); proposal under D07.",
+  "Re-issued as tp_review_first_v4 to bind consent.reference@v3 (Appendix B verbatim: '#XXXX-XXXX' transcription fix, BA-37); content otherwise identical to tp_review_first_v3.",
+  "UX round 3 item 5 (revised 2026-10-07, BA-97): the own time-pressure rating is skippable \u2014 consent states skipping questions does not affect payment; the server accepts pressure_skip. An unanswered check-in still times out to technical_stop, which keeps base pay under D04.",
+  "FR-1 feature flag: structured requests plus natural language (the pre-round-3 behavior).",
+  "Approved for live fielding (2026-10-06, D04 revised 2026-10-07): D01 (field tp_review_first), D02 (pressure values high [6,7] / low [2,3]), D04 ($4.00 base; completed + technical_stop paid, early leave forfeits), D06 (instrument copy), D07 (generated teammate/assistant contributions with validated fallback), D10 (timing) resolved per PI direction; main-campus IRB confirmed blanket protocol coverage, no amendment required.",
+  "2026-10-06: v8 was published pointing at consent.reference@v3 (still proposed_unapproved) and could never bind live; nothing enrolled on it. v9 retargets consent to the approved v4 \u2014 v8 remains immutable published history.",
+  "UX round 3 (2026-10-03, plan \u00a717): binds fallbacks.neutral@v2 (warm pleasantries, no repeated lines; still pressure-neutral).",
+  "Re-issued to bind fallback_bank v3 (O-1/O-3 2026-10-03): adds the asks_intel_nl typed-ask pool for nl_only and the fixed identity_probe disclosure lines. No other field changes.",
+  "UX round 4 (UX_Feedback_v4, 2026-10-05): re-issued to bind requests.demo@v2 (varied scripted-request phrasing), fallbacks.neutral@v4 (diversified social-reply pool), and post_task.tp_demo@v2 (pre-debrief teammate-nature choice item).",
+  "v10 (2026-10-07, BA-96/97/98/99 audit remediation): fields the approved generated-contribution treatment \u2014 social_generation model_with_validated_fallback with prompt.social_demo@v3 as bound persona wording; assistant pins local_openai_chat + gemma4:26b digest + grounded_prompts_v5 + teammate_output_v7.",
+  "Compensation is the consent-v4 rule: completed and technical_stop keep the $4.00 base; abandoned/withdrawn/declined forfeit it (outcomes.withdrawal_payment=forfeits_base). The check-in pressure rating is skippable, matching consent 'skipping questions does not affect payment'.",
+  "All bound artifacts are approved successors (BA-99); preview/QA profiles may still bind the reference versions. Decisions D01/D02/D04/D06/D07/D10 resolved as recorded in docs/DECISIONS.md.",
+  "v11 (2026-10-07, owner direction): drops the 60 s solo_review phase \u2014 the approved protocol and office-hours scope cover timing revisions within the task, and the phase added an undocumented pre-task downtime with no participant deliverable (lab sessions show zero solo-window activity). All channels open from task start; check-in stays at active 60 s; every other binding identical to v10.",
+  "2026-10-08 (owner direction): four-condition launch \u2014 teammate mechanism (AI vs scripted) x pressure (high vs low), assigned by one platform link with balanced 4-cell blocks across tp_ai_v1 and tp_scripted_v2 (batch group; allocation at consent). Binds every approved v11 artifact verbatim; the per-manifest allocation_policy below describes the arm pair within this manifest only.",
+  "tp_ai_v1 = tp_review_first_v11 with interaction.mode nl_only (no ask picker; structured_seeking channel removed). Teammates remain model_with_validated_fallback (prompt.social_demo@v3, fallbacks.neutral@v5 incl. asks_intel_nl pool). Covered by office-hours scope for Group Chat / AI Assistant behavior adjustments.",
+  "tp_ai_v2 = tp_ai_v1 + all measurement items required (owner direction 2026-10-08): binds consent.reference@v5 (skip promise removed), confidence.demo@v3 and post_task.tp_demo@v4 (skippable=false on every item), and own_rating_skippable=false (server rejects pressure_skip). Otherwise identical to tp_ai_v1 \u2014 nl_only + model_with_validated_fallback.",
+  "tp_ai_v3 succeeds tp_ai_v2 under owner direction 2026-10-08 (risk assessment G6): requests.demo@v4 draws the three approved request phrasings without replacement in one session-wide keyed permutation. Timing, targets, sender draws, required instruments and teammate treatment are unchanged. Field through successor group study.live.v4; old pins remain immutable.",
+  "tp_ai_v4 succeeds tp_ai_v3 under owner direction 2026-10-09 (first N=5 pilot debrief): active task budget 360 -> 300 s; check-in unchanged at active 60; scripted requests at active 45 (pre-check-in) / 130 / 210 (was 80/180/270), same targets and seat policy; one-minute warning v3 at active 240; consent.reference@v6 (~12 minutes, $3.00) with payment.s5_base_only@v4 (300 cents); adds manipulation.remarks = remarks.tp_pressure@v1 \u2014 two fixed arm-specific teammate chat lines at active 75 and 83, speaker order a per-session fair coin. Teammate treatment unchanged: model_with_validated_fallback; the remarks are identical bound copy in both teammate builds. Field through successor group study.live.v5; old pins remain immutable.",
+  "tp_ai_v5 succeeds tp_ai_v4 under the RCA-2026-10-09 remediation: repins prompt.assistant_demo@v2 -> v3 \u2014 the narrowed assistant contract (asked crate only, newest entries first, at most three most recent entries, ENTRY crate= attribute resolves the crate when bodies name only contents). Pairs with code-side grounded_prompts_v6 and assistant_output_claims_v3 (transit-destination / anchored-retelling / not-moved / per-occurrence fixes). Fielded through successor group study.live.v6 after assistant acceptance QA; old pins remain immutable. Nothing else changes: timing, remarks, requests, consent, instruments, teammate treatment identical.",
+  "tp_ai_v6 succeeds tp_ai_v5 under the assistant-generation-rejections audit remediation (2026-10-10): repins prompt.assistant_demo@v3 -> v4 \u2014 v3's 'start with the most recent location' instruction made the model prepend a location label that violates the grounded_prompts_v7 verbatim-excerpt grammar (every generated release-panel probe rejected unvalidated_response despite accurate content; 12/12 replayed v3 trials reproduce it). v4 instructs excerpt-only replies and passes 12/12 replayed probes as record_excerpts with zero violations. Fielded through successor group study.live.v7 after the assistant release panel; old pins remain immutable. Nothing else changes: timing, remarks, requests, consent, instruments, teammate treatment identical.",
+  "2026-10-15 crate-overlap experiment: some crate-overlap condition \u2014 8 crates, each teammate assigned four with partial assignment overlap. Between-subject level of CRATE_OVERLAP_ENABLED; randomization rides the batch-group permuted-block machinery with one member batch per level. Live fielding is gated by the CRATE_OVERLAP_ENABLED deployment flag.",
+  "Thin-file variant (CRATE_NUMBER_ENABLED): the participant's case file is trimmed to participant_intel_budget records \u2014 4 most-recent records per assigned crate plus 4 single records on teammate crates. Fielding needs both CRATE_OVERLAP_ENABLED and CRATE_NUMBER_ENABLED.",
+  "v15 (2026-10-17, owner direction): workload relabel (checkin.workload@v1, remarks.tp_workload@v1, post_task@v6, debrief@v4); condition_set becomes high[6,7] + mixed[2,6] \u2014 the both-low arm is replaced by one-high/one-low. No fielding yet; smoke group study.smoke.v15 only."
+ ],
+ "outcomes": {
+  "completion_statuses": [
+   "completed",
+   "declined",
+   "withdrawn",
+   "technical_stop",
+   "abandoned"
+  ],
+  "payment_policy": {
+   "artifact_id": "payment.s5_base_only",
+   "version": 5
+  },
+  "ratings_contingent_pay": false,
+  "withdrawal_payment": "forfeits_base"
+ },
+ "profile_kind": "proposed_pilot",
+ "schema_version": "investigators.manifest/1",
+ "study_key": "investigators_time_pressure",
+ "task": {
+  "crate_overlap": "some",
+  "difficulty_version": 1,
+  "generator": "investigators.world/overlap_v1",
+  "n_assigned": 4,
+  "n_crates": 8,
+  "n_hideouts": 6,
+  "n_own_file": 2,
+  "n_team_dependent": 2,
+  "participant_intel_budget": 20
+ },
+ "teammates": {
+  "acknowledgments": null,
+  "assistant_referral": "none",
+  "crosstalk": null,
+  "fallback_bank": {
+   "artifact_id": "fallbacks.neutral",
+   "version": 5
+  },
+  "social_generation": "model_with_validated_fallback",
+  "social_prompt": {
+   "artifact_id": "prompt.social_demo",
+   "version": 4
+  },
+  "status": "approved",
+  "unsolicited_requests": "none",
+  "voice_bank": {
+   "artifact_id": "voices.tp_demo",
+   "version": 2
+  }
+ },
+ "timing": {
+  "active_budget_s": 300,
+  "availability_windows": "always_available",
+  "checkin": {
+   "at_active_s": 60,
+   "collect_wall_ms": 3500,
+   "inactivity_cap_wall_s": 120,
+   "inactivity_outcome": "technical_stop/checkin_incomplete",
+   "own_rating_skippable": false,
+   "resume": "explicit"
+  },
+  "clock_basis": "active_task",
+  "concurrency": {
+   "assistant_pending_prompts": 2,
+   "over_cap": "reject_visible",
+   "per_seat_pending_requests": 4
+  },
+  "contingent_responsiveness": "none",
+  "countdown_visible": true,
+  "deadline_structure": "single_global_freeze",
+  "delay_attribution": "none",
+  "delivery_failure_injection": "none",
+  "early_submission": false,
+  "ordering": "scheduled_chronological",
+  "proactive_sharing": "none",
+  "rate_limits": {
+   "experimental_request_budget": "unlimited",
+   "operational_commands_per_minute": 120
+  },
+  "response_classes": {
+   "assistant": {
+    "delay": [
+     {
+      "family": "lognormal",
+      "location": "median",
+      "location_s": 3.0,
+      "sigma": 0.45,
+      "truncation": {
+       "hi_s": 8.8,
+       "lo_s": 2.0,
+       "method": "clamp"
+      }
+     }
+    ],
+    "fallback": "deterministic_file_summary",
+    "mechanism": "concurrent",
+    "presence_cue": "none",
+    "rendering": "complete",
+    "timeout_ms": 20000
+   },
+   "social_greeting": {
+    "delay": [
+     {
+      "family": "lognormal",
+      "location": "median",
+      "location_s": 2.25,
+      "sigma": 0.45,
+      "truncation": {
+       "hi_s": 6.6,
+       "lo_s": 1.5,
+       "method": "clamp"
+      }
+     }
+    ],
+    "fallback": "none",
+    "mechanism": "concurrent",
+    "presence_cue": "none",
+    "rendering": "complete",
+    "seat_overrides": {
+     "JT": {
+      "delay": [
+       {
+        "family": "lognormal",
+        "location": "median",
+        "location_s": 2.25,
+        "sigma": 0.45,
+        "truncation": {
+         "hi_s": 6.6,
+         "lo_s": 1.5,
+         "method": "clamp"
+        }
+       }
+      ]
+     },
+     "PM": {
+      "delay": [
+       {
+        "family": "lognormal",
+        "location": "median",
+        "location_s": 4.25,
+        "sigma": 0.45,
+        "truncation": {
+         "hi_s": 11.0,
+         "lo_s": 3.5,
+         "method": "clamp"
+        }
+       },
+       {
+        "family": "lognormal",
+        "location": "median",
+        "location_s": 1.5,
+        "sigma": 0.45,
+        "truncation": {
+         "hi_s": 4.4,
+         "lo_s": 1.0,
+         "method": "clamp"
+        }
+       }
+      ]
+     }
+    },
+    "typing": {
+     "cap_ms": 9000,
+     "per_char_ms": 28
+    }
+   },
+   "social_reply": {
+    "delay": [
+     {
+      "family": "lognormal",
+      "location": "median",
+      "location_s": 7.0,
+      "sigma": 0.45,
+      "truncation": {
+       "hi_s": 22.0,
+       "lo_s": 4.0,
+       "method": "clamp"
+      }
+     }
+    ],
+    "fallback": "deterministic_script",
+    "mechanism": "concurrent",
+    "presence_cue": "none",
+    "rendering": "complete",
+    "timeout_ms": 25000,
+    "typing": {
+     "cap_ms": 8000,
+     "per_char_ms": 35
+    }
+   },
+   "structured_record": {
+    "delay": [
+     {
+      "family": "lognormal",
+      "location": "median",
+      "location_s": 8.5,
+      "sigma": 0.45,
+      "truncation": {
+       "hi_s": 26.4,
+       "lo_s": 5.0,
+       "method": "clamp"
+      }
+     }
+    ],
+    "fallback": "none",
+    "mechanism": "concurrent",
+    "presence_cue": "none",
+    "rendering": "complete",
+    "typing": {
+     "cap_ms": 9000,
+     "per_char_ms": 28
+    }
+   }
+  },
+  "scripted_requests": {
+   "script": {
+    "artifact_id": "requests.demo",
+    "version": 4
+   },
+   "seat_plan": [
+    {
+     "pick": 0,
+     "seat": "JT"
+    },
+    {
+     "pick": 0,
+     "seat": "PM"
+    },
+    {
+     "pick": 1,
+     "seat": "JT"
+    },
+    {
+     "pick": 2,
+     "seat": "JT"
+    },
+    {
+     "pick": -1,
+     "seat": "PM"
+    }
+   ],
+   "seat_policy": "seat_plan",
+   "status": "approved",
+   "times_active_s": [
+    45,
+    100,
+    155,
+    210,
+    245
+   ]
+  },
+  "trajectory": "constant",
+  "two_stage": {
+   "acknowledgment_counts_as_fulfillment": false,
+   "acknowledgment_resets_substantive_schedule": false
+  },
+  "visibility": "simultaneous_all_recipients",
+  "warnings": [
+   {
+    "artifact_id": "warning.one_minute_left",
+    "version": 3
+   }
+  ]
+ },
+ "title": "Time-pressure profile \u2014 AI teammates, some crate overlap, thin case file (~20 intel records), 5-minute task (approved; flag-gated)"
+}

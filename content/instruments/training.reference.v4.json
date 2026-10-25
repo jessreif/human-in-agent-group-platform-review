@@ -1,0 +1,27 @@
+{
+ "schema_version": "investigators.artifact/1",
+ "kind": "material_reference",
+ "artifact_id": "training.reference",
+ "version": 4,
+ "status": "approved",
+ "decisions": [],
+ "sources": [
+  {
+   "ref": "demo_constants.shared.DEMO_ENTRIES"
+  },
+  {
+   "ref": "spec §2.1 training, §5.2"
+  }
+ ],
+ "notes": [
+  "v4 (2026-10-10, owner direction): the training flow gains a five-item true/false comprehension check as the final screen before 'Connecting you to your team' — the server holds the answer key, wrong answers are returned for highlighting, retries are allowed, and every attempt is recorded; completion requires a zero-miss attempt (still gated on the committed practice share). The Case background bonus sentence softens to the eligibility frame to match consent.reference@v8: 'you are eligible to receive a bonus based on your performance'. Reference copy only — rendered text lives in frontend source.",
+  "v3 (2026-10-10, owner direction): reference copy gains the incentive-compatibility sentence in the Case background page — 'Your task will be to locate each of your four assigned crates, and as noted, you will receive a financial bonus for correctly locating your assigned crates.' Pairs with consent.reference@v7 and the task answer-bar bonus line; the bonus is paid to every completer (payment.s5_base_only@v5).",
+  "Training uses a separate fixed practice world and event namespace (INV-0901); practice never counts analytically.",
+  "Approved for live pilot fielding (2026-10-07, BA-99 audit remediation): body identical to the bound reference version; approved successor minted so the restored approved-only live gate binds only approved material."
+ ],
+ "body": {
+  "material": "training",
+  "reference_copy": "demo training screens and DEMO_ENTRIES (K3-04, K4-04)",
+  "freeze_decision": "D06"
+ }
+}

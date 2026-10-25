@@ -1,0 +1,15 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "qa_timing_overlay",
+  "artifact_id": "qa.accelerated_x10",
+  "version": 1,
+  "status": "approved",
+  "decisions": [],
+  "sources": [{"ref": "spec §5.1, §11 accelerated QA timing"}, {"ref": "INV-0209"}],
+  "notes": ["Engineering QA aid: active time runs 10x faster. Only in qa deployments; never analytic, never live."],
+  "body": {
+    "clock_speed_factor": 10,
+    "analytic_eligible": false,
+    "allowed_modes": ["qa"]
+  }
+}

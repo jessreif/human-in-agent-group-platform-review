@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilot Transcripts</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--ink:#1d1d1f;--muted:#6b6b70;--line:#e3e3e0;--accent:#2f5bd3;
+--jt:#e8f0fe;--pm:#fdf0e6;--me:#e9f6ec;--sys:#f1f1ef;--req:#b4232a;--hl:#fff3a3;--gen:#1f7a4a;--scr:#5b5b66;--fix:#2f5bd3;--bak:#a35a00;--cfbg:#fbf6ea}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17171a;--panel:#1f1f23;--ink:#ececef;--muted:#9a9aa2;--line:#33333a;--accent:#8aa8ff;
+--jt:#1e2a44;--pm:#3a2a1e;--me:#1e3626;--sys:#2a2a2f;--req:#ff8a8a;--hl:#5a4d00;--gen:#6fd39b;--scr:#a8a8b3;--fix:#8aa8ff;--bak:#f0b45e;--cfbg:#2d2618}}
+:root[data-theme="dark"]{--bg:#17171a;--panel:#1f1f23;--ink:#ececef;--muted:#9a9aa2;--line:#33333a;--accent:#8aa8ff;
+--jt:#1e2a44;--pm:#3a2a1e;--me:#1e3626;--sys:#2a2a2f;--req:#ff8a8a;--hl:#5a4d00;--gen:#6fd39b;--scr:#a8a8b3;--fix:#8aa8ff;--bak:#f0b45e;--cfbg:#2d2618}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;height:100vh;display:flex;flex-direction:column}
+header{padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+header h1{font-size:15px;margin:0 8px 0 0}
+select,input{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+input[type=search]{min-width:200px}
+label.chk{display:flex;gap:4px;align-items:center;color:var(--muted)}
+.count{color:var(--muted);margin-left:auto}
+main{flex:1;display:flex;min-height:0}
+#list{width:300px;border-right:1px solid var(--line);overflow:auto;background:var(--panel)}
+.item{padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:hover{background:var(--bg)} .item.on{background:var(--jt)}
+.item .top{display:flex;justify-content:space-between;font-weight:600}
+.item .sub{color:var(--muted);font-size:12px}
+#view{flex:1;overflow:auto;padding:16px 20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px 16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:12px;font-size:13px}
+.meta b{color:var(--muted);font-weight:500;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.oe{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
+.oe p{margin:4px 0}
+.msg{display:flex;gap:10px;margin:4px 0;align-items:flex-start}
+.ts{width:48px;flex:none;color:var(--muted);font-size:12px;text-align:right;padding-top:6px;font-variant-numeric:tabular-nums}
+.bub{padding:6px 10px;border-radius:8px;max-width:760px;white-space:pre-wrap;word-wrap:break-word}
+.who{font-weight:600;font-size:12px;margin-right:6px}
+.JT .bub{background:var(--jt)} .PM .bub{background:var(--pm)} .participant .bub{background:var(--me);border:1px solid color-mix(in srgb,var(--me),var(--ink) 15%)}
+.system .bub{background:var(--sys);color:var(--muted);font-size:12px;font-style:italic}
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:9px;margin-left:6px;border:1px solid var(--line);color:var(--muted)}
+.tag.request{border-color:var(--req);color:var(--req)}
+.src{display:inline-block;font-size:11px;font-weight:600;padding:0 6px;border-radius:9px;margin-left:6px;border:1px solid currentColor;white-space:nowrap}
+.src.generated{color:var(--gen)} .src.scripted{color:var(--scr)} .src.fixed{color:var(--fix)} .src.backup,.src.ghost{color:var(--bak)}
+.msg.dim{opacity:.35}
+.cf{margin-top:5px;padding:5px 8px;border-left:3px solid var(--bak);background:var(--cfbg);border-radius:4px;font-size:13px}
+.cf b{font-size:11px;color:var(--bak);display:block;text-transform:uppercase;letter-spacing:.03em}
+.ghost .bub{background:transparent;border:1px dashed var(--bak);color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin:0 0 10px}
+.badge{color:var(--bak);font-weight:600}
+mark{background:var(--hl);color:inherit}
+.empty{color:var(--muted);padding:40px;text-align:center}
+@media (max-width:700px){main{flex-direction:column}#list{width:auto;max-height:35vh;border-right:0;border-bottom:1px solid var(--line)}#view{padding:12px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Pilot transcripts (N = 90)</h1>
+  <select id="fCell"><option value="">All conditions</option></select>
+  <select id="fAI"><option value="">Any automation judgment</option></select>
+  <label class="chk"><input type="checkbox" id="fReq"> only sessions with a request</label>
+  <label class="chk"><input type="checkbox" id="fSys" checked> show system messages</label>
+  <select id="fSrc"><option value="">Highlight: all teammate messages</option><option value="generated">Highlight: generated only</option><option value="scripted">Highlight: scripted / fixed only</option><option value="backup">Highlight: backup lines only</option></select>
+  <label class="chk"><input type="checkbox" id="fCf"> only sessions with a rejected / unshown reply</label>
+  <input type="search" id="q" placeholder="Search message text…">
+  <span class="count" id="count"></span>
+</header>
+<main><div id="list"></div><div id="view"><div class="empty">Select a session.</div></div></main>
+<script>
+const DATA = /*DATA*/null;
+const nCf = s => s.msgs.filter(m => m.cf).length;
+const SCRIPTED = new Set(['scripted', 'fixed']);
+const $ = s => document.querySelector(s);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const cellName = s => s.workload && s.workload !== 'none' ? `${s.cell} · workload ${s.workload}` : s.cell;
+const fmt = v => v == null ? '–' : (typeof v === 'number' && !Number.isInteger(v) ? v.toFixed(1) : v);
+const mmss = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+let current = null;
+
+[...new Set(DATA.map(cellName))].sort().forEach(c => $('#fCell').append(new Option(c, c)));
+[...new Set(DATA.map(s => s.tp_post_10).filter(Boolean))].sort().forEach(c => $('#fAI').append(new Option(c, c)));
+
+function filtered() {
+  const c = $('#fCell').value, a = $('#fAI').value, q = $('#q').value.trim().toLowerCase(), r = $('#fReq').checked, f = $('#fCf').checked;
+  return DATA.filter(s => (!c || cellName(s) === c) && (!a || s.tp_post_10 === a) && (!r || s.any_req) &&
+    (!f || nCf(s)) && (!q || s.msgs.some(m => (m.b + ' ' + (m.cf || '')).toLowerCase().includes(q))));
+}
+
+function renderList() {
+  const rows = filtered(); $('#list').replaceChildren(); $('#count').textContent = `${rows.length} sessions`;
+  rows.forEach((s, i) => {
+    const it = el('div', 'item' + (s === current ? ' on' : ''));
+    const top = el('div', 'top'); top.append(el('span', null, `${s.sample} · ${s.session_id.slice(0, 8)}`), el('span', null, `${fmt(s.correct_total)}/4`));
+    const sub = el('div', 'sub', `${s.n_req_msgs} request msgs · ${s.n_msgs} msgs · ${s.tp_post_10 || ''}`);
+    if (nCf(s)) sub.append(' · ', el('span', 'badge', `${nCf(s)} rejected/unshown`));
+    it.append(top, el('div', 'sub', cellName(s)), sub);
+    it.onclick = () => { current = s; renderList(); renderView(); };
+    $('#list').append(it);
+  });
+}
+
+function highlight(node, text, q) {
+  if (!q) { node.append(text); return; }
+  const lo = text.toLowerCase(); let i = 0, j;
+  while ((j = lo.indexOf(q, i)) >= 0) { node.append(text.slice(i, j)); node.append(el('mark', null, text.slice(j, j + q.length))); i = j + q.length; }
+  node.append(text.slice(i));
+}
+
+function renderView() {
+  const s = current, v = $('#view'); v.replaceChildren(); if (!s) return;
+  const meta = el('div', 'meta');
+  const fields = [['Session', s.session_id], ['Condition', cellName(s)], ['Light seat', s.light_seat], ['JT / PM workload', s.JT_level != null ? `${s.JT_level} / ${s.PM_level}` : null],
+    ['Own workload (check-in)', s.own_workload], ['Correct (own / team)', `${fmt(s.correct_total)} (${fmt(s.correct_own)} / ${fmt(s.correct_team)})`], ['Confidence', s.conf_mean],
+    ['Request messages', s.n_req_msgs], ['Records shared', s.n_shares], ['Teammate requests fulfilled', s.n_sched_fulfilled],
+    ['Asking takes their time (05)', s.tp_post_05], ['Willing to help (07)', s.tp_post_07], ['Competent (08)', s.tp_post_08], ['Workloads differed (12)', s.tp_post_12], ['Automation judgment', s.tp_post_10]];
+  fields.forEach(([k, val]) => { const d = el('div'); d.append(el('b', null, k), document.createTextNode(fmt(val))); meta.append(d); });
+  v.append(meta);
+  if (s.oe_crate_strategy || s.oe_source_reliance) {
+    const oe = el('div', 'oe');
+    if (s.oe_crate_strategy) { const p = el('p'); p.append(el('b', null, 'Strategy: ')); p.append(s.oe_crate_strategy); oe.append(p); }
+    if (s.oe_source_reliance) { const p = el('p'); p.append(el('b', null, 'Source reliance: ')); p.append(s.oe_source_reliance); oe.append(p); }
+    v.append(oe);
+  }
+  const leg = el('div', 'legend');
+  [['generated', 'Generated', 'model reply, shown'], ['scripted', 'Scripted', 'fixed wording on a schedule or event'], ['fixed', 'Fixed reply', 'routed to a set line, no model call'],
+   ['backup', 'Backup line', 'shown instead of a rejected reply, or no model call logged']].forEach(([c, t, d]) => { const x = el('span'); x.append(el('span', 'src ' + c, t), ' ' + d); leg.append(x); });
+  v.append(leg);
+  const q = $('#q').value.trim().toLowerCase(), showSys = $('#fSys').checked, hl = $('#fSrc').value;
+  s.msgs.filter(m => showSys || m.ch !== 'system').forEach(m => {
+    const row = el('div', 'msg ' + (m.src === 'ghost' ? 'ghost' : ['JT', 'PM', 'participant'].includes(m.a) ? m.a : 'system'));
+    const grp = m.src === 'ghost' ? 'backup' : SCRIPTED.has(m.src) ? 'scripted' : m.src;
+    if (hl && m.src && m.a !== 'system' && grp !== hl) row.classList.add('dim');
+    row.append(el('div', 'ts', mmss(m.s)));
+    const b = el('div', 'bub'); b.append(el('span', 'who', m.a === 'participant' ? 'Participant' : m.a));
+    highlight(b, m.b, q);
+    if (m.src && m.a !== 'participant') b.append(el('span', 'src ' + m.src, m.lab));
+    if (m.code) m.code.split(/[;,|]\s*/).forEach(t => b.append(el('span', 'tag ' + t, t + (t === 'request' && m.crates ? ` · crate ${m.crates}` : ''))));
+    if (m.cf) {
+      const c = el('div', 'cf');
+      c.append(el('b', null, m.src === 'ghost' ? 'Model reply (not shown)' : `Model would have said${m.why ? ' — rejected: ' + m.why : ''}`));
+      highlight(c, m.cf, q); b.append(c);
+    }
+    row.append(b); v.append(row);
+  });
+  v.scrollTop = 0;
+}
+
+['#fCell', '#fAI', '#fReq', '#fCf', '#q'].forEach(id => $(id).addEventListener('input', renderList));
+$('#fSrc').addEventListener('input', renderView);
+$('#fSys').addEventListener('input', renderView);
+$('#q').addEventListener('input', renderView);
+renderList();
+</script>
+</body>
+</html>

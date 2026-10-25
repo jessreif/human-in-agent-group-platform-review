@@ -1,0 +1,15 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "material_reference",
+  "artifact_id": "consent.reference",
+  "version": 1,
+  "status": "unresolved_placeholder",
+  "decisions": ["D06", "D03", "D04"],
+  "sources": [{"ref": "S5 approved protocol XXXX-XXXX consent section"}, {"ref": "demo consent screens"}],
+  "notes": ["Final consent text is frozen against the applicable approved protocol/amendment before any payable batch (G10). Binds in preview/QA only."],
+  "body": {
+    "material": "consent",
+    "reference_copy": "S5 approved protocol XXXX-XXXX (consent) and the demo consent screens",
+    "freeze_decision": "D06"
+  }
+}

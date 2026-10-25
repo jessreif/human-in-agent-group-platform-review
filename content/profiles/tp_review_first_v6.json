@@ -1,0 +1,393 @@
+{
+  "schema_version": "investigators.manifest/1",
+  "manifest_id": "tp_review_first_v6",
+  "manifest_version": 6,
+  "study_key": "investigators_time_pressure",
+  "profile_kind": "proposed_pilot",
+  "material_status": "proposed_unapproved",
+  "title": "Time-pressure review-first pilot profile (proposed, preview-only)",
+  "notes": [
+    "Proposal under D01: 60 active s of own-file review and answer drafting with teammate and AI channels closed, then the check-in (outside active time), then 300 active s with all channels (spec §4.1).",
+    "Scripted requests at interaction seconds 20/120/210 = active 80/180/270 remain a proposal until D01; they are not values from S4.",
+    "All response classes use the concurrent mechanism (spec §6.5); distributions reuse the reference parameters pending D10.",
+    "Request seats: majority seat drawn by a fair coin (not always JT) so request sender stays balanced against the rating seat (spec §7.1 invariant 7); proposal under D07.",
+    "Social replies are deterministic neutral fallbacks (proposal under D07); no distracted/busy wording.",
+    "Re-issued as tp_review_first_v4 to bind consent.reference@v3 (Appendix B verbatim: '#XXXX-XXXX' transcription fix, BA-37); content otherwise identical to tp_review_first_v3.",
+    "UX round 3 (2026-10-03, plan §17): binds fallbacks.neutral@v2 (warm pleasantries, no repeated lines; still pressure-neutral).",
+    "UX round 3 item 5: the own time-pressure rating is required (no skip); the server refuses pressure_skip.",
+    "FR-1 feature flag: structured requests plus natural language (the pre-round-3 behavior).",
+    "Re-issued to bind fallback_bank v3 (O-1/O-3 2026-10-03): adds the asks_intel_nl typed-ask pool for nl_only and the fixed identity_probe disclosure lines. No other field changes."
+  ],
+  "decisions": [
+    {
+      "decision": "D01",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D02",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D04",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D06",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D07",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D10",
+      "status": "unresolved"
+    }
+  ],
+  "modes_allowed": [
+    "preview",
+    "qa"
+  ],
+  "allocation_policy": {
+    "method": "permuted_block",
+    "block_size": 2,
+    "strata": [
+      "study_key",
+      "batch_id"
+    ],
+    "rng_stream": "assignment"
+  },
+  "condition_set": [
+    {
+      "arm": "high",
+      "allocation_weight": 1,
+      "manipulation": {
+        "kind": "pressure_values",
+        "teammate_values": [
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "arm": "low",
+      "allocation_weight": 1,
+      "manipulation": {
+        "kind": "pressure_values",
+        "teammate_values": [
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "task": {
+    "n_crates": 8,
+    "n_hideouts": 6,
+    "n_assigned": 4,
+    "n_own_file": 2,
+    "n_team_dependent": 2,
+    "generator": "investigators.world/demo_v1",
+    "difficulty_version": 1
+  },
+  "timing": {
+    "active_budget_s": 360,
+    "clock_basis": "active_task",
+    "countdown_visible": true,
+    "checkin": {
+      "at_active_s": 60,
+      "collect_wall_ms": 3500,
+      "inactivity_cap_wall_s": 120,
+      "inactivity_outcome": "technical_stop/checkin_incomplete",
+      "own_rating_skippable": false,
+      "resume": "explicit"
+    },
+    "scripted_requests": {
+      "script": {
+        "artifact_id": "requests.demo",
+        "version": 1
+      },
+      "times_active_s": [
+        80,
+        180,
+        270
+      ],
+      "targets": [
+        "unassigned",
+        "assigned",
+        "unassigned"
+      ],
+      "seat_policy": "coin_majority_shuffle",
+      "status": "proposed_unapproved"
+    },
+    "response_classes": {
+      "structured_record": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 8.5,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 5.0,
+              "hi_s": 26.4
+            }
+          }
+        ],
+        "typing": {
+          "per_char_ms": 28,
+          "cap_ms": 9000
+        },
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "social_greeting": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 2.25,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 1.5,
+              "hi_s": 6.6
+            }
+          }
+        ],
+        "seat_overrides": {
+          "JT": {
+            "delay": [
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 2.25,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 1.5,
+                  "hi_s": 6.6
+                }
+              }
+            ]
+          },
+          "PM": {
+            "delay": [
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 4.25,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 3.5,
+                  "hi_s": 11.0
+                }
+              },
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 1.5,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 1.0,
+                  "hi_s": 4.4
+                }
+              }
+            ]
+          }
+        },
+        "typing": {
+          "per_char_ms": 28,
+          "cap_ms": 9000
+        },
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "social_reply": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 7.0,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 4.0,
+              "hi_s": 22.0
+            }
+          }
+        ],
+        "typing": {
+          "per_char_ms": 35,
+          "cap_ms": 8000
+        },
+        "timeout_ms": 25000,
+        "fallback": "deterministic_script",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "assistant": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 3.0,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 2.0,
+              "hi_s": 8.8
+            }
+          }
+        ],
+        "timeout_ms": 20000,
+        "fallback": "deterministic_file_summary",
+        "rendering": "complete",
+        "presence_cue": "none"
+      }
+    },
+    "ordering": "scheduled_chronological",
+    "deadline_structure": "single_global_freeze",
+    "early_submission": false,
+    "trajectory": "constant",
+    "delivery_failure_injection": "none",
+    "visibility": "simultaneous_all_recipients",
+    "delay_attribution": "none",
+    "contingent_responsiveness": "none",
+    "availability_windows": "always_available",
+    "proactive_sharing": "none",
+    "two_stage": {
+      "acknowledgment_resets_substantive_schedule": false,
+      "acknowledgment_counts_as_fulfillment": false
+    },
+    "concurrency": {
+      "per_seat_pending_requests": 4,
+      "assistant_pending_prompts": 2,
+      "over_cap": "reject_visible"
+    },
+    "rate_limits": {
+      "experimental_request_budget": "unlimited",
+      "operational_commands_per_minute": 120
+    },
+    "warnings": [
+      {
+        "artifact_id": "warning.one_minute_left",
+        "version": 1
+      }
+    ]
+  },
+  "channels": {
+    "phases": [
+      {
+        "name": "solo_review",
+        "from_active_s": 0,
+        "until_active_s": 60,
+        "enabled": [
+          "file_work",
+          "answer_drafting"
+        ]
+      },
+      {
+        "name": "task",
+        "from_active_s": 60,
+        "until_active_s": 360,
+        "enabled": [
+          "file_work",
+          "answer_drafting",
+          "structured_seeking",
+          "sharing",
+          "social_reply",
+          "assistant_prompting"
+        ]
+      }
+    ]
+  },
+  "manipulation": {
+    "kind": "pressure_checkin",
+    "copy_ref": {
+      "artifact_id": "checkin.pressure_demo",
+      "version": 1
+    },
+    "higher_seat_policy": "independent_fair_coin",
+    "rng_stream": "ratings",
+    "status": "proposed_unapproved"
+  },
+  "teammates": {
+    "voice_bank": {
+      "artifact_id": "voices.tp_demo",
+      "version": 1
+    },
+    "fallback_bank": {
+      "artifact_id": "fallbacks.neutral",
+      "version": 3
+    },
+    "social_prompt": null,
+    "social_generation": "deterministic_only",
+    "acknowledgments": null,
+    "crosstalk": null,
+    "assistant_referral": "none",
+    "unsolicited_requests": "none",
+    "status": "proposed_unapproved"
+  },
+  "assistant": {
+    "provider": "univ_local_unresolved_d05",
+    "source_access": "participant_file_at_accepted_request",
+    "prompt": {
+      "artifact_id": "prompt.assistant_demo",
+      "version": 1
+    },
+    "validator_version": "validator.pending_wp10a",
+    "fallback": "deterministic_file_summary",
+    "model_change_within_session": false
+  },
+  "instruments": {
+    "consent": {
+      "artifact_id": "consent.reference",
+      "version": 3
+    },
+    "training": {
+      "artifact_id": "training.reference",
+      "version": 1
+    },
+    "confidence": {
+      "artifact_id": "confidence.demo",
+      "version": 1
+    },
+    "peer_ratings": null,
+    "post_task": {
+      "artifact_id": "post_task.tp_demo",
+      "version": 1
+    },
+    "debrief": {
+      "artifact_id": "debrief.tp_reference",
+      "version": 1
+    }
+  },
+  "outcomes": {
+    "payment_policy": {
+      "artifact_id": "payment.s5_base_only",
+      "version": 1
+    },
+    "completion_statuses": [
+      "completed",
+      "declined",
+      "withdrawn",
+      "technical_stop",
+      "abandoned"
+    ],
+    "withdrawal_payment": "unaffected",
+    "ratings_contingent_pay": false
+  },
+  "interaction": {
+    "mode": "structured_and_nl"
+  }
+}

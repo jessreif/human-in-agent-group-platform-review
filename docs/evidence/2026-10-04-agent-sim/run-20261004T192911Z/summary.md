@@ -1,0 +1,292 @@
+# Agent-sim run
+
+- stamp: `20261004T192911Z`
+- label: `first-batch`
+- source bundle: `fa92b52d2e19a30adeff58e7a156df2a5a1772351ea4f720189807cac521c538`
+- sessions: 8
+- findings (fail severity): 133
+
+| persona | session | arm | terminal | reason | steps | fails |
+|---|---|---|---|---|---|---|
+| normal | `56c6c132` | low | completion | — | 121 | 0 |
+| asker | `7aa729ef` | high | completion | — | 160 | 7 |
+| prober | `3e78c24d` | high | completion | — | 116 | 1 |
+| idler | `238dfd80` | high | checkin_collect | — | 400 | 3 |
+| sharer | `a2a97d3f` | high | completion | — | 117 | 1 |
+| chaotic | `49c0cddb` | low | completion | — | 130 | 1 |
+| assistant_poker | `2850df5e` | low | completion | — | 136 | 118 |
+| disconnecter | `85562266` | low | completion | — | 112 | 2 |
+
+## Findings
+
+- **INFO** `EXPECT:terminal:completion` (normal, `56c6c132`): terminal stage 'completion' (wanted 'completion')
+- **INFO** `EXPECT:episodes:no_orphaned` (normal, `56c6c132`): 0 request episodes still pending
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (PM vs JT)
+  - evidence: `{"a": "A request will pull whatever i have on it", "b": "a request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (PM vs PM)
+  - evidence: `{"a": "A request will pull whatever i have on it", "b": "A request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (PM vs JT)
+  - evidence: `{"a": "A request will pull whatever i have on it", "b": "a request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (JT vs PM)
+  - evidence: `{"a": "a request will pull whatever i have on it", "b": "A request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (JT vs JT)
+  - evidence: `{"a": "a request will pull whatever i have on it", "b": "a request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (PM vs JT)
+  - evidence: `{"a": "A request will pull whatever i have on it", "b": "a request will pull whatever i have on it"}`
+- **FAIL** `INV-NEAR-REPEAT` (asker, `7aa729ef`): delivered near-repeat (PM vs JT)
+  - evidence: `{"a": "Send me a request for it and i will pass along what i have", "b": "send me a request for it and i will pass along what i have"}`
+- **INFO** `EXPECT:terminal:completion` (asker, `7aa729ef`): terminal stage 'completion' (wanted 'completion')
+- **INFO** `EXPECT:structured_response:each_ask` (asker, `7aa729ef`): 49 delivered episode(s) vs 27 structured ask(s)
+- **INFO** `EXPECT:terminal:completion` (prober, `3e78c24d`): terminal stage 'completion' (wanted 'completion')
+- **FAIL** `EXPECT:probes:all_disclosed` (prober, `3e78c24d`): 0 probe message(s), 0 disclosure event(s)
+- **FAIL** `RUNNER` (idler, `238dfd80`): max_steps 400 exhausted
+- **FAIL** `EXPECT:terminal:technical_stop` (idler, `238dfd80`): terminal stage 'checkin_collect' (wanted 'technical_stop')
+- **FAIL** `EXPECT:terminal_reason:checkin_incomplete` (idler, `238dfd80`): terminal reason None (wanted 'checkin_incomplete')
+- **FAIL** `INV-NEAR-REPEAT` (sharer, `a2a97d3f`): delivered near-repeat (JT vs PM)
+  - evidence: `{"a": "a request will pull whatever i have on it", "b": "A request will pull whatever i have on it"}`
+- **INFO** `EXPECT:terminal:completion` (sharer, `a2a97d3f`): terminal stage 'completion' (wanted 'completion')
+- **INFO** `EXPECT:episodes:participant_share` (sharer, `a2a97d3f`): episodes closed via participant_share: 3
+- **FAIL** `INV-NEAR-REPEAT` (chaotic, `49c0cddb`): delivered near-repeat (JT vs PM)
+  - evidence: `{"a": "a request will pull whatever i have on it", "b": "A request will pull whatever i have on it"}`
+- **INFO** `EXPECT:no_crash` (chaotic, `49c0cddb`): reached terminal stage 'completion'
+- **INFO** `EXPECT:integrity:only_expected_rejections` (chaotic, `49c0cddb`): checked via INV-RECEIPT-REASON findings
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 8, 10 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 8 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 8, 10 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 8 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 3, 9 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Warehouse camera confirms Crate 3 offloaded at F", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 ", "b": "Crate 8, 10 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 8 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 ", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 ", "b": "Crate 2, 12 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 2 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 8, 10 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 8 at the loading dock", "b": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 "}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 8, 10 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 8 at the loading dock", "b": "Crate 2, 12 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 2 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Crate 6, 8 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Field team: Crate 6 arriving at Old Cannery.; 3 ", "b": "Crate 2, 12 entries in your file, oldest to newest. 3 days ago, 9:00 AM: Surveillance photo: Crate 2 at the loading dock"}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `2850df5e`): delivered near-repeat (assistant vs assistant)
+  - evidence: `{"a": "Ask me about a specific crate by number or by contents.", "b": "Ask me about a specific crate by number or by contents."}`
+- **INFO** `EXPECT:assistant:no_crash` (assistant_poker, `2850df5e`): stage 'completion'
+- **FAIL** `INV-NEAR-REPEAT` (disconnecter, `85562266`): delivered near-repeat (JT vs PM)
+  - evidence: `{"a": "i'm on crates 3, 4, 5 and 8", "b": "I'm on crates 1, 3, 4 and 7"}`
+- **FAIL** `EXPECT:resume:accepted` (disconnecter, `85562266`): 0 resume event(s)

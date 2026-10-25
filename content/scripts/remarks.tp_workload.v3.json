@@ -1,0 +1,80 @@
+{
+ "schema_version": "investigators.artifact/1",
+ "kind": "pressure_remarks",
+ "artifact_id": "remarks.tp_workload",
+ "version": 3,
+ "status": "approved",
+ "decisions": [],
+ "sources": [
+  {
+   "ref": "Owner direction 2026-10-17 (v15): workload relabel; low arm becomes mixed"
+  }
+ ],
+ "notes": [
+  "v3 (2026-10-18, owner+student direction): shorter typed-chat register (no em dashes, minimal punctuation); adds the warning-time progress exchange at 246/254s \u2014 under mixed the LIGHT seat leads ('ok almost done with my 4') and the heavy seat answers ('i am not!'), pinned via speaker_level; high arm 'ah not done with my 4' / 'me either!'.",
+  "v2 (2026-10-18, owner direction): felt-workload copy \u2014 heavy first 'Yikes this feels like a lot for 5 minutes, I don't think I will finish on time'; high second 'Me too, it feels like a lot'; mixed second-heavy 'ugh lucky \u2014 mine feels like a lot, don't think I'll finish'; mixed second-light 'Actually, I feel like I am on track'; light first 'this actually feels pretty manageable, think I'll finish early'.",
+  "Two fixed team-chat lines per arm, after the check-in (active 60): the first at active 75 (15 s after the task resumes), the reply at active 83.",
+  "Speaker order is a per-session fair coin (seat_order fair_coin_per_session): 'first' is the drawn seat, 'second' the other seat, so remark speaker is balanced across JT/PM.",
+  "v15 mixed arm: 'lines' covers the non-mixed declared arm (high); 'mixed_lines' carries one line per speaker level \u2014 at delivery the scheduler resolves the speaker seat's level from the check-in's recorded assigned_values (high seat = 6, low seat = 2).",
+  "Deterministic bound copy delivered identically in the AI and scripted teammate builds; it bypasses generation, so the generated-output gate (urgency/voice_format/condition_leak) does not apply.",
+  "Exact wording drafted by Devin for owner review during internal eval; level structure and timing are the approved part."
+ ],
+ "body": {
+  "seat_order": "fair_coin_per_session",
+  "channel": "team",
+  "remarks": [
+   {
+    "at_active_s": 75,
+    "speaker": "first",
+    "speaker_level": "high",
+    "lines": {
+     "high": "yikes this is a lot for 5 min, not sure i'll finish",
+     "low": "feels ok, think i'll finish early"
+    },
+    "mixed_lines": {
+     "high": "yikes this is a lot for 5 min, not sure i'll finish",
+     "low": "feels ok actually, think i'll finish early"
+    }
+   },
+   {
+    "at_active_s": 83,
+    "speaker": "second",
+    "speaker_level": "low",
+    "lines": {
+     "high": "me too, feels like a lot",
+     "low": "same, feels light"
+    },
+    "mixed_lines": {
+     "high": "ugh lucky, mine feels like a lot",
+     "low": "actually i'm on track"
+    }
+   },
+   {
+    "at_active_s": 246,
+    "speaker": "first",
+    "speaker_level": "low",
+    "lines": {
+     "high": "ah not done with my 4",
+     "low": "ok almost done with my 4"
+    },
+    "mixed_lines": {
+     "high": "not done with mine",
+     "low": "ok almost done with my 4"
+    }
+   },
+   {
+    "at_active_s": 254,
+    "speaker": "second",
+    "speaker_level": "high",
+    "lines": {
+     "high": "me either!",
+     "low": "nice, almost there myself"
+    },
+    "mixed_lines": {
+     "high": "i am not!",
+     "low": "nice!"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,35 @@
+{
+    "schema_version": "investigators.artifact/1",
+    "kind": "payment_policy",
+    "artifact_id": "payment.s5_nobonus",
+    "version": 1,
+    "status": "approved",
+    "decisions": [],
+    "sources": [
+        {
+            "ref": "Owner direction 2026-10-16: BONUS_PAYMENT_ENABLED=0 pilot — $3.00 flat, no bonus offered or paid"
+        },
+        {
+            "ref": "S5 approved protocol: $4 online base, no bonus selected"
+        },
+        {
+            "ref": "spec §13 Bonus"
+        }
+    ],
+    "notes": [
+        "v1 (2026-10-16, owner direction): the no-bonus payment posture for the BONUS_PAYMENT_ENABLED=0 pilot. base_cents 300 — the same $3.00 online base as payment.s5_base_only@v4 — with no $0.50 accuracy bonus: consent.reference.nobonus@v1 never offers it and no copy mentions it, so nothing is owed beyond the base. Rules otherwise identical to payment.s5_base_only@v5 (activatable, technical_stop base_paid, bonus none, withdrawal forfeits base).",
+        "Selected by the deployment flag, not by manifest pin — manifests still bind payment.s5_base_only@v5 as their bonus-on contract. When BONUS_PAYMENT_ENABLED=0 the entitlement row records this artifact id+version so the ledger shows which policy actually computed the session's payment.",
+        "300 cents for ~12 minutes stays above the university IRB $10/hour minimum."
+    ],
+    "body": {
+        "currency": "USD",
+        "base_cents": 300,
+        "bonus": {
+            "type": "none",
+            "cents_per_correct": 0,
+            "max_cents": 0
+        },
+        "activatable": true,
+        "technical_stop": "base_paid"
+    }
+}

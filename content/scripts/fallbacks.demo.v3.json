@@ -1,0 +1,75 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "fallback_bank",
+  "artifact_id": "fallbacks.demo",
+  "version": 3,
+  "status": "reference",
+  "decisions": ["D07"],
+  "sources": [
+    {"ref": "tp demo lines 1246-1257 (teammateFallback)"},
+    {"ref": "pe demo lines 1314-1325"},
+    {"ref": "O-1/O-3 2026-10-03: nl_only ask wording + fixed disclosure line"}
+  ],
+  "notes": [
+    "Historical wording preserved for reference profiles only. Contains busy/stuck language ('bit swamped', 'stuck on') that can interfere with a pressure manipulation (spec §7.3); not for pilot profiles.",
+    "v2 (UX round 3, AI-1/AI-2): warmer social lines so a pleasantry is answered like a coworker would, and more multiword variety per rule so the session no-repeat draw (engines.social_fallback) rarely falls through to the short defaults.",
+    "v3 (O-1/O-3): asks_intel_nl invites a typed crate ask where no picker exists; identity_probe is the fixed truthful disclosure for 'are you a bot/real?' probes (answered before generation, never model text)."
+  ],
+  "body": {
+    "classifier": "demo_keyword_v1",
+    "rules": [
+      {
+        "when": "gives_location",
+        "lines": [
+          "oh nice, that helps, noting it",
+          "good to know, adding that to my notes",
+          "perfect, thanks for passing that along"
+        ]
+      },
+      {
+        "when": "offers_help",
+        "lines": [
+          "same here. i am stuck on one of mine if anything recent turns up in yours",
+          "appreciate it, anything recent you come across just pass it along",
+          "thanks, that is kind. i will shout if i get stuck"
+        ]
+      },
+      {
+        "when": "social",
+        "lines": [
+          "doing ok thanks, working through mine. you?",
+          "not bad thanks, making some progress. how about you?",
+          "pretty good, this case is interesting. hope yours is going ok",
+          "all good here, thanks for asking. you doing ok?"
+        ]
+      },
+      {
+        "when": "asks_intel",
+        "lines": [
+          "send me a request for it and i will pass along what i have",
+          "shoot me a request and i will send whatever is in mine",
+          "a request will pull whatever i have on it"
+        ]
+      },
+      {
+        "when": "asks_intel_nl",
+        "lines": [
+          "tell me which crate and i will send what i have on it",
+          "name the crate and i will pass along my latest",
+          "say the crate number and i will share what is in mine"
+        ]
+      },
+      {
+        "when": "identity_probe",
+        "lines": [
+          "i'm an automated account, not a person",
+          "i'm an automated teammate account"
+        ]
+      },
+      {
+        "when": "default",
+        "lines": ["noted", "got it", "makes sense"]
+      }
+    ]
+  }
+}

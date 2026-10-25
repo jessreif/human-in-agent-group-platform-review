@@ -1,0 +1,4012 @@
+# Agent-sim run
+
+- stamp: `20261008T214923Z`
+- run id: `run-20261008T214923Z`
+- label: `risk-ai`
+- source bundle: `7f6f1ace18ca5640542e299a830575f2b84abfd891b897f902f384e1a643f517`
+- oracle version: `oracles_v3`
+- provider: requested `stub`, effective `sim-stub`
+- sessions: 8
+- findings (fail severity): 13
+
+| persona | session | arm | terminal | reason | steps | fails |
+|---|---|---|---|---|---|---|
+| normal | `320e1b60` | low | post_questionnaire | — | 400 | 2 |
+| asker | `ea65ae89` | high | post_questionnaire | — | 400 | 2 |
+| prober | `c009fc17` | low | post_questionnaire | — | 400 | 2 |
+| assistant_poker | `5c498e8a` | high | post_questionnaire | — | 400 | 2 |
+| idler | `3e1773e4` | low | technical_stop | checkin_incomplete | 33 | 0 |
+| sharer | `a7c9b716` | low | post_questionnaire | — | 400 | 2 |
+| chaotic | `31b7ed98` | low | post_questionnaire | — | 400 | 2 |
+| disconnecter | `6c2d853a` | low | post_questionnaire | — | 400 | 1 |
+
+## Findings
+
+- **FAIL** `RUNNER` (normal, `320e1b60`): max_steps 400 exhausted
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (normal, `320e1b60`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **FAIL** `EXPECT:terminal:completion` (normal, `320e1b60`): terminal stage 'post_questionnaire' (wanted 'completion')
+- **INFO** `EXPECT:episodes:no_orphaned` (normal, `320e1b60`): 0 request episodes still pending
+- **FAIL** `RUNNER` (asker, `ea65ae89`): max_steps 400 exhausted
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (asker, `ea65ae89`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **FAIL** `EXPECT:terminal:completion` (asker, `ea65ae89`): terminal stage 'post_questionnaire' (wanted 'completion')
+- **INFO** `EXPECT:structured_response:each_ask` (asker, `ea65ae89`): not applicable — nl_only profile refuses structured asks
+- **FAIL** `RUNNER` (prober, `c009fc17`): max_steps 400 exhausted
+- **WARN** `INV-SCRIPTED-REPEAT` (prober, `c009fc17`): canonical scripted line delivered 3x
+  - evidence: `{"body": "i'm an automated teammate account"}`
+- **WARN** `INV-SCRIPTED-REPEAT` (prober, `c009fc17`): canonical scripted line delivered 3x
+  - evidence: `{"body": "i'm an automated account, not a person"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (prober, `c009fc17`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **FAIL** `EXPECT:terminal:completion` (prober, `c009fc17`): terminal stage 'post_questionnaire' (wanted 'completion')
+- **INFO** `EXPECT:probes:all_disclosed` (prober, `c009fc17`): 3 probe message(s), 3 disclosed
+  - evidence: `{"undisclosed_message_ids": []}`
+- **FAIL** `RUNNER` (assistant_poker, `5c498e8a`): max_steps 400 exhausted
+- **FAIL** `INV-NEAR-REPEAT` (assistant_poker, `5c498e8a`): delivered near-repeat (PM vs JT; 2 similar lines)
+  - evidence: `{"a": "Could use whatever you have on Crate 8.", "b": "Could use whatever you have on Crate 1."}`
+- **WARN** `INV-ASSISTANT-REPEAT` (assistant_poker, `5c498e8a`): assistant delivered the same line 7x
+  - evidence: `{"body": "Crate 1 \u2014 laptops; Crate 2 \u2014 smart watches; Crate 3 \u2014 gaming consoles; Crate 4 \u2014 TVs; Crate 5 \u2014 headphones; Crate 6 \u2014 cameras; Crate 7 \u2014 tablets; Crate 8 \u2014 powe"}`
+- **WARN** `INV-ASSISTANT-REPEAT` (assistant_poker, `5c498e8a`): assistant delivered the same line 3x
+  - evidence: `{"body": "i'll take a look now"}`
+- **WARN** `INV-ASSISTANT-REPEAT` (assistant_poker, `5c498e8a`): assistant delivered the same line 3x
+  - evidence: `{"body": "on it, checking my notes"}`
+- **WARN** `INV-ASSISTANT-REPEAT` (assistant_poker, `5c498e8a`): assistant delivered the same line 3x
+  - evidence: `{"body": "looking through what i have"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (assistant_poker, `5c498e8a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **INFO** `EXPECT:assistant:no_crash` (assistant_poker, `5c498e8a`): stage 'post_questionnaire'
+- **INFO** `EXPECT:terminal:technical_stop` (idler, `3e1773e4`): terminal stage 'technical_stop' (wanted 'technical_stop')
+- **INFO** `EXPECT:terminal_reason:checkin_incomplete` (idler, `3e1773e4`): terminal reason 'checkin_incomplete' (wanted 'checkin_incomplete')
+- **FAIL** `RUNNER` (sharer, `a7c9b716`): max_steps 400 exhausted
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (sharer, `a7c9b716`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **FAIL** `EXPECT:terminal:completion` (sharer, `a7c9b716`): terminal stage 'post_questionnaire' (wanted 'completion')
+- **INFO** `EXPECT:episodes:participant_share` (sharer, `a7c9b716`): episodes closed via participant_share: 3
+- **FAIL** `RUNNER` (chaotic, `31b7ed98`): max_steps 400 exhausted
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (chaotic, `31b7ed98`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **FAIL** `EXPECT:no_crash` (chaotic, `31b7ed98`): reached terminal stage 'post_questionnaire'
+- **INFO** `EXPECT:integrity:only_expected_rejections` (chaotic, `31b7ed98`): checked via INV-RECEIPT-REASON findings
+- **FAIL** `RUNNER` (disconnecter, `6c2d853a`): max_steps 400 exhausted
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command item_response rejected with unexpected reason 'unknown_option'
+  - evidence: `{"reason": "unknown_option"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **WARN** `INV-RECEIPT-REASON` (disconnecter, `6c2d853a`): command proceed rejected with unexpected reason 'rate_limited'
+  - evidence: `{"reason": "rate_limited"}`
+- **INFO** `EXPECT:resume:accepted` (disconnecter, `6c2d853a`): 1 accepted resume receipt(s)

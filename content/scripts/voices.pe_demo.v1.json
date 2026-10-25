@@ -1,0 +1,27 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "voice_bank",
+  "artifact_id": "voices.pe_demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D07"],
+  "sources": [{"ref": "demo_constants.peer_evaluation.VOICE"}, {"ref": "REF-PE-02"}, {"ref": "demo_constants.shared.GREETINGS"}],
+  "notes": ["Placeholders: {n} crate number, {you} participant display name. Seat voices are held constant across eval/control (spec §7.3)."],
+  "body": {
+    "seats": {
+      "JT": {
+        "greetings": ["Hi!", "Hello!", "Hey!"],
+        "thanks": ["thanks", "ty", "got it", "ok", "noted", "that helps", "k thanks"],
+        "no_news": ["nothing newer on {n} here", "my {n} stuff is a couple days old, {you} anything?", "no luck on {n} on my end", "i have got nothing recent on {n}"],
+        "after_share": ["newer than mine, nice", "good, mine on {n} was stale", "ok that beats what i had"]
+      },
+      "PM": {
+        "greetings": ["Hi!", "Hello!", "Hey!"],
+        "thanks": ["Thanks!", "thank you", "great, ty", "cheers", "awesome, thanks", "ok thanks", "thanks, adding it", "perfect, ty"],
+        "no_news": ["nothing new on {n} from me", "mine on {n} is old, {you} got anything?", "checked, nothing recent on {n}", "sorry, my {n} entries are all from earlier"],
+        "after_share": ["nice, newer than what i had", "good, i was behind on {n}", "ok great, that fills it in"]
+      }
+    },
+    "repeat_policy": "no_repeat_until_exhausted"
+  }
+}

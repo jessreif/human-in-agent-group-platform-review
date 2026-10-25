@@ -1,0 +1,45 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "instrument",
+  "artifact_id": "open_ended.tp_followup",
+  "version": 1,
+  "status": "approved",
+  "decisions": [],
+  "sources": [
+    {
+      "ref": "UX round 8 owner direction: two required open-ended follow-ups between post_task and debrief on TP variants"
+    },
+    {
+      "ref": "BA-105 (2026-10-12): open_ended stage becomes artifact-pinned fielded content"
+    }
+  ],
+  "notes": [
+    "v1 (2026-10-12, BA-105): artifact-pins the open_ended follow-up pair verbatim from the code-defined stage introduced in UX round 8. Stored instrument_id on new sessions is 'open_ended.tp_followup' (artifact id); sessions on unbound manifests keep their legacy 'open_ended_followup' rows — the codebook documents both.",
+    "Stage policy: the open_ended stage exists on TP variants only when a manifest binds this slot (instruments.open_ended). Profiles without the pin run post_questionnaire -> debrief with no injected stage; historical manifests are unchanged.",
+    "response.type 'free_text': min/max carry character bounds (0..4000); items are validated as non-blank prose, never numerically scored."
+  ],
+  "body": {
+    "applies_to": "session",
+    "order": "fixed",
+    "response": {
+      "type": "free_text",
+      "min": 0,
+      "max": 4000,
+      "min_label": "",
+      "max_label": "",
+      "counts_only_after_input": true
+    },
+    "items": [
+      {
+        "item_id": "crate_strategy",
+        "text": "There was no single right way to approach this task, and people worked through it very differently. Briefly, how did you decide on a location for each of your crates?",
+        "skippable": false
+      },
+      {
+        "item_id": "source_reliance",
+        "text": "When you weren't sure about a crate, how did you decide which source to rely on: your case file, the team chat, or the AI assistant?",
+        "skippable": false
+      }
+    ]
+  }
+}

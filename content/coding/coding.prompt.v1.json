@@ -1,0 +1,21 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "coding_prompt",
+  "artifact_id": "coding.prompt",
+  "version": 1,
+  "status": "proposed_unapproved",
+  "decisions": ["D05"],
+  "sources": [
+    {"ref": "spec §9.4 model coding, human-first ordering"},
+    {"ref": "INV-1202 dormant LLM path"},
+    {"ref": "D05 approved local provider/model/digest/capacity"}
+  ],
+  "notes": [
+    "Interface/config point for the future model-assisted coder. DORMANT: D05 is unresolved, so no coding run may bind this prompt for execution — runs that reference it carry model=null/model_digest=null and use the deterministic coder. When D05 resolves, the only permitted provider is the approved loopback-only local endpoint (app.providers.local) with a pinned model digest; no external judge, relay, or fallback may ever be wired in. Human labels must precede model predictions in any future validation comparison (spec §9.4)."
+  ],
+  "body": {
+    "purpose": "coding",
+    "dormant_until": "D05",
+    "text": "You are an offline coding assistant for the Investigators experiment. For each message you are given (a) its text, (b) any authenticated record attachments, and (c) the already-visible evidence history. Emit ONLY the code schema investigators.coding/1 declared by coding.rubric@v1: assertions with exact text spans (crate/location/time/evidence), polarity, event type, stance, attribution; questions; solicitations. Attachments are authoritative — never re-derive them from text. If the text cannot be resolved without guessing, emit status=abstained. Never invent crate ids, locations, events or sources. Output JSON only."
+  }
+}

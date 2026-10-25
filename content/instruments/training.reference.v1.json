@@ -1,0 +1,15 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "material_reference",
+  "artifact_id": "training.reference",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D06"],
+  "sources": [{"ref": "demo_constants.shared.DEMO_ENTRIES"}, {"ref": "spec §2.1 training, §5.2"}],
+  "notes": ["Training uses a separate fixed practice world and event namespace (INV-0901); practice never counts analytically."],
+  "body": {
+    "material": "training",
+    "reference_copy": "demo training screens and DEMO_ENTRIES (K3-04, K4-04)",
+    "freeze_decision": "D06"
+  }
+}

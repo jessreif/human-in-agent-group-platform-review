@@ -1,0 +1,24 @@
+{
+    "schema_version": "investigators.artifact/1",
+    "kind": "material_reference",
+    "artifact_id": "debrief.tp_reference",
+    "version": 4,
+    "status": "approved",
+    "decisions": [],
+    "sources": [
+        {
+            "ref": "v15 workload-frame debrief copy in frontend/src/components/StageScreens.tsx (2026-10-17)"
+        }
+    ],
+    "notes": [
+        "v4 (2026-10-17, owner direction): debrief reframed to workload — 'whether learning about teammates' workloads changes how much people ask them for information'; the check-in disclosure now reads 'The workload ratings shown for your teammates at the check-in were assigned by the research team, not reported by anyone.' The mixed-arm disclosure needs no extra sentence: assigned_values cover whichever seat held each level.",
+        "v3 (2026-10-10, owner direction): reference copy adds the non-deception disclosure 'The accuracy bonus described during the study is paid to every completer.' — closes the loop on the consent.reference@v7 offered-bonus frame in the participant record.",
+        "Demo debrief explains automated teammates and assigned pressure ratings. Data-use choice wording is added under D09 (INV-0907).",
+        "Approved for live pilot fielding (2026-10-07, BA-99 audit remediation): body identical to the bound reference version; approved successor minted so the restored approved-only live gate binds only approved material."
+    ],
+    "body": {
+        "material": "debrief",
+        "reference_copy": "v15 workload debrief copy (frontend StageScreens debrief branch, 2026-10-17)",
+        "freeze_decision": "D06"
+    }
+}

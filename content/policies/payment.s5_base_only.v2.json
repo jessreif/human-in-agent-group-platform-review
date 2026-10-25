@@ -1,0 +1,32 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "payment_policy",
+  "artifact_id": "payment.s5_base_only",
+  "version": 2,
+  "status": "approved",
+  "decisions": [],
+  "sources": [
+    {
+      "ref": "S5 approved protocol: $4 online base, no bonus selected"
+    },
+    {
+      "ref": "spec §13 Bonus"
+    }
+  ],
+  "notes": [
+    "Proposed for v2 profiles. Stays non-activatable until D04 confirms base pay and technical-stop/withdrawal handling. No ratings-contingent pay.",
+    "Approved for live pilot fielding (2026-10-06): decisions ['D04'] resolved per PI direction (main-campus IRB confirmed blanket coverage, no amendment); body identical to v1 (proposed_unapproved).",
+    "D04 resolved: $4.00 online base per S5, no correctness bonus; technical-stop and withdrawn sessions keep base pay (withdrawal_payment pinned unaffected)."
+  ],
+  "body": {
+    "currency": "USD",
+    "base_cents": 400,
+    "bonus": {
+      "type": "none",
+      "cents_per_correct": 0,
+      "max_cents": 0
+    },
+    "activatable": true,
+    "technical_stop": "base_paid"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "investigators.artifact/1",
+  "kind": "instrument",
+  "artifact_id": "confidence.demo",
+  "version": 1,
+  "status": "reference",
+  "decisions": ["D06"],
+  "sources": [{"ref": "REF-POST-01"}, {"ref": "tp demo line 1903"}],
+  "notes": ["Asked only for answered crates; the slider's visual start (50) is never a response. The demo forced a rating before Continue; skips are allowed here per S5 (D06)."],
+  "body": {
+    "applies_to": "per_answered_crate",
+    "order": "fixed",
+    "response": {"type": "slider", "min": 0, "max": 100, "min_label": "0% Completely unsure", "max_label": "100% Positive", "counts_only_after_input": true},
+    "items": [
+      {"item_id": "confidence", "text": "Confidence for this crate", "skippable": true}
+    ]
+  }
+}

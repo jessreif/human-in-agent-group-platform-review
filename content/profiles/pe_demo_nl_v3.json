@@ -1,0 +1,434 @@
+{
+  "schema_version": "investigators.manifest/1",
+  "manifest_id": "pe_demo_nl_v3",
+  "manifest_version": 3,
+  "study_key": "investigators_peer_eval",
+  "profile_kind": "reference",
+  "material_status": "reference",
+  "title": "Peer-evaluation behavioral reference (S3 demo-derived) — natural-language only",
+  "notes": [
+    "Demo-derived reference for S3; not proof of a historical Qualtrics version (spec §4.1).",
+    "Richer voice/acknowledgment/crosstalk policy than the TP study is an explicit between-study difference (spec §2.2).",
+    "Acknowledgment seat for unprompted shares: PM 0.65 / JT 0.35 (REF-PE-03), a documented historical seat asymmetry.",
+    "Crosstalk 28 active s after each scripted request by the other seat (REF-PE-04). The demo counted an opened share prompt as answered (DEF-09); this profile counts committed shares only.",
+    "Demo wall-clock timers that ran through task end (DEF-04) are replaced by active-clock scheduling with commit-time authorization.",
+    "Re-issued as pe_demo_v3 to bind consent.reference@v3 (Appendix B verbatim: '#XXXX-XXXX' transcription fix, BA-37); content otherwise identical to pe_demo_v2.",
+    "UX round 3 (2026-10-03, plan §17): binds prompt.social_demo@v2 and fallbacks.demo@v2 (warm pleasantries, no repeated lines); per-seat voices come from the prompt builder.",
+    "FR-1 feature flag: natural-language-only interaction — no per-crate request controls for teammates or the assistant; structured_seeking never opens.",
+    "Re-issued to bind fallback_bank v3 (O-1/O-3 2026-10-03): adds the asks_intel_nl typed-ask pool for nl_only and the fixed identity_probe disclosure lines. No other field changes.",
+    "UX round 4 (UX_Feedback_v4, 2026-10-05): re-issued to bind requests.demo@v2 (varied scripted-request phrasing), fallbacks.demo@v4 (diversified social-reply pool), and post_task.pe_demo@v2 (pre-debrief teammate-nature choice item)."
+  ],
+  "decisions": [
+    {
+      "decision": "D03",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D06",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D07",
+      "status": "unresolved"
+    },
+    {
+      "decision": "D10",
+      "status": "unresolved"
+    }
+  ],
+  "modes_allowed": [
+    "preview",
+    "qa"
+  ],
+  "allocation_policy": {
+    "method": "permuted_block",
+    "block_size": 2,
+    "strata": [
+      "study_key",
+      "batch_id"
+    ],
+    "rng_stream": "assignment"
+  },
+  "condition_set": [
+    {
+      "arm": "eval",
+      "allocation_weight": 1,
+      "manipulation": {
+        "kind": "evaluation_exposure",
+        "exposure_copy": {
+          "artifact_id": "exposure.pe_eval_demo",
+          "version": 1
+        }
+      }
+    },
+    {
+      "arm": "control",
+      "allocation_weight": 1,
+      "manipulation": {
+        "kind": "evaluation_exposure",
+        "exposure_copy": {
+          "artifact_id": "exposure.pe_control_demo",
+          "version": 1
+        }
+      }
+    }
+  ],
+  "task": {
+    "n_crates": 8,
+    "n_hideouts": 6,
+    "n_assigned": 4,
+    "n_own_file": 2,
+    "n_team_dependent": 2,
+    "generator": "investigators.world/demo_v1",
+    "difficulty_version": 1
+  },
+  "timing": {
+    "active_budget_s": 360,
+    "clock_basis": "active_task",
+    "countdown_visible": true,
+    "checkin": null,
+    "scripted_requests": {
+      "script": {
+        "artifact_id": "requests.demo",
+        "version": 2
+      },
+      "times_active_s": [
+        40,
+        150,
+        240
+      ],
+      "targets": [
+        "unassigned",
+        "assigned",
+        "unassigned"
+      ],
+      "seat_policy": "shuffle_fixed_multiset",
+      "seat_multiset": [
+        "JT",
+        "PM",
+        "JT"
+      ],
+      "status": "reference"
+    },
+    "response_classes": {
+      "structured_record": {
+        "mechanism": "demo_structured_delay_length",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 8.5,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 5.0,
+              "hi_s": 26.4
+            }
+          }
+        ],
+        "typing": {
+          "per_char_ms": 28,
+          "cap_ms": 9000
+        },
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "social_greeting": {
+        "mechanism": "demo_structured_delay_length",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 2.25,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 1.5,
+              "hi_s": 6.6
+            }
+          }
+        ],
+        "seat_overrides": {
+          "JT": {
+            "delay": [
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 2.25,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 1.5,
+                  "hi_s": 6.6
+                }
+              }
+            ]
+          },
+          "PM": {
+            "delay": [
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 4.25,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 3.5,
+                  "hi_s": 11.0
+                }
+              },
+              {
+                "family": "lognormal",
+                "location": "median",
+                "location_s": 1.5,
+                "sigma": 0.45,
+                "truncation": {
+                  "method": "clamp",
+                  "lo_s": 1.0,
+                  "hi_s": 4.4
+                }
+              }
+            ]
+          }
+        },
+        "typing": {
+          "per_char_ms": 28,
+          "cap_ms": 9000
+        },
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "social_reply": {
+        "mechanism": "demo_social_additive",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 7.0,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 4.0,
+              "hi_s": 22.0
+            }
+          }
+        ],
+        "typing": {
+          "per_char_ms": 35,
+          "cap_ms": 8000
+        },
+        "timeout_ms": 25000,
+        "fallback": "deterministic_script",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "assistant": {
+        "mechanism": "demo_assistant_floor",
+        "delay": [
+          {
+            "family": "fixed",
+            "seconds": 0.0
+          }
+        ],
+        "floor": {
+          "family": "lognormal",
+          "location": "median",
+          "location_s": 3.0,
+          "sigma": 0.45,
+          "truncation": {
+            "method": "clamp",
+            "lo_s": 2.0,
+            "hi_s": 8.8
+          }
+        },
+        "timeout_ms": 20000,
+        "fallback": "deterministic_file_summary",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "acknowledgment": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "lognormal",
+            "location": "median",
+            "location_s": 8.0,
+            "sigma": 0.45,
+            "truncation": {
+              "method": "clamp",
+              "lo_s": 4.0,
+              "hi_s": 26.4
+            }
+          }
+        ],
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      },
+      "crosstalk": {
+        "mechanism": "concurrent",
+        "delay": [
+          {
+            "family": "fixed",
+            "seconds": 28.0
+          }
+        ],
+        "fallback": "none",
+        "rendering": "complete",
+        "presence_cue": "none"
+      }
+    },
+    "ordering": "scheduled_chronological",
+    "deadline_structure": "single_global_freeze",
+    "early_submission": false,
+    "trajectory": "constant",
+    "delivery_failure_injection": "none",
+    "visibility": "simultaneous_all_recipients",
+    "delay_attribution": "none",
+    "contingent_responsiveness": "none",
+    "availability_windows": "always_available",
+    "proactive_sharing": "none",
+    "two_stage": {
+      "acknowledgment_resets_substantive_schedule": false,
+      "acknowledgment_counts_as_fulfillment": false
+    },
+    "concurrency": {
+      "per_seat_pending_requests": 4,
+      "assistant_pending_prompts": 2,
+      "over_cap": "reject_visible"
+    },
+    "rate_limits": {
+      "experimental_request_budget": "unlimited",
+      "operational_commands_per_minute": 120
+    },
+    "warnings": [
+      {
+        "artifact_id": "warning.one_minute_left",
+        "version": 1
+      }
+    ]
+  },
+  "channels": {
+    "phases": [
+      {
+        "name": "task",
+        "from_active_s": 0,
+        "until_active_s": 360,
+        "enabled": [
+          "file_work",
+          "answer_drafting",
+          "sharing",
+          "social_reply",
+          "assistant_prompting"
+        ]
+      }
+    ]
+  },
+  "manipulation": {
+    "kind": "evaluation_exposure",
+    "surfaces": [
+      "intro",
+      "callout",
+      "strip",
+      "system_message",
+      "peer_intro"
+    ],
+    "status": "reference"
+  },
+  "teammates": {
+    "voice_bank": {
+      "artifact_id": "voices.pe_demo",
+      "version": 1
+    },
+    "fallback_bank": {
+      "artifact_id": "fallbacks.demo",
+      "version": 4
+    },
+    "social_prompt": {
+      "artifact_id": "prompt.social_demo",
+      "version": 2
+    },
+    "social_generation": "model_with_validated_fallback",
+    "acknowledgments": {
+      "probabilities": {
+        "JT": {
+          "prompted": 0.55,
+          "unprompted": 0.25
+        },
+        "PM": {
+          "prompted": 0.9,
+          "unprompted": 0.6
+        }
+      },
+      "unprompted_seat_weights": {
+        "JT": 0.35,
+        "PM": 0.65
+      },
+      "prompted_seat": "requesting_seat"
+    },
+    "crosstalk": {
+      "speaker": "other_seat",
+      "answered_rule": "committed_share_since_request"
+    },
+    "assistant_referral": "none",
+    "unsolicited_requests": "none",
+    "status": "reference"
+  },
+  "assistant": {
+    "provider": "univ_local_unresolved_d05",
+    "source_access": "participant_file_at_accepted_request",
+    "prompt": {
+      "artifact_id": "prompt.assistant_demo",
+      "version": 1
+    },
+    "validator_version": "validator.pending_wp10a",
+    "fallback": "deterministic_file_summary",
+    "model_change_within_session": false
+  },
+  "instruments": {
+    "consent": {
+      "artifact_id": "consent.reference",
+      "version": 3
+    },
+    "training": {
+      "artifact_id": "training.reference",
+      "version": 1
+    },
+    "confidence": {
+      "artifact_id": "confidence.demo",
+      "version": 1
+    },
+    "peer_ratings": {
+      "artifact_id": "peer_ratings.pe_demo",
+      "version": 1
+    },
+    "post_task": {
+      "artifact_id": "post_task.pe_demo",
+      "version": 2
+    },
+    "debrief": {
+      "artifact_id": "debrief.pe_reference",
+      "version": 1
+    }
+  },
+  "outcomes": {
+    "payment_policy": {
+      "artifact_id": "payment.demo_bonus",
+      "version": 1
+    },
+    "completion_statuses": [
+      "completed",
+      "declined",
+      "withdrawn",
+      "technical_stop",
+      "abandoned"
+    ],
+    "withdrawal_payment": "unaffected",
+    "ratings_contingent_pay": false
+  },
+  "interaction": {
+    "mode": "nl_only"
+  }
+}

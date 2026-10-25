@@ -1,0 +1,116 @@
+{
+ "schema_version": "investigators.artifact/1",
+ "kind": "instrument",
+ "artifact_id": "post_task.tp_demo",
+ "version": 6,
+ "status": "approved",
+ "decisions": [],
+ "sources": [
+  {
+   "ref": "demo_constants.time_pressure.ITEMS"
+  },
+  {
+   "ref": "tp demo line 214 (1-7 likert, anchors)"
+  },
+  {
+   "ref": "DEF-08"
+  },
+  {
+   "ref": "UX_Feedback_v4 item 14 (2026-10-05): teammate-nature suspicion check before debrief"
+  },
+  {
+   "ref": "UX_Feedback_v8 follow-up (2026-10-15): teammate-rushed manipulation check"
+  },
+  {
+   "ref": "Owner direction 2026-10-17 (v15): workload relabel + mixed arm manipulation check"
+  }
+ ],
+ "notes": [
+  "v6 (2026-10-17, owner direction): tp_post_09/tp_post_11 reworded to the workload frame ('rushed' -> workload); adds tp_post_12 'My teammates seemed to have different workloads.' as the manipulation check that discriminates the mixed arm; tp_post_10 stays last per its own-page placement.",
+  "v5 (2026-10-15, owner direction): adds tp_post_11 'After the check-in, my teammates seemed more rushed.' immediately after tp_post_09 — the teammate-direction counterpart to the own-rushed check-in manipulation check; tp_post_10 (teammate-nature) stays last per its own-page placement. Preview/lab build; approved so the preview pair can bind only approved material.",
+  "v4 (2026-10-08, owner direction): all items required — skippable=false on every item; the server rejects item_skip and the page does not advance until each declared item is answered. Consent v5 dropped the skip promise to match.",
+  "v2 appends tp_post_10 — a fixed-choice item asked immediately before debrief ('which best describes them?'). Choice items carry an options list; the recorded value is the option text.",
+  "Approved for live pilot fielding (2026-10-07, BA-99 audit remediation): body identical to the bound reference version; approved successor minted so the restored approved-only live gate binds only approved material.",
+  "Fielded post-task item set for the pilot (BA-99): items frozen under D06; approved successor minted so the live bind carries only approved material."
+ ],
+ "body": {
+  "applies_to": "session",
+  "order": "fixed",
+  "response": {
+   "type": "likert",
+   "min": 1,
+   "max": 7,
+   "min_label": "Strongly disagree",
+   "max_label": "Strongly agree",
+   "counts_only_after_input": true
+  },
+  "items": [
+   {
+    "item_id": "tp_post_01",
+    "text": "I had the information I needed to make good decisions.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_02",
+    "text": "There was important information that I did not have.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_03",
+    "text": "My teammates knew things that I did not.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_04",
+    "text": "The AI assistant was useful for this task.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_05",
+    "text": "Asking my teammates for information would have taken up time they did not have.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_06",
+    "text": "I expected my teammates to reply quickly if I asked them something.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_07",
+    "text": "My teammates were willing to help me.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_08",
+    "text": "My teammates seemed competent at the task.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_09",
+    "text": "After the check-in, I felt like my workload was heavier.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_11",
+    "text": "After the check-in, my teammates seemed to have heavier workloads.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_12",
+    "text": "My teammates seemed to have different workloads.",
+    "skippable": false
+   },
+   {
+    "item_id": "tp_post_10",
+    "text": "Thinking about the other two members of your team, which best describes them?",
+    "skippable": false,
+    "options": [
+     "All were human",
+     "Some were human, some were automated",
+     "All were automated",
+     "I am not sure"
+    ]
+   }
+  ]
+ }
+}
